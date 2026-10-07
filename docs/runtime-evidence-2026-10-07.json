@@ -1,0 +1,244 @@
+{
+  "application_url": "https://aistudio.google.com/apps/e8a0fb37-f747-45d2-b376-b832ac7fe09f",
+  "source": "Observed results in AI Studio preview UI; offline tests are separate from live model runs",
+  "cases": [
+    {
+      "case_id": "M01",
+      "observed_via": "AI Studio preview accessibility text",
+      "run": {
+        "ok": true,
+        "run_id": "run_95f8d48f-a967-4c39-a055-3753bc1e9e9b",
+        "timestamp": "2026-10-07T09:12:27.927Z",
+        "requested_model_id": "gemini-3.8-flash",
+        "model_id": "gemini-3.8-flash",
+        "http_status": 200,
+        "token_usage": {
+          "prompt_tokens": 503,
+          "candidate_tokens": 94,
+          "thoughts_tokens": null,
+          "total_tokens": 597
+        },
+        "submitted_input": {
+          "synthetic_only": true,
+          "description": "[SYNTHETIC] Client meeting lunch cost USD 42.50. Receipt available. Employee EMP-DEMO-001.",
+          "amount_usd": 42.5,
+          "amount_minor_input": 4250,
+          "receipt_status": "available",
+          "employee_identifier": "EMP-DEMO-001"
+        },
+        "facts": {
+          "amount_minor": 4250,
+          "currency": "USD",
+          "receipt_status": "available",
+          "description": "Client meeting lunch",
+          "employee_identifier": "EMP-DEMO-001",
+          "missing_information": [
+            "Date of expense",
+            "Vendor/merchant name"
+          ],
+          "contradictions": []
+        }
+      }
+    },
+    {
+      "case_id": "M02-before-hardening",
+      "observed_via": "AI Studio preview accessibility text",
+      "input": {
+        "description": "[SYNTHETIC] Taxi after a late project release. Amount and receipt availability are not known. Employee identifier was not provided.",
+        "amount_usd": null,
+        "receipt_status": "unknown",
+        "employee_identifier": null
+      },
+      "result": {
+        "ok": false,
+        "error_code": "NON_JSON_HTTP_200",
+        "http_status": 200,
+        "run_id": "run_non_json_response",
+        "run_id_kind": "client placeholder; not backend run provenance",
+        "model_id": "gemini-3.8-flash",
+        "timestamp": "2026-10-07T10:53:32.501Z",
+        "message": "Expected application/json from /api/analyze but received text/html. No mock result was generated."
+      }
+    },
+    {
+      "case_id": "M02-final-default-model-timeout",
+      "observed_via": "AI Studio preview accessibility text",
+      "result": {
+        "ok": false,
+        "error_code": "GEMINI_REQUEST_TIMEOUT",
+        "http_status": 504,
+        "upstream_status": 504,
+        "run_id": "run_bc6ef940-5122-4a1d-bcfc-b26c596f61da",
+        "model_id": "gemini-3.8-flash",
+        "timestamp": "2026-10-07T11:15:22.748Z",
+        "timeout_ms": 25000,
+        "message": "This operation was aborted; no fallback or mock result was generated."
+      }
+    },
+    {
+      "case_id": "M02-final",
+      "observed_via": "AI Studio preview accessibility text",
+      "run": {
+        "ok": true,
+        "run_id": "run_9821b777-87dc-43ab-b71c-746a53bd5eea",
+        "timestamp": "2026-10-07T11:17:10.106Z",
+        "requested_model_id": "gemini-3.1-flash-lite",
+        "model_id": "gemini-3.1-flash-lite",
+        "http_status": 200,
+        "upstream_status": 200,
+        "token_usage": {
+          "prompt_tokens": 416,
+          "candidate_tokens": 82,
+          "thoughts_tokens": null,
+          "total_tokens": 498
+        },
+        "submitted_input": {
+          "synthetic_only": true,
+          "description": "[SYNTHETIC] Taxi after a late project release. Amount and receipt availability are not known. Employee identifier was not provided.",
+          "amount_usd": null,
+          "amount_minor_input": null,
+          "receipt_status": "unknown",
+          "employee_identifier": null
+        },
+        "facts": {
+          "amount_minor": null,
+          "currency": "USD",
+          "receipt_status": "unknown",
+          "description": "Taxi after a late project release.",
+          "employee_identifier": null,
+          "missing_information": [
+            "amount",
+            "employee_identifier",
+            "Receipt availability status is unknown."
+          ],
+          "contradictions": []
+        }
+      }
+    },
+    {
+      "case_id": "M03-final",
+      "observed_via": "AI Studio preview accessibility text",
+      "run": {
+        "ok": true,
+        "run_id": "run_1febeba3-a4e1-43db-9994-333436e66fe8",
+        "timestamp": "2026-10-07T11:19:44.315Z",
+        "requested_model_id": "gemini-3.1-flash-lite",
+        "model_id": "gemini-3.1-flash-lite",
+        "http_status": 200,
+        "upstream_status": 200,
+        "token_usage": {
+          "prompt_tokens": 425,
+          "candidate_tokens": 157,
+          "thoughts_tokens": null,
+          "total_tokens": 582
+        },
+        "submitted_input": {
+          "synthetic_only": true,
+          "description": "[SYNTHETIC] The expense was USD 80 and no receipt was retained.",
+          "amount_usd": 125,
+          "amount_minor_input": 12500,
+          "receipt_status": "available",
+          "employee_identifier": "EMP-DEMO-002"
+        },
+        "facts": {
+          "amount_minor": 12500,
+          "currency": "USD",
+          "receipt_status": "available",
+          "description": "[SYNTHETIC] The expense was USD 80 and no receipt was retained.",
+          "employee_identifier": "EMP-DEMO-002",
+          "missing_information": [
+            "Expense date",
+            "Merchant name",
+            "Business purpose"
+          ],
+          "contradictions": [
+            "Form amount is $125.00, but narrative description states USD 80.",
+            "Form receipt status is 'available', but narrative description states 'no receipt was retained'."
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "M01-final",
+      "observed_via": "AI Studio preview accessibility text",
+      "run": {
+        "ok": true,
+        "run_id": "run_01351e3f-1abf-42b4-9181-b94ceb58dc67",
+        "timestamp": "2026-10-07T11:20:50.917Z",
+        "requested_model_id": "gemini-3.1-flash-lite",
+        "model_id": "gemini-3.1-flash-lite",
+        "http_status": 200,
+        "upstream_status": 200,
+        "token_usage": {
+          "prompt_tokens": 435,
+          "candidate_tokens": 102,
+          "thoughts_tokens": null,
+          "total_tokens": 537
+        },
+        "submitted_input": {
+          "synthetic_only": true,
+          "description": "[SYNTHETIC] Client meeting lunch cost USD 42.50. Receipt available. Employee EMP-DEMO-001.",
+          "amount_usd": 42.5,
+          "amount_minor_input": 4250,
+          "receipt_status": "available",
+          "employee_identifier": "EMP-DEMO-001"
+        },
+        "facts": {
+          "amount_minor": 4250,
+          "currency": "USD",
+          "receipt_status": "available",
+          "description": "Client meeting lunch",
+          "employee_identifier": "EMP-DEMO-001",
+          "missing_information": [
+            "Date of expense",
+            "Merchant name",
+            "Business purpose or client name"
+          ],
+          "contradictions": []
+        }
+      }
+    },
+    {
+      "case_id": "M06-fresh-open-default",
+      "observed_via": "AI Studio preview after saving GEMINI_MODEL and reloading; no manual model selection",
+      "run": {
+        "ok": true,
+        "run_id": "run_44a68c9f-dbda-4f4f-9fa0-e88e80d1fcba",
+        "timestamp": "2026-10-07T11:24:22.995Z",
+        "requested_model_id": "gemini-3.1-flash-lite",
+        "model_id": "gemini-3.1-flash-lite",
+        "http_status": 200,
+        "upstream_status": 200,
+        "token_usage": {
+          "prompt_tokens": 455,
+          "candidate_tokens": 158,
+          "thoughts_tokens": null,
+          "total_tokens": 613
+        },
+        "submitted_input": {
+          "synthetic_only": true,
+          "description": "[SYNTHETIC] Team working dinner in Chicago with 4 client implementation engineers on Oct 4. Total charged to corporate card was $184.50, but the itemized paper receipt was lost at the restaurant.",
+          "amount_usd": 148.5,
+          "amount_minor_input": 14850,
+          "receipt_status": "available",
+          "employee_identifier": "SYNTH-EMP-1042"
+        },
+        "facts": {
+          "amount_minor": 14850,
+          "currency": "USD",
+          "receipt_status": "available",
+          "description": "Team working dinner in Chicago with 4 client implementation engineers on Oct 4.",
+          "employee_identifier": "SYNTH-EMP-1042",
+          "missing_information": [
+            "Itemized receipt is missing per narrative",
+            "Merchant name is not specified"
+          ],
+          "contradictions": [
+            "Form amount ($148.50) contradicts narrative amount ($184.50)",
+            "Form receipt status (available) contradicts narrative statement that the receipt was lost"
+          ]
+        }
+      }
+    }
+  ]
+}
