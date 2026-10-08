@@ -1,15 +1,15 @@
 # Contributing
 
-Keep changes small and reviewable. This prototype extracts synthetic expense facts, missing information, and conflicts. Approval, payment, persistent storage, ADK, and Planner features need a separate scope decision.
+Keep changes small and reviewable. The visible prototype extracts synthetic expense facts, missing information, and conflicts. The approved [scope](SCOPE.md) adds bounded planning/review, authentication, persistence and human-confirmed creation of one synthetic exception case in later stages. Reimbursement approval, payments and ADK remain outside that scope.
 
 ## First contribution
 
 1. Follow the outer [README](README.md) to install and run the app.
-2. Run `npm test`, `npm run lint`, and `npm run build` inside `aistudio-export-2026-10-07/`.
+2. Run `npm test`, `npm run lint`, `npm run build`, and `npm run smoke:production` inside `aistudio-export-2026-10-07/`.
 3. Review the synthetic presets and report any mismatch between inputs, displayed facts, and error states. Distinguish observed behavior from expected behavior.
 4. Open a small PR with the checks you actually ran.
 
-Owner A handles integration and runtime configuration. Teammate B focuses initially on local testing, UI review, and synthetic fixtures. Cross-review before merging; an author's own successful run does not replace the other teammate's review.
+The AI lead handles implementation and integration under the approved plan. The captain handles account/paid-resource and personal-declaration steps. The teammate reviews policy labels, tests the UI and cross-accepts stage results; see the [workboard](docs/DELIVERY_WORKBOARD.md). Cross-review before merging; an author's own successful run does not replace the other teammate's review.
 
 ## Branch and PR workflow
 
@@ -36,7 +36,7 @@ In GitHub, open a pull request targeting `sundaylee3100-ljl/AI-Builder-Cup-2026-
 
 ## Validation and evidence
 
-- **Offline:** `npm test` uses validator/route tests without a Gemini key or live request. `npm run lint` is TypeScript checking. `npm run build` builds the frontend. Include command results and any failure details in the PR.
+- **Offline:** `npm test` uses policy/contract and validator/route tests without a Gemini key or live request. `npm run lint` is TypeScript checking. `npm run build` builds the frontend. `npm run smoke:production` then checks a local production server without credentials. Include command results and any failure details in the PR.
 - **UI:** use `npm run dev` at [localhost:3000](http://localhost:3000). Check synthetic presets, missing inputs, contradictory inputs, loading, and error display as relevant to the change. Include screenshots when they help review.
 - **Live Gemini (optional):** use your own server-side `.env` and explicitly configure `GEMINI_MODEL=gemini-3.1-flash-lite`. Record timestamp, selected model, synthetic case, returned telemetry, and outcome. Say **not run** if no live request was made. Offline tests and page loading are not live Gemini evidence.
 

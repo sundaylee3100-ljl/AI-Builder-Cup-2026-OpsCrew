@@ -1,8 +1,12 @@
 {
-  "name": "react-example",
+  "name": "opscrew",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
+  "engines": {
+    "node": ">=24 <25",
+    "npm": ">=11 <12"
+  },
   "scripts": {
     "dev": "tsx server.ts",
     "build": "vite build",
@@ -10,7 +14,8 @@
     "preview": "vite preview",
     "clean": "rm -rf dist server.js",
     "lint": "tsc --noEmit",
-    "test": "tsx --test tests/server-validation.test.ts"
+    "test": "tsx --test tests/*.test.ts",
+    "smoke:production": "node scripts/smoke-production.mjs"
   },
   "dependencies": {
     "@google/genai": "^2.4.0",

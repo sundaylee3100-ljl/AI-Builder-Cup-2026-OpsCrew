@@ -5,33 +5,28 @@ import { fileURLToPath } from "node:url";
 import express from "express";
 import type { Express, NextFunction, Request, Response } from "express";
 import { GoogleGenAI, ThinkingLevel, Type } from "@google/genai";
+import {
+  PORT,
+  ALLOWED_GEMINI_MODELS,
+  DEFAULT_GEMINI_MODEL,
+  GEMINI_SDK_TIMEOUT_MS,
+  GEMINI_MAX_ATTEMPTS,
+  ROUTE_ABORT_TIMEOUT_MS,
+} from "./server/runtime-config.ts";
+
+export {
+  PORT,
+  ALLOWED_GEMINI_MODELS,
+  DEFAULT_GEMINI_MODEL,
+  GEMINI_SDK_TIMEOUT_MS,
+  GEMINI_MAX_ATTEMPTS,
+  ROUTE_ABORT_TIMEOUT_MS,
+};
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-export const PORT = Number(process.env.PORT) || 3000;
-
-export const ALLOWED_GEMINI_MODELS: readonly string[] = [
-  "gemini-3.8-flash",
-  "gemini-3.1-flash-lite",
-  "gemini-flash-latest",
-];
-
 const ALLOWED_GEMINI_MODEL_SET = new Set<string>(ALLOWED_GEMINI_MODELS);
-
-export const DEFAULT_GEMINI_MODEL: string = (() => {
-  const configured = (process.env.GEMINI_MODEL || "").trim();
-  if (configured && ALLOWED_GEMINI_MODEL_SET.has(configured)) {
-    return configured;
-  }
-  return "gemini-3.8-flash";
-})();
-
-// Bounded timeout & finite retry configuration for @google/genai SDK
-// Note: Gemini API enforces a minimum deadline of 10000ms (10s) when httpOptions.timeout is set.
-export const GEMINI_SDK_TIMEOUT_MS = 15_000;
-export const GEMINI_MAX_ATTEMPTS = 2;
-export const ROUTE_ABORT_TIMEOUT_MS = 25_000;
 
 const ALLOWED_RECEIPT_STATUSES = new Set(["available", "missing", "unknown"]);
 
@@ -762,6 +757,14 @@ export function createApp(options: CreateAppOptions = {}): Express {
   const routeTimeoutMs = options.routeTimeoutMs ?? ROUTE_ABORT_TIMEOUT_MS;
 
   // Endpoint to inspect non-sensitive server configuration
+  app.get("/api/health", (_req: Request, res: Response) => {
+    res.status(200).type("application/json").json({
+      ok: true,
+      service: "opscrew",
+      stage: "S1",
+    });
+  });
+
   app.get("/api/config", (_req: Request, res: Response) => {
     const rawKey = options.apiKeyOverride ?? process.env.GEMINI_API_KEY;
     const keyConfigured = Boolean(

@@ -170,7 +170,8 @@ export default function App() {
 
   // Server-allowlisted Gemini models only (no arbitrary custom model input)
   const [allowedModels, setAllowedModels] = useState<string[]>(DEFAULT_ALLOWED_MODELS);
-  const [modelId, setModelId] = useState<string>("gemini-3.8-flash");
+  const [modelId, setModelId] = useState<string>("gemini-3.1-flash-lite");
+  const [configuredModel, setConfiguredModel] = useState<string | null>(null);
   const [serverTimeoutMs, setServerTimeoutMs] = useState<number>(25_000);
 
   // Execution state with bounded waiting timer
@@ -205,7 +206,9 @@ export default function App() {
           }
         }
         if (typeof data.default_model === "string" && data.default_model.trim()) {
-          setModelId(data.default_model.trim());
+          const configuredDefault = data.default_model.trim();
+          setModelId(configuredDefault);
+          setConfiguredModel(configuredDefault);
         }
         if (typeof data.route_timeout_ms === "number" && data.route_timeout_ms > 0) {
           setServerTimeoutMs(data.route_timeout_ms);
@@ -729,7 +732,7 @@ export default function App() {
                 >
                   {allowedModels.map((m) => (
                     <option key={m} value={m}>
-                      {m} {m === "gemini-3.8-flash" ? "(Configured Default)" : ""}
+                      {m} {m === configuredModel ? "(Configured Default)" : ""}
                     </option>
                   ))}
                 </select>

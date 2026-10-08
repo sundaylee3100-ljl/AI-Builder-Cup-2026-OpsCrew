@@ -2,6 +2,8 @@
 
 **AI Builder Cup 2026 · Theme: Future of Work & Enterprise Productivity**
 
+S1 local continuation (2026-10-09): use Node.js 24 and the repository-root README for current setup, policy/contracts, acceptance and deployment preparation. This directory started as a Google Build export; subsequent local edits are disclosed in `../PROVENANCE.md`.
+
 > **Notice:** Prototype: no reimbursement approval or payment. Use **synthetic data only**.
 
 ## Overview & Limited Scope
@@ -44,7 +46,7 @@
    - In Google AI Studio, `GEMINI_API_KEY` is injected automatically at runtime via the platform's **Secrets** panel.
 
 2. **Server-Side Model Allowlist & Billing Scope:**
-   - The server enforces a strict allowlist of supported models (`gemini-3.8-flash`, `gemini-3.1-flash-lite`, `gemini-flash-latest`), defaulting to `gemini-3.8-flash`. Arbitrary custom model IDs are rejected.
+   - The server enforces a strict allowlist of models (`gemini-3.8-flash`, `gemini-3.1-flash-lite`, `gemini-flash-latest`), defaulting to `gemini-3.1-flash-lite`. Arbitrary custom model IDs are rejected. Allowlisting does not verify availability or the account billing tier.
    - Application code does not know the attached account's billing tier and does not guarantee free runtime or zero cloud cost. However, no billing activation, automatic paid model switching, or paid deployment is performed by this prototype.
 
 ---
@@ -52,8 +54,11 @@
 ## Running Locally & Offline Tests
 
 ```bash
-npm install
+npm ci
 npm test
+npm run lint
+npm run build
+npm run smoke:production
 npm run dev
 ```
 
@@ -75,5 +80,5 @@ When ready to deploy a container to Google Cloud Run in a future phase:
    ```
 3. **Cloud Run Environment Variables / Secret Manager:**
    - Mount `GEMINI_API_KEY` via Google Cloud Secret Manager or Cloud Run runtime environment variables.
-   - Optionally set `GEMINI_MODEL=gemini-3.8-flash` and `PORT=3000` (Cloud Run sets `PORT` automatically; `server.ts` respects `process.env.PORT || 3000`).
+   - Set `GEMINI_MODEL=gemini-3.1-flash-lite`; Cloud Run injects `PORT`, and the server binds `0.0.0.0`.
    - Do not bake secrets into the container image or `Dockerfile`.
