@@ -1,0 +1,31 @@
+# Also used explicitly as the gcloud upload ignore file in docs/DEPLOYMENT.md.
+# These are exclusion patterns shared by Docker and Git-style ignore readers.
+**/.git
+**/.github
+**/node_modules
+**/dist
+**/build
+**/coverage
+**/.vite
+**/.cache
+**/__pycache__
+**/*.pyc
+**/tmp_*
+**/nul
+**/*.log
+**/.DS_Store
+**/Thumbs.db
+**/tests
+**/fixtures
+**/docs
+**/.env*
+**/.npmrc
+**/.config
+**/*.pem
+**/*.key
+**/credentials*.json
+**/*service-account*.json
+**/*service_account*.json
+**/*-key.json
+**/*-credentials.json
+**/application_default_credentials.json
