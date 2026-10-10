@@ -4,6 +4,8 @@
  */
 
 import React, { useEffect, useRef, useState } from "react";
+import type { PlanningStep, WorkflowResponse } from "../server/planning-contracts.ts";
+import WorkflowReview, { WorkflowSteps } from "./components/WorkflowReview";
 import {
   AlertTriangle,
   Check,
@@ -14,6 +16,7 @@ import {
   Play,
   RotateCcw,
   ShieldAlert,
+  X,
 } from "lucide-react";
 
 type ReceiptStatus = "available" | "missing" | "unknown";
@@ -35,25 +38,10 @@ interface TokenUsage {
   total_tokens: number | null;
 }
 
-interface AnalyzeSuccessResponse {
-  ok: true;
-  run_id: string;
-  timestamp: string;
-  requested_model_id: string;
-  model_id: string;
-  http_status?: number;
-  upstream_status?: number | null;
-  token_usage: TokenUsage | null;
-  submitted_input: {
-    synthetic_only: boolean;
-    description: string | null;
-    amount_usd: number | null;
-    amount_minor_input: number | null;
-    receipt_status: ReceiptStatus;
-    employee_identifier: string | null;
-  };
+type AnalyzeSuccessResponse = WorkflowResponse & {
+  token_usage?: TokenUsage | null;
   facts: ValidatedExpenseFacts;
-}
+};
 
 interface AnalyzeErrorResponse {
   ok: false;
@@ -63,6 +51,7 @@ interface AnalyzeErrorResponse {
   model_id: string;
   http_status?: number;
   upstream_status?: number | null;
+  steps?: PlanningStep[];
   error: {
     code: string;
     message: string;
@@ -81,8 +70,18 @@ interface SyntheticPreset {
 
 const SYNTHETIC_PRESETS: SyntheticPreset[] = [
   {
+    id: "high-amount-complete",
+    label: "Synthetic 01: High Amount, Complete Facts",
+    summary: "USD 245.50 with a receipt and employee ID: proposes a manual review case.",
+    description:
+      "[SYNTHETIC] Employee SYNTH-EMP-1042 purchased a replacement conference display for $245.50 USD. An itemized receipt is available.",
+    amountUsd: "245.50",
+    receiptStatus: "available",
+    employeeIdentifier: "SYNTH-EMP-1042",
+  },
+  {
     id: "contradiction-amount-receipt",
-    label: "Synthetic 01: Amount & Receipt Conflict",
+    label: "Synthetic 02: Amount & Receipt Conflict",
     summary:
       "Form enters $148.50 and 'available', while narrative states $184.50 and lost paper receipt.",
     description:
@@ -93,7 +92,7 @@ const SYNTHETIC_PRESETS: SyntheticPreset[] = [
   },
   {
     id: "missing-employee-unknown-receipt",
-    label: "Synthetic 02: Unknown Receipt & Null Employee ID",
+    label: "Synthetic 03: Unknown Receipt & Null Employee ID",
     summary:
       "Omits employee identifier and uses 'unknown' receipt status to verify null/unknown preservation.",
     description:
@@ -104,7 +103,7 @@ const SYNTHETIC_PRESETS: SyntheticPreset[] = [
   },
   {
     id: "employee-id-conflict",
-    label: "Synthetic 03: Employee Identifier Mismatch",
+    label: "Synthetic 04: Employee Identifier Mismatch",
     summary:
       "Form specifies SYNTH-EMP-2015, but narrative states expense was incurred by SYNTH-EMP-9981.",
     description:
@@ -115,13 +114,23 @@ const SYNTHETIC_PRESETS: SyntheticPreset[] = [
   },
   {
     id: "clean-exception",
-    label: "Synthetic 04: Aligned Missing-Receipt Exception",
+    label: "Synthetic 05: Missing-Receipt Evidence Request",
     summary: "Consistent form fields and narrative with faded thermal receipt.",
     description:
       "[SYNTHETIC] Out-of-pocket municipal garage parking fee in Seattle during Q4 architecture workshop on Oct 2 ($38.00 USD). Thermal paper receipt faded and is unreadable.",
     amountUsd: "38.00",
     receiptStatus: "missing",
     employeeIdentifier: "SYNTH-EMP-3310",
+  },
+  {
+    id: "complete-no-action",
+    label: "Synthetic 06: Complete, No Exception Needed",
+    summary: "USD 78.25 with a receipt and employee ID: no exception case is required.",
+    description:
+      "[SYNTHETIC] Employee SYNTH-EMP-4410 paid $78.25 USD for workshop supplies. The itemized receipt is available.",
+    amountUsd: "78.25",
+    receiptStatus: "available",
+    employeeIdentifier: "SYNTH-EMP-4410",
   },
 ];
 
@@ -132,7 +141,19 @@ const DEFAULT_ALLOWED_MODELS = [
 ];
 
 // Bounded UI waiting timeout in milliseconds
-const CLIENT_WAIT_TIMEOUT_MS = 28_000;
+const DEFAULT_WORKFLOW_TIMEOUT_MS = 90_000;
+
+function hasValidatedFacts(value: unknown): value is ValidatedExpenseFacts {
+  if (!value || typeof value !== "object") return false;
+  const facts = value as ValidatedExpenseFacts;
+  return facts.currency === "USD" &&
+    (facts.amount_minor === null || (Number.isSafeInteger(facts.amount_minor) && facts.amount_minor >= 0)) &&
+    ["available", "missing", "unknown"].includes(facts.receipt_status) &&
+    (facts.employee_identifier === null || typeof facts.employee_identifier === "string") &&
+    (facts.description === null || typeof facts.description === "string") &&
+    Array.isArray(facts.missing_information) && facts.missing_information.every((item) => typeof item === "string") &&
+    Array.isArray(facts.contradictions) && facts.contradictions.every((item) => typeof item === "string");
+}
 
 function computePreviewMinorUnits(rawUsd: string): number | "invalid" | null {
   const trimmed = rawUsd.trim();
@@ -172,7 +193,7 @@ export default function App() {
   const [allowedModels, setAllowedModels] = useState<string[]>(DEFAULT_ALLOWED_MODELS);
   const [modelId, setModelId] = useState<string>("gemini-3.1-flash-lite");
   const [configuredModel, setConfiguredModel] = useState<string | null>(null);
-  const [serverTimeoutMs, setServerTimeoutMs] = useState<number>(25_000);
+  const [serverTimeoutMs, setServerTimeoutMs] = useState<number>(DEFAULT_WORKFLOW_TIMEOUT_MS);
 
   // Execution state with bounded waiting timer
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -181,11 +202,17 @@ export default function App() {
   const [errorResponse, setErrorResponse] = useState<AnalyzeErrorResponse | null>(null);
   const [jsonViewMode, setJsonViewMode] = useState<"facts" | "envelope">("facts");
   const [copiedJson, setCopiedJson] = useState<boolean>(false);
+  const [statusNotice, setStatusNotice] = useState<string>("");
 
   const activeAbortRef = useRef<AbortController | null>(null);
+  const requestSequenceRef = useRef(0);
+  const inputTouchedRef = useRef(false);
+  const resultHeadingRef = useRef<HTMLHeadingElement | null>(null);
 
   useEffect(() => {
+    const controller = new AbortController();
     fetch("/api/config", {
+      signal: controller.signal,
       headers: { Accept: "application/json" },
     })
       .then(async (res) => {
@@ -196,7 +223,7 @@ export default function App() {
         return res.json();
       })
       .then((data) => {
-        if (!data) return;
+        if (!data || controller.signal.aborted) return;
         if (Array.isArray(data.allowed_models) && data.allowed_models.length > 0) {
           const validModels = data.allowed_models.filter(
             (m: unknown): m is string => typeof m === "string" && m.trim().length > 0
@@ -207,17 +234,27 @@ export default function App() {
         }
         if (typeof data.default_model === "string" && data.default_model.trim()) {
           const configuredDefault = data.default_model.trim();
-          setModelId(configuredDefault);
+          if (!inputTouchedRef.current) setModelId(configuredDefault);
           setConfiguredModel(configuredDefault);
         }
-        if (typeof data.route_timeout_ms === "number" && data.route_timeout_ms > 0) {
-          setServerTimeoutMs(data.route_timeout_ms);
+        if (typeof data.workflow_timeout_ms === "number" && data.workflow_timeout_ms > 0) {
+          setServerTimeoutMs(Math.min(DEFAULT_WORKFLOW_TIMEOUT_MS, data.workflow_timeout_ms));
         }
       })
       .catch(() => {
         // Keep default allowlist if config fetch fails
       });
+    return () => controller.abort();
   }, []);
+
+  useEffect(() => () => {
+    requestSequenceRef.current += 1;
+    activeAbortRef.current?.abort();
+  }, []);
+
+  useEffect(() => {
+    if (result || errorResponse) resultHeadingRef.current?.focus();
+  }, [result, errorResponse]);
 
   useEffect(() => {
     if (!isLoading) {
@@ -231,7 +268,20 @@ export default function App() {
     return () => clearInterval(interval);
   }, [isLoading]);
 
+  const invalidateResults = (notice = "Inputs changed. Run again to create a current plan and review.") => {
+    inputTouchedRef.current = true;
+    requestSequenceRef.current += 1;
+    activeAbortRef.current?.abort();
+    activeAbortRef.current = null;
+    setIsLoading(false);
+    setResult(null);
+    setErrorResponse(null);
+    setCopiedJson(false);
+    setStatusNotice(notice);
+  };
+
   const handleSelectPreset = (preset: SyntheticPreset) => {
+    invalidateResults();
     setActivePresetId(preset.id);
     setDescription(preset.description);
     setAmountUsd(preset.amountUsd);
@@ -240,38 +290,45 @@ export default function App() {
   };
 
   const handleResetBlank = () => {
+    invalidateResults("Form cleared. Add synthetic facts to start a new run.");
     setActivePresetId("");
     setDescription("");
     setAmountUsd("");
     setReceiptStatus("unknown");
     setEmployeeIdentifier("");
-    setResult(null);
-    setErrorResponse(null);
   };
 
-  const handleAnalyze = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleAnalyze = async (e?: React.FormEvent) => {
+    e?.preventDefault();
+    inputTouchedRef.current = true;
     if (activeAbortRef.current) {
       activeAbortRef.current.abort();
     }
 
     const controller = new AbortController();
     activeAbortRef.current = controller;
+    const requestSequence = ++requestSequenceRef.current;
+    const isCurrentRequest = () => requestSequenceRef.current === requestSequence;
+    const waitTimeoutMs = Math.min(DEFAULT_WORKFLOW_TIMEOUT_MS + 5_000, serverTimeoutMs + 5_000);
+    let timedOut = false;
     const clientTimeoutHandle = setTimeout(() => {
+      timedOut = true;
       controller.abort(
         new DOMException(
-          `Client waiting state exceeded bounded limit of ${Math.round(CLIENT_WAIT_TIMEOUT_MS / 1000)}s.`,
+          `Client waiting state exceeded bounded limit of ${Math.round(waitTimeoutMs / 1000)}s.`,
           "TimeoutError"
         )
       );
-    }, CLIENT_WAIT_TIMEOUT_MS);
+    }, waitTimeoutMs);
 
     setIsLoading(true);
     setErrorResponse(null);
     setResult(null);
+    setCopiedJson(false);
+    setStatusNotice("");
 
     try {
-      const response = await fetch("/api/analyze", {
+      const response = await fetch("/api/workflow", {
         method: "POST",
         signal: controller.signal,
         headers: {
@@ -290,6 +347,7 @@ export default function App() {
       const contentType = response.headers.get("content-type") || "";
       if (!contentType.toLowerCase().includes("application/json")) {
         const rawBody = await response.text();
+        if (!isCurrentRequest()) return;
         const snippet = rawBody.replace(/\s+/g, " ").trim().slice(0, 120);
         setErrorResponse({
           ok: false,
@@ -301,17 +359,22 @@ export default function App() {
           upstream_status: response.status,
           error: {
             code: `NON_JSON_HTTP_${response.status}`,
-            message: `Expected application/json from /api/analyze but received '${contentType || "unknown"}' (HTTP ${response.status}). Body preview: ${snippet || "(empty)"}. No mock result was generated.`,
+            message: `Expected application/json from /api/workflow but received '${contentType || "unknown"}' (HTTP ${response.status}). Body preview: ${snippet || "(empty)"}. No mock result was generated.`,
           },
         });
         return;
       }
 
       const payload = await response.json();
+      if (!isCurrentRequest()) return;
       const realHttpStatus =
         typeof payload?.http_status === "number" ? payload.http_status : response.status;
       const upstreamStatus =
         typeof payload?.upstream_status === "number" ? payload.upstream_status : null;
+
+      if (hasValidatedFacts(payload?.facts)) {
+        setResult({ ...payload, http_status: realHttpStatus, upstream_status: upstreamStatus });
+      }
 
       if (!response.ok || !payload.ok) {
         setErrorResponse(
@@ -337,20 +400,21 @@ export default function App() {
                 },
               }
         );
-      } else {
-        setResult({
-          ...(payload as AnalyzeSuccessResponse),
+      } else if (!hasValidatedFacts(payload?.facts) || !payload?.workflow) {
+        setErrorResponse({
+          ok: false,
+          run_id: payload?.run_id || "run_invalid_response",
+          timestamp: new Date().toISOString(),
+          requested_model_id: modelId,
+          model_id: modelId,
           http_status: realHttpStatus,
           upstream_status: upstreamStatus,
+          error: { code: "INVALID_WORKFLOW_RESPONSE", message: "The server did not return validated facts and a workflow. No result was invented." },
         });
       }
     } catch (err: unknown) {
-      const isTimeout =
-        (err instanceof Error &&
-          (err.name === "TimeoutError" ||
-            err.name === "AbortError" ||
-            /timeout|timed out|aborted/i.test(err.message))) ||
-        controller.signal.aborted;
+      if (!isCurrentRequest()) return;
+      const isTimeout = timedOut || (err instanceof Error && err.name === "TimeoutError");
 
       const msg =
         err instanceof Error ? err.message : "Network error communicating with backend.";
@@ -372,7 +436,7 @@ export default function App() {
       if (activeAbortRef.current === controller) {
         activeAbortRef.current = null;
       }
-      setIsLoading(false);
+      if (isCurrentRequest()) setIsLoading(false);
     }
   };
 
@@ -398,7 +462,7 @@ export default function App() {
     <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900">
       {/* Top Bar Contract: Zone 1 Brand | Zone 2 Nav Links | Zone 3 Primary Action */}
       <header className="bg-slate-900 text-white border-b border-slate-800">
-        <div className="max-w-[1360px] mx-auto px-6 h-14 flex items-center justify-between gap-4">
+        <div className="max-w-[1360px] mx-auto px-4 sm:px-6 min-h-14 py-3 flex flex-wrap items-center justify-between gap-3">
           <a
             href="#main-workspace"
             className="text-lg font-bold tracking-tight text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 rounded"
@@ -426,7 +490,7 @@ export default function App() {
               href="#results-panel"
               className="hover:text-white hover:underline underline-offset-4 transition-colors whitespace-nowrap"
             >
-              Structured Output
+              Plan &amp; Review
             </a>
             <a
               href="#scope-guardrails"
@@ -442,7 +506,7 @@ export default function App() {
               onClick={() => handleSelectPreset(SYNTHETIC_PRESETS[0])}
               className="px-3.5 py-1.5 text-xs font-medium text-white bg-teal-700 hover:bg-teal-600 rounded-md transition-colors whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
             >
-              Load Default Synthetic Case
+              Load Default Case
             </button>
           </div>
         </div>
@@ -452,7 +516,7 @@ export default function App() {
       <div
         role="region"
         aria-label="Prototype scope and synthetic data notice"
-        className="bg-teal-950 text-teal-50 border-b border-teal-900 px-6 py-2.5"
+        className="bg-teal-950 text-teal-50 border-b border-teal-900 px-4 sm:px-6 py-2.5"
       >
         <div className="max-w-[1360px] mx-auto flex flex-wrap items-center justify-between gap-y-1 gap-x-6 text-xs">
           <div className="flex items-center gap-2 font-medium">
@@ -474,22 +538,16 @@ export default function App() {
       {/* Main Two-Panel Workspace */}
       <main
         id="main-workspace"
-        className="flex-1 max-w-[1360px] w-full mx-auto px-6 py-8"
+        className="flex-1 max-w-[1360px] w-full mx-auto px-4 sm:px-6 py-8"
       >
         <div className="mb-6">
           <h1 className="text-2xl font-bold tracking-tight text-slate-900">
-            Expense-Exception Intake &amp; Discrepancy Extractor
+            Expense Exception Plan &amp; Review
           </h1>
           <p className="mt-1 text-sm text-slate-600 max-w-3xl">
-            Extracts strictly validated structured facts (
-            <code className="text-xs font-mono text-slate-800">amount_minor</code>,{" "}
-            <code className="text-xs font-mono text-slate-800">currency</code>,{" "}
-            <code className="text-xs font-mono text-slate-800">receipt_status</code>,{" "}
-            <code className="text-xs font-mono text-slate-800">description</code>,{" "}
-            <code className="text-xs font-mono text-slate-800">employee_identifier</code>,{" "}
-            <code className="text-xs font-mono text-slate-800">missing_information</code>, and{" "}
-            <code className="text-xs font-mono text-slate-800">contradictions</code>) via
-            server-side Gemini API without resolving form-vs-narrative conflicts silently.
+            Turn a synthetic expense into grounded facts, a policy-backed plan and an
+            independent AI review. Inspect the original policy evidence and any issues before
+            human confirmation. Case creation is reserved for S3.
           </p>
         </div>
 
@@ -498,9 +556,9 @@ export default function App() {
           <section
             id="intake-panel"
             aria-labelledby="intake-heading"
-            className="lg:col-span-5 bg-white border border-slate-200 rounded-lg p-6"
+            className="lg:col-span-5 min-w-0 bg-white border border-slate-200 rounded-lg p-4 sm:p-6"
           >
-            <div className="flex items-baseline justify-between pb-4 mb-5 border-b border-slate-200">
+            <div className="flex flex-wrap items-baseline justify-between gap-2 pb-4 mb-5 border-b border-slate-200">
               <div>
                 <h2 id="intake-heading" className="text-base font-semibold text-slate-900">
                   1. Synthetic Exception Intake
@@ -538,7 +596,7 @@ export default function App() {
                           : "bg-slate-50/70 border-slate-200 text-slate-700 hover:bg-slate-100 hover:border-slate-300"
                       }`}
                     >
-                      <div className="flex items-center justify-between gap-2">
+                      <div className="flex flex-wrap items-center justify-between gap-2">
                         <span className="text-xs font-semibold text-slate-900">
                           {preset.label}
                         </span>
@@ -573,6 +631,7 @@ export default function App() {
                   rows={4}
                   value={description}
                   onChange={(e) => {
+                    invalidateResults();
                     setActivePresetId("");
                     setDescription(e.target.value);
                   }}
@@ -617,6 +676,7 @@ export default function App() {
                     inputMode="decimal"
                     value={amountUsd}
                     onChange={(e) => {
+                      invalidateResults();
                       setActivePresetId("");
                       setAmountUsd(e.target.value);
                     }}
@@ -666,6 +726,7 @@ export default function App() {
                           value={status}
                           checked={checked}
                           onChange={() => {
+                            invalidateResults();
                             setActivePresetId("");
                             setReceiptStatus(status);
                           }}
@@ -687,7 +748,7 @@ export default function App() {
                   >
                     Employee Identifier
                   </label>
-                  <span className="text-xs text-slate-500">Optional (Synthetic)</span>
+                  <span className="text-xs text-slate-500">Needed for a case</span>
                 </div>
                 <input
                   id="employee-identifier"
@@ -695,6 +756,7 @@ export default function App() {
                   type="text"
                   value={employeeIdentifier}
                   onChange={(e) => {
+                    invalidateResults();
                     setActivePresetId("");
                     setEmployeeIdentifier(e.target.value);
                   }}
@@ -716,17 +778,20 @@ export default function App() {
                     htmlFor="gemini-model-select"
                     className="block text-sm font-medium text-slate-900"
                   >
-                    Supported Gemini Model (Server Allowlist)
+                    Gemini Model
                   </label>
                   <span className="text-xs font-mono text-slate-500">
-                    Timeout: {Math.round(serverTimeoutMs / 1000)}s
+                    Run limit: {Math.round(serverTimeoutMs / 1000)}s
                   </span>
                 </div>
 
                 <select
                   id="gemini-model-select"
                   value={modelId}
-                  onChange={(e) => setModelId(e.target.value)}
+                  onChange={(e) => {
+                    invalidateResults();
+                    setModelId(e.target.value);
+                  }}
                   aria-describedby="model-config-help"
                   className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm font-mono text-slate-900 focus:border-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-600/20"
                 >
@@ -737,10 +802,9 @@ export default function App() {
                   ))}
                 </select>
                 <p id="model-config-help" className="mt-1 text-xs text-slate-500">
-                  Restricted to the server-side model allowlist via{" "}
-                  <code className="font-mono text-slate-700">@google/genai</code>. App code does not
-                  know the account billing tier; no billing activation or paid deployment is
-                  performed by this prototype.
+                  The selected model is used for fact extraction, planning and review.
+                  Model availability and usage depend on this Google project. Retrying starts
+                  a new run and can consume additional model quota.
                 </p>
               </div>
 
@@ -754,15 +818,24 @@ export default function App() {
                   {isLoading ? (
                     <>
                       <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" />
-                      Analyzing with {modelId} ({elapsedSeconds}s)...
+                      Running plan &amp; review ({elapsedSeconds}s)…
                     </>
                   ) : (
                     <>
                       <Play className="w-4 h-4 fill-current" aria-hidden="true" />
-                      Analyze Expense Exception
+                      Analyze, plan &amp; review
                     </>
                   )}
                 </button>
+                {isLoading && <button
+                  type="button"
+                  onClick={() => {
+                    invalidateResults("Cancelled locally. No result is displayed. A request already sent may finish on the server.");
+                    resultHeadingRef.current?.focus();
+                  }}
+                  className="mt-2 w-full inline-flex items-center justify-center gap-2 py-2 text-sm font-medium text-slate-700 rounded-md border border-slate-300 hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600"
+                ><X className="w-4 h-4" aria-hidden="true" />Cancel waiting</button>}
+                <p className="mt-2 text-xs text-slate-500">Changing any field or model discards the previous plan and review.</p>
               </div>
             </form>
           </section>
@@ -771,16 +844,16 @@ export default function App() {
           <section
             id="results-panel"
             aria-labelledby="results-heading"
-            aria-live="polite"
-            className="lg:col-span-7 bg-white border border-slate-200 rounded-lg p-6"
+            aria-busy={isLoading}
+            className="lg:col-span-7 min-w-0 bg-white border border-slate-200 rounded-lg p-4 sm:p-6"
           >
             <div className="flex flex-wrap items-baseline justify-between gap-2 pb-4 mb-5 border-b border-slate-200">
               <div>
-                <h2 id="results-heading" className="text-base font-semibold text-slate-900">
-                  2. Strictly Validated Intake Facts &amp; Telemetry
+                <h2 ref={resultHeadingRef} tabIndex={-1} id="results-heading" className="text-base font-semibold text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 rounded">
+                  2. Policy Decision, AI Plan &amp; Review
                 </h2>
                 <p className="text-xs text-slate-500 mt-0.5">
-                  Direct output from server-side Gemini invocation. Never falls back to mock data.
+                  Recommendations only. No exception case, reimbursement or payment is created.
                 </p>
               </div>
               {result && (
@@ -790,10 +863,13 @@ export default function App() {
               )}
             </div>
 
+            <p role="status" aria-live="polite" className={statusNotice ? "mb-4 rounded-md border border-slate-200 bg-slate-50 p-3 text-xs text-slate-700" : "sr-only"}>
+              {statusNotice || (isLoading ? "Plan and review request started. Waiting for the server response." : errorResponse ? "The workflow failed. See the error and any retained facts below." : result ? "Server response received. Inspect the decision, plan and review below." : "Ready for a synthetic run.")}
+            </p>
+
             {/* STATE 1: Bounded Loading State */}
             {isLoading && (
               <div
-                role="status"
                 className="py-16 px-6 text-center border border-dashed border-slate-200 rounded-lg bg-slate-50/50"
               >
                 <Loader2
@@ -801,12 +877,13 @@ export default function App() {
                   aria-hidden="true"
                 />
                 <p className="text-sm font-semibold text-slate-900">
-                  Running Server-Side Gemini Analysis
+                  Waiting for facts, policy decision, AI plan and review
                 </p>
                 <p className="text-xs text-slate-600 font-mono tabular-nums mt-1">
                   Model: {modelId} · Elapsed: {elapsedSeconds}s /{" "}
-                  {Math.round(serverTimeoutMs / 1000)}s bounded timeout
+                  {Math.round(serverTimeoutMs / 1000)}s server run limit
                 </p>
+                <p className="mt-3 text-xs text-slate-500 max-w-md mx-auto">Individual steps appear after the server responds. This timer does not indicate which step is currently running.</p>
               </div>
             )}
 
@@ -823,12 +900,12 @@ export default function App() {
                   />
                   <div className="flex-1 min-w-0">
                     <h3 className="text-sm font-semibold text-red-900">
-                      Analysis Failed ({errorResponse.error.code})
+                      Workflow Failed ({errorResponse.error.code})
                     </h3>
                     <p className="mt-1 text-xs text-red-800 leading-relaxed break-words">
                       {errorResponse.error.message}
                     </p>
-                    <div className="mt-3 pt-3 border-t border-red-200 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-mono text-red-900 tabular-nums">
+                    <div className="mt-3 pt-3 border-t border-red-200 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-mono text-red-900 tabular-nums break-all">
                       {errorResponse.http_status !== undefined && (
                         <>
                           <span>http_status: {errorResponse.http_status}</span>
@@ -848,6 +925,9 @@ export default function App() {
                       <span aria-hidden="true">·</span>
                       <span>timestamp: {errorResponse.timestamp}</span>
                     </div>
+                    <button type="button" onClick={() => void handleAnalyze()} className="mt-3 inline-flex items-center gap-1.5 rounded-md border border-red-300 bg-white px-3 py-2 text-xs font-semibold text-red-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 hover:bg-red-50"><RotateCcw className="w-3.5 h-3.5" aria-hidden="true" />Retry current inputs</button>
+                    <p className="mt-2 text-xs text-red-800">Retry starts a new bounded run. No automatic client retries are performed.</p>
+                    {!result?.workflow && errorResponse.steps && errorResponse.steps.length > 0 && <div className="mt-4"><WorkflowSteps steps={errorResponse.steps} /></div>}
                   </div>
                 </div>
               </div>
@@ -861,23 +941,25 @@ export default function App() {
                   aria-hidden="true"
                 />
                 <h3 className="text-sm font-semibold text-slate-800">
-                  No Intake Run Executed Yet
+                  No Current Plan or Review
                 </h3>
                 <p className="mt-1 text-xs text-slate-600 max-w-md mx-auto">
                   Select one of the synthetic test scenarios on the left and click{" "}
                   <strong className="font-semibold text-slate-800">
-                    Analyze Expense Exception
+                    Analyze, plan &amp; review
                   </strong>{" "}
-                  to call the server-side Gemini API and inspect the validated output.
+                  to inspect grounded facts, deterministic policy rules and independent AI recommendations.
                 </p>
               </div>
             )}
 
             {/* STATE 4: Validated Result */}
-            {!isLoading && !errorResponse && result && (
-              <div className="space-y-6">
+            {!isLoading && result && (
+              <div className={`${errorResponse ? "mt-5 " : ""}space-y-6`}>
+                {result.workflow && <WorkflowReview workflow={result.workflow} />}
+                {errorResponse && <p className="rounded-md border border-amber-200 bg-amber-50 p-3 text-xs text-amber-900">These validated facts were retained from the failed run. They do not establish a passing plan or review.</p>}
                 {/* Execution Metadata Bar */}
-                <div className="bg-slate-900 text-slate-100 rounded-md px-4 py-3 text-xs font-mono tabular-nums">
+                <div className="bg-slate-900 text-slate-100 rounded-md px-4 py-3 text-xs font-mono tabular-nums break-all">
                   <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
                     <span>
                       <span className="text-slate-400">run_id:</span> {result.run_id}
@@ -899,7 +981,7 @@ export default function App() {
                       ·
                     </span>
                     <span>
-                      <span className="text-slate-400">tokens:</span>{" "}
+                      <span className="text-slate-400">fact tokens:</span>{" "}
                       {result.token_usage ? (
                         <>
                           total={result.token_usage.total_tokens ?? "null"} (prompt=
@@ -922,8 +1004,8 @@ export default function App() {
                   <h3 className="text-xs font-semibold text-slate-700 mb-2">
                     Validated Structured Facts
                   </h3>
-                  <div className="border border-slate-200 rounded-md overflow-hidden">
-                    <table className="w-full text-left border-collapse text-sm">
+                  <div className="border border-slate-200 rounded-md overflow-x-auto">
+                    <table className="w-full min-w-[440px] text-left border-collapse text-sm">
                       <thead>
                         <tr className="bg-slate-50 border-b border-slate-200 text-xs text-slate-600">
                           <th scope="col" className="py-2.5 px-3.5 font-semibold w-48">
@@ -1164,14 +1246,12 @@ export default function App() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs text-slate-600 leading-relaxed">
             <div>
               <h3 className="font-semibold text-slate-900 mb-1">
-                1. Server-Side Secret &amp; Allowlist Policy
+                1. Synthetic Policy Evidence
               </h3>
               <p>
-                Calls <code className="font-mono text-slate-800">@google/genai</code> solely from
-                the Node.js backend using{" "}
-                <code className="font-mono text-slate-800">process.env.GEMINI_API_KEY</code> and a
-                strict server-side model allowlist. App code does not know the account billing tier;
-                no billing activation or paid deployment is performed by this prototype.
+                This demonstration uses a versioned synthetic USD policy. Read the original
+                clause text with each recommendation. The deterministic rules remain authoritative
+                if an AI recommendation disagrees with them.
               </p>
             </div>
             <div>
@@ -1179,21 +1259,19 @@ export default function App() {
                 2. Grounding &amp; Discrepancy Preservation
               </h3>
               <p>
-                Unknown values remain <code className="font-mono text-slate-800">null</code> or{" "}
-                <code className="font-mono text-slate-800">&quot;unknown&quot;</code>.{" "}
-                <code className="font-mono text-slate-800">employee_identifier</code> must be
-                grounded in the form or narrative. Explicit form-vs-narrative conflicts identify
-                both sources in <code className="font-mono text-slate-800">contradictions</code>.
+                Unknown facts stay unknown. Conflicting sources require clarification and block
+                a proposed case. A missing receipt can lead to an evidence request when the
+                amount, employee and receipt status are known and no contradiction remains.
               </p>
             </div>
             <div>
               <h3 className="font-semibold text-slate-900 mb-1">
-                3. Bounded Timeouts &amp; Non-Fabrication
+                3. Human Confirmation &amp; Transparent Failures
               </h3>
               <p>
-                Prototype: no reimbursement approval or payment. Requests use bounded SDK timeouts
-                and finite retries. API, timeout, or schema validation errors fail transparently
-                with no mock fallback.
+                The Planner and Reviewer provide recommendations. S2 cannot approve or create
+                cases. Model, timeout and validation failures are shown with available evidence;
+                the application does not invent a successful result.
               </p>
             </div>
           </div>

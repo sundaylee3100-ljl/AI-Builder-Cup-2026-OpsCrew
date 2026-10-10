@@ -2,6 +2,8 @@
 
 Prepared for S1 on 2026-10-09. Local development is approved. The first new paid resource, billing change, or chargeable cloud deployment still requires the project owner's confirmation of the actual project, region, resource configuration, and budget. The commands below are a runbook for that approved future action; they have not been executed as part of this preparation.
 
+S2 update: the user explicitly deferred cloud deployment. The local app now includes facts, planning and separate review with a 90-second workflow deadline. The proposed future platform timeout below is updated to 120 seconds to leave transport margin; this configuration has not been deployed or verified. Real local S2 acceptance is partial; the current API works, but two branches have unresolved timeouts; see [S2 acceptance](acceptance/S02-plan-and-review.md).
+
 The current workstation has Node 24 but no detected Docker or Google Cloud CLI. No container build, registry upload, cloud deployment, new cloud Gemini call, Firebase setup, or Firestore write is claimed here. Local test results belong in the S1 acceptance report. An AI Studio development preview does not establish a formal deployed contest endpoint.
 
 ## Resource and cost proposal
@@ -10,7 +12,7 @@ Use one confirmed Google Cloud project. `asia-southeast1` (Singapore) is the pre
 
 | Resource | S1 proposal | Later change |
 | --- | --- | --- |
-| Cloud Run | One private `opscrew-s1` service; service minimum 0, maximum 1; 1 CPU; 512 MiB; request-based CPU allocation; concurrency 4; request timeout 60 seconds | Public judge entry only after S3 identity isolation and S4 abuse limits pass |
+| Cloud Run | One private `opscrew-s1` service; service minimum 0, maximum 1; 1 CPU; 512 MiB; request-based CPU allocation; concurrency 4; proposed request timeout 120 seconds for the S2 workflow | Public judge entry only after S3 identity isolation and S4 abuse limits pass |
 | Artifact Registry | One Docker repository in the confirmed region; commit-based release tags and immutable image digests recorded | Retain reviewed release images; review cleanup rules |
 | Cloud Build | Manually submitted Docker build with a dedicated builder identity | No automatic trigger in S1 |
 | Cloud Storage | One private regional bucket for build source and build logs | Review retention after release; never store secrets here |
@@ -35,7 +37,7 @@ npm run build
 npm run smoke:production
 ```
 
-The formal smoke script starts its own `node server.ts` process in production on a reserved ephemeral port. It supplies no API keys, uses the operating system null device for dotenv, and inherits only essential process environment values. It checks root HTML, a built JavaScript asset, a nested SPA refresh, `/api/health`, non-sensitive `/api/config`, a JSON `MISSING_API_KEY` error, and a JSON unknown-API 404. It makes only local requests and always stops the child it created, including after failure. It never locates or terminates a process by port or name. Run the build first; a Vite development server or `vite preview` does not verify the production backend.
+The formal smoke script starts its own `node server.ts` process in production on a reserved ephemeral port. It supplies no API keys, uses the operating system null device for dotenv, and inherits only essential process environment values. Its eight checks cover root HTML, a built JavaScript asset, a nested SPA refresh, `/api/health`, non-sensitive `/api/config`, JSON `MISSING_API_KEY` failures for `/api/analyze` and `/api/workflow`, and a JSON unknown-API 404. It makes only local requests and always stops the child it created, including after failure. It never locates or terminates a process by port or name. Run the build first; a Vite development server or `vite preview` does not verify the production backend.
 
 The Dockerfile uses the [official Node image](https://hub.docker.com/_/node), pinned to `node:24-bookworm-slim`. The build stage installs from the lockfile, builds the frontend, and prunes development dependencies. The runtime copies the production dependency tree, `server.ts`, `server/`, `src/domain/`, and `dist/`, and runs as the `node` user. Node 24 executes erasable TypeScript directly; there is no runtime `tsx` dependency. Continue running the type check separately. [Node 24 TypeScript support](https://nodejs.org/docs/latest-v24.x/api/typescript.html)
 
@@ -145,7 +147,7 @@ $DeployArgs = @(
     'run', 'deploy', $Service, "--project=$ProjectId", "--region=$Region",
     "--image=$ImageByDigest", "--service-account=$RuntimeSa", '--port=8080',
     '--min=0', '--max=1', '--cpu=1', '--memory=512Mi', '--concurrency=4',
-    '--timeout=60s', '--cpu-throttling', '--no-cpu-boost',
+    '--timeout=120s', '--cpu-throttling', '--no-cpu-boost',
     '--ingress=all', '--invoker-iam-check', '--no-allow-unauthenticated',
     '--set-env-vars=NODE_ENV=production,GEMINI_MODEL=gemini-3.1-flash-lite',
     "--set-secrets=GEMINI_API_KEY=${SecretName}:$SecretVersion"
@@ -157,7 +159,7 @@ $ServiceUrl = (gcloud run services describe $Service --region=$Region --project=
 $Revision = (gcloud run services describe $Service --region=$Region --project=$ProjectId --format='value(status.latestReadyRevisionName)').Trim()
 ```
 
-This uses service-level min/max scaling and keeps the invoker IAM check enabled. Internet ingress allows the named testers to reach the endpoint; it does not grant anonymous access. Verify no `allUsers`/`allAuthenticatedUsers` invoker binding is present, including any inherited project grant. The 60-second platform timeout contains the current bounded application request; it is not a claim about measured model latency. [Deployment flag definitions](https://docs.cloud.google.com/sdk/gcloud/reference/run/deploy)
+This uses service-level min/max scaling and keeps the invoker IAM check enabled. Internet ingress allows the named testers to reach the endpoint; it does not grant anonymous access. Verify no `allUsers`/`allAuthenticatedUsers` invoker binding is present, including any inherited project grant. The proposed 120-second platform timeout exceeds the application's 90-second workflow bound; it is not a measured latency or verified cloud result. The facts-only cloud check below does not establish S2 planning/review acceptance. [Deployment flag definitions](https://docs.cloud.google.com/sdk/gcloud/reference/run/deploy)
 
 ## Actual cloud smoke and evidence
 

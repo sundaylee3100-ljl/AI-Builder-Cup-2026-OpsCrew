@@ -154,7 +154,7 @@ async function runChecks(baseUrl) {
   const health = await requestJson(baseUrl, "/api/health", 200);
   assert.equal(health.ok, true);
   assert.equal(health.service, "opscrew");
-  assert.equal(health.stage, "S1");
+  assert.equal(health.stage, "S2");
   checks.push("production health JSON");
 
   const config = await requestJson(baseUrl, "/api/config", 200);
@@ -181,6 +181,16 @@ async function runChecks(baseUrl) {
   assert.equal(missingKey.upstream_status, null);
   assert(!Object.hasOwn(missingKey, "facts"), "Missing credentials must not produce fabricated facts.");
   checks.push("missing-key analysis fails before any Gemini call");
+
+  const missingWorkflowKey = await requestJson(baseUrl, "/api/workflow", 500, {
+    method: "POST", headers: { "content-type": "application/json" },
+    body: JSON.stringify({ description: "[SYNTHETIC] EMP-1042 spent $38.00; receipt missing.", amount_usd: "38.00", receipt_status: "missing", employee_identifier: "EMP-1042" }),
+  });
+  assert.equal(missingWorkflowKey.error?.code, "MISSING_API_KEY");
+  assert.equal(missingWorkflowKey.facts, null);
+  assert.equal(missingWorkflowKey.workflow, null);
+  assert.deepEqual(missingWorkflowKey.steps, []);
+  checks.push("missing-key workflow fails without facts, plan or model attempts");
 
   const notFound = await requestJson(baseUrl, "/api/smoke-route-that-does-not-exist", 404);
   assert.equal(notFound.ok, false);

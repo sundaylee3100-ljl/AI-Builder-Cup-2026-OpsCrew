@@ -1,6 +1,6 @@
 {
-  "name": "OpsCrew — Expense-Exception Intake Prototype",
-  "description": "Minimal enterprise expense-exception intake prototype for AI Builder Cup 2026 (Future of Work & Enterprise Productivity). Extracts strictly validated structured facts, missing information, and contradictions from synthetic expense records using server-side Gemini.",
+  "name": "OpsCrew — Expense Exception Plan & Review",
+  "description": "Synthetic USD expense facts, policy-grounded plans and separate Gemini review for AI Builder Cup 2026. Recommendations are validated by server rules; human confirmation and case persistence are future stages.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

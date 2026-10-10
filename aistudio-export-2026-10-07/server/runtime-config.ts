@@ -17,3 +17,9 @@ export const DEFAULT_GEMINI_MODEL = (() => {
 export const GEMINI_SDK_TIMEOUT_MS = 15_000;
 export const GEMINI_MAX_ATTEMPTS = 2;
 export const ROUTE_ABORT_TIMEOUT_MS = 25_000;
+export const WORKFLOW_ABORT_TIMEOUT_MS = 90_000;
+export const PROMPT_VERSIONS = Object.freeze({
+  facts: "opscrew-facts-1.1.0",
+  planner: "opscrew-planner-1.0.1",
+  reviewer: "opscrew-reviewer-1.0.0",
+});

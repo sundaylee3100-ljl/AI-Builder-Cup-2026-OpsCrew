@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import type { Server } from "node:http";
+import { readFileSync } from "node:fs";
 import {
   ALLOWED_GEMINI_MODELS,
   GEMINI_MAX_ATTEMPTS,
@@ -11,6 +12,43 @@ import {
   validateAllowedModel,
   validateAndEnrichFacts,
 } from "../server.ts";
+import { evaluatePolicy } from "../src/domain/policy.ts";
+
+test("Source grounding rejects changed known amounts/receipts and invented unknown facts", () => {
+  const raw = { amount_minor: 25000, currency: "USD", receipt_status: "missing", description: "Hotel expense", employee_identifier: "SYNTH-EMP-100", missing_information: [], contradictions: [] };
+  const form = { description: "Hotel expense $250.00 for SYNTH-EMP-100. Receipt missing.", amountMinorFromForm: 25000, amountRawText: "250.00", receiptStatus: "missing" as const, employeeIdentifier: "SYNTH-EMP-100" };
+  assert.throws(() => validateAndEnrichFacts({ ...raw, amount_minor: 10000 }, form), /amount_minor.*not grounded/);
+  assert.throws(() => validateAndEnrichFacts({ ...raw, receipt_status: "available" }, form), /receipt_status.*not grounded/);
+  const unknown = { ...form, description: "Synthetic hotel expense for SYNTH-EMP-100; total and receipt status unspecified.", amountMinorFromForm: null, amountRawText: "", receiptStatus: "unknown" as const };
+  assert.throws(() => validateAndEnrichFacts({ ...raw, receipt_status: "unknown" }, unknown), /amount_minor.*not grounded/);
+  assert.throws(() => validateAndEnrichFacts({ ...raw, amount_minor: null }, unknown), /receipt_status.*not grounded/);
+  const result = validateAndEnrichFacts({ ...raw, amount_minor: null, receipt_status: "unknown" }, unknown);
+  assert.equal(evaluatePolicy(result).branch, "NEEDS_INFO");
+});
+
+test("Recognized narrative-only values remain grounded and ambiguous source statements block planning", () => {
+  const raw = { amount_minor: 25000, currency: "USD", receipt_status: "missing", description: "Hotel expense", employee_identifier: "SYNTH-EMP-100", missing_information: [], contradictions: [] };
+  const form = { description: "Hotel expense $250.00 for SYNTH-EMP-100. Receipt missing.", amountMinorFromForm: null, amountRawText: "", receiptStatus: "unknown" as const, employeeIdentifier: "SYNTH-EMP-100" };
+  assert.equal(evaluatePolicy(validateAndEnrichFacts(raw, form)).branch, "MANUAL_REVIEW");
+  for (const description of ["Hotel expense $250.00 or $100.00 for SYNTH-EMP-100. Receipt missing.", "Hotel expense $250.00 for SYNTH-EMP-100. Receipt missing. Receipt attached."]) {
+    const result = validateAndEnrichFacts(raw, { ...form, description });
+    assert(result.contradictions.length > 0);
+    assert.equal(evaluatePolicy(result).branch, "BLOCKED");
+  }
+});
+
+test("All twelve development fixtures retain their expected policy branch after source grounding", () => {
+  const fixtures = JSON.parse(readFileSync(new URL("../fixtures/development-cases.json", import.meta.url), "utf8"));
+  for (const fixture of fixtures.cases) {
+    const amount = parseFormUsdToMinor(fixture.input.amount_usd);
+    const result = validateAndEnrichFacts(fixture.facts, {
+      description: fixture.input.description, amountMinorFromForm: amount.amountMinor,
+      amountRawText: amount.rawText, receiptStatus: fixture.input.receipt_status,
+      employeeIdentifier: fixture.input.employee_identifier || null,
+    });
+    assert.equal(evaluatePolicy(result).branch, fixture.expected.branch, fixture.id);
+  }
+});
 
 test("1. extractNarrativeDollarAmountsMinor parses complete numeric tokens with and without commas and avoids partial matches", () => {
   assert.deepEqual(extractNarrativeDollarAmountsMinor("Expense total was $8200.00."), [820000]);
