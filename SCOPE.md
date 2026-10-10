@@ -1,6 +1,6 @@
 # OpsCrew delivery scope
 
-Updated: 2026-10-09 (Asia/Shanghai). The delivery plan was approved on October 8; S0 and S1 began on October 9 and are in progress. This document describes the target workflow, not a claim that it is already implemented. See the [workboard](docs/DELIVERY_WORKBOARD.md) and [submission checklist](SUBMISSION_CHECKLIST.md).
+Updated: 2026-10-10 (Asia/Shanghai). S0/S1 local preparation and S2 local planning/review are implemented. Full external gates are pending; G2 local functional acceptance passed on genuine captures, with repeated reliability evaluation still pending, and cloud deployment is deferred by instruction. This document describes the complete target workflow; authentication, confirmation and persisted case creation are still future work. See the [workboard](docs/DELIVERY_WORKBOARD.md), [S2 acceptance](docs/acceptance/S02-plan-and-review.md) and [submission checklist](SUBMISSION_CHECKLIST.md).
 
 ## Product and baseline
 

@@ -1,14 +1,14 @@
-# OpsCrew — Expense-Exception Intake Prototype
+# OpsCrew — Expense Exception Plan & Review
 
 **AI Builder Cup 2026 · Theme: Future of Work & Enterprise Productivity**
 
-S1 local continuation (2026-10-09): use Node.js 24 and the repository-root README for current setup, policy/contracts, acceptance and deployment preparation. This directory started as a Google Build export; subsequent local edits are disclosed in `../PROVENANCE.md`.
+S2 local continuation (2026-10-09–10): use Node.js 24 and the [repository-root README](../README.md) for current setup, policy/contracts, acceptance and deployment preparation. This directory started as a Google Build export; subsequent local edits are disclosed in [provenance](../PROVENANCE.md). Local tests pass, but G2 local functional acceptance passed through strict revalidation of four genuine live branches; earlier timeouts remain reliability limits. Cloud deployment is deferred.
 
 > **Notice:** Prototype: no reimbursement approval or payment. Use **synthetic data only**.
 
 ## Overview & Limited Scope
 
-**OpsCrew** is a minimal, strictly scoped expense-exception intake prototype built with a React + TypeScript frontend and a Node.js + Express backend.
+**OpsCrew** is a synthetic expense-exception planning and review prototype built with a React + TypeScript frontend and a Node.js + Express backend.
 
 ### What This Prototype Does
 - Provides an accessible, keyboard-friendly intake form for **synthetic** expense exceptions:
@@ -16,7 +16,7 @@ S1 local continuation (2026-10-09): use Node.js 24 and the repository-root READM
   - **Amount in USD** (validated into non-negative safe integer minor units / cents)
   - **Receipt Status** (`available`, `missing`, `unknown`)
   - **Employee Identifier** (optional)
-- Calls the Gemini API exclusively from the Node.js server using the official `@google/genai` SDK with bounded request timeouts (`httpOptions.timeout`, finite `retryOptions`, and `AbortSignal`).
+- Calls the Gemini API exclusively from the Node.js server using the official `@google/genai` SDK with bounded request timeouts and cancellation. Hidden SDK retries are disabled; at most two recorded caller attempts per role retry only 429/503.
 - Enforces strict contract validation on every structured output field:
   - `amount_minor` (`integer | null`, non-negative safe integer in USD cents)
   - `currency` (`"USD"`)
@@ -29,6 +29,9 @@ S1 local continuation (2026-10-09): use Node.js 24 and the repository-root READM
 - Preserves unknown facts as `null` or `"unknown"` rather than guessing.
 - Preserves explicit inconsistencies between structured form fields and narrative text in `contradictions` (identifying both the form and narrative sources) instead of silently choosing a winner.
 - Displays execution transparency metadata: actual model ID (`model_id`), server-generated `run_id`, HTTP and upstream status codes, token usage (`prompt_tokens`, `candidate_tokens`, `thoughts_tokens`, `total_tokens`), bounded loading/error states, and a formatted JSON payload. Never fabricates model responses or falls back to mock data on API errors.
+- After validated facts, calls a Planner and a fresh Reviewer. Fixed server rules check all five policy branches, exact proposed facts, evidence requirements and citation support; the UI resolves original policy text and version.
+- Shows version bindings, review issues and actual step attempts. Editing input cancels and invalidates older results; manual cancellation and retry are available.
+- Returns `execution_authorized: false` for every recommendation. The `local-preview` owner is a development placeholder, not verified identity.
 
 ### Out of Scope (Not Included in v1)
 - **No reimbursement approval or payment execution**
@@ -62,7 +65,9 @@ npm run smoke:production
 npm run dev
 ```
 
-The server starts on port `3000`, serving `/api/analyze` and `/api/config` alongside the Vite frontend.
+The local server binds loopback on port `3000`, serving `/api/analyze` (facts only), `/api/workflow` (facts → plan → review), `/api/config` and `/api/health` alongside the Vite frontend. Production binds `0.0.0.0`.
+
+See [S2 acceptance](../docs/acceptance/S02-plan-and-review.md) for the 105 offline checks, eight isolated production checks, local browser evidence and unsuccessful real API attempt. These are separate evidence categories.
 
 ---
 

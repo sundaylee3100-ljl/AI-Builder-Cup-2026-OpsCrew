@@ -1,12 +1,12 @@
-# OpsCrew — Expense-Exception Intake
+# OpsCrew — Expense Exception Plan & Review
 
-A Google AI Studio Build prototype for extracting facts, missing information, and conflicts from **synthetic USD expense intake**. The UI sends intake to a server-side Gemini call, then displays validated facts and runtime telemetry. It does not approve expenses, make payments, persist expense records, or implement ADK/Planner orchestration.
+A Google AI Studio Build prototype extended locally to produce reviewable plans from **synthetic USD expense intake**. The server extracts facts, runs a separately prompted Gemini Planner and Reviewer, and checks every proposed fact, action and policy citation against fixed rules. The English UI shows the recommendation and actual attempt telemetry. S2 does not approve expenses, make payments, authenticate visitors or persist cases.
 
 The application was generated in a blank Google Build app without importing the earlier local application's source. Read [PROVENANCE.md](PROVENANCE.md) for the export history and subsequent local changes. The [AI Studio app](https://aistudio.google.com/apps/e8a0fb37-f747-45d2-b376-b832ac7fe09f) and its development preview are not a formal public contest deployment.
 
-S0/S1 implementation began on 2026-10-09 after plan approval. The current stage adds synthetic policy/contracts, development fixtures and production packaging. The visible app remains an intake prototype; policy planning, authentication, persisted cases and human-authorized creation are later stages. See [scope](SCOPE.md), [delivery workboard](docs/DELIVERY_WORKBOARD.md), [policy/contracts](docs/POLICY_AND_CONTRACTS.md), and [deployment preparation](docs/DEPLOYMENT.md).
+S0/S1 local foundations and S2 planning/review were implemented on 2026-10-09 after approval. Authentication, human confirmation, persisted cases and public deployment remain later work. See [scope](SCOPE.md), [delivery workboard](docs/DELIVERY_WORKBOARD.md), [policy/contracts](docs/POLICY_AND_CONTRACTS.md), [S2 design](docs/S2_PLANNING_REVIEW.md), and [deployment preparation](docs/DEPLOYMENT.md).
 
-Current acceptance: [S0 scope and prerequisites](docs/acceptance/S00-scope-and-prerequisites.md) and [S1 engineering foundation](docs/acceptance/S01-engineering-foundation.md). On October 9, 25 offline tests, type checking, the build and seven local production HTTP checks passed. Account, real container and cloud gates remain pending.
+Current acceptance: [S0 prerequisites](docs/acceptance/S00-scope-and-prerequisites.md), [S1 foundation](docs/acceptance/S01-engineering-foundation.md), and [S2 plan/review](docs/acceptance/S02-plan-and-review.md). On October 10, **105 offline tests and eight local production HTTP checks passed**, together with type checking and the build. Real missing-receipt browser integration and controlled offline cancellation/editing checks also passed. **G2 local functional acceptance passed:** strict revalidation of genuine no-action, missing-receipt, over-threshold and blocked-conflict captures supports the expected outcomes. Evidence spans two bounded timeout profiles; earlier failures remain visible and live stability is still S4/S5 work. Account, actual container and cloud gates remain pending; cloud deployment is explicitly deferred.
 
 ## Repository layout
 
@@ -24,6 +24,7 @@ The handoff environment uses **Node.js 24.14.0 and npm 11.9.0**. Use the committ
 ```powershell
 git clone https://github.com/sundaylee3100-ljl/AI-Builder-Cup-2026-OpsCrew.git
 cd AI-Builder-Cup-2026-OpsCrew
+git switch --track origin/feat/s2-planning-review
 cd aistudio-export-2026-10-07
 npm ci
 Copy-Item .env.example .env
@@ -44,7 +45,7 @@ Start the full local app:
 npm run dev
 ```
 
-Open [localhost:3000](http://localhost:3000). Use the synthetic presets, confirm the selected model is `gemini-3.1-flash-lite`, then run analysis if live API access is configured. Loading the page alone does not prove a Gemini call succeeded. `npm run preview` serves only the built frontend; it is not the full server/API workflow.
+Open [localhost:3000](http://localhost:3000). Use the synthetic presets, confirm the selected model is `gemini-3.1-flash-lite`, then run analysis if live API access is configured. Input edits invalidate older results. Planning and review produce recommendations with `execution_authorized: false`. Loading the page alone does not prove a Gemini call succeeded. `npm run preview` serves only the built frontend; it is not the full server/API workflow.
 
 Cloud deployment preparation is documented separately; actual deployment and the first new paid configuration remain pending.
 
@@ -59,13 +60,13 @@ npm run build
 npm run smoke:production
 ```
 
-`npm test` runs offline validator and route tests without a real key or live Gemini call. `npm run lint` runs TypeScript checking. `npm run build` checks the production frontend build. Record these results separately from any optional live Gemini test.
+`npm test` runs offline policy, validator, planning-service and HTTP tests without a real key or live Gemini call. `npm run lint` runs TypeScript checking. `npm run build` checks the production frontend build. Record these results separately from any optional live Gemini test.
 
 `npm run smoke:production` requires the built `dist` directory. It starts its own native Node production server with no Gemini credential, checks HTTP behavior, and stops that process. It makes no live Gemini request. `GET /api/health` is a local/container liveness check; it does not claim model or database readiness.
 
 The handoff checks passed on 2026-10-07: 6 offline tests, TypeScript checking, and the frontend build. See [local validation](docs/local-validation-2026-10-07.md) for exact results and the disclosed dependency packaging fix.
 
-For a live check, use synthetic data only and record the selected model, timestamp, observed facts/errors, and returned runtime telemetry. Do not include credentials. A failed API call must remain an error; it must not be reported as successful model output.
+For a live check after resolving the API prerequisite, use the permanent [opt-in runner](aistudio-export-2026-10-07/scripts/check-workflow-live.mjs) and a new evidence filename as described in the S2 acceptance report. The runner requires an environment-only key and explicit `--live`. Use synthetic data and retain actual failures; offline fixtures never stand in for live model output.
 
 ## Team handoff
 

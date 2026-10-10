@@ -1,0 +1,187 @@
+{
+  "schema_version": "1.0.0",
+  "stage": "S2",
+  "mode": "live-gemini-local-loopback",
+  "created_at": "2026-10-09T13:59:29.284Z",
+  "requested_model_id": "gemini-3.1-flash-lite",
+  "fixture_version": "1.0.0",
+  "policy_version": "synthetic-expense-usd-1.0.0",
+  "purpose": "Opt-in live development acceptance. This is not held-out evaluation, cloud deployment, approval or execution evidence.",
+  "runtime": {
+    "node": "v24.14.0",
+    "request_timeout_ms": 95000
+  },
+  "source": {
+    "base_commit": "913b0f8a4beb944ebedfa36fa49bf2af9aebab43",
+    "working_tree_dirty": true,
+    "note": "The acceptance ran against this working tree. The later S2 delivery commit must explicitly bind this report to the reviewed source; this base commit alone does not identify uncommitted changes."
+  },
+  "bounds": {
+    "maximum_selected_cases": 4,
+    "maximum_attempts_per_stage": 2,
+    "maximum_stage_attempts_per_case": 6,
+    "runner_request_retries": 0
+  },
+  "selected_fixture_ids": [
+    "DEV-01",
+    "DEV-04",
+    "DEV-10",
+    "DEV-03"
+  ],
+  "records": [
+    {
+      "fixture_id": "DEV-01",
+      "expected_branch": "NO_ACTION_REQUIRED",
+      "started_at": "2026-10-09T13:59:31.231Z",
+      "outcome": "FAIL",
+      "transport_status": 402,
+      "duration_ms": 8892,
+      "result": {
+        "ok": false,
+        "run_id": "run_821f111a-2564-4725-89c1-0ed68091e6d9",
+        "timestamp": "2026-10-09T13:59:31.369Z",
+        "requested_model_id": "gemini-3.1-flash-lite",
+        "model_id": "gemini-3.1-flash-lite",
+        "http_status": 402,
+        "upstream_status": 402,
+        "error_code": "GEMINI_API_ERROR_402",
+        "facts": null,
+        "workflow": null,
+        "steps": [
+          {
+            "role": "FACTS",
+            "attempt": 1,
+            "outcome": "ERROR",
+            "duration_ms": 8725,
+            "requested_model_id": "gemini-3.1-flash-lite",
+            "model_id": "gemini-3.1-flash-lite",
+            "upstream_status": 402,
+            "token_usage": null,
+            "error_code": "GEMINI_API_ERROR_402"
+          }
+        ]
+      },
+      "failure": "The live API did not return a successful HTTP status; see sanitized error_code and attempts.\n\n402 !== 200\n",
+      "finished_at": "2026-10-09T13:59:40.123Z"
+    },
+    {
+      "fixture_id": "DEV-04",
+      "expected_branch": "EVIDENCE_REQUEST",
+      "started_at": "2026-10-09T13:59:40.124Z",
+      "outcome": "FAIL",
+      "transport_status": 402,
+      "duration_ms": 618,
+      "result": {
+        "ok": false,
+        "run_id": "run_7b540cf4-df43-423c-be60-d1c70e3cc778",
+        "timestamp": "2026-10-09T13:59:40.130Z",
+        "requested_model_id": "gemini-3.1-flash-lite",
+        "model_id": "gemini-3.1-flash-lite",
+        "http_status": 402,
+        "upstream_status": 402,
+        "error_code": "GEMINI_API_ERROR_402",
+        "facts": null,
+        "workflow": null,
+        "steps": [
+          {
+            "role": "FACTS",
+            "attempt": 1,
+            "outcome": "ERROR",
+            "duration_ms": 608,
+            "requested_model_id": "gemini-3.1-flash-lite",
+            "model_id": "gemini-3.1-flash-lite",
+            "upstream_status": 402,
+            "token_usage": null,
+            "error_code": "GEMINI_API_ERROR_402"
+          }
+        ]
+      },
+      "failure": "The live API did not return a successful HTTP status; see sanitized error_code and attempts.\n\n402 !== 200\n",
+      "finished_at": "2026-10-09T13:59:40.743Z"
+    },
+    {
+      "fixture_id": "DEV-10",
+      "expected_branch": "BLOCKED",
+      "started_at": "2026-10-09T13:59:40.743Z",
+      "outcome": "FAIL",
+      "transport_status": 402,
+      "duration_ms": 699,
+      "result": {
+        "ok": false,
+        "run_id": "run_1cea4ed1-d618-4295-9262-2601de6301b9",
+        "timestamp": "2026-10-09T13:59:40.753Z",
+        "requested_model_id": "gemini-3.1-flash-lite",
+        "model_id": "gemini-3.1-flash-lite",
+        "http_status": 402,
+        "upstream_status": 402,
+        "error_code": "GEMINI_API_ERROR_402",
+        "facts": null,
+        "workflow": null,
+        "steps": [
+          {
+            "role": "FACTS",
+            "attempt": 1,
+            "outcome": "ERROR",
+            "duration_ms": 687,
+            "requested_model_id": "gemini-3.1-flash-lite",
+            "model_id": "gemini-3.1-flash-lite",
+            "upstream_status": 402,
+            "token_usage": null,
+            "error_code": "GEMINI_API_ERROR_402"
+          }
+        ]
+      },
+      "failure": "The live API did not return a successful HTTP status; see sanitized error_code and attempts.\n\n402 !== 200\n",
+      "finished_at": "2026-10-09T13:59:41.442Z"
+    },
+    {
+      "fixture_id": "DEV-03",
+      "expected_branch": "MANUAL_REVIEW",
+      "started_at": "2026-10-09T13:59:41.443Z",
+      "outcome": "FAIL",
+      "transport_status": 402,
+      "duration_ms": 521,
+      "result": {
+        "ok": false,
+        "run_id": "run_b2eba217-c2e3-4def-b378-0f1c0daf51a8",
+        "timestamp": "2026-10-09T13:59:41.446Z",
+        "requested_model_id": "gemini-3.1-flash-lite",
+        "model_id": "gemini-3.1-flash-lite",
+        "http_status": 402,
+        "upstream_status": 402,
+        "error_code": "GEMINI_API_ERROR_402",
+        "facts": null,
+        "workflow": null,
+        "steps": [
+          {
+            "role": "FACTS",
+            "attempt": 1,
+            "outcome": "ERROR",
+            "duration_ms": 516,
+            "requested_model_id": "gemini-3.1-flash-lite",
+            "model_id": "gemini-3.1-flash-lite",
+            "upstream_status": 402,
+            "token_usage": null,
+            "error_code": "GEMINI_API_ERROR_402"
+          }
+        ]
+      },
+      "failure": "The live API did not return a successful HTTP status; see sanitized error_code and attempts.\n\n402 !== 200\n",
+      "finished_at": "2026-10-09T13:59:41.964Z"
+    }
+  ],
+  "ok": false,
+  "interrupted": false,
+  "finished_at": "2026-10-09T13:59:41.968Z",
+  "unattempted_fixture_ids": [],
+  "token_accounting": {
+    "reported_attempt_count": 4,
+    "requests_without_attempt_telemetry": 0,
+    "provider_attempt_count_fully_reported": true,
+    "known_total_tokens": 0,
+    "unreported_token_attempt_count": 4,
+    "complete_token_accounting": false,
+    "measured_cost_usd": null,
+    "cost_note": "Provider pricing and billed cost were not measured. Failed or unreported attempts are not counted as zero tokens or zero cost."
+  }
+}

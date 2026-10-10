@@ -1,0 +1,112 @@
+{
+  "schema_version": "1.0.0",
+  "mode": "offline-semantic-revalidation-of-genuine-live-captures",
+  "created_at": "2026-10-10T02:37:31.039Z",
+  "ok": true,
+  "gate": "G2-local-functional",
+  "real_api_calls_made_by_this_revalidation": 0,
+  "prompt_versions": {
+    "facts": "opscrew-facts-1.1.0",
+    "planner": "opscrew-planner-1.0.1",
+    "reviewer": "opscrew-reviewer-1.0.0"
+  },
+  "source_report_sha256": {
+    "S02-live-validation-2026-10-10-final.json": "0cac25b269a37cfb727a1f5f7392047d3df8abc1a0d690d1c4ecbf6a14f0f074",
+    "S02-live-validation-2026-10-10-extended-deadline.json": "70757435463810696c57bce22f39c9c4009ddb15fd207ef51f3490cb73f1f2ad"
+  },
+  "records": [
+    {
+      "fixture_id": "DEV-04",
+      "semantic_revalidation": "PASS",
+      "source_report": "S02-live-validation-2026-10-10-final.json",
+      "original_runner_outcome": "PASS",
+      "run_id": "run_d500dd90-5ffa-41fa-aa99-cad56981021f",
+      "branch": "EVIDENCE_REQUEST",
+      "status": "REVIEWABLE",
+      "review_verdict": "PASS",
+      "execution_authorized": false,
+      "actual_recorded_roles": [
+        "FACTS",
+        "PLANNER",
+        "REVIEWER"
+      ],
+      "source_timeout_profile_ms": {
+        "facts_sdk": 15000,
+        "facts_route": 25000,
+        "planning_attempt": 20000,
+        "planning_total": 60000,
+        "workflow": 90000
+      }
+    },
+    {
+      "fixture_id": "DEV-03",
+      "semantic_revalidation": "PASS",
+      "source_report": "S02-live-validation-2026-10-10-final.json",
+      "original_runner_outcome": "PASS",
+      "run_id": "run_90e8ae0b-3ee6-494e-a808-09e6a8ab6635",
+      "branch": "MANUAL_REVIEW",
+      "status": "REVIEWABLE",
+      "review_verdict": "PASS",
+      "execution_authorized": false,
+      "actual_recorded_roles": [
+        "FACTS",
+        "PLANNER",
+        "REVIEWER"
+      ],
+      "source_timeout_profile_ms": {
+        "facts_sdk": 15000,
+        "facts_route": 25000,
+        "planning_attempt": 20000,
+        "planning_total": 60000,
+        "workflow": 90000
+      }
+    },
+    {
+      "fixture_id": "DEV-01",
+      "semantic_revalidation": "PASS",
+      "source_report": "S02-live-validation-2026-10-10-extended-deadline.json",
+      "original_runner_outcome": "PASS",
+      "run_id": "run_8e0ebb88-1140-4f2b-ace6-4ad3d2ad7735",
+      "branch": "NO_ACTION_REQUIRED",
+      "status": "NO_ACTION_REQUIRED",
+      "review_verdict": "PASS",
+      "execution_authorized": false,
+      "actual_recorded_roles": [
+        "FACTS",
+        "PLANNER",
+        "REVIEWER"
+      ],
+      "source_timeout_profile_ms": {
+        "facts_sdk": 25000,
+        "facts_route": 30000,
+        "planning_attempt": 30000,
+        "planning_total": 60000,
+        "workflow": 90000
+      }
+    },
+    {
+      "fixture_id": "DEV-10",
+      "semantic_revalidation": "PASS",
+      "source_report": "S02-live-validation-2026-10-10-extended-deadline.json",
+      "original_runner_outcome": "FAIL",
+      "run_id": "run_09f999fb-8189-4f91-923e-781755032de0",
+      "branch": "BLOCKED",
+      "status": "BLOCKED",
+      "review_verdict": "BLOCKED",
+      "execution_authorized": false,
+      "actual_recorded_roles": [
+        "FACTS",
+        "PLANNER",
+        "REVIEWER"
+      ],
+      "source_timeout_profile_ms": {
+        "facts_sdk": 25000,
+        "facts_route": 30000,
+        "planning_attempt": 30000,
+        "planning_total": 60000,
+        "workflow": 90000
+      }
+    }
+  ],
+  "note": "Revalidates immutable genuine Gemini captures with the corrected strict verifier. No model generation, fallback or original report rewrite. Conflict BLOCKED with validated issues/citations is the correct safe outcome. Evidence spans two bounded timeout profiles; this is functional branch acceptance, not a single clean full-suite rerun or stability/held-out/cloud evaluation."
+}
