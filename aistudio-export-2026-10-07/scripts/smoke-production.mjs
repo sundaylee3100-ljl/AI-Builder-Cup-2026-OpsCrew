@@ -154,7 +154,7 @@ async function runChecks(baseUrl) {
   const health = await requestJson(baseUrl, "/api/health", 200);
   assert.equal(health.ok, true);
   assert.equal(health.service, "opscrew");
-  assert.equal(health.stage, "S2");
+  assert.equal(health.stage, "S3");
   checks.push("production health JSON");
 
   const config = await requestJson(baseUrl, "/api/config", 200);

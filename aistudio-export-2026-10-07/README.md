@@ -2,7 +2,7 @@
 
 **AI Builder Cup 2026 · Theme: Future of Work & Enterprise Productivity**
 
-S2 local continuation (2026-10-09–10): use Node.js 24 and the [repository-root README](../README.md) for current setup, policy/contracts, acceptance and deployment preparation. This directory started as a Google Build export; subsequent local edits are disclosed in [provenance](../PROVENANCE.md). Local tests pass, but G2 local functional acceptance passed through strict revalidation of four genuine live branches; earlier timeouts remain reliability limits. Cloud deployment is deferred.
+S3 local continuation (2026-10-10): use Node.js 24 and the [repository-root README](../README.md) for setup. See [S3 confirmation/cases](../docs/S3_CONFIRMATION_CASES.md) and [acceptance](../docs/acceptance/S03-confirmation-and-cases.md) for Firebase visitor sessions, transaction/readback, emulator tests and remaining real-resource gates. This directory retains its original Google Build export name; later local edits are disclosed in [provenance](../PROVENANCE.md). G2 local functional acceptance passed; earlier free-tier timeouts remain S4/S5 reliability work. Cloud deployment is deferred.
 
 > **Notice:** Prototype: no reimbursement approval or payment. Use **synthetic data only**.
 

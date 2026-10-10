@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0.0",
+  "stage": "S3",
+  "kind": "delivery-source-binding-not-a-new-test-run",
+  "recorded_at": "2026-10-10T10:03:16.792223+00:00",
+  "base_revision": "c967803051966533f4c6f99cafb057dd3da087f0",
+  "release_report": "S03-emulator-validation-2026-10-10-release.json",
+  "release_report_sha256": "c65b627194a0cd4680ba10ca0ff88acb384fb93d48797d7a67ebde388b03258f",
+  "sha256": {
+    "package.json": "e0d43ac0f4d3e998435e9ed9b0594ebaaecf96f6814816949e4d4825913daeda",
+    "package-lock.json": "7e813a7f2e2466053f8355f050348d778f981e693a5db19a38d5e564ca14f0cb",
+    "server.ts": "a39e5e9f07a2c054a7e7341f2673e28535f0064666ae40b09682d6c88bb7ebbf",
+    "server/case-service.ts": "ddfbc0826e93c29d5b0f3d120295b572f62f3d0ae4c2a2ea2ef9da34baffbaf3",
+    "server/case-routes.ts": "583078a619453455a3228e3b2aa8d970eef71954663086729c29313e06c6fc23",
+    "server/firebase-runtime.ts": "494211f6a2f106efed747e51084356f62847884aeb5860bd39cfbf2fc842bb4b",
+    "server/runtime-config.ts": "e6fff94af6fa1e72905655cef06ca510d2ffbf964b459a95c5ec05f4733697af",
+    "scripts/check-s3-emulator.mjs": "853ce4aa1094116d3bc64b38c4b7200c757ba9f5b05bbb02a15d010ceefa4966",
+    "fixtures/development-cases.json": "bb61b80d158f24dafc2e18274d0a5b9c02cf44296649e550bccb0aabd5fe00c7",
+    "firebase.json": "bfd28943974b7623fc757f8677194303cf87b2ed1edb67593c4827dcdc56b311",
+    "firestore.rules": "1990874ed70e379d013db242e2210ff61537c305be1ec35171004ffb30853709",
+    "firestore.indexes.json": "0c634c030b88d477779f7078f059db1e27cf4f52f4f7458315af93d68ff3abd4"
+  },
+  "unchanged_release_fingerprints": 11,
+  "format_only_change": {
+    "path": "scripts/check-s3-emulator.mjs",
+    "line": 241,
+    "before_sha256": "49ac9dca0ea4d6703359a96f41e0e7864d6bb7c5020042b32917033bdfc9592b",
+    "after_sha256": "853ce4aa1094116d3bc64b38c4b7200c757ba9f5b05bbb02a15d010ceefa4966",
+    "description": "Removed one trailing ASCII space; all lines equal after trimming trailing whitespace. No statement or behavior changed.",
+    "normalized_lines_equal": true,
+    "node_syntax_check": "PASS"
+  },
+  "prior_results_referenced": {
+    "offline_passed": 173,
+    "emulator_groups_passed": 25,
+    "production_http_passed": 8
+  },
+  "new_execution_of_prior_tests_claimed": false,
+  "real_resource_g3": "PENDING",
+  "cleanup": "BLOCKED_BY_APPROVAL_REVIEW"
+}

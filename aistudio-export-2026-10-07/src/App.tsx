@@ -6,6 +6,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import type { PlanningStep, WorkflowResponse } from "../server/planning-contracts.ts";
 import WorkflowReview, { WorkflowSteps } from "./components/WorkflowReview";
+import CaseConfirmation from "./components/CaseConfirmation";
+import { useFirebaseSession, type CaseBackendConfig } from "./lib/firebase-session.ts";
+import { authenticatedHeaders, caseApi, CaseRequestError } from "./lib/case-client.ts";
 import {
   AlertTriangle,
   Check,
@@ -194,6 +197,8 @@ export default function App() {
   const [modelId, setModelId] = useState<string>("gemini-3.1-flash-lite");
   const [configuredModel, setConfiguredModel] = useState<string | null>(null);
   const [serverTimeoutMs, setServerTimeoutMs] = useState<number>(DEFAULT_WORKFLOW_TIMEOUT_MS);
+  const [caseBackend, setCaseBackend] = useState<CaseBackendConfig | null>(null);
+  const visitorSession = useFirebaseSession(caseBackend);
 
   // Execution state with bounded waiting timer
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -207,6 +212,8 @@ export default function App() {
   const activeAbortRef = useRef<AbortController | null>(null);
   const requestSequenceRef = useRef(0);
   const inputTouchedRef = useRef(false);
+  const inputVersionRef = useRef(1);
+  const previousOwnerRef = useRef<string | null>(null);
   const resultHeadingRef = useRef<HTMLHeadingElement | null>(null);
 
   useEffect(() => {
@@ -224,6 +231,9 @@ export default function App() {
       })
       .then((data) => {
         if (!data || controller.signal.aborted) return;
+        if (data.case_backend && typeof data.case_backend.enabled === "boolean") {
+          setCaseBackend(data.case_backend);
+        }
         if (Array.isArray(data.allowed_models) && data.allowed_models.length > 0) {
           const validModels = data.allowed_models.filter(
             (m: unknown): m is string => typeof m === "string" && m.trim().length > 0
@@ -247,6 +257,19 @@ export default function App() {
     return () => controller.abort();
   }, []);
 
+  useEffect(() => {
+    if (previousOwnerRef.current === visitorSession.uid) return;
+    previousOwnerRef.current = visitorSession.uid;
+    requestSequenceRef.current += 1;
+    activeAbortRef.current?.abort();
+    activeAbortRef.current = null;
+    setIsLoading(false);
+    setResult(null);
+    setErrorResponse(null);
+    setCopiedJson(false);
+    setStatusNotice(visitorSession.uid ? "Visitor session verified. Run again to bind a saved plan to this identity." : "Visitor session ended. Current plans and confirmations have been cleared.");
+  }, [visitorSession.uid]);
+
   useEffect(() => () => {
     requestSequenceRef.current += 1;
     activeAbortRef.current?.abort();
@@ -269,7 +292,20 @@ export default function App() {
   }, [isLoading]);
 
   const invalidateResults = (notice = "Inputs changed. Run again to create a current plan and review.") => {
+    const previousBinding = result?.workflow?.binding;
+    const invalidationSequence = requestSequenceRef.current + 1;
+    if (caseBackend?.enabled && previousBinding && previousBinding.owner_id === visitorSession.uid) {
+      void caseApi(`/api/runs/${encodeURIComponent(previousBinding.run_id)}/invalidate`, visitorSession.headers, {
+        method: "POST", body: { binding: previousBinding },
+      }).catch((cause: unknown) => {
+        // The UI is already invalidated. The server also supersedes prior runs before a new workflow.
+        if ((cause instanceof CaseRequestError && cause.code === "ALREADY_COMMITTED") ||
+          requestSequenceRef.current !== invalidationSequence || previousOwnerRef.current !== previousBinding.owner_id) return;
+        setStatusNotice("Current inputs and confirmation were cleared. The server could not acknowledge invalidation; run a new workflow before confirming a plan.");
+      });
+    }
     inputTouchedRef.current = true;
+    inputVersionRef.current += 1;
     requestSequenceRef.current += 1;
     activeAbortRef.current?.abort();
     activeAbortRef.current = null;
@@ -300,6 +336,10 @@ export default function App() {
 
   const handleAnalyze = async (e?: React.FormEvent) => {
     e?.preventDefault();
+    if (caseBackend?.enabled && (!visitorSession.ready || !visitorSession.uid)) {
+      setStatusNotice("Start a visitor session in Human Confirmation & Saved Case before running a saved workflow.");
+      return;
+    }
     inputTouchedRef.current = true;
     if (activeAbortRef.current) {
       activeAbortRef.current.abort();
@@ -328,12 +368,15 @@ export default function App() {
     setStatusNotice("");
 
     try {
+      const authorization = caseBackend?.enabled ? await authenticatedHeaders(visitorSession.headers, controller.signal) : {};
+      controller.signal.throwIfAborted();
       const response = await fetch("/api/workflow", {
         method: "POST",
         signal: controller.signal,
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
+          ...authorization,
         },
         body: JSON.stringify({
           description,
@@ -341,6 +384,7 @@ export default function App() {
           receipt_status: receiptStatus,
           employee_identifier: employeeIdentifier.trim() || null,
           model_id: modelId,
+          input_version: inputVersionRef.current,
         }),
       });
 
@@ -493,6 +537,12 @@ export default function App() {
               Plan &amp; Review
             </a>
             <a
+              href="#case-confirmation"
+              className="hover:text-white hover:underline underline-offset-4 transition-colors whitespace-nowrap"
+            >
+              Saved Cases
+            </a>
+            <a
               href="#scope-guardrails"
               className="hover:text-white hover:underline underline-offset-4 transition-colors whitespace-nowrap"
             >
@@ -547,7 +597,8 @@ export default function App() {
           <p className="mt-1 text-sm text-slate-600 max-w-3xl">
             Turn a synthetic expense into grounded facts, a policy-backed plan and an
             independent AI review. Inspect the original policy evidence and any issues before
-            human confirmation. Case creation is reserved for S3.
+            human confirmation. A configured Firebase session can save an explicitly confirmed
+            synthetic case and verify it with an independent read.
           </p>
         </div>
 
@@ -812,7 +863,7 @@ export default function App() {
               <div className="pt-2">
                 <button
                   type="submit"
-                  disabled={isLoading}
+                  disabled={isLoading || (caseBackend?.enabled && (!visitorSession.ready || !visitorSession.uid))}
                   className="w-full inline-flex items-center justify-center gap-2 rounded-md bg-teal-700 hover:bg-teal-600 disabled:bg-slate-400 text-white font-semibold py-2.5 px-4 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-teal-700 whitespace-nowrap"
                 >
                   {isLoading ? (
@@ -836,6 +887,7 @@ export default function App() {
                   className="mt-2 w-full inline-flex items-center justify-center gap-2 py-2 text-sm font-medium text-slate-700 rounded-md border border-slate-300 hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600"
                 ><X className="w-4 h-4" aria-hidden="true" />Cancel waiting</button>}
                 <p className="mt-2 text-xs text-slate-500">Changing any field or model discards the previous plan and review.</p>
+                {caseBackend?.enabled && !visitorSession.uid && <p className="mt-2 text-xs text-teal-800"><a href="#case-confirmation" className="font-semibold underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 rounded">Start a visitor session below</a> to run a saved workflow.</p>}
               </div>
             </form>
           </section>
@@ -853,7 +905,7 @@ export default function App() {
                   2. Policy Decision, AI Plan &amp; Review
                 </h2>
                 <p className="text-xs text-slate-500 mt-0.5">
-                  Recommendations only. No exception case, reimbursement or payment is created.
+                  These AI recommendations require separate human confirmation before a synthetic case can be saved.
                 </p>
               </div>
               {result && (
@@ -956,7 +1008,7 @@ export default function App() {
             {/* STATE 4: Validated Result */}
             {!isLoading && result && (
               <div className={`${errorResponse ? "mt-5 " : ""}space-y-6`}>
-                {result.workflow && <WorkflowReview workflow={result.workflow} />}
+                {result.workflow && <WorkflowReview workflow={result.workflow} caseBackendEnabled={caseBackend?.enabled === true} />}
                 {errorResponse && <p className="rounded-md border border-amber-200 bg-amber-50 p-3 text-xs text-amber-900">These validated facts were retained from the failed run. They do not establish a passing plan or review.</p>}
                 {/* Execution Metadata Bar */}
                 <div className="bg-slate-900 text-slate-100 rounded-md px-4 py-3 text-xs font-mono tabular-nums break-all">
@@ -1231,6 +1283,22 @@ export default function App() {
           </section>
         </div>
 
+        <CaseConfirmation
+          config={caseBackend}
+          session={visitorSession}
+          inputRevision={inputVersionRef.current}
+          workflow={!isLoading && !errorResponse ? result?.workflow ?? null : null}
+          onRejected={() => {
+            requestSequenceRef.current += 1;
+            activeAbortRef.current?.abort();
+            activeAbortRef.current = null;
+            setResult(null);
+            setErrorResponse(null);
+            setIsLoading(false);
+            setStatusNotice("The plan was rejected on the server. It cannot create a case. Edit the synthetic inputs and start a new run.");
+          }}
+        />
+
         {/* Scope & Architectural Guardrails Section */}
         <section
           id="scope-guardrails"
@@ -1269,8 +1337,9 @@ export default function App() {
                 3. Human Confirmation &amp; Transparent Failures
               </h3>
               <p>
-                The Planner and Reviewer provide recommendations. S2 cannot approve or create
-                cases. Model, timeout and validation failures are shown with available evidence;
+                The Planner and Reviewer provide recommendations. Case creation requires a
+                verified visitor, current plan and explicit human confirmation. A separate read
+                verifies the saved record. Model, timeout and validation failures are shown with available evidence;
                 the application does not invent a successful result.
               </p>
             </div>

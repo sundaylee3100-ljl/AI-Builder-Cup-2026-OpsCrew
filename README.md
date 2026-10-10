@@ -1,12 +1,14 @@
 # OpsCrew — Expense Exception Plan & Review
 
-A Google AI Studio Build prototype extended locally to produce reviewable plans from **synthetic USD expense intake**. The server extracts facts, runs a separately prompted Gemini Planner and Reviewer, and checks every proposed fact, action and policy citation against fixed rules. The English UI shows the recommendation and actual attempt telemetry. S2 does not approve expenses, make payments, authenticate visitors or persist cases.
+A Google AI Studio Build prototype extended locally to produce reviewable plans from **synthetic USD expense intake**. The server extracts facts, runs a separately prompted Gemini Planner and Reviewer, and checks every proposed fact, action and policy citation against fixed rules. S3 adds optional Firebase visitor authentication, owned persistent plans, explicit human confirmation, atomic case creation and independent readback. A case is a synthetic handling record; no reimbursement is approved or paid.
 
 The application was generated in a blank Google Build app without importing the earlier local application's source. Read [PROVENANCE.md](PROVENANCE.md) for the export history and subsequent local changes. The [AI Studio app](https://aistudio.google.com/apps/e8a0fb37-f747-45d2-b376-b832ac7fe09f) and its development preview are not a formal public contest deployment.
 
-S0/S1 local foundations and S2 planning/review were implemented on 2026-10-09 after approval. Authentication, human confirmation, persisted cases and public deployment remain later work. See [scope](SCOPE.md), [delivery workboard](docs/DELIVERY_WORKBOARD.md), [policy/contracts](docs/POLICY_AND_CONTRACTS.md), [S2 design](docs/S2_PLANNING_REVIEW.md), and [deployment preparation](docs/DEPLOYMENT.md).
+The approved local continuation now includes S0/S1 foundations, S2 planning/review and S3 confirmation/cases. See [S3 setup and recovery](docs/S3_CONFIRMATION_CASES.md), [S3 acceptance and limits](docs/acceptance/S03-confirmation-and-cases.md), [scope](SCOPE.md), [delivery workboard](docs/DELIVERY_WORKBOARD.md), [policy/contracts](docs/POLICY_AND_CONTRACTS.md), and [deployment preparation](docs/DEPLOYMENT.md). Real Firebase and public Google Cloud deployment gates remain pending.
 
-Current acceptance: [S0 prerequisites](docs/acceptance/S00-scope-and-prerequisites.md), [S1 foundation](docs/acceptance/S01-engineering-foundation.md), and [S2 plan/review](docs/acceptance/S02-plan-and-review.md). On October 10, **105 offline tests and eight local production HTTP checks passed**, together with type checking and the build. Real missing-receipt browser integration and controlled offline cancellation/editing checks also passed. **G2 local functional acceptance passed:** strict revalidation of genuine no-action, missing-receipt, over-threshold and blocked-conflict captures supports the expected outcomes. Evidence spans two bounded timeout profiles; earlier failures remain visible and live stability is still S4/S5 work. Account, actual container and cloud gates remain pending; cloud deployment is explicitly deferred.
+Current acceptance: [S0 prerequisites](docs/acceptance/S00-scope-and-prerequisites.md), [S1 foundation](docs/acceptance/S01-engineering-foundation.md), [S2 plan/review](docs/acceptance/S02-plan-and-review.md), and [S3 confirmation/cases](docs/acceptance/S03-confirmation-and-cases.md). S3 local acceptance on October 10 passed **173 offline tests, 25 Auth/Firestore emulator check groups and eight production HTTP checks**, together with type checking and the build. Browser checks covered explicit confirmation, independently verified persistence, restored case history, mobile layout and keyboard focus. Production dependency audit reported zero findings; development tooling still has disclosed findings. **G3 remains pending real Firebase identity, real Gemini and Firestore write/readback.**
+
+The earlier **G2 local functional acceptance passed** across genuine no-action, missing-receipt, over-threshold and blocked-conflict captures. Those captures span two bounded timeout profiles; earlier failures remain visible and live stability is still S4/S5 work. S2 is now included in main at c967803; S3 is handed off on its separate feature branch for review. Account, actual container and cloud gates remain pending; cloud deployment is explicitly deferred.
 
 ## Repository layout
 
@@ -24,7 +26,7 @@ The handoff environment uses **Node.js 24.14.0 and npm 11.9.0**. Use the committ
 ```powershell
 git clone https://github.com/sundaylee3100-ljl/AI-Builder-Cup-2026-OpsCrew.git
 cd AI-Builder-Cup-2026-OpsCrew
-git switch --track origin/feat/s2-planning-review
+git switch --track origin/feat/s3-confirmation-cases
 cd aistudio-export-2026-10-07
 npm ci
 Copy-Item .env.example .env

@@ -17,8 +17,11 @@ import {
   PROMPT_VERSIONS,
 } from "./server/runtime-config.ts";
 import { PlanningReviewError, runPlanningReview } from "./server/planning-service.ts";
-import type { PlanningReviewResult, PlanningStep, TokenUsage } from "./server/planning-contracts.ts";
+import type { PlanningReviewResult, PlanningStep, TokenUsage, WorkflowResponse } from "./server/planning-contracts.ts";
 import { POLICY_VERSION } from "./src/domain/contracts.ts";
+import { createFirebaseRuntime } from "./server/firebase-runtime.ts";
+import type { FirebaseRuntime } from "./server/firebase-runtime.ts";
+import { createCaseRouter, sendCaseError, verifiedOwner, withCaseDeadline } from "./server/case-routes.ts";
 
 export {
   PORT,
@@ -774,6 +777,7 @@ async function defaultGenerateContent(
 }
 
 export interface CreateAppOptions {
+  caseRuntime?: FirebaseRuntime;
   generateContentFn?: (args: GenerateContentCallArgs) => Promise<GenerateContentCallResult>;
   apiKeyOverride?: string;
   routeTimeoutMs?: number;
@@ -821,6 +825,10 @@ async function abortable<T>(operation: Promise<T>, signal: AbortSignal): Promise
 
 export function createApp(options: CreateAppOptions = {}): Express {
   const app = express();
+  const caseRuntime = options.caseRuntime ?? createFirebaseRuntime();
+  if (caseRuntime.config.enabled && (!caseRuntime.caseService || !caseRuntime.verifyIdToken)) {
+    throw new Error("Enabled case storage requires trusted authentication and persistent storage.");
+  }
   app.use(express.json({ limit: "64kb" }));
 
   const generateContentFn = options.generateContentFn ?? defaultGenerateContent;
@@ -831,7 +839,8 @@ export function createApp(options: CreateAppOptions = {}): Express {
     res.status(200).type("application/json").json({
       ok: true,
       service: "opscrew",
-      stage: "S2",
+      stage: "S3",
+      case_backend_mode: caseRuntime.config.mode,
     });
   });
 
@@ -848,30 +857,44 @@ export function createApp(options: CreateAppOptions = {}): Express {
       route_timeout_ms: routeTimeoutMs,
       max_attempts: GEMINI_MAX_ATTEMPTS,
       api_key_configured: keyConfigured,
-      stage: "S2",
+      stage: "S3",
+      case_backend: caseRuntime.config,
       policy_version: POLICY_VERSION,
       workflow_timeout_ms: options.workflowTimeoutMs ?? WORKFLOW_ABORT_TIMEOUT_MS,
       planning_step_timeout_ms: PLANNING_CALL_TIMEOUT_MS,
     });
   });
 
+  app.use("/api", createCaseRouter(caseRuntime));
+
   // Expense-exception analysis endpoint using official @google/genai SDK
   app.post(["/api/analyze", "/api/workflow"], async (req: Request, res: Response) => {
-    const runId = `run_${crypto.randomUUID()}`;
+    let runId = `run_${crypto.randomUUID()}`;
     const timestamp = new Date().toISOString();
     const workflowMode = req.path === "/api/workflow";
     const factSteps: PlanningStep[] = [];
     const apiKey = options.apiKeyOverride ?? process.env.GEMINI_API_KEY;
-    const reply = (status: number, payload: Record<string, unknown>) => {
-      if (res.destroyed || res.writableEnded) return res;
-      return res.status(status).type("application/json").json(redactResponse({
+    let trustedOwner: string | null = null;
+    let durableRunCreated = false;
+    const reply = async (status: number, payload: Record<string, unknown>) => {
+      let result = redactResponse({
         ...(workflowMode ? { facts: null, workflow: null } : {}),
         ...payload,
         steps: payload.workflow && typeof payload.workflow === "object"
           ? (payload.workflow as PlanningReviewResult).steps : factSteps,
         prompt_versions: PROMPT_VERSIONS,
-      }, apiKey));
+      }, apiKey);
+      if (durableRunCreated && trustedOwner && caseRuntime.caseService) {
+        try { result = await withCaseDeadline(caseRuntime.caseService.completeRun(trustedOwner, runId, result as WorkflowResponse)); }
+        catch (error) { if (!res.destroyed && !res.writableEnded) sendCaseError(res, error); return; }
+      }
+      if (!res.destroyed && !res.writableEnded) res.status(status).type("application/json").json(result);
     };
+
+    if (caseRuntime.config.enabled) {
+      try { trustedOwner = await verifiedOwner(req, caseRuntime.verifyIdToken!); }
+      catch (error) { sendCaseError(res, error); return; }
+    }
 
     const body = (req.body && typeof req.body === "object" ? req.body : {}) as Record<
       string,
@@ -888,7 +911,7 @@ export function createApp(options: CreateAppOptions = {}): Express {
       const badVersion = body.input_version !== undefined && (!Number.isSafeInteger(body.input_version) || Number(body.input_version) < 1);
       const badType = ["description", "receipt_status", "employee_identifier", "model_id"].some((field) => body[field] !== undefined && body[field] !== null && typeof body[field] !== "string");
       if (wrongShape || unknownField || tooLong || badVersion || badType) {
-        reply(400, { ok: false, run_id: runId, timestamp, http_status: 400, upstream_status: null,
+        await reply(400, { ok: false, run_id: runId, timestamp, http_status: 400, upstream_status: null,
           requested_model_id: DEFAULT_GEMINI_MODEL, model_id: DEFAULT_GEMINI_MODEL,
           error: { code: "INVALID_WORKFLOW_INPUT", message: "Use only supported synthetic intake fields, their documented types and a positive input version; description limit is 4000 characters." } });
         return;
@@ -903,7 +926,7 @@ export function createApp(options: CreateAppOptions = {}): Express {
     // 1. Validate against strict server-side model allowlist
     const modelCheck = validateAllowedModel(rawModelId);
     if (!modelCheck.allowed) {
-      reply(400, {
+      await reply(400, {
         ok: false,
         run_id: runId,
         timestamp,
@@ -932,7 +955,7 @@ export function createApp(options: CreateAppOptions = {}): Express {
         : null;
 
     if (!ALLOWED_RECEIPT_STATUSES.has(rawReceiptStatus)) {
-      reply(400, {
+      await reply(400, {
         ok: false,
         run_id: runId,
         timestamp,
@@ -950,7 +973,7 @@ export function createApp(options: CreateAppOptions = {}): Express {
 
     const parsedAmount = parseFormUsdToMinor(body.amount_usd);
     if (!parsedAmount.valid) {
-      reply(400, {
+      await reply(400, {
         ok: false,
         run_id: runId,
         timestamp,
@@ -967,7 +990,7 @@ export function createApp(options: CreateAppOptions = {}): Express {
     }
 
     if (!rawDescription && parsedAmount.amountMinor === null) {
-      reply(400, {
+      await reply(400, {
         ok: false,
         run_id: runId,
         timestamp,
@@ -985,7 +1008,7 @@ export function createApp(options: CreateAppOptions = {}): Express {
 
     // 3. Verify server-side GEMINI_API_KEY secret
     if (!apiKey || apiKey.trim() === "" || apiKey === "MY_GEMINI_API_KEY") {
-      reply(500, {
+      await reply(500, {
         ok: false,
         run_id: runId,
         timestamp,
@@ -1003,6 +1026,15 @@ export function createApp(options: CreateAppOptions = {}): Express {
     }
 
     const abortController = new AbortController();
+    if (workflowMode && trustedOwner && caseRuntime.caseService) {
+      try {
+        const run = await withCaseDeadline(caseRuntime.caseService.createRun(trustedOwner,
+          redactResponse(body, apiKey) as Record<string, unknown>, Number(body.input_version ?? 1)));
+        runId = run.run_id;
+        durableRunCreated = true;
+      } catch (error) { sendCaseError(res, error); return; }
+      if (res.destroyed) { await withCaseDeadline(caseRuntime.caseService.cancelRun(trustedOwner, runId)).catch(() => {}); return; }
+    }
     const activeRouteTimeout = workflowMode ? (options.workflowTimeoutMs ?? WORKFLOW_ABORT_TIMEOUT_MS) : routeTimeoutMs;
     const timeoutHandle = setTimeout(() => {
       abortController.abort(
@@ -1016,7 +1048,12 @@ export function createApp(options: CreateAppOptions = {}): Express {
       abortController.abort(new DOMException(`Fact extraction timed out after ${routeTimeoutMs}ms.`, "TimeoutError"));
     }, routeTimeoutMs) : undefined;
     const cancelOnDisconnect = () => {
-      if (!res.writableEnded) abortController.abort(new DOMException("Request canceled", "AbortError"));
+      if (!res.writableEnded) {
+        abortController.abort(new DOMException("Request canceled", "AbortError"));
+        if (durableRunCreated && trustedOwner && caseRuntime.caseService) {
+          void withCaseDeadline(caseRuntime.caseService.cancelRun(trustedOwner, runId)).catch(() => {});
+        }
+      }
     };
     res.once("close", cancelOnDisconnect);
 
@@ -1096,7 +1133,7 @@ export function createApp(options: CreateAppOptions = {}): Express {
       const rawText = response.text;
       if (!rawText || !rawText.trim()) {
         Object.assign(factSteps.at(-1)!, { outcome: "ERROR", error_code: "EMPTY_MODEL_RESPONSE" });
-        reply(422, {
+        await reply(422, {
           ok: false,
           run_id: runId,
           timestamp,
@@ -1118,7 +1155,7 @@ export function createApp(options: CreateAppOptions = {}): Express {
         parsedModelJson = JSON.parse(rawText.trim());
       } catch {
         Object.assign(factSteps.at(-1)!, { outcome: "ERROR", error_code: "INVALID_JSON_FROM_MODEL" });
-        reply(422, {
+        await reply(422, {
           ok: false,
           run_id: runId,
           timestamp,
@@ -1150,7 +1187,7 @@ export function createApp(options: CreateAppOptions = {}): Express {
           validationErr instanceof Error
             ? validationErr.message
             : "Model output failed strict contract validation.";
-        reply(422, {
+        await reply(422, {
           ok: false,
           run_id: runId,
           timestamp,
@@ -1186,7 +1223,7 @@ export function createApp(options: CreateAppOptions = {}): Express {
           if (err instanceof PlanningReviewError) {
             const partial = err.public_result;
             partial.steps = [...factSteps, ...partial.steps];
-            reply(safeJsonHttpStatus(err.http_status), {
+            await reply(safeJsonHttpStatus(err.http_status), {
               ok: false, run_id: runId, timestamp, requested_model_id: requestedModel,
               model_id: response.modelVersion || requestedModel, http_status: err.http_status,
               upstream_status: err.upstream_status, facts: validatedFacts, workflow: partial,
@@ -1198,7 +1235,7 @@ export function createApp(options: CreateAppOptions = {}): Express {
         }
       }
 
-      reply(200, {
+      await reply(200, {
         ok: true,
         run_id: runId,
         timestamp,
@@ -1231,7 +1268,7 @@ export function createApp(options: CreateAppOptions = {}): Express {
       if (isTimeoutError(err) || abortController.signal.aborted) {
         const upstreamStatus = extractUpstreamStatus(err) ?? 504;
         const transportStatus = safeJsonHttpStatus(upstreamStatus);
-        reply(transportStatus, {
+        await reply(transportStatus, {
           ok: false,
           run_id: runId,
           timestamp,
@@ -1250,7 +1287,7 @@ export function createApp(options: CreateAppOptions = {}): Express {
       const upstreamStatus = extractUpstreamStatus(err) ?? 500;
       const transportStatus = safeJsonHttpStatus(upstreamStatus);
 
-      reply(transportStatus, {
+      await reply(transportStatus, {
         ok: false,
         run_id: runId,
         timestamp,

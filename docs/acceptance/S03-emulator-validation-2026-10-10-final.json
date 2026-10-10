@@ -1,0 +1,421 @@
+{
+  "schema_version": "1.0.0",
+  "stage": "S3",
+  "mode": "auth-and-firestore-emulators",
+  "started_at": "2026-10-10T04:14:10.209Z",
+  "completed_at": "2026-10-10T04:14:31.846Z",
+  "project_id": "demo-opscrew-s3",
+  "auth_host": "127.0.0.1:9099",
+  "firestore_host": "127.0.0.1:8080",
+  "storage_namespace": "opscrew_s3_test_0a07d2cc909a4313ad1dace344a77216",
+  "final_counts": {
+    "cases": 4,
+    "approvals": 4,
+    "audit": 6,
+    "idempotency": 12
+  },
+  "source_snapshot": {
+    "git_revision": "c967803051966533f4c6f99cafb057dd3da087f0",
+    "working_tree_dirty": true,
+    "sha256": {
+      "server.ts": "a39e5e9f07a2c054a7e7341f2673e28535f0064666ae40b09682d6c88bb7ebbf",
+      "server/case-service.ts": "ddfbc0826e93c29d5b0f3d120295b572f62f3d0ae4c2a2ea2ef9da34baffbaf3",
+      "server/case-routes.ts": "583078a619453455a3228e3b2aa8d970eef71954663086729c29313e06c6fc23",
+      "server/firebase-runtime.ts": "494211f6a2f106efed747e51084356f62847884aeb5860bd39cfbf2fc842bb4b",
+      "server/runtime-config.ts": "e6fff94af6fa1e72905655cef06ca510d2ffbf964b459a95c5ec05f4733697af",
+      "scripts/check-s3-emulator.mjs": "418fc74afb9934f7044259cd8bf357e24e8f65a2afe414e711eee8b89800d065",
+      "fixtures/development-cases.json": "bb61b80d158f24dafc2e18274d0a5b9c02cf44296649e550bccb0aabd5fe00c7",
+      "firebase.json": "bfd28943974b7623fc757f8677194303cf87b2ed1edb67593c4827dcdc56b311",
+      "firestore.rules": "1990874ed70e379d013db242e2210ff61537c305be1ec35171004ffb30853709",
+      "firestore.indexes.json": "0c634c030b88d477779f7078f059db1e27cf4f52f4f7458315af93d68ff3abd4"
+    }
+  },
+  "policy_version": "synthetic-expense-usd-1.0.0",
+  "prompt_versions": {
+    "facts": "opscrew-facts-1.1.0",
+    "planner": "opscrew-planner-1.0.1",
+    "reviewer": "opscrew-reviewer-1.0.0"
+  },
+  "requested_model_id": "gemini-3.1-flash-lite",
+  "observed_provider_model": "offline-public-fixture",
+  "model_source": "injected-public-development-fixtures",
+  "injected_provider_calls": 39,
+  "real_gemini_calls": 0,
+  "production_firebase_writes": 0,
+  "real_resource_g3": "PENDING",
+  "checks": [
+    {
+      "name": "Auth emulator produces distinct trusted UIDs",
+      "outcome": "PASS",
+      "duration_ms": 71,
+      "evidence": {
+        "owners": 2,
+        "tokens_recorded": false
+      }
+    },
+    {
+      "name": "Admin token verification rejects expired and wrong-project credentials",
+      "outcome": "PASS",
+      "duration_ms": 6,
+      "evidence": null
+    },
+    {
+      "name": "Authenticated workflow persists a current owned plan without a case",
+      "outcome": "PASS",
+      "duration_ms": 5969,
+      "evidence": {
+        "run_id": "0aa44c40-baff-4741-a44b-3128c92959bf",
+        "plan_id": "plan_59c062cb-1880-476f-bf58-a2488f22454c",
+        "confirmation_expires_at": "2026-10-10T04:24:11.307Z",
+        "case_count": 0
+      }
+    },
+    {
+      "name": "Missing, invalid, expired and wrong-project tokens create zero business writes",
+      "outcome": "PASS",
+      "duration_ms": 222,
+      "evidence": {
+        "before": {
+          "cases": 0,
+          "approvals": 0,
+          "audit": 0,
+          "idempotency": 0
+        },
+        "after": {
+          "cases": 0,
+          "approvals": 0,
+          "audit": 0,
+          "idempotency": 0
+        }
+      }
+    },
+    {
+      "name": "Cross-owner run read, confirmation, rejection, invalidation and creation are denied",
+      "outcome": "PASS",
+      "duration_ms": 182,
+      "evidence": {
+        "before": {
+          "cases": 0,
+          "approvals": 0,
+          "audit": 0,
+          "idempotency": 0
+        },
+        "after": {
+          "cases": 0,
+          "approvals": 0,
+          "audit": 0,
+          "idempotency": 0
+        }
+      }
+    },
+    {
+      "name": "Missing confirmation, forged approved/owner/action and altered bindings are vetoed",
+      "outcome": "PASS",
+      "duration_ms": 274,
+      "evidence": {
+        "before": {
+          "cases": 0,
+          "approvals": 0,
+          "audit": 0,
+          "idempotency": 0
+        },
+        "after": {
+          "cases": 0,
+          "approvals": 0,
+          "audit": 0,
+          "idempotency": 0
+        }
+      }
+    },
+    {
+      "name": "Read-only recovery of an uncommitted command cannot create a case",
+      "outcome": "PASS",
+      "duration_ms": 197,
+      "evidence": {
+        "before": {
+          "cases": 0,
+          "approvals": 0,
+          "audit": 0,
+          "idempotency": 0
+        },
+        "after": {
+          "cases": 0,
+          "approvals": 0,
+          "audit": 0,
+          "idempotency": 0
+        }
+      }
+    },
+    {
+      "name": "Concurrent same and different client keys create one case, approval and success audit",
+      "outcome": "PASS",
+      "duration_ms": 5853,
+      "evidence": {
+        "concurrent_requests": 10,
+        "separately_prepared_intents": 2,
+        "case_id": "case_80008885846e4afac8a12c0f3f862849f597aca7edbd6f28ba24528b239600ef",
+        "counts": {
+          "cases": 1,
+          "approvals": 1,
+          "audit": 1,
+          "idempotency": 9
+        },
+        "model_calls_during_confirmation": 0
+      }
+    },
+    {
+      "name": "Independent readback verifies the stored case and cross-owner case access stays denied",
+      "outcome": "PASS",
+      "duration_ms": 213,
+      "evidence": {
+        "case_id": "case_80008885846e4afac8a12c0f3f862849f597aca7edbd6f28ba24528b239600ef",
+        "independent_get_verified": true
+      }
+    },
+    {
+      "name": "A committed result remains recoverable after confirmation expiry",
+      "outcome": "PASS",
+      "duration_ms": 259,
+      "evidence": null
+    },
+    {
+      "name": "Same owner key with a different valid command is rejected",
+      "outcome": "PASS",
+      "duration_ms": 505,
+      "evidence": {
+        "before": {
+          "cases": 1,
+          "approvals": 1,
+          "audit": 1,
+          "idempotency": 9
+        },
+        "after": {
+          "cases": 1,
+          "approvals": 1,
+          "audit": 1,
+          "idempotency": 9
+        }
+      }
+    },
+    {
+      "name": "Read-only recovery after expiry and a new input returns the original case without writes",
+      "outcome": "PASS",
+      "duration_ms": 281,
+      "evidence": {
+        "before": {
+          "cases": 1,
+          "approvals": 1,
+          "audit": 1,
+          "idempotency": 9
+        },
+        "after": {
+          "cases": 1,
+          "approvals": 1,
+          "audit": 1,
+          "idempotency": 9
+        }
+      }
+    },
+    {
+      "name": "Equal client key strings are independently scoped to different owners",
+      "outcome": "PASS",
+      "duration_ms": 540,
+      "evidence": {
+        "distinct_owner_case_id": "case_553c60a4a7650f7e2c9d7d3f72d82c620d8b2d627a2d23c152f220e14f5273ab",
+        "owner_case_count": 1
+      }
+    },
+    {
+      "name": "Rejected plans cannot create a case",
+      "outcome": "PASS",
+      "duration_ms": 438,
+      "evidence": {
+        "before": {
+          "cases": 2,
+          "approvals": 2,
+          "audit": 3,
+          "idempotency": 10
+        },
+        "after": {
+          "cases": 2,
+          "approvals": 2,
+          "audit": 3,
+          "idempotency": 10
+        }
+      }
+    },
+    {
+      "name": "A newer input invalidates a previously reviewed confirmation",
+      "outcome": "PASS",
+      "duration_ms": 410,
+      "evidence": {
+        "before": {
+          "cases": 2,
+          "approvals": 2,
+          "audit": 3,
+          "idempotency": 10
+        },
+        "after": {
+          "cases": 2,
+          "approvals": 2,
+          "audit": 3,
+          "idempotency": 10
+        }
+      }
+    },
+    {
+      "name": "Explicit input invalidation prevents old-plan execution",
+      "outcome": "PASS",
+      "duration_ms": 358,
+      "evidence": {
+        "before": {
+          "cases": 2,
+          "approvals": 2,
+          "audit": 4,
+          "idempotency": 10
+        },
+        "after": {
+          "cases": 2,
+          "approvals": 2,
+          "audit": 4,
+          "idempotency": 10
+        }
+      }
+    },
+    {
+      "name": "Uncommitted confirmation at its expiry boundary cannot write",
+      "outcome": "PASS",
+      "duration_ms": 356,
+      "evidence": {
+        "before": {
+          "cases": 2,
+          "approvals": 2,
+          "audit": 4,
+          "idempotency": 10
+        },
+        "after": {
+          "cases": 2,
+          "approvals": 2,
+          "audit": 4,
+          "idempotency": 10
+        }
+      }
+    },
+    {
+      "name": "Blocked source conflicts cannot prepare confirmation or create cases",
+      "outcome": "PASS",
+      "duration_ms": 206,
+      "evidence": {
+        "before": {
+          "cases": 2,
+          "approvals": 2,
+          "audit": 4,
+          "idempotency": 10
+        },
+        "after": {
+          "cases": 2,
+          "approvals": 2,
+          "audit": 4,
+          "idempotency": 10
+        }
+      }
+    },
+    {
+      "name": "Tampered persisted plan is vetoed before any business commit",
+      "outcome": "PASS",
+      "duration_ms": 466,
+      "evidence": {
+        "before": {
+          "cases": 2,
+          "approvals": 2,
+          "audit": 4,
+          "idempotency": 10
+        },
+        "after": {
+          "cases": 2,
+          "approvals": 2,
+          "audit": 4,
+          "idempotency": 10
+        }
+      }
+    },
+    {
+      "name": "Discarded create response recovers the same durable case with the original command",
+      "outcome": "PASS",
+      "duration_ms": 565,
+      "evidence": {
+        "fault_model": "first_create_response_discarded_by_test_client",
+        "recovered_case_id": "case_df4ed4f4b756f9ff2189e102e423df545cfb37b2c4a40d285e5727e587ab024d",
+        "duplicate_cases": 0
+      }
+    },
+    {
+      "name": "Independent readback outage reports unavailable and retry finds the committed case",
+      "outcome": "PASS",
+      "duration_ms": 433,
+      "evidence": null
+    },
+    {
+      "name": "HTTP service restart restores owned history and case readback from Firestore",
+      "outcome": "PASS",
+      "duration_ms": 356,
+      "evidence": {
+        "recovered_case_id": "case_df4ed4f4b756f9ff2189e102e423df545cfb37b2c4a40d285e5727e587ab024d",
+        "storage": "Firestore emulator, new service object",
+        "browser_refresh_not_claimed": true
+      }
+    },
+    {
+      "name": "Abort after buffered transaction writes commits no partial business result",
+      "outcome": "PASS",
+      "duration_ms": 311,
+      "evidence": {
+        "before": {
+          "cases": 3,
+          "approvals": 3,
+          "audit": 5,
+          "idempotency": 11
+        },
+        "after": {
+          "cases": 3,
+          "approvals": 3,
+          "audit": 5,
+          "idempotency": 11
+        },
+        "injected_at": "transaction callback after buffered writes before commit"
+      }
+    },
+    {
+      "name": "Retried Firestore transaction commits one result and runs zero model side effects",
+      "outcome": "PASS",
+      "duration_ms": 1124,
+      "evidence": {
+        "callback_attempts": 2,
+        "counts_before": {
+          "cases": 3,
+          "approvals": 3,
+          "audit": 5,
+          "idempotency": 11
+        },
+        "counts_after": {
+          "cases": 4,
+          "approvals": 4,
+          "audit": 6,
+          "idempotency": 12
+        },
+        "model_calls_during_confirmation": 0
+      }
+    },
+    {
+      "name": "Direct authenticated and anonymous Firestore client reads and writes are denied",
+      "outcome": "PASS",
+      "duration_ms": 476,
+      "evidence": {
+        "denied_direct_reads": 2,
+        "denied_direct_writes": 2
+      }
+    }
+  ],
+  "passed": 25,
+  "failed": 0
+}
