@@ -10,7 +10,7 @@ import {
   validateVersionBinding,
 } from "../src/domain/contracts.ts";
 import { assertPlanMatchesPolicy, evaluatePolicy, verifyPolicyCitations } from "../src/domain/policy.ts";
-import { PROMPT_VERSIONS } from "../server/runtime-config.ts";
+import { PROMPT_VERSIONS, GEMINI_SDK_TIMEOUT_MS, ROUTE_ABORT_TIMEOUT_MS, WORKFLOW_ABORT_TIMEOUT_MS, PLANNING_CALL_TIMEOUT_MS, PLANNING_TOTAL_TIMEOUT_MS } from "../server/runtime-config.ts";
 
 // This runner is deliberately opt-in. It never reads a key from an argument or file.
 const appDirectory = fileURLToPath(new URL("../", import.meta.url));
@@ -201,7 +201,11 @@ export function verifySuccess(body, fixture, expectedPromptVersions = PROMPT_VER
   } else assert.equal(workflow.plan, null, "A noneligible decision must not produce an executable case plan.");
   const review = validateReviewRecord(workflow.review);
   assertCurrentVersionBinding(binding, Object.fromEntries(BINDING_FIELDS.map((field) => [field, review[field]])));
-  assert.equal(review.verdict, "PASS", "The independent review must pass for the expected recommendation, including safe noneligible results.");
+  if (fixture.expected.branch === "BLOCKED") {
+    assert(["PASS", "BLOCKED"].includes(review.verdict), "A conflict review must confirm the blocked recommendation or explicitly block it with validated issues.");
+  } else {
+    assert.equal(review.verdict, "PASS", "An eligible or no-action recommendation must receive a passing review.");
+  }
   verifyPolicyCitations(review.citations, requiredCitations);
   assert(Array.isArray(workflow.steps) && workflow.steps.length >= 3 && workflow.steps.length <= 6,
     "The workflow must report its bounded real model attempts.");
@@ -336,7 +340,10 @@ async function main() {
     created_at: new Date().toISOString(), requested_model_id: model,
     fixture_version: fixtureDocument.fixture_version, policy_version: fixtureDocument.policy_version,
     purpose: "Opt-in live development acceptance. This is not held-out evaluation, cloud deployment, approval or execution evidence.",
-    runtime: { node: process.version, request_timeout_ms: caseTimeoutMs },
+    runtime: { node: process.version, request_timeout_ms: caseTimeoutMs,
+      app_timeouts_ms: { facts_sdk: GEMINI_SDK_TIMEOUT_MS, facts_route: ROUTE_ABORT_TIMEOUT_MS,
+        planning_attempt: PLANNING_CALL_TIMEOUT_MS, planning_total: PLANNING_TOTAL_TIMEOUT_MS,
+        workflow: WORKFLOW_ABORT_TIMEOUT_MS } },
     source: await sourceSnapshot(),
     bounds: { maximum_selected_cases: 4, maximum_attempts_per_stage: 2, maximum_stage_attempts_per_case: 6, runner_request_retries: 0 },
     selected_fixture_ids: selectedIds, records: [], ok: false, interrupted: false,

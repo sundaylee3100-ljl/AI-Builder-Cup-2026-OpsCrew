@@ -75,3 +75,16 @@ test("Targeted live revalidation cannot duplicate fixtures, expand into held-out
     assert.throws(() => selectFixtureIds(input));
   assert.throws(() => selectFixtureIds("DEV-01", true));
 });
+
+test("A correctly blocked conflict review passes semantic acceptance while unsafe status and unresolved PASS fail", async () => {
+  const fixture = fixtures.find((item: typeof fixtures[number]) => item.id === "DEV-10");
+  const envelope = await offlineEnvelope(fixture);
+  envelope.workflow.review!.verdict = "BLOCKED";
+  envelope.workflow.review!.issues = ["Unresolved contradictory source amounts block a case under SYN-003."];
+  verifySuccess(envelope, fixture);
+  const unsafe = structuredClone(envelope);
+  unsafe.workflow.status = "REVIEWABLE";
+  assert.throws(() => verifySuccess(unsafe, fixture));
+  envelope.workflow.review!.verdict = "PASS";
+  assert.throws(() => verifySuccess(envelope, fixture), /unresolved issues/);
+});

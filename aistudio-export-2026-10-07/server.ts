@@ -13,6 +13,7 @@ import {
   GEMINI_MAX_ATTEMPTS,
   ROUTE_ABORT_TIMEOUT_MS,
   WORKFLOW_ABORT_TIMEOUT_MS,
+  PLANNING_CALL_TIMEOUT_MS,
   PROMPT_VERSIONS,
 } from "./server/runtime-config.ts";
 import { PlanningReviewError, runPlanningReview } from "./server/planning-service.ts";
@@ -850,7 +851,7 @@ export function createApp(options: CreateAppOptions = {}): Express {
       stage: "S2",
       policy_version: POLICY_VERSION,
       workflow_timeout_ms: options.workflowTimeoutMs ?? WORKFLOW_ABORT_TIMEOUT_MS,
-      planning_step_timeout_ms: 20_000,
+      planning_step_timeout_ms: PLANNING_CALL_TIMEOUT_MS,
     });
   });
 

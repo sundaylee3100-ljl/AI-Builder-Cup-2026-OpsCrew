@@ -2,7 +2,7 @@
 
 Prepared for S1 on 2026-10-09. Local development is approved. The first new paid resource, billing change, or chargeable cloud deployment still requires the project owner's confirmation of the actual project, region, resource configuration, and budget. The commands below are a runbook for that approved future action; they have not been executed as part of this preparation.
 
-S2 update: the user explicitly deferred cloud deployment. The local app now includes facts, planning and separate review with a 90-second workflow deadline. The proposed future platform timeout below is updated to 120 seconds to leave transport margin; this configuration has not been deployed or verified. Real local S2 acceptance is partial; the current API works, but two branches have unresolved timeouts; see [S2 acceptance](acceptance/S02-plan-and-review.md).
+S2 update: the user explicitly deferred cloud deployment. The local app now includes facts, planning and separate review with a 90-second workflow deadline. The proposed future platform timeout below is updated to 120 seconds to leave transport margin; this configuration has not been deployed or verified. G2 local functional acceptance passed through genuine captured responses; repeated live reliability remains to be evaluated; see [S2 acceptance](acceptance/S02-plan-and-review.md).
 
 The current workstation has Node 24 but no detected Docker or Google Cloud CLI. No container build, registry upload, cloud deployment, new cloud Gemini call, Firebase setup, or Firestore write is claimed here. Local test results belong in the S1 acceptance report. An AI Studio development preview does not establish a formal deployed contest endpoint.
 

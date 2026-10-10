@@ -58,7 +58,7 @@ A schema or citation failure in the Reviewer clears the plan and review from the
 | Control | S2 implementation |
 | --- | --- |
 | Planner + Reviewer deadline | At most 60 seconds, also bounded by the incoming cancellation signal. |
-| Each model attempt | At most 20 seconds. |
+| Each model attempt | At most 30 seconds. |
 | SDK internal retries | Disabled with `retryOptions.attempts: 1`. |
 | Caller-owned retries | At most two attempts per role; retry only HTTP `429` or `503`. |
 | Delay | At most 250 ms between those attempts. |
@@ -84,7 +84,7 @@ On October 10, 2026, these **61 offline service tests passed**. They cover all 1
 
 These tests use an injected provider and make no real Gemini calls. The provider doubles return declared fixture proposals so the tests verify service gates and failure behavior; they do not measure Gemini quality. Real-key acceptance is recorded separately by the live acceptance runner and stage acceptance report. The 12 public examples remain development cases, not the eight sealed S5 evaluation cases.
 
-See [S2 acceptance](acceptance/S02-plan-and-review.md) for the final 104-test suite, observed real browser integration, preserved failed/live evidence and unresolved no-action/conflict timeouts. Cloud deployment is deferred at the user's instruction; no cloud resource is necessary to verify this local S2 workflow.
+See [S2 acceptance](acceptance/S02-plan-and-review.md) for the final 105-test suite, observed real browser integration, preserved failed/live evidence, accepted four-branch capture revalidation and timeout reliability limits. Cloud deployment is deferred at the user's instruction; no cloud resource is necessary to verify this local S2 workflow.
 
 ## Official implementation references
 

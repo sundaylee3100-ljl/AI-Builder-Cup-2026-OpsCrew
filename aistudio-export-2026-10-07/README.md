@@ -2,7 +2,7 @@
 
 **AI Builder Cup 2026 · Theme: Future of Work & Enterprise Productivity**
 
-S2 local continuation (2026-10-09–10): use Node.js 24 and the [repository-root README](../README.md) for current setup, policy/contracts, acceptance and deployment preparation. This directory started as a Google Build export; subsequent local edits are disclosed in [provenance](../PROVENANCE.md). Local tests pass, but real S2 Gemini acceptance remains partial because no-action/conflict attempts timed out, despite successful missing-receipt and over-threshold runs. Cloud deployment is deferred.
+S2 local continuation (2026-10-09–10): use Node.js 24 and the [repository-root README](../README.md) for current setup, policy/contracts, acceptance and deployment preparation. This directory started as a Google Build export; subsequent local edits are disclosed in [provenance](../PROVENANCE.md). Local tests pass, but G2 local functional acceptance passed through strict revalidation of four genuine live branches; earlier timeouts remain reliability limits. Cloud deployment is deferred.
 
 > **Notice:** Prototype: no reimbursement approval or payment. Use **synthetic data only**.
 
@@ -67,7 +67,7 @@ npm run dev
 
 The local server binds loopback on port `3000`, serving `/api/analyze` (facts only), `/api/workflow` (facts → plan → review), `/api/config` and `/api/health` alongside the Vite frontend. Production binds `0.0.0.0`.
 
-See [S2 acceptance](../docs/acceptance/S02-plan-and-review.md) for the 104 offline checks, eight isolated production checks, local browser evidence and unsuccessful real API attempt. These are separate evidence categories.
+See [S2 acceptance](../docs/acceptance/S02-plan-and-review.md) for the 105 offline checks, eight isolated production checks, local browser evidence and unsuccessful real API attempt. These are separate evidence categories.
 
 ---
 

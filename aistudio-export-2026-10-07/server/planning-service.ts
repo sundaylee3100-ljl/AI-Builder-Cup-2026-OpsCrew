@@ -6,7 +6,7 @@ import {
 } from "../src/domain/contracts.ts";
 import type { ExpenseFacts, PolicyDecision, ProposedCase, VersionBinding } from "../src/domain/contracts.ts";
 import { assertPlanMatchesPolicy, evaluatePolicy, policyCitations, SYNTHETIC_USD_POLICY } from "../src/domain/policy.ts";
-import { ALLOWED_GEMINI_MODELS, PROMPT_VERSIONS } from "./runtime-config.ts";
+import { ALLOWED_GEMINI_MODELS, PROMPT_VERSIONS, PLANNING_CALL_TIMEOUT_MS, PLANNING_TOTAL_TIMEOUT_MS } from "./runtime-config.ts";
 import type {
   PlanningGenerateContentArgs, PlanningGenerateContentFn, PlanningGenerateContentResult,
   PlanningReviewResult, PlanningStep, TokenUsage,
@@ -266,8 +266,8 @@ export async function runPlanningReview(options: RunPlanningReviewOptions): Prom
   }
 
   const provider = options.generateContentFn ?? defaultGenerateContent;
-  const callTimeout = boundedLimit(options.callTimeoutMs, 20_000);
-  const totalTimeout = boundedLimit(options.totalTimeoutMs, 60_000);
+  const callTimeout = boundedLimit(options.callTimeoutMs, PLANNING_CALL_TIMEOUT_MS);
+  const totalTimeout = boundedLimit(options.totalTimeoutMs, PLANNING_TOTAL_TIMEOUT_MS);
   const retryDelay = options.retryDelayMs === 0 ? 0 : boundedLimit(options.retryDelayMs, 250);
   const totalController = new AbortController();
   const totalTimer = setTimeout(() => totalController.abort(), totalTimeout);

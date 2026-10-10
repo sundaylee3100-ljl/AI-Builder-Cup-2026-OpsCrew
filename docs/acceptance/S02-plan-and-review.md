@@ -1,6 +1,6 @@
 # S2 acceptance — AI plan and separate review
 
-Updated: 2026-10-10 (Asia/Shanghai). Status: **LOCAL IMPLEMENTATION PASSED; LIVE ACCEPTANCE PARTIAL — G2 NOT FULLY PASSED**.
+Updated: 2026-10-10 (Asia/Shanghai). Status: **G2 LOCAL FUNCTIONAL ACCEPTANCE PASSED — CLOUD DEFERRED; STABILITY EVALUATION PENDING**.
 
 Branch: `feat/s2-planning-review`, based on S1 commit `913b0f8a4beb944ebedfa36fa49bf2af9aebab43`. S1 draft PR #1 is unmerged. The S2 delivery commit binds the source and this report; live reports truthfully record the precommit dirty working tree. Policy `synthetic-expense-usd-1.0.0`; contracts and public fixtures `1.0.0`. Windows, Node 24.14.0, npm 11.9.0, installed official `@google/genai` 2.27.0. Requested and returned model ID: `gemini-3.1-flash-lite`; the returned alias is not an immutable model release identifier.
 
@@ -19,12 +19,13 @@ Cloud deployment is explicitly deferred. S0 account/eligibility/portal and S1 ac
 - [x] SDK hidden retries are disabled. Each role has at most two caller attempts, retrying only 429/503. Per-call, service and overall deadlines and cancellation are enforced.
 - [x] Full actual steps appear in both top-level and workflow telemetry, including failed attempts, timing, model, upstream status and reported usage. Unknown usage/cost is not zero.
 - [x] English UI shows original citations, proposed fields, review issues, prompt/version bindings, safe errors and completed attempts. It does not invent within-request progress.
-- [x] All **104 offline tests**, type checking, frontend build and **eight production HTTP checks** pass.
+- [x] All **105 offline tests**, type checking, frontend build and **eight production HTTP checks** pass.
 - [x] Real browser success, policy disclosure, full envelope, input invalidation, wide/narrow layouts and basic keyboard behavior observed.
 - [x] Manual cancellation, editing during a request and absence of a late result observed using an explicitly injected five-second offline provider with no real API key or Gemini call.
 - [x] All real live attempts and original failures retained unchanged in separate evidence files.
-- [ ] Complete real no-action and conflict facts → Planner → Reviewer acceptance on the current prompt version. Missing-receipt and over-threshold cases passed; the two remaining cases repeatedly timed out.
-- [ ] Establish a stable complete live suite before declaring G2 passed. No further live call is queued or scheduled.
+- [x] Genuine no-action, missing-receipt, over-threshold and conflict captures pass the corrected strict semantic verifier on the current prompt versions. Conflict Reviewer BLOCKED is a supported safe outcome, not an eligible-case approval.
+- [x] Captured-result revalidation records the four accepted real branches without rewriting failed reports or making new model calls. G2 is functional acceptance across disclosed checkpoints, not a stability claim.
+- [ ] S4/S5 must still evaluate repeated live reliability, latency, held-out quality and deployed behavior. No further live call is queued or scheduled.
 - [x] Final format/link/credential/temporary-file verification recorded below; the delivery commit and draft PR provide the source handoff.
 
 ## Test methods and results
@@ -41,14 +42,14 @@ node --check scripts/check-workflow-live.mjs
 
 | Check | Expected | Actual |
 | --- | --- | --- |
-| Offline suite | Semantic and failure gates pass without Gemini | **104/104 passed**, no failed/skipped tests; final elapsed 7,299.995 ms |
-| Test coverage groups | Preserve facts/citations/authority, version bindings, retries, timeouts and failures | 61 planning service; 28 policy/contract/extraction; 10 workflow HTTP; 5 live-runner verifier/selection/stop/redaction groups |
+| Offline suite | Semantic and failure gates pass without Gemini | **105/105 passed**, no failed/skipped tests; final elapsed 6,434.6833 ms |
+| Test coverage groups | Preserve facts/citations/authority, version bindings, retries, timeouts and failures | 61 planning service; 28 policy/contract/extraction; 10 workflow HTTP; 6 live-runner verifier/selection/stop/redaction groups |
 | Type check | No TypeScript errors | Exit 0 after final fixes |
 | Frontend build | S2 frontend builds without server credentials | Exit 0; Vite 8.3.3, 1,661 modules, 3.46 seconds |
-| Production smoke | Own native Node process serves dist and API, then stops | **8/8 passed**, final elapsed 3,948 ms; no credentials or model calls |
+| Production smoke | Own native Node process serves dist and API, then stops | **8/8 passed**, final elapsed 4,389 ms; no credentials or model calls |
 | Runner native syntax / opt-in | Permanent runner works with Node 24; requires explicit live intent and docs-only new output | Syntax passed; missing `--live` and outside-docs output rejected before calls/files |
 | Static UI rendering | Outcomes, citations and failures render consistently | 14 static SSR groups and two prompt-version variants passed on October 9; not browser/model tests |
-| Live development suite | Expected semantics, all actual roles, matching bindings and exact citations | Partial; detailed records below, never substituted by fixtures |
+| Live development evidence | Expected semantics, all actual roles, matching bindings and exact citations | Four required public branches accepted by corrected capture revalidation; original failed runs retained. Evidence spans two bounded timeout profiles, not one clean full-suite rerun |
 | Browser integration | Real result, original support, versions, edits clear stale result | Passed for one real missing-receipt run; wide 1200 × 1000 and narrow 390 × 844 observed |
 | Controlled browser cancellation | Cancel/edit before delayed response; no result reappears afterward | Passed with two offline requests and a five-second provider; no live Gemini call |
 
@@ -58,7 +59,7 @@ Production smoke checks actual root HTML and built asset, nested SPA refresh, S2
 
 Current prompt labels: facts `opscrew-facts-1.1.0`, Planner `opscrew-planner-1.0.1`, Reviewer `opscrew-reviewer-1.0.0`. Planner 1.0.1 explicitly preserves the authoritative branch/action/citation set and conflict precedence; strict validation was not relaxed. Initial October 10 evidence uses Planner 1.0.0. Failed original evidence is not rewritten after these changes.
 
-Facts SDK timeout is 15 seconds, facts route deadline 25 seconds, whole workflow 90 seconds. Planner/Reviewer attempts are 20 seconds each with a combined 60-second limit. SDK `retryOptions.attempts: 1` disables hidden retries; caller-owned retries are at most two for 429/503 only. The runner bounds each local request to 95 seconds and performs no request-level retry. Separate revalidation requests are explicitly recorded, not hidden retries.
+Final profile: facts SDK timeout 25 seconds, facts route deadline 30 seconds, whole workflow 90 seconds. Planner/Reviewer attempts are 30 seconds each with a combined 60-second limit. Earlier captures used 15/25/20-second facts-SDK/facts-route/planning limits. The wider single-call limits preserve the same total workflow, retry and output caps. SDK `retryOptions.attempts: 1` disables hidden retries; caller-owned retries are at most two for 429/503 only. The runner bounds each local request to 95 seconds and performs no request-level retry. Separate revalidation requests are explicitly recorded, not hidden retries.
 
 ## Real Gemini evidence and failures
 
@@ -70,19 +71,24 @@ All keys were supplied only through local process environment; none was saved in
 | [October 10 initial report](S02-live-validation-2026-10-10.json) | Three genuine successful chains returned correct outcomes and Reviewer PASS, but the runner misclassified them; conflict Planner was vetoed. Original outcomes remain FAIL. | 11 attempts, 13,665 reported tokens |
 | [October 10 corrected-runner suite](S02-live-validation-2026-10-10-final.json) | DEV-04 and DEV-03 passed. DEV-01 facts timed out; DEV-10 Reviewer timed out after a validated conflict decision/Planner. | 10 attempts, 10,389 reported tokens; 2 failed attempts without usage |
 | [October 10 targeted recovery](S02-live-validation-2026-10-10-recovery.json) | DEV-01 facts and DEV-10 Reviewer timed out again; 0/2. Same Planner 1.0.1; no weakened safety check. | 4 attempts, 2,185 reported tokens; 2 failed attempts without usage |
+| [Extended-deadline capture](S02-live-validation-2026-10-10-extended-deadline.json) | DEV-01 passed. DEV-10 returned a correct BLOCKED decision and separate BLOCKED review with issues, but the old verifier incorrectly required PASS; original runner outcome remains FAIL. | 6 successful attempts, 7,444 reported tokens |
 | [Real browser envelope](S02-live-ui-envelope-2026-10-10.json) | Missing-receipt input completed actual FACTS/PLANNER/REVIEWER; EVIDENCE_REQUEST, REVIEWABLE, Reviewer PASS; no execution. | 3 successful attempts, 4,113 reported tokens |
 
 The initial runner incorrectly passed complete plan/review records to a strict binding-only validator, which rejected their additional legitimate fields. It now validates the full record first and projects only the seven binding fields for comparison; stale bindings remain rejected. A formal offline replay validates the three captured genuine successes under their historical prompt version. That replay makes **no new Gemini call** and does not change the original report's failed acceptance outcome. The first PowerShell wrapper did not propagate Node's nonzero exit; later wrappers explicitly return the captured exit code. No success claim relies on that shell exit alone.
 
-The October 10 no-action result succeeded under Planner 1.0.0 but did not complete again under the final prompt version. The conflict branch was preserved safely in later runs, but its Reviewer did not finish. Therefore these records do **not** establish a complete current-version live acceptance suite. Three October 10 attempts for each unresolved fixture have been exhausted; further live calls stopped rather than repeating indefinitely.
+After three attempts under the original limits, the approach changed: facts SDK/route limits became 25/30 seconds and planning attempts 30 seconds, while the entire workflow stayed at 90 seconds and planning total at 60 seconds. One targeted two-case run completed both real three-role chains. DEV-01 passed. DEV-10 correctly returned BLOCKED, no plan and a separate BLOCKED review with a concrete conflict issue; the old verifier wrongly demanded Reviewer PASS even for a safely blocked case.
 
-Across all five evidence artifacts, **32 actual model attempts** are recorded: **30,352 known reported tokens**, with **eight failed attempts having unknown usage**. October 10 accounts for 28 attempts; the other four are the October 9 errors. The UI envelope repeats workflow steps at the top level; those duplicates are counted once. Measured billed cost remains unknown. Known-token totals are a lower bound on reported usage, not proof of total usage, a free tier or zero cost.
+The corrected verifier accepts PASS or BLOCKED only for an expected BLOCKED branch, still requiring the correct blocked status, null plan, no execution, valid issues, exact citations, facts and bindings. Eligible/no-action results still require PASS. A regression rejects a fake REVIEWABLE conflict and PASS with unresolved issues. [Captured-result revalidation](S02-captured-result-revalidation-2026-10-10.json) checks DEV-04/DEV-03 from the earlier corrected-runner suite and DEV-01/DEV-10 from the extended-deadline capture, with SHA-256 references to the unchanged source reports. It makes zero new model calls.
 
-Google's [API error reference](https://ai.google.dev/gemini-api/docs/api-errors) and [troubleshooting guidance](https://ai.google.dev/gemini-api/docs/troubleshooting) support treating the earlier 402 as an access/payment prerequisite. The later owner-designated key successfully calls the API; no actual balance, Google project or billing configuration was diagnosed or changed. The remaining current blocker is observed timeout behavior, not an asserted continuing 402 condition.
+This establishes G2 functional branch acceptance on current prompt versions. Receipt/high-amount captures used the earlier 20-second planning limit; no-action/conflict captures used the final 30-second limit. No single clean full-suite rerun, repeat reliability, held-out performance or cloud acceptance is claimed. All earlier timeouts and original failed runner outcomes remain visible; wider waiting alone is not proof that provider instability is resolved.
 
-The final telemetry-only correction labels SDK fact timeouts consistently as `GEMINI_REQUEST_TIMEOUT` instead of `GEMINI_API_ERROR_UNKNOWN`; a regression verifies this without another paid call. Earlier evidence remains unchanged. Thus live captures identify their actual precommit source/checkpoint; they are not silently represented as executions after this last metadata correction.
+Across all six actual live evidence artifacts, **38 actual model attempts** are recorded: **37,796 known reported tokens**, with **eight failed attempts having unknown usage**. October 10 accounts for 34 attempts; the other four are the October 9 errors. The UI envelope repeats workflow steps at the top level; those duplicates are counted once. Measured billed cost remains unknown. Known-token totals are a lower bound on reported usage, not proof of total usage, a free tier or zero cost.
 
-A future explicitly authorized recheck can select only unresolved public cases and must use a new report filename:
+Google's [API error reference](https://ai.google.dev/gemini-api/docs/api-errors) and [troubleshooting guidance](https://ai.google.dev/gemini-api/docs/troubleshooting) support treating the earlier 402 as an access/payment prerequisite. The later owner-designated key successfully calls the API; no actual balance, Google project or billing configuration was diagnosed or changed. Earlier timeout behavior remains a reliability risk for S4/S5, not an asserted continuing 402 condition. The G2 functional requirement is now supported by accepted genuine captures.
+
+A telemetry correction labels SDK fact timeouts consistently as `GEMINI_REQUEST_TIMEOUT` instead of `GEMINI_API_ERROR_UNKNOWN`; a regression verifies this without another paid call. Earlier evidence remains unchanged. The extended-deadline capture includes the later correction and its actual timeout profile. All captures identify their own precommit source/checkpoint; earlier runs are not silently presented as later executions.
+
+For future authorized reliability checks, select public cases explicitly and use a new report filename:
 
 ```powershell
 node --use-env-proxy scripts/check-workflow-live.mjs --live --cases DEV-01,DEV-10 --output docs/acceptance/S02-live-validation-NEW-RUN.json
@@ -108,8 +114,8 @@ Amount grounding currently recognizes explicit dollar numeric tokens; receipt gr
 
 S3 must add verified identity, durable snapshots, current versions/digests, explicit human confirmation, atomic case/idempotency/audit writes and independent readback. No Auth/Firestore resource, durable case, cloud URL, payment, held-out evaluation or submission was created here. All public fixtures remain development cases; sealed S5 examples were not accessed.
 
-Final delivery verification on October 10: 20 UTF-8 Markdown documents, 124 local links and 11 JSON files passed parsing/format/link checks. Public source and built client assets had no literal credential or server-key/SDK leakage matches; forbidden upload paths were absent. The shared-workspace Path.glob scan covered 10,835 entries with no `tmp_*`, `.pyc`, `__pycache__` or `nul`; six existing formal project/dependency `test_*` files were preserved. No disposable debug script or key file was created. Formal tests, live reports, screenshots and the local production build required by smoke checks are retained; generated dependencies/build output are ignored and not uploaded. Historical rejected cache deletions are not retried or silently marked complete. The stage branch is a draft checkpoint based on unmerged S1 PR #1; source identity is the S2 commit/PR, not the precommit report baseline alone.
+Final delivery verification on October 10: 20 UTF-8 Markdown documents, 130 local links and 13 JSON files passed parsing/format/link checks. Public source and built client assets had no literal credential or server-key/SDK leakage matches; forbidden upload paths were absent. The final pre-handoff shared-workspace Path.glob scan covered 10,911 entries with no `tmp_*`, `.pyc`, `__pycache__` or `nul`; six existing formal project/dependency `test_*` files were preserved. No disposable debug script or key file was created. Formal tests, live reports, screenshots and the local production build required by smoke checks are retained; generated dependencies/build output are ignored and not uploaded. Historical rejected cache deletions are not retried or silently marked complete. The stage branch is a draft checkpoint based on unmerged S1 PR #1; source identity is the S2 commit/PR, not the precommit report baseline alone.
 
-**Gate decision:** S2 local implementation and browser integration are reviewable. **G2 remains unpassed because complete current-version real no-action/conflict acceptance is unresolved.** Cloud deployment remains deferred. The stage PR is a development checkpoint, not a release or contest submission.
+**Gate decision:** G2 local functional planning/review acceptance passed through strict verification of genuine four-branch captures, offline failure checks and browser integration. Timeout history and mixed profiles remain explicit reliability limits for S4/S5. Cloud deployment remains deferred; complete G0/G1 external prerequisites remain pending. The stage PR is a development checkpoint, not a public release or contest submission.
 
 Related: [S0](S00-scope-and-prerequisites.md), [S1](S01-engineering-foundation.md), [workboard](../DELIVERY_WORKBOARD.md), [evaluation protocol](../EVALUATION_PROTOCOL.md), [S2 design](../S2_PLANNING_REVIEW.md), [provenance](../../PROVENANCE.md).
