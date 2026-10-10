@@ -1,0 +1,10 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // All application access goes through the authenticated server.
+    // Admin SDK access bypasses these rules; each server operation checks UID ownership.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

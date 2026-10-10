@@ -54,7 +54,7 @@ export function WorkflowSteps({ steps }: { steps: PlanningStep[] }) {
   </div>;
 }
 
-export default function WorkflowReview({ workflow }: { workflow: PlanningReviewResult }) {
+export default function WorkflowReview({ workflow, caseBackendEnabled = false }: { workflow: PlanningReviewResult; caseBackendEnabled?: boolean }) {
   const { decision, plan, review, binding } = workflow;
   const ready = workflow.status === "REVIEWABLE" && review?.verdict === "PASS" && plan !== null;
   const statusClass = ready ? "border-teal-300 bg-teal-50 text-teal-950" :
@@ -69,7 +69,7 @@ export default function WorkflowReview({ workflow }: { workflow: PlanningReviewR
           <h3 id="workflow-outcome-heading" className="text-sm font-semibold">
             {STATUS_LABELS[workflow.status]}
           </h3>
-          <span className="text-xs font-mono">S2 · {workflow.status}</span>
+          <span className="text-xs font-mono">{caseBackendEnabled ? "S3" : "S2"} · {workflow.status}</span>
         </div>
         <p className="mt-2 text-xs leading-relaxed">{decision.summary}</p>
         <dl className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
@@ -98,7 +98,8 @@ export default function WorkflowReview({ workflow }: { workflow: PlanningReviewR
 
         {plan ? (
           <div className="mt-4 space-y-3">
-            <h4 className="text-xs font-semibold text-slate-800">Proposed case — has not been created</h4>
+            <h4 className="text-xs font-semibold text-slate-800">AI-proposed case</h4>
+            <p className="text-xs text-slate-600">AI recommendation only. Saved status is shown in Human Confirmation &amp; Saved Case.</p>
             <dl className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-3 text-xs">
               <div><dt className="text-slate-500">Case type</dt><dd className="mt-1 font-semibold">{plan.proposed_case.case_type}</dd></div>
               <div><dt className="text-slate-500">Proposed action</dt><dd className="mt-1 font-mono break-all">{plan.action}</dd></div>
@@ -139,10 +140,10 @@ export default function WorkflowReview({ workflow }: { workflow: PlanningReviewR
 
       <div className="rounded-md border border-slate-300 bg-slate-100 p-4">
         <p className="text-xs font-semibold text-slate-900">
-          {ready ? "Awaiting human confirmation — execution is unavailable in S2." : "No action has been executed."}
+          {ready ? caseBackendEnabled ? "Awaiting explicit human confirmation below." : "Awaiting human confirmation — saved-case access is not configured." : "This AI result authorizes no action."}
         </p>
         <p className="mt-1 text-xs text-slate-600 leading-relaxed">
-          S3 will add verified sign-in, explicit human confirmation and saved-case verification. A passing AI review grants no approval or permission to create a case, reimburse or pay.
+          A passing AI review grants no approval or permission to create a case, reimburse or pay. Inspect the current plan and use the separate human confirmation step when saved-case access is configured.
         </p>
       </div>
 
@@ -152,7 +153,7 @@ export default function WorkflowReview({ workflow }: { workflow: PlanningReviewR
           <div><dt className="text-slate-500">Input / facts version</dt><dd>{binding.input_version} / {binding.facts_version}</dd></div>
           <div><dt className="text-slate-500">Policy version</dt><dd>{binding.policy_version}</dd></div>
           <div><dt className="text-slate-500">Plan reference</dt><dd>{binding.plan_id} · v{binding.plan_version}</dd></div>
-          <div><dt className="text-slate-500">Owner context</dt><dd>{binding.owner_id} (local preview; no authenticated identity)</dd></div>
+          <div><dt className="text-slate-500">Owner context</dt><dd>{binding.owner_id}{!caseBackendEnabled || binding.owner_id === "local-preview" ? " (local preview; no authenticated identity)" : " (server-bound verified visitor identity)"}</dd></div>
           {workflow.prompt_versions && <div className="sm:col-span-2">
             <dt className="text-slate-500">Prompt versions · facts / planner / reviewer</dt>
             <dd>{workflow.prompt_versions.facts} / {workflow.prompt_versions.planner} / {workflow.prompt_versions.reviewer}</dd>
