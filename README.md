@@ -9,7 +9,7 @@ The team reports Antigravity assistance with Google Cloud deployment. Runtime AI
 - [Live product](https://opscrew-883881551915.us-central1.run.app): October 13 real API checks covered three workflows, one synthetic case, independent readback, idempotency and user isolation. October 14 public root/health/config/readiness and served entry returned HTTP 200 without new models/accounts/writes. Current cloud source/image/revision identity remains unverified.
 - [PR #6 review](docs/acceptance/PR06-delivery-review-2026-10-14.md): reviewed UI removes a metadata-only receipt picker that bypassed input invalidation, replaces unsupported metric claims and restricts the communication draft to current eligible passing results. Copying is local text copying, not employee dispatch.
 - Reviewed local checks: **236/236 offline tests**, strict TypeScript, production build and **12/12 native artifact groups** passed. These groups include nine HTTP checks and all five JavaScript chunks. A Linux container build and full current cloud/browser acceptance were not executed by this reviewer.
-- The official-template English proposal includes recorded cloud evidence. Captain **Sunday Lee** and the [YouTube link](https://youtu.be/h53-tucE7ig) come directly from the owner. Public page metadata returns playability OK and length 168 seconds; actual signed-out playback and correspondence to local footage remain unverified.
+- The official-template English review proposal includes recorded cloud evidence and captain **Sunday Lee**. The owner has now confirmed that the existing YouTube video is the same as the rejected local ZIP and needs to be remade. **Do not submit that video or the review proposal's existing video hyperlink as an accepted final demonstration.** Replace the video link and revise the PDF/PPTX after final footage acceptance. See [owner follow-up](docs/acceptance/PR06-owner-followup-2026-10-14.json).
 - The supplied 168.181-second video package passes duration/decoding checks but fails content review. It uses historical local screenshots and unsupported feature/impact claims. Unaccepted candidate media are excluded from the current submission tree; the original candidate commit and owner's archive remain available. See [video review](docs/acceptance/PR06-video-review-2026-10-14.md).
 - **Final submission is not yet ready.** Complete truthful cloud demonstration footage, playback/content checks and the release identity record. Actual portal submission and receipt remain future steps.
 
@@ -26,7 +26,7 @@ The [AI Studio editor](https://aistudio.google.com/apps/e8a0fb37-f747-45d2-b376-
 
 ## Reproduce local checks
 
-Use Node 24 and npm 11. Pull reviewed main after PR #6 is merged, then run:
+Use Node 24 and npm 11. PR #6 is merged; clone or pull reviewed main, then run:
 
 ```powershell
 git clone https://github.com/sundaylee3100-ljl/AI-Builder-Cup-2026-OpsCrew.git

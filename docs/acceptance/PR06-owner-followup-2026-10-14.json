@@ -1,0 +1,47 @@
+{
+  "schema_version": "opscrew-owner-followup-1.0.0",
+  "date": "2026-10-14",
+  "timezone": "Asia/Shanghai",
+  "source": "Human user reply in this task; cleanup independently inspected locally",
+  "accepted_application_checkpoint": "43793118b6ad338569317eee9a618b7b4df32450",
+  "runtime_canonical_source_sha256": "19348499bfe853aaee1afa6be67910da4119748db1d9b5263f1f953fbbf2b943",
+  "owner_confirmations": {
+    "cleanup": "ALL_FOUR_TARGETS_CLEANED",
+    "hosted_video": "SAME_AS_CONTENT_REJECTED_ZIP_REQUIRES_REMAKE",
+    "deployment_evidence": "NOT_YET_SUPPLIED"
+  },
+  "hosted_video": {
+    "rejected_url": "https://youtu.be/h53-tucE7ig",
+    "correspondence_method": "OWNER_CONFIRMATION_NOT_FULL_BROWSER_PLAYBACK",
+    "status": "NOT_SUBMISSION_READY",
+    "accepted_replacement_url": null
+  },
+  "cleanup": {
+    "verified_absent": [
+      ".review-pr6",
+      "google-build/.materials-build",
+      "google-build/__MACOSX",
+      "google-build/aistudio-export-2026-10-07/firestore-debug.log",
+      ".review-pr6-media"
+    ],
+    "method": "Path.exists read-only checks",
+    "expired_worktree_metadata_pruned": true,
+    "formal_pdf_pptx_and_owner_zip_retained": true
+  },
+  "deployment": {
+    "source_commit": null,
+    "build_id": null,
+    "image_digest": null,
+    "serving_revision": null,
+    "status": "PENDING_ACTUAL_OPERATOR_EVIDENCE"
+  },
+  "execution_scope": {
+    "new_cloud_requests": 0,
+    "new_model_attempts": 0,
+    "new_visitor_identities": 0,
+    "new_cases": 0,
+    "new_runtime_tests": "NOT_RUN_DOCUMENTATION_ONLY",
+    "preserved_validation": "236 tests, type/build and 12 native artifact groups at unchanged reviewed application source"
+  },
+  "submission_ready": false
+}

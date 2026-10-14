@@ -1,5 +1,29 @@
 # OpsCrew cloud teammate handoff
 
+## October 14 owner follow-up
+
+PR #6 is merged as `43793118b6ad338569317eee9a618b7b4df32450`. The owner confirms that the current public video matches the rejected ZIP and needs remaking; no source/build/image/revision evidence has yet been supplied. Read [the corrected recording plan](../submission/RECORDING_PLAN.md) and [owner follow-up](acceptance/PR06-owner-followup-2026-10-14.json). The older instructions below retain their dated execution boundaries.
+
+First read existing cloud records. Bind a clean full Git SHA to the actual Cloud Build ID/location/SUCCESS/times/source bucket-object-generation or Git source, the Build and Artifact Registry immutable image digest, and the ready revision actually receiving traffic. `latestReadyRevisionName` and a 12-character image tag do not establish that chain. Preserve the Node base image digest, lockfile identity and public endpoint/configuration record. Do not change historical evidence to claim a different source.
+
+The accepted checkout runtime hash is `19348499bfe853aaee1afa6be67910da4119748db1d9b5263f1f953fbbf2b943`. The CRLF-normalized lockfile hash is `56f765d3d0010e341a736a4239cad42872bfa641dcf4026e8efbf441a0453c79`; also retain the actual uploaded byte identity. The upload excludes tests/fixtures/scripts/docs, so compare actual build inputs rather than requiring every manifest checkout file in the archive.
+
+In a separate clean checkout, from `aistudio-export-2026-10-07`, the existing helper can validate and print a plan without cloud operations:
+
+```powershell
+pwsh -File scripts/cloud-release.ps1 -ConfigPath deploy/cloud-release.local.json -Action Validate
+pwsh -File scripts/cloud-release.ps1 -ConfigPath deploy/cloud-release.local.json -Action Plan
+```
+
+Keep public configuration and secret names/numeric versions in the ignored local config; never secret values. Retained untracked owner materials cause the Build cleanliness guard to reject this working directory. Do not delete those inputs to satisfy that guard; use a clean checkout. The helper's final Build JSON omits the build ID and reports only a short commit, so supplement it with the actual Build record. Existing read-only helper commands include:
+
+```powershell
+gcloud artifacts docker images describe $ImageTag --project=$ProjectId --format=json
+gcloud run services describe $Service --project=$ProjectId --region=$Region --format=json
+```
+
+Only rebuild/redeploy if existing records cannot bind accepted source and new resource operations are approved. `DeployPrivate` changes access to private; do not blindly run it on the public competition endpoint. New identity/model/case tests require a new bounded authorization: the October 13 three-workflow allowance is already consumed. This follow-up executed no cloud calls, resource changes or fresh runtime suite; prior 236 tests and artifact checks remain dated evidence for unchanged application files.
+
 ## October 12 review update
 
 Read [current PR #4 code review](acceptance/PR04-code-review-2026-10-12.md) and [corrected cloud usage report](DEPLOYMENT_AND_USAGE_REPORT.md) before using the earlier instructions below. Teammate-authored cloud summaries are preserved as historical partial evidence; they do not bind the final reviewed source to a currently verified image/revision. Do not return public traffic to an older revision that bypasses trusted identity or persistent admission. The actual saved-case G3 and full operational G4 still require fresh evidence.

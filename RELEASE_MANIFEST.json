@@ -2,11 +2,11 @@
   "schema_version": "opscrew-reviewed-release-1.2.0",
   "prepared_date": "2026-10-14",
   "timezone": "Asia/Shanghai",
-  "stage": "REVIEWED_PR06_SOURCE_WITH_REMAINING_SUBMISSION_BLOCKERS",
+  "stage": "REVIEWED_RUNTIME_WITH_OWNER_CONFIRMED_VIDEO_REWORK",
   "repository": "https://github.com/sundaylee3100-ljl/AI-Builder-Cup-2026-OpsCrew",
   "review_branch": "release/final-verified-delivery",
   "s3_main_base_commit": "dd0fb3f8cff460b725588447be1d94556ee7f8bb",
-  "implementation_commit": "9a8bf55f30cac95dba7b950c430a6ee381e0f22f",
+  "implementation_commit": null,
   "commit_binding_policy": "The following pure manifest binding commit records the preceding reviewed implementation/materials commit; historical manifests and executed results are preserved.",
   "runtime_source_binding": {
     "canonical_sources_sha256": "19348499bfe853aaee1afa6be67910da4119748db1d9b5263f1f953fbbf2b943",
@@ -63,13 +63,13 @@
       "byte_policy": "UTF-8 text with CRLF normalized to LF for published Git blob"
     },
     "submission/README.md": {
-      "sha256": "08aff6f8f3a83414c894afaa6f17a57ff1f131a6613138eb87b2b5ec5ae7eed9",
-      "bytes": 3781,
+      "sha256": "ab34ab5ce97c42d81a01b1a013032db58bee6d416b27047a5fb7f504e7339608",
+      "bytes": 4798,
       "byte_policy": "UTF-8 text with CRLF normalized to LF for published Git blob"
     },
     "submission/RECORDING_PLAN.md": {
-      "sha256": "80fd2b139eeabe11dd97f1fd6b319d6e7c70ae28d41cc87a8e598503c02dd985",
-      "bytes": 7413,
+      "sha256": "57c2cae27ef3b31099172f0fea3cb13a23980be01a97315a8865221b52ef44e5",
+      "bytes": 10041,
       "byte_policy": "UTF-8 text with CRLF normalized to LF for published Git blob"
     },
     "submission/build-proposal.mjs": {
@@ -117,7 +117,9 @@
         "passed": 350,
         "failed": 0
       }
-    }
+    },
+    "owner_followup": "docs/acceptance/PR06-owner-followup-2026-10-14.json",
+    "documentation_followup": "Application source unchanged from PR06; fresh runtime suite not repeated; prior executed results and hashes retained."
   },
   "deployment": {
     "source_commit": null,
@@ -129,18 +131,20 @@
     "reported_historical_url": "https://opscrew-883881551915.us-central1.run.app"
   },
   "submission": {
-    "proposal_status": "English 13-page official-template public-links review; Sunday Lee and three links supplied; current footage/release acceptance pending",
+    "proposal_status": "English 13-page review with Sunday Lee; its historical video hyperlink points to rejected footage and must be replaced and rerendered before final submission. Existing proposal hashes retained.",
     "video_plan": "165 seconds; final actual video must be under 180 seconds",
-    "video_url": "https://youtu.be/h53-tucE7ig",
+    "video_url": null,
     "submitted_receipt": null,
     "g6": "PENDING_TRUTHFUL_FINAL_VIDEO_AND_RELEASE_LINK_VERIFICATION",
     "g7": "PENDING_ACTUAL_SUBMISSION",
     "captain_public_name": "Sunday Lee",
     "video_link_evidence": "docs/acceptance/PR06-youtube-public-link-2026-10-14.json",
-    "video_status": "Public metadata playable/168sec; actual anonymous playback/correspondence unverified. Local candidate footage NOT_SUBMISSION_READY.",
+    "video_status": "Owner confirms existing hosted video is the same content-rejected ZIP; remake required. Complete browser playback not performed by reviewer.",
     "proposal_pdf": "submission/OpsCrew_Proposal_Cloud_cloud-public-links-review-2026-10-14.pdf",
     "proposal_pptx": "submission/OpsCrew_Proposal_Cloud_cloud-public-links-review-2026-10-14.pptx",
-    "proposal_acceptance": "submission/OpsCrew_Proposal_Cloud_cloud-public-links-review-2026-10-14.acceptance.json"
+    "proposal_acceptance": "submission/OpsCrew_Proposal_Cloud_cloud-public-links-review-2026-10-14.acceptance.json",
+    "rejected_video_url": "https://youtu.be/h53-tucE7ig",
+    "owner_followup": "docs/acceptance/PR06-owner-followup-2026-10-14.json"
   },
   "previous_release": {
     "implementation_commit": "22be5948fe20fd3b14eaeffac11ae1a31ade414c",
