@@ -1,0 +1,31 @@
+{
+  "audit_date": "2026-10-14",
+  "video": "https://www.youtube.com/watch?v=h53-tucE7ig",
+  "mode": "public-page-metadata-only-no-account-no-remote-media-download",
+  "observed_at": "2026-10-14T06:55:33.903Z",
+  "results": [
+    {
+      "kind": "oembed",
+      "http": 200,
+      "metadata": {
+        "title": "OpsCrew: Dual-Agent Guarded Enterprise Expense Copilot | AI Builder Cup 2026",
+        "author_name": "AI瑶",
+        "provider_name": "YouTube",
+        "embed_html_present": true
+      }
+    },
+    {
+      "kind": "watch",
+      "http": 200,
+      "title": "OpsCrew: Dual-Agent Guarded Enterprise Expense Copilot | AI Builder Cup 2026",
+      "length_seconds": "168",
+      "video_id": "h53-tucE7ig",
+      "playability_status": "OK",
+      "upload_date": "2026-10-13T23:05:29-07:00",
+      "publish_date": "2026-10-13T23:05:29-07:00",
+      "player_json_present": true
+    }
+  ],
+  "anonymous_actual_playback": "NOT_VERIFIED_BY_METADATA",
+  "same_content_as_local_zip": "UNVERIFIED"
+}

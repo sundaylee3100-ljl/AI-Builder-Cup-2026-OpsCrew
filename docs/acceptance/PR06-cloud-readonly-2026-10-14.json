@@ -1,0 +1,112 @@
+{
+  "schema_version": "opscrew-pr06-public-readonly-1.0.0",
+  "audit_date": "2026-10-14",
+  "target": "https://opscrew-883881551915.us-central1.run.app",
+  "timestamp": "2026-10-14T06:43:32.895Z",
+  "mode": "normal-TLS-public-readonly-no-auth-no-model-no-write",
+  "model_calls": 0,
+  "signups": 0,
+  "case_writes": 0,
+  "source_image_identity": "UNVERIFIED",
+  "probes": [
+    {
+      "path": "/",
+      "http": 200,
+      "duration_ms": 5211,
+      "observed": {
+        "root_element": true,
+        "html_title": "OpsCrew — Expense Exception Plan &amp; Review"
+      }
+    },
+    {
+      "path": "/api/health",
+      "http": 200,
+      "duration_ms": 2242,
+      "observed": {
+        "ok": true,
+        "service": "opscrew",
+        "stage": "S4",
+        "case_backend_mode": "firestore"
+      }
+    },
+    {
+      "path": "/api/config",
+      "http": 200,
+      "duration_ms": 428,
+      "observed": {
+        "ok": true,
+        "default_model": "gemini-3.1-flash-lite",
+        "allowed_models": [
+          "gemini-3.8-flash",
+          "gemini-3.1-flash-lite",
+          "gemini-flash-latest"
+        ],
+        "request_timeout_ms": 40000,
+        "route_timeout_ms": 45000,
+        "max_attempts": 2,
+        "api_key_configured": true,
+        "stage": "S4",
+        "case_backend": {
+          "enabled": true,
+          "mode": "firestore",
+          "firebase": {
+            "apiKey": "REDACTED_PUBLIC_WEB_KEY",
+            "authDomain": "project-b2db87f6-7a4e-4020-972.firebaseapp.com",
+            "projectId": "project-b2db87f6-7a4e-4020-972",
+            "appId": "1:883881551915:web:337e3dc54e23649b55a26e"
+          },
+          "auth_emulator_url": null
+        },
+        "policy_version": "synthetic-expense-usd-1.0.0",
+        "workflow_timeout_ms": 90000,
+        "planning_step_timeout_ms": 30000,
+        "model_enabled": true,
+        "model_admission": {
+          "enabled": true,
+          "limits": {
+            "globalConcurrent": 2,
+            "ownerConcurrent": 1,
+            "globalMinuteRequests": 6,
+            "ownerMinuteRequests": 2,
+            "globalDailyRequests": 60,
+            "ownerDailyRequests": 12,
+            "globalMinuteCalls": 36,
+            "ownerMinuteCalls": 12,
+            "globalDailyCalls": 360,
+            "ownerDailyCalls": 72,
+            "leaseMs": 180000
+          },
+          "workflow_reserved_calls": 6,
+          "facts_reserved_calls": 2,
+          "reset_timezone": "UTC",
+          "unknown_usage_refunded": false
+        }
+      }
+    },
+    {
+      "path": "/api/ready",
+      "http": 200,
+      "duration_ms": 887,
+      "observed": {
+        "ok": true,
+        "ready": true,
+        "stage": "S4",
+        "case_backend_mode": "firestore",
+        "model_calls": 0
+      }
+    },
+    {
+      "path": "/assets/index-CGiM3cEc.js",
+      "http": 200,
+      "bytes": 301780,
+      "feature_strings": {
+        "claims15s": false,
+        "claims184k": false,
+        "vision_ocr": false,
+        "file_picker": false,
+        "copy_draft": false,
+        "human_confirmation": true
+      }
+    }
+  ]
+}

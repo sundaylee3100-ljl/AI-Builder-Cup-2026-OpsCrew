@@ -32,8 +32,9 @@ nul
 # Team internal planning and local setup docs (kept local, excluded from public repo)
 COMPETITION_ASSESSMENT_*.md
 OPSCREW_FULL_DELIVERY_PLAN_*.md
-PROJECT_NOTES*.md
+PROJECT_NOTES*
 *SOP*.md
+*.zip
 
 # Local assistant configuration; application origin and local edits are disclosed in PROVENANCE.md
 .claude/

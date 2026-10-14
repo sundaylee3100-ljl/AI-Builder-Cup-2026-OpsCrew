@@ -1,10 +1,12 @@
 # OpsCrew English cloud demo recording plan
 
-Prepared 2026-10-11. Target encoded duration: **165 seconds**, strictly below 180 seconds. This is a recording plan, not an existing cloud video or proof of a working deployed URL. The accepted release must pass real G3/G4 and the main demo three consecutive times before recording.
+Updated 2026-10-14. Target encoded duration: **165 seconds**, strictly below 180 seconds. Record the actual browser application on the accepted release. The October 13 API reports show 11 core and 14 safety/fixture checks, with overlap; these are separate from video playback, release identity, independent held-out acceptance and the remaining operational gates.
 
 ## Prerequisites and responsibilities
 
-Teammate B deploys the reviewed commit and records the genuine public Cloud Run/Firebase application. Owner A checks the policy, spoken claims, proposal and captions against the cloud evidence. Both play the final encoded file completely and verify public access in a signed-out browser. Do not show API keys, browser developer tools, account panels, authorization headers, confidential expenses or personal information.
+Teammate B verifies the deployed release identity and records the genuine public Cloud Run/Firebase application. Owner A checks spoken claims, proposal and captions against the evidence. Both play the final encoded file completely and verify public access in a signed-out browser. The observed product URL is `https://opscrew-883881551915.us-central1.run.app`; its October 13 API results do not prove that a later local revision is the deployed image. Do not show keys, account panels, authorization headers, confidential expenses or personal information.
+
+Attribute the work accurately: “We created OpsCrew from zero in Google AI Studio Build. Gemini powers fact extraction, planning and review. Our teammate used Google Antigravity to assist Cloud deployment.” The Antigravity attribution comes from the owner's account of the teammate's work. The application currently accepts text and structured synthetic intake. Describe only demonstrated capabilities: explicit confirmation, policy validation and independent saved-case readback. Do not claim OCR, image parsing, automatic dispatch, payment approval, a strict monthly dollar cap, measured staff time savings, universal auditability or an SLA. A copyable notice draft, if shown, remains a draft and requires a current passing plan; it sends no message.
 
 Use the synthetic missing-receipt example DEV-04: USD 38, missing receipt, employee SYNTH-EMP-100. Confirm the exact fixture in `fixtures/development-cases.json`; do not change data merely to obtain a preferred output. Use the release model Gemini 3.1 Flash-Lite. Keep all failed rehearsal attempts in their own evidence. Never replace a failed live run with an injected provider or splice results from different runs into one apparently continuous transaction.
 
@@ -12,7 +14,7 @@ Use the synthetic missing-receipt example DEV-04: USD 38, missing receipt, emplo
 
 | Time | Screen / operator action | Spoken narration |
 | --- | --- | --- |
-| 00:00–00:15 | Team name, app title and actual public product URL | “We are Team OpsCrew. Our application helps operations staff review expense exceptions and create a supported handling record.” |
+| 00:00–00:15 | Team name, app title and actual public product URL | “We are OpsCrew. We built this expense exception prototype from zero in Google AI Studio Build. Gemini plans and reviews the handling steps. Our teammate used Antigravity to assist deployment.” |
 | 00:15–00:32 | Signed-out public entry, explicit visitor session and DEV-04 intake | “This example uses synthetic data: a thirty-eight-dollar expense with a missing receipt. The fixed demonstration policy tells us what evidence is needed.” |
 | 00:32–01:37 | Start the genuine workflow. Show progress, preserve actual timing and the returned run identity | “Gemini extracts facts, then a separately prompted Planner proposes handling steps. A Reviewer checks that proposal. The server also checks the facts and policy references. These AI stages grant no permission to create a case.” |
 | 01:37–02:08 | Inspect original citations, missing-receipt step, Reviewer and current binding | “The current result requests receipt evidence. We can inspect its original sources and exact policy clauses. If the intake changes, the app requires a fresh plan and confirmation.” |
@@ -20,6 +22,8 @@ Use the synthetic missing-receipt example DEV-04: USD 38, missing receipt, emplo
 | 02:28–02:45 | Independent saved-record readback, case ID and owned history | “The interface shows success only after a separate read of the saved record. This is a synthetic handling case. OpsCrew does not approve reimbursement or issue payment.” |
 
 The schedule reserves 65 seconds for the real model chain, but actual latency may differ. If it exceeds the slot, record the complete run and edit only the wait interval, with a visible “Waiting interval shortened” caption. Preserve the original elapsed duration and disclose the edit in the description. Avoid narration that asserts a result before that result appears. If the workflow fails, record the safe failure and rehearse again after diagnosis. Never caption an unavailable result as a success.
+
+The three October 13 public workflows took 8.381–12.042 seconds. This small sample is an observation, not a latency promise. Its ten provider attempts include one first FACTS 503 followed by recovery; 11,680 known tokens exclude unknown usage from that failed attempt. Actual billed cost is unknown. Keep that failure in the evidence even if the final recorded run succeeds. A static slideshow explaining the design does not substitute for the required prototype-in-action recording.
 
 Record additional short evidence clips separately: blocked contradictory sources, input invalidation, unknown-response recovery and visitor isolation. They may support review or an alternate cut; a second complete model chain is not required in the main 165-second video. Keep the main video understandable to a judge seeing the app for the first time.
 
@@ -33,6 +37,6 @@ Publish to an allowed public YouTube/Vimeo/Drive link only under the owner's aut
 
 ## Proposal patch after cloud acceptance
 
-Update the cover's public team names from verified registration data. Replace the two “pending” link statuses with actual public links. Replace the architecture's deployment status and performance boundaries only with executed cloud evidence. Keep offline, emulator, public development and independent held-out results distinguishable. Export a new PDF and PPTX revision, render every page, check links and compare their hash to the submitted files.
+Use the new cloud-evidence review proposal as the editing source. Update public team names from verified registration data and add the actual public video URI. Preserve the date and limits of recorded cloud evidence, including unverified source-to-image identity until it is actually established. Keep offline, emulator, public development and independent held-out results distinguishable. Historical packaging comprises 12 groups including nine HTTP checks, not 21 independent checks. Replace any old local screenshot only with a genuine new browser capture. Export a new PDF and PPTX revision, render every page, verify links and compare their hashes to the submitted files.
 
 Sources: [official submission requirements](https://aibuildercup.com/themes.html), [stricter video duration FAQ](https://aibuildercup.com/Faqs.html), [cloud handoff](../docs/CLOUD_TEAMMATE_HANDOFF.md), [evaluation protocol](../docs/EVALUATION_PROTOCOL.md).

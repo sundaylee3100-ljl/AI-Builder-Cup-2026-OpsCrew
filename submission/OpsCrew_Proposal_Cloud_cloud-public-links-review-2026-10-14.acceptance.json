@@ -1,0 +1,257 @@
+{
+  "schema_version": "opscrew-cloud-proposal-review-1.0.0",
+  "audit_date": "2026-10-14",
+  "ready_for_final_submission": false,
+  "status": "REVIEW_PUBLIC_LINKS_SUPPLIED_FOOTAGE_ACCEPTANCE_PENDING",
+  "pptx_sha256": "5b8a57d2da7959d64f917e82e6e0358f8b25a682c219d3e953d5358b72b0047b",
+  "pdf_sha256": "6166e14400e4f49268b18b8bf42c6ce3f6bf85af0c82d867cc4cbff33dbe9d04",
+  "slides": 13,
+  "pdf_pages": 13,
+  "pdf_embedded_pages_equal_final_pptx_render_pixels": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+  ],
+  "pdf_text_layer": "IMAGE_ONLY",
+  "actual_pdf_uris": [
+    "https://github.com/sundaylee3100-ljl/AI-Builder-Cup-2026-OpsCrew",
+    "https://opscrew-883881551915.us-central1.run.app",
+    "https://youtu.be/h53-tucE7ig"
+  ],
+  "actual_pptx_uris": [
+    "https://github.com/sundaylee3100-ljl/AI-Builder-Cup-2026-OpsCrew",
+    "https://opscrew-883881551915.us-central1.run.app",
+    "https://youtu.be/h53-tucE7ig"
+  ],
+  "captain_public_name": "Sunday Lee",
+  "public_name_and_video_url_source": "Direct owner-provided values, passed as process environment variables; no builder userdata default changed.",
+  "video_scope": "Parent review reports public metadata HTTP200 and length168 seconds; anonymous playback and correspondence to local ZIP are NOTVERIFIED. This document does not accept footage claims.",
+  "finalizer_receipt": {
+    "schemaVersion": "presentation-finalization.v1",
+    "finalSha256": "5b8a57d2da7959d64f917e82e6e0358f8b25a682c219d3e953d5358b72b0047b",
+    "byteCount": 829980,
+    "packageIntegrity": {
+      "chart_count": 0,
+      "claim_boundary": "Structural package checks only; no slide text, notes, formulas, chart values, or native PowerPoint execution were inspected.",
+      "finding_count": 0,
+      "findings": [],
+      "notes_parts_skipped": 13,
+      "relationship_part_count": 41,
+      "slide_count": 13,
+      "status": "pass",
+      "exitCode": 0,
+      "findingCount": 0,
+      "warnings": []
+    },
+    "presentationLayout": {
+      "finding_count": 0,
+      "findings": [],
+      "font_policy": {
+        "checked_text_script_count": 125,
+        "native_font_rendering_verified": false,
+        "observed_font_families": [
+          "Google Sans Flex Medium"
+        ],
+        "observed_font_use_counts": {
+          "Google Sans Flex Medium": 125
+        },
+        "passed": true,
+        "performed": true
+      },
+      "slide_count": 13,
+      "slide_size_in": [
+        10,
+        5.625
+      ],
+      "warning_count": 1,
+      "warnings": [
+        {
+          "available_bottom_in": 4.75,
+          "columns": 3,
+          "declared_bottom_in": 4.5833,
+          "estimated_native_bottom_in": 4.8247,
+          "footer_object_ids": [
+            "146"
+          ],
+          "kind": "native_table_overflow",
+          "overflow_in": 0.0747,
+          "rows": 6,
+          "slide": 11,
+          "table_id": "145"
+        }
+      ],
+      "exitCode": 0,
+      "findingCount": 0,
+      "fontPolicy": {
+        "checked_text_script_count": 125,
+        "native_font_rendering_verified": false,
+        "observed_font_families": [
+          "Google Sans Flex Medium"
+        ],
+        "observed_font_use_counts": {
+          "Google Sans Flex Medium": 125
+        },
+        "passed": true,
+        "performed": true
+      }
+    },
+    "fontSelection": {
+      "basis": "reference",
+      "approvedFamilies": [
+        "Google Sans Flex Medium",
+        "Google Sans Flex SemiBold"
+      ],
+      "scriptFonts": {},
+      "referenceSha256": "2c2dbb4a1a8a6f85fe8767744442d4d5697ae43e936fefd0bbbb05321c1514fe",
+      "referenceFontsVerifiedInEncodedText": true,
+      "checked_text_script_count": 125,
+      "native_font_rendering_verified": false,
+      "observed_font_families": [
+        "Google Sans Flex Medium"
+      ],
+      "observed_font_use_counts": {
+        "Google Sans Flex Medium": 125
+      },
+      "passed": true,
+      "performed": true
+    },
+    "firstPartyImport": {
+      "performed": true,
+      "passed": true,
+      "slideCount": 13,
+      "sha256": "5b8a57d2da7959d64f917e82e6e0358f8b25a682c219d3e953d5358b72b0047b",
+      "runtimeNodeModules": "C:\\Users\\admin\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\node_modules",
+      "nodeExecutable": "C:\\Users\\admin\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe"
+    },
+    "nativeTableArithmetic": {
+      "performed": true,
+      "checked_column_count": 0,
+      "checks": [],
+      "claim_boundary": "Displayed-value arithmetic with rounding tolerance; not source-data verification.",
+      "eligible_table_count": 0,
+      "finding_count": 0,
+      "findings": [],
+      "native_table_count": 3,
+      "passed": true,
+      "schema_version": "presentation-native-table-arithmetic.v1",
+      "skipped_tables": [
+        {
+          "reason": "no_numeric_amounts",
+          "slide": 8,
+          "table": 1
+        },
+        {
+          "reason": "no_numeric_amounts",
+          "slide": 10,
+          "table": 1
+        },
+        {
+          "reason": "no_numeric_amounts",
+          "slide": 11,
+          "table": 1
+        }
+      ],
+      "slide_count": 13,
+      "warning_count": 0,
+      "warnings": []
+    },
+    "nativeChartTitles": {
+      "performed": true,
+      "checks": [],
+      "finding_count": 0,
+      "findings": [],
+      "native_chart_count": 0,
+      "native_powerpoint_verified": false,
+      "passed": true,
+      "presentation_sha256": "5b8a57d2da7959d64f917e82e6e0358f8b25a682c219d3e953d5358b72b0047b",
+      "schema_version": "presentation-native-chart-titles.v1",
+      "slide_count": 13,
+      "source_text_emitted": false,
+      "unresolved_linked_title_count": 0
+    },
+    "sourceDerivedPolicyFlags": [
+      "--expected-slide-size-emu",
+      "9144000,5143500",
+      "--validate-bullet-geometry",
+      "--validate-heading-fit",
+      "--require-native-table-slide",
+      "8",
+      "--require-native-table-slide",
+      "11",
+      "--cover-role",
+      "none",
+      "--approved-font-family",
+      "Google Sans Flex Medium",
+      "--approved-font-family",
+      "Google Sans Flex SemiBold"
+    ],
+    "nativeChartValidation": {
+      "detectedOwnerSlides": [],
+      "detectedChartCount": 0,
+      "targetApplication": null,
+      "sourceChartOwnersExplicitlyDeclared": false,
+      "validatorRan": false,
+      "passed": true
+    }
+  },
+  "visual_pptx_slides_inspected": [
+    1,
+    12,
+    13
+  ],
+  "visual_independent_pdf_pages_inspected": [
+    1,
+    12,
+    13
+  ],
+  "powerpoint_app_opened": false,
+  "remaining_gates": [
+    "Genuine browser footage with supported claims and anonymous playback",
+    "Accepted deployment source/image binding",
+    "Independent held-out evaluation and complete operational controls",
+    "Final manifest and actual Submitted receipt"
+  ],
+  "cleanup": "BLOCKED_BY_AUTOMATIC_APPROVAL_REVIEW_COMMAND_NOT_EXECUTED_NO_RETRY",
+  "pixel_identical_prior_review_pages": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
+  "changed_pages": [
+    1,
+    12,
+    13
+  ],
+  "prior_review_pdf_sha256": "0ccba3e6b818408bd7225c36b947540d65567803a48bb2ec05b4e7463236ff36",
+  "visual_coverage_all_thirteen_pages": true,
+  "visual_method": "Actual new PPTX and independently rendered PDF pages 1,12,13 inspected at full size. Pages2-11 are pixel-identical to the already individually inspected v2 pages. All13 PDF embedded images equal the new final-PPTX renders.",
+  "visual_findings": "No observed clipping, overlap or disconnected connectors. Public captain name and all three hyperlinks visible. Final footage acceptance remains explicitly pending.",
+  "automated_warning": "Slide11 native-table estimated overflow warning retained; prior and latest actual render is pixel-identical and shows no overlap. Template embedded-font naming/weight warnings retained. PowerPoint rendering not verified.",
+  "modified_material_source_hashes": {
+    "build-proposal.mjs": "5d19c80f7491acb286dc2623e2de2c61733c2c3d78744f7aac641c138e8c769d",
+    "RECORDING_PLAN.md": "7d44badb4f1bce911f8d9301509a27384c4e9fdae262337650308de1d9cf8ffa",
+    "README.md": "abf25ca52036bc4d70bf0b93a12bef9ade86339e954411fbbc70cfbb9a884205"
+  },
+  "cjk_text_characters": 0,
+  "old_project_reference_in_proposal_text": false,
+  "manual_cleanup_target": "C:\\Users\\admin\\Downloads\\AI-Builder-Cup-2026-OpsCrew\\.review-pr6\\.materials-build\\cloud-public-links-review-2026-10-14",
+  "manual_cleanup_target_present": true,
+  "manual_cleanup_file_count": 45
+}

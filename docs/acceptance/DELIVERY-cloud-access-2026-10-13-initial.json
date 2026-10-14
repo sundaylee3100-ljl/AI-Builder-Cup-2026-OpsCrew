@@ -1,0 +1,55 @@
+{
+  "schema_version": "opscrew-delivery-cloud-access-1.0.0",
+  "audit_date": "2026-10-13",
+  "timezone": "Asia/Shanghai",
+  "recorded_at": "2026-10-13T04:44:03.867200+00:00",
+  "target": "https://opscrew-883881551915.us-central1.run.app",
+  "outcome": "BLOCKED_LOCAL_ACCESS_NO_HTTP_RESPONSE",
+  "service_health_conclusion": "UNVERIFIED; no HTTP status observed; not evidence of a down service",
+  "attempts": [
+    {
+      "sequence": 1,
+      "method": "web tool GET public root",
+      "outcome": "NOT_ACCESSIBLE_VIA_TOOL",
+      "http_status": null
+    },
+    {
+      "sequence": 2,
+      "method": "CUA in-app browser create and navigate to public root",
+      "outcome": "EXECUTION_TIMEOUT_KERNEL_RESET",
+      "timeout_ms": 30000,
+      "http_status": null,
+      "visual_mount_verified": false
+    },
+    {
+      "sequence": 3,
+      "method": "curl HTTPS GET /api/health with standard certificate verification",
+      "outcome": "TLS_CERTIFICATE_REVOCATION_CHECK_UNAVAILABLE",
+      "error_code": "CRYPT_E_REVOCATION_OFFLINE",
+      "curl_exit": 35,
+      "http_status": null
+    }
+  ],
+  "authorization": {
+    "user_reply": "允许上述有界云端测试",
+    "maximum_complete_workflows": 3,
+    "maximum_provider_attempts": 18,
+    "maximum_synthetic_cases": 1,
+    "allowed_replay_readback": true,
+    "new_billing_resources_or_permission_changes": false
+  },
+  "executed_scope": {
+    "workflow_requests_initiated": 0,
+    "anonymous_identity_requests_initiated": 0,
+    "case_requests_initiated": 0,
+    "no_insecure_tls_flags_used": true,
+    "no_cloud_configuration_modified": true
+  },
+  "live_workflow_and_provider_results": {
+    "outcome": "NOT_RUN_ACCESS_BLOCKED",
+    "provider_attempts_total": null,
+    "token_usage": null,
+    "cost": null
+  },
+  "pending_user_action": "Restore network/proxy/certificate-check connectivity or confirm an existing browser can open the site without bypassing safety warnings. Further cloud requests paused after three failed methods under user AGENTS protocol."
+}

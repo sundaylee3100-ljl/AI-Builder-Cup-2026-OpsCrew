@@ -1,0 +1,57 @@
+{
+  "schema_version": "opscrew-pr06-reviewed-local-1.0.0",
+  "audit_date": "2026-10-14",
+  "timezone": "Asia/Shanghai",
+  "reviewed_original_pr_head": "51f99740fe488f74d8ef5de1b9368065ec1dadf1",
+  "runtime_sources_sha256": "19348499bfe853aaee1afa6be67910da4119748db1d9b5263f1f953fbbf2b943",
+  "node": "24.14.0",
+  "npm": "11.9.0",
+  "offline_tests": {
+    "executed": true,
+    "passed": 236,
+    "failed": 0,
+    "duration_ms": 34652.7388,
+    "real_gemini_calls": 0,
+    "production_firestore_writes": 0,
+    "new_notice_render_groups": 4,
+    "stale_binding_fields": 7,
+    "stale_plan_review_variants": 14,
+    "browser_clipboard_interaction": "NOT_RUN"
+  },
+  "strict_types": {
+    "executed": true,
+    "exit_code": 0
+  },
+  "build": {
+    "executed": true,
+    "exit_code": 0,
+    "modules": 1677,
+    "duration_seconds": 8.37,
+    "javascript_chunks": 5,
+    "largest_javascript_kb": 210.99
+  },
+  "native_production_artifact": {
+    "executed": true,
+    "passed_groups": 12,
+    "http_checks_included": 9,
+    "javascript_chunks_verified": 5,
+    "elapsed_ms": 56042,
+    "credentials_present": false,
+    "linux_container_build": "NOT_RUN"
+  },
+  "independent_runtime_review": "No new blocking issue after removal of fake intake and restriction of current copy-only notices",
+  "public_cloud_readonly": "PR06-cloud-readonly-2026-10-14.json",
+  "historical_real_cloud": "DELIVERY-cloud-G3-2026-10-13.json",
+  "new_cloud_workflows": 0,
+  "new_signups": 0,
+  "new_case_writes": 0,
+  "media_content": "NOT_SUBMISSION_READY; local duration and decode passed only",
+  "candidate_videos_in_current_submission_tree": false,
+  "limitations": [
+    "Current cloud source/image/revision binding unverified",
+    "Full current browser and clipboard interaction not run",
+    "No additional real model test or cloud deployment",
+    "Final hosted footage correspondence and actual playback unverified",
+    "Manual render-temp cleanup is pending"
+  ]
+}

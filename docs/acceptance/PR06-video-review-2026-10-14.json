@@ -1,0 +1,526 @@
+{
+  "schema_version": "opscrew-pr06-video-audit-1.0.0",
+  "audit_date": "2026-10-14",
+  "reviewed_pr": 6,
+  "reviewed_pr_head": "51f99740fe488f74d8ef5de1b9368065ec1dadf1",
+  "inputs": [
+    {
+      "file": "OpsCrew_Official_Demo_Subtitled.mp4",
+      "sha256": "6cf0b9aa3f299388802f866c200bf9d8666a6d468fb09c16a6fd48087bec7270",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 1920,
+            "height": 1080,
+            "pix_fmt": "yuv420p",
+            "r_frame_rate": "25/1",
+            "duration": "168.160000",
+            "nb_frames": "4204",
+            "tags": {
+              "language": "und"
+            }
+          },
+          {
+            "index": 1,
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "sample_rate": "48000",
+            "channels": 2,
+            "r_frame_rate": "0/0",
+            "duration": "168.069333",
+            "nb_frames": "7866",
+            "tags": {
+              "language": "und"
+            }
+          },
+          {
+            "index": 2,
+            "codec_name": "mov_text",
+            "codec_type": "subtitle",
+            "r_frame_rate": "0/0",
+            "duration": "168.000000",
+            "nb_frames": "15",
+            "tags": {
+              "language": "eng"
+            }
+          }
+        ],
+        "format": {
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "duration": "168.181016",
+          "size": "8504864"
+        }
+      }
+    },
+    {
+      "file": "OpsCrew_Official_Demo_Clean.mp4",
+      "sha256": "5120742c10923dd0ae49591eb83c25c7a1037d49a09d27b6d8d92bec9fbb444a",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 1920,
+            "height": 1080,
+            "pix_fmt": "yuv420p",
+            "r_frame_rate": "25/1",
+            "duration": "168.160000",
+            "nb_frames": "4204",
+            "tags": {
+              "language": "und"
+            }
+          },
+          {
+            "index": 1,
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "sample_rate": "48000",
+            "channels": 2,
+            "r_frame_rate": "0/0",
+            "duration": "168.069333",
+            "nb_frames": "7866",
+            "tags": {
+              "language": "und"
+            }
+          },
+          {
+            "index": 2,
+            "codec_name": "mov_text",
+            "codec_type": "subtitle",
+            "r_frame_rate": "0/0",
+            "duration": "168.000000",
+            "nb_frames": "15",
+            "tags": {
+              "language": "eng"
+            }
+          }
+        ],
+        "format": {
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "duration": "168.181016",
+          "size": "7974296"
+        }
+      }
+    }
+  ],
+  "sidecar_hashes": {
+    "OpsCrew_Official_Demo_165s.srt": "1a8e99eba235796bd642fd5fb7d5502e8b526b644645d5f08bf1e93a91dbd085",
+    "OpsCrew_Official_Demo_165s.vtt": "cb298a3e0e36f6246050e3fba51fb8b67f3c4c335db199da9601767abd06957d",
+    "render_demo_video.py": "bc575539f943065032d12131d5361d5cf8bc252eadffa659252f4d5e78c4b268"
+  },
+  "nominal_scene_duration_total": 168.0,
+  "scenes": [
+    {
+      "id": "scene_01",
+      "start_seconds": 0.0,
+      "end_seconds": 12.0,
+      "midpoint_seconds": 6.0,
+      "narration_source": "Welcome to OpsCrew, an autonomous multi-agent copilot for enterprise operations, developed for the AI Builder Cup 2026.",
+      "subtitle_source": "Welcome to OpsCrew, an autonomous multi-agent copilot for enterprise operations,\ndeveloped for the AI Builder Cup 2026.",
+      "image_expression": "os.path.join(BASE_DIR, \"assets\", \"slides\", \"slide-01.png\")"
+    },
+    {
+      "id": "scene_02",
+      "start_seconds": 12.0,
+      "end_seconds": 23.5,
+      "midpoint_seconds": 17.75,
+      "narration_source": "Traditional expense exception auditing suffers from forty-eight-hour backlogs, manual spreadsheets, and fragmented compliance policies.",
+      "subtitle_source": "Traditional expense exception auditing suffers from forty-eight-hour backlogs,\nmanual spreadsheets, and fragmented compliance policies.",
+      "image_expression": "os.path.join(BASE_DIR, \"assets\", \"slides\", \"slide-02.png\")"
+    },
+    {
+      "id": "scene_03",
+      "start_seconds": 23.5,
+      "end_seconds": 35.0,
+      "midpoint_seconds": 29.25,
+      "narration_source": "OpsCrew solves this with three specialized Gemini agents: a Fact Extractor, a Policy Planner, and an Adversarial Reviewer.",
+      "subtitle_source": "OpsCrew solves this with three specialized Gemini agents:\na Fact Extractor, a Policy Planner, and an Adversarial Reviewer.",
+      "image_expression": "os.path.join(BASE_DIR, \"assets\", \"slides\", \"slide-03.png\")"
+    },
+    {
+      "id": "scene_04",
+      "start_seconds": 35.0,
+      "end_seconds": 49.5,
+      "midpoint_seconds": 42.25,
+      "narration_source": "Our deterministic rule engine enforces policies SYN-001 through SYN-008, preventing AI hallucinations and unverified payouts.",
+      "subtitle_source": "Our deterministic rule engine enforces policies SYN-001 through SYN-008,\npreventing AI hallucinations and unverified payouts.",
+      "image_expression": "os.path.join(BASE_DIR, \"assets\", \"slides\", \"slide-04.png\")"
+    },
+    {
+      "id": "scene_05",
+      "start_seconds": 49.5,
+      "end_seconds": 63.0,
+      "midpoint_seconds": 56.25,
+      "narration_source": "In the live web app, operators see under fifteen seconds cloud deliberation replacing 48-hour manual backlogs, one hundred percent auditability, and modeled annual savings.",
+      "subtitle_source": "In the live web app, operators see under fifteen seconds cloud deliberation replacing 48-hour manual backlogs,\none hundred percent auditability, and modeled annual savings.",
+      "image_expression": "os.path.join(BASE_DIR, \"assets\", \"slides\", \"slide-06.png\")"
+    },
+    {
+      "id": "scene_06",
+      "start_seconds": 63.0,
+      "end_seconds": 76.0,
+      "midpoint_seconds": 69.5,
+      "narration_source": "Here we inspect synthetic scenario DEV-04: a thirty-eight-dollar expense with a missing receipt hitting clause SYN-004 for evidence requests, featuring multimodal drag-and-drop intake.",
+      "subtitle_source": "Here we inspect synthetic scenario DEV-04: a thirty-eight-dollar expense with a missing receipt hitting clause SYN-004 for evidence requests,\nfeaturing multimodal drag-and-drop intake.",
+      "image_expression": "os.path.join(PROJECT_DIR, \"docs\", \"acceptance\", \"S02-live-ui-desktop-2026-10-10.png\")"
+    },
+    {
+      "id": "scene_07",
+      "start_seconds": 76.0,
+      "end_seconds": 88.0,
+      "midpoint_seconds": 82.0,
+      "narration_source": "Running the workflow invokes Gemini. Facts are hashed, the Planner requests receipt proof, and the Reviewer validates rule compliance.",
+      "subtitle_source": "Running the workflow invokes Gemini. Facts are hashed,\nthe Planner requests receipt proof, and the Reviewer validates rule compliance.",
+      "image_expression": "os.path.join(PROJECT_DIR, \"docs\", \"acceptance\", \"S02-live-ui-review-2026-10-10.png\")"
+    },
+    {
+      "id": "scene_08",
+      "start_seconds": 88.0,
+      "end_seconds": 101.0,
+      "midpoint_seconds": 94.5,
+      "narration_source": "With a PASS verdict, OpsCrew generates an interactive pre-draft notice citing SYN-004, ready for one-click dispatch without authorizing payout.",
+      "subtitle_source": "With a PASS verdict, OpsCrew generates an interactive pre-draft notice citing SYN-004,\nready for one-click dispatch without authorizing payout.",
+      "image_expression": "os.path.join(BASE_DIR, \"assets\", \"slides\", \"slide-05.png\")"
+    },
+    {
+      "id": "scene_09",
+      "start_seconds": 101.0,
+      "end_seconds": 111.5,
+      "midpoint_seconds": 106.25,
+      "narration_source": "Strict governance requires explicit human review. The operator inspects the plan and confirms the case with a single click.",
+      "subtitle_source": "Strict governance requires explicit human review.\nThe operator inspects the plan and confirms the case with a single click.",
+      "image_expression": "os.path.join(PROJECT_DIR, \"docs\", \"acceptance\", \"S03-emulator-ui-desktop-2026-10-10.png\")"
+    },
+    {
+      "id": "scene_10",
+      "start_seconds": 111.5,
+      "end_seconds": 122.0,
+      "midpoint_seconds": 116.75,
+      "narration_source": "The server atomically commits the approval and audit trail to Google Cloud Firestore Native, backed by idempotent key binding.",
+      "subtitle_source": "The server atomically commits the approval and audit trail to Google Cloud Firestore Native,\nbacked by idempotent key binding.",
+      "image_expression": "os.path.join(BASE_DIR, \"assets\", \"slides\", \"slide-07.png\")"
+    },
+    {
+      "id": "scene_11",
+      "start_seconds": 122.0,
+      "end_seconds": 134.0,
+      "midpoint_seconds": 128.0,
+      "narration_source": "OpsCrew is verified by two hundred thirty-two automated tests with zero failures, including offline evaluation and security guardrails.",
+      "subtitle_source": "OpsCrew is verified by two hundred thirty-two automated tests with zero failures,\nincluding offline evaluation and security guardrails.",
+      "image_expression": "os.path.join(BASE_DIR, \"assets\", \"slides\", \"slide-08.png\")"
+    },
+    {
+      "id": "scene_12",
+      "start_seconds": 134.0,
+      "end_seconds": 145.0,
+      "midpoint_seconds": 139.5,
+      "narration_source": "With a strict forty-dollar monthly budget guardrail and fail-closed admission, OpsCrew delivers extraordinary return on investment.",
+      "subtitle_source": "With a strict forty-dollar monthly budget guardrail and fail-closed admission,\nOpsCrew delivers extraordinary return on investment.",
+      "image_expression": "os.path.join(BASE_DIR, \"assets\", \"slides\", \"slide-09.png\")"
+    },
+    {
+      "id": "scene_13",
+      "start_seconds": 145.0,
+      "end_seconds": 156.5,
+      "midpoint_seconds": 150.75,
+      "narration_source": "Deployed on Google Cloud Run in US-Central-1 with Secret Manager credential isolation, OpsCrew is secure and containerized.",
+      "subtitle_source": "Deployed on Google Cloud Run in US-Central-1 with Secret Manager credential isolation,\nOpsCrew is secure and containerized.",
+      "image_expression": "os.path.join(BASE_DIR, \"assets\", \"slides\", \"slide-10.png\")"
+    },
+    {
+      "id": "scene_14",
+      "start_seconds": 156.5,
+      "end_seconds": 168.0,
+      "midpoint_seconds": 162.25,
+      "narration_source": "OpsCrew combines autonomous AI with deterministic enterprise safety. We invite you to test our live deployment at opscrew-883881551915.us-central1.run.app.",
+      "subtitle_source": "OpsCrew combines autonomous AI with deterministic enterprise safety.\nWe invite you to test our live deployment at opscrew-883881551915.us-central1.run.app.",
+      "image_expression": "os.path.join(BASE_DIR, \"assets\", \"slides\", \"slide-13.png\")"
+    }
+  ],
+  "extracted_frames": [
+    {
+      "scene": "scene_01",
+      "at_seconds": 6.0,
+      "frame_path": "C:\\Users\\admin\\Downloads\\AI-Builder-Cup-2026-OpsCrew\\.review-pr6-media\\frames\\scene_01.png",
+      "extract_exit": 0
+    },
+    {
+      "scene": "scene_02",
+      "at_seconds": 17.75,
+      "frame_path": "C:\\Users\\admin\\Downloads\\AI-Builder-Cup-2026-OpsCrew\\.review-pr6-media\\frames\\scene_02.png",
+      "extract_exit": 0
+    },
+    {
+      "scene": "scene_03",
+      "at_seconds": 29.25,
+      "frame_path": "C:\\Users\\admin\\Downloads\\AI-Builder-Cup-2026-OpsCrew\\.review-pr6-media\\frames\\scene_03.png",
+      "extract_exit": 0
+    },
+    {
+      "scene": "scene_04",
+      "at_seconds": 42.25,
+      "frame_path": "C:\\Users\\admin\\Downloads\\AI-Builder-Cup-2026-OpsCrew\\.review-pr6-media\\frames\\scene_04.png",
+      "extract_exit": 0
+    },
+    {
+      "scene": "scene_05",
+      "at_seconds": 56.25,
+      "frame_path": "C:\\Users\\admin\\Downloads\\AI-Builder-Cup-2026-OpsCrew\\.review-pr6-media\\frames\\scene_05.png",
+      "extract_exit": 0
+    },
+    {
+      "scene": "scene_06",
+      "at_seconds": 69.5,
+      "frame_path": "C:\\Users\\admin\\Downloads\\AI-Builder-Cup-2026-OpsCrew\\.review-pr6-media\\frames\\scene_06.png",
+      "extract_exit": 0
+    },
+    {
+      "scene": "scene_07",
+      "at_seconds": 82.0,
+      "frame_path": "C:\\Users\\admin\\Downloads\\AI-Builder-Cup-2026-OpsCrew\\.review-pr6-media\\frames\\scene_07.png",
+      "extract_exit": 0
+    },
+    {
+      "scene": "scene_08",
+      "at_seconds": 94.5,
+      "frame_path": "C:\\Users\\admin\\Downloads\\AI-Builder-Cup-2026-OpsCrew\\.review-pr6-media\\frames\\scene_08.png",
+      "extract_exit": 0
+    },
+    {
+      "scene": "scene_09",
+      "at_seconds": 106.25,
+      "frame_path": "C:\\Users\\admin\\Downloads\\AI-Builder-Cup-2026-OpsCrew\\.review-pr6-media\\frames\\scene_09.png",
+      "extract_exit": 0
+    },
+    {
+      "scene": "scene_10",
+      "at_seconds": 116.75,
+      "frame_path": "C:\\Users\\admin\\Downloads\\AI-Builder-Cup-2026-OpsCrew\\.review-pr6-media\\frames\\scene_10.png",
+      "extract_exit": 0
+    },
+    {
+      "scene": "scene_11",
+      "at_seconds": 128.0,
+      "frame_path": "C:\\Users\\admin\\Downloads\\AI-Builder-Cup-2026-OpsCrew\\.review-pr6-media\\frames\\scene_11.png",
+      "extract_exit": 0
+    },
+    {
+      "scene": "scene_12",
+      "at_seconds": 139.5,
+      "frame_path": "C:\\Users\\admin\\Downloads\\AI-Builder-Cup-2026-OpsCrew\\.review-pr6-media\\frames\\scene_12.png",
+      "extract_exit": 0
+    },
+    {
+      "scene": "scene_13",
+      "at_seconds": 150.75,
+      "frame_path": "C:\\Users\\admin\\Downloads\\AI-Builder-Cup-2026-OpsCrew\\.review-pr6-media\\frames\\scene_13.png",
+      "extract_exit": 0
+    },
+    {
+      "scene": "scene_14",
+      "at_seconds": 162.25,
+      "frame_path": "C:\\Users\\admin\\Downloads\\AI-Builder-Cup-2026-OpsCrew\\.review-pr6-media\\frames\\scene_14.png",
+      "extract_exit": 0
+    }
+  ],
+  "contact_sheet": "C:\\Users\\admin\\Downloads\\AI-Builder-Cup-2026-OpsCrew\\.review-pr6\\docs\\acceptance\\PR06-video-contactsheet-2026-10-14.png",
+  "embedded_subtitles": [
+    {
+      "file": "OpsCrew_Official_Demo_Subtitled.mp4",
+      "embedded_srt_matches_sidecar": true,
+      "cue_count": 14
+    },
+    {
+      "file": "OpsCrew_Official_Demo_Clean.mp4",
+      "embedded_srt_matches_sidecar": true,
+      "cue_count": 14
+    }
+  ],
+  "audio_signal": {
+    "n_samples": "16109568",
+    "mean_volume": "-18.5 dB",
+    "max_volume": "-3.7 dB"
+  },
+  "full_decode": {
+    "Subtitled": {
+      "exit_code": 0,
+      "video_and_audio": "PASS",
+      "decode_errors_observed": false
+    },
+    "Clean": {
+      "exit_code": 0,
+      "video_and_audio": "PASS",
+      "decode_errors_observed": false
+    },
+    "method": "ffmpeg -nostdin -v error -xerror -i INPUT -map 0:v:0 -map 0:a:0 -f null NUL"
+  },
+  "audio_listening": "NOT_RUN no listening/transcription tool available",
+  "browser_playback": "NOT_RUN",
+  "result": "NOT_SUBMISSION_READY",
+  "cloud_operations": 0,
+  "generator_execution": false,
+  "temporary_frames_cleanup": "OWNED_BY_PARENT pending final task cleanup",
+  "sidecar_validation": {
+    "srt_and_vtt_cues": 14,
+    "contiguous_start_seconds": 0,
+    "end_seconds": 168,
+    "embedded_srt_matches_sidecar_both_versions": true,
+    "actual_audio_transcript_verified": false
+  },
+  "duration_limit_seconds": 180,
+  "duration_margin_seconds": 11.818984,
+  "visual_review": {
+    "all_14_midpoints_inspected_in_contact_sheet": true,
+    "full_resolution_scenes_inspected": [
+      "scene_05",
+      "scene_06",
+      "scene_07",
+      "scene_09",
+      "scene_10",
+      "scene_11",
+      "scene_12",
+      "scene_14"
+    ],
+    "method": "Real decoded final-MP4 frames; no source render substitution",
+    "clean_version_original_resolution_scenes_inspected": [
+      "scene_01",
+      "scene_09",
+      "scene_14"
+    ],
+    "temporary_scene_png_count": 17
+  },
+  "release_recommendation": "DO_NOT_PUBLISH_AS_FINAL_DEMO_UNTIL_BLOCKERS_FIXED",
+  "comparison_evidence": {
+    "source_commit": "51f99740fe488f74d8ef5de1b9368065ec1dadf1",
+    "cloud_reports": [
+      "DELIVERY-cloud-G3-2026-10-13.json",
+      "DELIVERY-cloud-safety-and-fixtures-2026-10-13.json"
+    ],
+    "cloud_sample_workflow_durations_ms": [
+      10150,
+      12042,
+      8381
+    ],
+    "unique_cloud_case_count": 1,
+    "known_provider_attempts": 10,
+    "known_reported_tokens": 11680,
+    "unknown_failed_provider_usage": true,
+    "deployed_source_image_digest_binding": "UNVERIFIED",
+    "note": "Oct13 cloud evidence supports one genuine write/readback and 3 public semantic workflows. It is separate from this historical slideshow and does not establish deployment of PR6 file picker or notice UI."
+  },
+  "blockers": [
+    {
+      "id": "V1",
+      "severity": "P1",
+      "category": "Evidence misrepresentation",
+      "scenes": [
+        5,
+        6,
+        7,
+        9,
+        10,
+        13,
+        14
+      ],
+      "finding": "Static precloud proposal and Oct10 local/emulator screenshots are presented as a current cloud demonstration; final links remain visibly pending."
+    },
+    {
+      "id": "V2",
+      "severity": "P1",
+      "category": "Unimplemented multimodal behavior",
+      "scenes": [
+        6
+      ],
+      "finding": "PR6 UI records only local filename/size and sets receipt_status; no file bytes are parsed, transmitted or sent to Gemini, no drag/drop or 10MB validation exists. Historical video screen has no file picker."
+    },
+    {
+      "id": "V3",
+      "severity": "P2",
+      "category": "Dispatch claim",
+      "scenes": [
+        8
+      ],
+      "finding": "PR6 notice is a deterministic template rendered client-side with Copy Draft; no notification/email dispatch or extra AI generation call exists."
+    },
+    {
+      "id": "V4",
+      "severity": "P2",
+      "category": "Unsupported impact guarantees",
+      "scenes": [
+        2,
+        5,
+        12
+      ],
+      "finding": "No measured 48h baseline or realized ROI; 3 sub15s sample workflows do not establish an SLA or 100% auditability; no verified USD40 monthly spending cap."
+    },
+    {
+      "id": "V5",
+      "severity": "P2",
+      "category": "Final material status",
+      "scenes": [
+        1,
+        10,
+        11,
+        13,
+        14
+      ],
+      "finding": "Precloud/draft/pending labels remain; actual final public video URL absent; provenance should describe fresh AI Studio Build origin, Gemini and teammate-confirmed Antigravity cloud-deployment assistance."
+    },
+    {
+      "id": "V6",
+      "severity": "P2",
+      "category": "Unverified speech",
+      "scenes": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "finding": "Audio listening, actual spoken-word synchronization and final public browser playback NOT_RUN; generator trims all speech to scene target duration."
+    }
+  ],
+  "technical_passes_do_not_clear_content_blockers": true,
+  "clean_sample_frames": [
+    {
+      "scene": "scene_01",
+      "seconds": 6,
+      "clean_frame": "C:\\Users\\admin\\Downloads\\AI-Builder-Cup-2026-OpsCrew\\.review-pr6-media\\frames\\scene_01_clean.png",
+      "upper_frame_visually_same_structure_check": true,
+      "note": "lossy H264 encoding can produce nonidentical pixels; visually inspect final frames"
+    },
+    {
+      "scene": "scene_09",
+      "seconds": 106.25,
+      "clean_frame": "C:\\Users\\admin\\Downloads\\AI-Builder-Cup-2026-OpsCrew\\.review-pr6-media\\frames\\scene_09_clean.png",
+      "upper_frame_visually_same_structure_check": true,
+      "note": "lossy H264 encoding can produce nonidentical pixels; visually inspect final frames"
+    },
+    {
+      "scene": "scene_14",
+      "seconds": 162.25,
+      "clean_frame": "C:\\Users\\admin\\Downloads\\AI-Builder-Cup-2026-OpsCrew\\.review-pr6-media\\frames\\scene_14_clean.png",
+      "upper_frame_visually_same_structure_check": true,
+      "note": "lossy H264 encoding can produce nonidentical pixels; visually inspect final frames"
+    }
+  ],
+  "contact_sheet_sha256": "25d893de5c6957a6900c5566c9c34a601d6eca71c663cec65805f89632f54357",
+  "review_status": "FINAL_REVIEW_OF_ORIGINAL_PR6_MEDIA; source corrections require their own subsequent validation"
+}

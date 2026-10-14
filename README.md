@@ -1,61 +1,53 @@
 # OpsCrew: Expense Exception Plan & Review
 
-OpsCrew is a fresh Google AI Studio Build application extended locally for AI Builder Cup 2026. It turns **synthetic USD expense intake** into a reviewable handling plan using Gemini fact extraction, a separately prompted Planner and Reviewer, and fixed policy checks. A person explicitly confirms the current plan before the server saves a case and independently reads it back. The app performs no reimbursement approval or payment.
+OpsCrew is a fresh application created from zero in Google AI Studio Build for AI Builder Cup 2026. Gemini extracts synthetic USD expense facts, proposes a handling plan and performs a separate review. Fixed policy checks validate facts, citations and permitted actions. A person explicitly confirms an eligible current plan before one exception case is committed and independently read back. The application grants no reimbursement or payment approval.
 
-S3 is merged into GitHub main through [PR #3](https://github.com/sundaylee3100-ljl/AI-Builder-Cup-2026-OpsCrew/pull/3), merge `dd0fb3f8cff460b725588447be1d94556ee7f8bb`. The continuation tracked in [PR #4](https://github.com/sundaylee3100-ljl/AI-Builder-Cup-2026-OpsCrew/pull/4) adds persistent model admission, bounded deadlines, safe late-write ordering, production packaging and submission preparation. The teammate's October 12 updates add shared intake validation, production security headers, strict TypeScript and an exact-citation Reviewer prompt. Review corrections fix real-resource evidence accounting and the deployment guide. See [the latest code review](docs/acceptance/PR04-code-review-2026-10-12.md); [earlier precloud acceptance](docs/acceptance/PRECLOUD-readiness-2026-10-11.md) remains historical.
+The team reports Antigravity assistance with Google Cloud deployment. Runtime AI is Gemini; the prototype uses Cloud Run, Firebase visitor identity and Firestore. Creation records and later local contributions are documented in [provenance](PROVENANCE.md). The [official requirements](https://aibuildercup.com/themes.html) permit this Google AI/cloud route; ADK is not an additional mandatory tool.
 
-The next operator is the teammate. Begin with [the ordered cloud handoff](docs/CLOUD_TEAMMATE_HANDOFF.md), [deployment instructions](docs/PRECLOUD_DEPLOYMENT.md) and [reviewed cloud usage report](docs/DEPLOYMENT_AND_USAGE_REPORT.md). The teammate reported historical public planning and a later six-step Firestore path on revision `opscrew-00004-mtz`; source-to-image binding and complete real G3/G4 resource acceptance remain unverified. Independent held-out/live stability, final public video/product links and actual portal submission remain team gates. Local tests, liveness and historical runs on older revisions cannot pass them.
+## Current delivery status
 
-## Source origin and contest scope
+- [Live product](https://opscrew-883881551915.us-central1.run.app): October 13 real API checks covered three workflows, one synthetic case, independent readback, idempotency and user isolation. October 14 public root/health/config/readiness and served entry returned HTTP 200 without new models/accounts/writes. Current cloud source/image/revision identity remains unverified.
+- [PR #6 review](docs/acceptance/PR06-delivery-review-2026-10-14.md): reviewed UI removes a metadata-only receipt picker that bypassed input invalidation, replaces unsupported metric claims and restricts the communication draft to current eligible passing results. Copying is local text copying, not employee dispatch.
+- Reviewed local checks: **236/236 offline tests**, strict TypeScript, production build and **12/12 native artifact groups** passed. These groups include nine HTTP checks and all five JavaScript chunks. A Linux container build and full current cloud/browser acceptance were not executed by this reviewer.
+- The official-template English proposal includes recorded cloud evidence. Captain **Sunday Lee** and the [YouTube link](https://youtu.be/h53-tucE7ig) come directly from the owner. Public page metadata returns playability OK and length 168 seconds; actual signed-out playback and correspondence to local footage remain unverified.
+- The supplied 168.181-second video package passes duration/decoding checks but fails content review. It uses historical local screenshots and unsupported feature/impact claims. Unaccepted candidate media are excluded from the current submission tree; the original candidate commit and owner's archive remain available. See [video review](docs/acceptance/PR06-video-review-2026-10-14.md).
+- **Final submission is not yet ready.** Complete truthful cloud demonstration footage, playback/content checks and the release identity record. Actual portal submission and receipt remain future steps.
 
-The team created a blank Google Build app on October 7, without importing code from the earlier non-Google local prototype. Subsequent local changes are disclosed in [provenance](PROVENANCE.md), [scope](SCOPE.md) and [build log](docs/BUILD_LOG.md). The [AI Studio app](https://aistudio.google.com/apps/e8a0fb37-f747-45d2-b376-b832ac7fe09f) is the creation/editor reference. The final contest prototype requires an actual working Cloud Run/Firebase deployment and English source/docs/presentation. See [official requirements](https://aibuildercup.com/themes.html) and [submission checklist](SUBMISSION_CHECKLIST.md).
+Use [the submission checklist](SUBMISSION_CHECKLIST.md), [recording plan](submission/RECORDING_PLAN.md) and [release manifest](RELEASE_MANIFEST.json). Historical evidence retains its original date, source and method.
 
 ## Repository layout
 
-- `aistudio-export-2026-10-07/`: application, locked dependencies, formal tests, deployment scripts and public synthetic fixtures. Run npm commands here.
-- `docs/`: contracts, stage acceptance, current cloud handoff and immutable redacted evidence.
-- `submission/`: editable official-template proposal, matching PDF, recording plan and optional material builder.
-- `RELEASE_MANIFEST.json`: source/material identity and explicit pending cloud/video/portal fields.
+- aistudio-export-2026-10-07/: application, dependencies lock, formal tests, deployment tools and public synthetic fixtures.
+- docs/: contracts, reviews, cloud handoff and immutable redacted evidence.
+- submission/: official-template proposal, PDF, recording plan and maintained material builder.
+- RELEASE_MANIFEST.json: reviewed source/material hashes and explicitly pending release/video/portal fields.
 
-Only this Google Build continuation is published. Secrets, dependency directories, generated bundles and private authoring previews are excluded from Git. Formal regression tests and source-bound acceptance results are necessary project outputs.
+The [AI Studio editor](https://aistudio.google.com/apps/e8a0fb37-f747-45d2-b376-b832ac7fe09f) records creation; use Cloud Run to try the deployed prototype. Credentials, dependencies, build output and private authoring previews are excluded from Git.
 
 ## Reproduce local checks
 
-Use Node 24 and npm 11. The author tested Node 24.14.0/npm 11.9.0. Pull the **reviewed precloud commit**, rather than assuming an older main has these changes:
+Use Node 24 and npm 11. Pull reviewed main after PR #6 is merged, then run:
 
 ```powershell
 git clone https://github.com/sundaylee3100-ljl/AI-Builder-Cup-2026-OpsCrew.git
-cd AI-Builder-Cup-2026-OpsCrew
-git switch --track origin/feat/precloud-readiness
-cd aistudio-export-2026-10-07
+cd AI-Builder-Cup-2026-OpsCrew/aistudio-export-2026-10-07
 npm ci
 npm test
 npm run lint
 npm run build
-npm run smoke:production
 npm run smoke:artifact
-npm run evaluate:precloud -- --offline --output docs/acceptance/PRECLOUD-teammate-offline-NEW.json
 ```
 
-Choose a new evidence filename. Offline evaluation makes no real Gemini call and uses injected identity/model output with MemoryCaseStore. Authentic Firebase emulator testing is separate; see [S3 emulator instructions](docs/S3_CONFIRMATION_CASES.md) and [current evaluation methods](docs/PRECLOUD_EVALUATION.md). `smoke:artifact` performs a fresh production-only lockfile install and validates the native Node runtime folder layout used by the Dockerfile. It does not run a Linux container. The teammate must execute an actual image build and deployment.
+The native artifact check uses a fresh production-only lockfile install and verifies the runtime layout used by Docker; it does not run a Linux container. Offline tests use injected providers and local stores. Real Google resources are tested separately with explicit identity/model/write authorization.
 
-## Run the application locally
+For local development, copy .env.example to .env and run npm run dev. Keep GEMINI_API_KEY only on the server. The reviewed default is gemini-3.1-flash-lite. Public model routes require Firebase visitor identity and persistent admission. Static Vite preview is not the full API application.
 
-```powershell
-Copy-Item .env.example .env
-npm run dev
-```
+Quotas reserve up to six attempts per workflow: global concurrency 2, visitor concurrency 1, global 6 runs/minute and 60/day, visitor 2/minute and 12/day. Unknown/failed usage is not refunded. Request quotas and alerts-only budgets do not prove an all-resource currency spending cap. Readiness uses a bounded Firestore read with zero model calls; a green probe alone does not establish the business flow.
 
-Open http://localhost:3000. Configure a personally authorized `GEMINI_API_KEY` only on the server, never in a `VITE_` variable, screenshot, report or PR. Set `GEMINI_MODEL=gemini-3.1-flash-lite` for the accepted release. Model availability and pricing depend on the operator's project. Public production model routes require trusted Firebase identity and persistent Firestore admission. `npm run preview` serves only static frontend assets and is not the full API app.
+## Competition handoff
 
-Default quotas reserve up to six provider attempts per workflow: global concurrency 2, visitor concurrency 1, global 6 runs/minute and 60/day, visitor 2/minute and 12/day. Counters reset by UTC calendar day and persist across instances. Unknown/failed usage is not refunded. The model kill switch stops new analysis while preserving owned case readback. Quotas and budget alerts do not guarantee a currency spending cap.
+The theme is **Future of Work & Enterprise Productivity**. Judging weights are technical/GenAI 40%, problem/impact 25%, innovation 25% and experience/design 10%. Materials explain the fixed policy, separate review, human authorization and independent readback. Performance and impact claims must retain measurement or assumption boundaries.
 
-`GET /api/health` is liveness. `GET /api/ready` checks configuration and a bounded Firestore read, makes zero model calls, and does not prove Auth IAM, Gemini access, indexes or complete resource acceptance. Follow the real-resource scenario checklist rather than relying on a green probe.
+Published formation closes October 14 and prototype submission October 18, 2026. Verify the actual portal clock/timezone, roster and declarations. October 16 freeze and October 17 submission are internal buffers. [Official timeline](https://aibuildercup.com/index.html)
 
-## Team and submission handoff
-
-Owner A reviews policy, local evidence and submission claims. Teammate B operates authorized Google Cloud/Firebase resources and returns real deployment/test evidence. Both verify final links and materials. Account consent, billing activation, eligibility and portal declarations require the authorized human. Keep private identity/financial documents outside this public repository.
-
-The proposal is a **precloud review draft** with honest pending product/video links and captain GitHub alias. Complete the final names and cloud evidence after verification. [Recording plan](submission/RECORDING_PLAN.md) targets 165 seconds and requires encoded duration strictly below 180 seconds. Internal freeze is October 16 and submission October 17; verify the actual portal deadline. [Official timeline](https://aibuildercup.com/index.html)
-
-For PRs, follow [CONTRIBUTING.md](CONTRIBUTING.md). Do not change the accepted model, prompts, policy, quota limits or deployment settings during evaluation without creating a new release and retaining earlier evidence.
+Follow [the cloud handoff](docs/CLOUD_TEAMMATE_HANDOFF.md) for release identity and resource checks. Preserve model/prompt/policy versions and failed attempts during new deployments. Keep identity and financial documents private. Record the Submitted receipt after actual portal submission.

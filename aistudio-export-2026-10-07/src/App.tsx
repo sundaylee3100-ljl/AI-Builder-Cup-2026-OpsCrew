@@ -19,6 +19,8 @@ import {
   Play,
   RotateCcw,
   ShieldAlert,
+  ShieldCheck,
+  Sparkles,
   X,
 } from "lucide-react";
 
@@ -608,6 +610,44 @@ export default function App() {
             synthetic case and verify it with an independent read.
           </p>
         </div>
+
+        <section
+          aria-label="Prototype capabilities and scope"
+          className="mb-8 grid grid-cols-2 md:grid-cols-4 gap-4"
+        >
+          <div className="bg-white border border-slate-200 rounded-lg p-4 shadow-sm">
+            <div className="flex items-center gap-2 text-xs font-semibold text-teal-700 uppercase tracking-wide">
+              <Sparkles className="w-4 h-4 text-teal-600" />
+              <span>Gemini workflow</span>
+            </div>
+            <div className="mt-2 text-2xl font-bold text-slate-900">3 roles</div>
+            <p className="mt-1 text-xs text-slate-500">Facts, planning and separate review. Provider capacity affects waiting time.</p>
+          </div>
+          <div className="bg-white border border-slate-200 rounded-lg p-4 shadow-sm">
+            <div className="flex items-center gap-2 text-xs font-semibold text-blue-700 uppercase tracking-wide">
+              <ShieldCheck className="w-4 h-4 text-blue-600" />
+              <span>Demonstration policy</span>
+            </div>
+            <div className="mt-2 text-2xl font-bold text-slate-900">8 clauses</div>
+            <p className="mt-1 text-xs text-slate-500">Fixed synthetic USD policy. Inspect original clauses with each decision.</p>
+          </div>
+          <div className="bg-white border border-slate-200 rounded-lg p-4 shadow-sm">
+            <div className="flex items-center gap-2 text-xs font-semibold text-emerald-700 uppercase tracking-wide">
+              <Check className="w-4 h-4 text-emerald-600" />
+              <span>Human authorization</span>
+            </div>
+            <div className="mt-2 text-2xl font-bold text-slate-900">Required</div>
+            <p className="mt-1 text-xs text-slate-500">An eligible plan needs a current passing review and explicit confirmation.</p>
+          </div>
+          <div className="bg-white border border-slate-200 rounded-lg p-4 shadow-sm">
+            <div className="flex items-center gap-2 text-xs font-semibold text-purple-700 uppercase tracking-wide">
+              <Sparkles className="w-4 h-4 text-purple-600" />
+              <span>Saved-case verification</span>
+            </div>
+            <div className="mt-2 text-2xl font-bold text-slate-900">Firestore</div>
+            <p className="mt-1 text-xs text-slate-500">Atomic commit, version binding and independent readback in the configured sandbox.</p>
+          </div>
+        </section>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* LEFT PANEL: Input Form & Synthetic Scenarios (5 cols on desktop) */}

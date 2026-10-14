@@ -1,0 +1,234 @@
+{
+  "schema_version": "1.1.0",
+  "stage": "G3/G4",
+  "mode": "public-cloud-end-to-end",
+  "target": "https://opscrew-883881551915.us-central1.run.app",
+  "project_id": "project-b2db87f6-7a4e-4020-972",
+  "started_at": "2026-10-13T05:13:14.207Z",
+  "requested_model_id": "gemini-3.1-flash-lite",
+  "expected_prompt_versions": {
+    "facts": "opscrew-facts-1.1.0",
+    "planner": "opscrew-planner-1.0.1",
+    "reviewer": "opscrew-reviewer-1.0.1"
+  },
+  "workflow_limit_ms": 90000,
+  "workflow_requests": 1,
+  "provider_attempts_reported": 4,
+  "provider_attempts_total": 4,
+  "real_gemini_calls": 4,
+  "records": {
+    "identity": {
+      "uid_hash": "5b318fb419356a19",
+      "token_issued": true
+    },
+    "workflow": {
+      "ok": true,
+      "http": 200,
+      "duration_ms": 10150,
+      "model_id": "gemini-3.1-flash-lite",
+      "prompt_versions": {
+        "facts": "opscrew-facts-1.1.0",
+        "planner": "opscrew-planner-1.0.1",
+        "reviewer": "opscrew-reviewer-1.0.1"
+      },
+      "status": "REVIEWABLE",
+      "branch": "EVIDENCE_REQUEST",
+      "steps": [
+        {
+          "role": "FACTS",
+          "attempt": 1,
+          "outcome": "ERROR",
+          "requested_model_id": "gemini-3.1-flash-lite",
+          "model_id": "gemini-3.1-flash-lite",
+          "duration_ms": 449,
+          "error_code": "GEMINI_API_ERROR_503",
+          "upstream": 503,
+          "tokens": null
+        },
+        {
+          "role": "FACTS",
+          "attempt": 2,
+          "outcome": "SUCCESS",
+          "requested_model_id": "gemini-3.1-flash-lite",
+          "model_id": "gemini-3.1-flash-lite",
+          "duration_ms": 5426,
+          "error_code": null,
+          "upstream": 200,
+          "tokens": 585
+        },
+        {
+          "role": "PLANNER",
+          "attempt": 1,
+          "outcome": "SUCCESS",
+          "requested_model_id": "gemini-3.1-flash-lite",
+          "model_id": "gemini-3.1-flash-lite",
+          "duration_ms": 1425,
+          "error_code": null,
+          "upstream": 200,
+          "tokens": 1803
+        },
+        {
+          "role": "REVIEWER",
+          "attempt": 1,
+          "outcome": "SUCCESS",
+          "requested_model_id": "gemini-3.1-flash-lite",
+          "model_id": "gemini-3.1-flash-lite",
+          "duration_ms": 1040,
+          "error_code": null,
+          "upstream": 200,
+          "tokens": 1791
+        }
+      ]
+    },
+    "confirmation": {
+      "approval_id_prefix": "approval_7d3",
+      "expires_at": "2026-10-13T05:23:28.270Z",
+      "input_digest_prefix": "a7a100a8640c",
+      "plan_digest_prefix": "b6cb46e31dc5"
+    },
+    "recovery_command": {
+      "run_id": "run_92bf9bf411adbe4f3b554cd0fe73bf73f4679c84ebabc2e8a072cfd814682179",
+      "plan_id": "plan_106f121b-abaf-498b-a668-a5471fcf493a",
+      "input_version": 1,
+      "facts_version": 1,
+      "policy_version": "synthetic-expense-usd-1.0.0",
+      "plan_version": 1,
+      "approval_id": "approval_7d39ab67-27eb-48e2-b75f-a8e765ab3d28",
+      "idempotency_key": "g3-e25f35b7-2826-4b43-a1fe-2a47514bf1fb",
+      "owner_uid_hash": "5b318fb419356a19"
+    },
+    "commit": {
+      "outcome": "RESPONSE",
+      "http": 200,
+      "case_id": "case_a5e459ab9dbc984cfcd376667e4e0f7218ce92a59c483c2f6e42c266bc924acb",
+      "replayed": false
+    },
+    "case": {
+      "case_id": "case_a5e459ab9dbc984cfcd376667e4e0f7218ce92a59c483c2f6e42c266bc924acb",
+      "case_type": "EVIDENCE_REQUEST",
+      "amount_minor": 3800,
+      "employee_identifier": "SYNTH-EMP-3310",
+      "synthetic": true,
+      "status": "OPEN",
+      "created_at": "2026-10-13T05:13:29.057Z",
+      "citation_ids": [
+        "SYN-001",
+        "SYN-002",
+        "SYN-004",
+        "SYN-007",
+        "SYN-008"
+      ]
+    },
+    "isolation": {
+      "stranger_status": 404,
+      "stranger_uid_hash": "98ec89d6db9b18f3"
+    }
+  },
+  "requests": [
+    {
+      "phase": "anonymous-identity",
+      "method": "POST",
+      "status": 200,
+      "outcome": "RESPONSE"
+    },
+    {
+      "phase": "workflow",
+      "method": "POST",
+      "status": 200,
+      "outcome": "RESPONSE"
+    },
+    {
+      "phase": "confirmation",
+      "method": "POST",
+      "status": 200,
+      "outcome": "RESPONSE"
+    },
+    {
+      "phase": "commit",
+      "method": "POST",
+      "status": 200,
+      "outcome": "RESPONSE"
+    },
+    {
+      "phase": "readback",
+      "method": "GET",
+      "status": 200,
+      "outcome": "RESPONSE"
+    },
+    {
+      "phase": "replay",
+      "method": "POST",
+      "status": 200,
+      "outcome": "RESPONSE"
+    },
+    {
+      "phase": "anonymous-identity",
+      "method": "POST",
+      "status": 200,
+      "outcome": "RESPONSE"
+    },
+    {
+      "phase": "owner-isolation",
+      "method": "GET",
+      "status": 404,
+      "outcome": "RESPONSE"
+    },
+    {
+      "phase": "signed-out-public-entry",
+      "method": "GET",
+      "status": 200,
+      "outcome": "RESPONSE"
+    }
+  ],
+  "checks": [
+    {
+      "name": "real workflow returns a reviewable synthetic evidence request",
+      "outcome": "PASS"
+    },
+    {
+      "name": "real workflow bound to verified owner",
+      "outcome": "PASS"
+    },
+    {
+      "name": "confirmation endpoint succeeds",
+      "outcome": "PASS"
+    },
+    {
+      "name": "confirmation preview binds current plan",
+      "outcome": "PASS"
+    },
+    {
+      "name": "explicit confirmation commits one case",
+      "outcome": "PASS"
+    },
+    {
+      "name": "independent readback is verified",
+      "outcome": "PASS"
+    },
+    {
+      "name": "readback matches confirmed synthetic intake",
+      "outcome": "PASS"
+    },
+    {
+      "name": "citations are genuine policy clauses",
+      "outcome": "PASS"
+    },
+    {
+      "name": "replay returns the same committed case",
+      "outcome": "PASS"
+    },
+    {
+      "name": "cross-owner read is not found",
+      "outcome": "PASS"
+    },
+    {
+      "name": "signed-out public entry serves the app",
+      "outcome": "PASS"
+    }
+  ],
+  "ok": true,
+  "finished_at": "2026-10-13T05:13:31.955Z",
+  "elapsed_ms": 17752,
+  "passed": 11,
+  "failed": 0
+}

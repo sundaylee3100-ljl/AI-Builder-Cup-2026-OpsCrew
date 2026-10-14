@@ -1,64 +1,64 @@
 # Submission checklist
 
-## Current precloud handoff (2026-10-11)
+Updated October 14, 2026 (Asia/Shanghai). Review target: [PR #6](https://github.com/sundaylee3100-ljl/AI-Builder-Cup-2026-OpsCrew/pull/6), initial head `51f99740fe488f74d8ef5de1b9368065ec1dadf1`, branch `release/final-verified-delivery`. S3 and the reviewed continuation are already merged through PR #3 and PR #4; accepted main before this review is `fbce9fdefa0baf1f82872c717e772576d4cccfaf`. PR #6 is a new candidate; its title does not establish final acceptance or deployment.
 
-S3 is merged into main through PR #3, merge `dd0fb3f`. The reviewed continuation on `feat/precloud-readiness` is ready for local acceptance and teammate cloud work. Exact methods and outcomes are in [precloud acceptance](docs/acceptance/PRECLOUD-readiness-2026-10-11.md), [evaluation](docs/PRECLOUD_EVALUATION.md), [current deployment runbook](docs/PRECLOUD_DEPLOYMENT.md), and [cloud handoff](docs/CLOUD_TEAMMATE_HANDOFF.md). Historical sections below retain their original dates and results.
+Read the [current rules/package review](docs/acceptance/DELIVERY-rules-and-package-review-2026-10-14.md), [provenance](PROVENANCE.md), [cloud handoff](docs/CLOUD_TEAMMATE_HANDOFF.md) and [deployment runbook](docs/PRECLOUD_DEPLOYMENT.md). Original dated source/test reports remain historical evidence.
 
-- Local engineering: 216/216 offline tests, lint/build, 27/27 authentic Firebase emulator groups, 12/12 fresh pruned runtime groups. Production audit: zero findings; development findings remain disclosed.
-- Semantic/fault evaluation: 12 public cases, four predefined high-risk scenarios each three times, six fault operations, 350 assertions. Injected outputs establish contract behavior, not model quality or independent custody.
-- New real local Gemini: DEV-01/04/10 passed after local proxy repair. Three earlier unavailable results are retained. Known tokens 11,544 plus three unknown attempts, cost unknown.
-- English official-template proposal PDF/editable PPTX and 165-second recording plan prepared. Draft names/product/video statuses require verified owner/cloud data before submission.
-- Teammate executes actual Linux image build, real Cloud/Firebase G3/G4, separate-machine held-out custody/first live evaluation and actual cloud stability. Owner and teammate finalize G6 materials/public links, then G7 actual Submitted receipt.
-- No cloud resource, account configuration, billing activation, portal submit or public video publication was performed in this local stage.
+## Official requirements and dates
 
-Updated: 2026-10-09 (Asia/Shanghai). S0/S1 began on October 9 and are in progress; original plan approval was on October 8. A checked item requires the stated evidence; planned filenames and URLs are not completed deliverables. See [scope](SCOPE.md), [workboard](docs/DELIVERY_WORKBOARD.md), and [evaluation protocol](docs/EVALUATION_PROTOCOL.md).
+- A functional prototype using Google AI models or the specified agentic platforms, deployed primarily on Google Cloud via Cloud Run/GCP/Firebase. Gemini and the Google AI Studio Build foundation satisfy the declared technology route; ADK/Antigravity are not exclusive mandatory tools. [Requirements](https://aibuildercup.com/themes.html)
+- Public source repository, an end-to-end live product URL, a comprehensive architecture/business-case deck converted to PDF, and a public demo video with actual encoded duration **strictly below 180 seconds**. The named video hosts are YouTube, Vimeo and public Google Drive. Use a named host for final delivery; a local MP4 or screenshot of another platform does not establish that link. Submission code, documentation and presentations are English. [Requirements](https://aibuildercup.com/themes.html), [FAQ](https://aibuildercup.com/Faqs.html)
+- Fresh application code and original submission assets created during the hackathon timeline; keep creation/source evidence and rights declarations accurate. [Official Terms](https://docs.google.com/document/d/e/2PACX-1vRm7ChZ6Ij9fG7uFDkxzUMpwgVeBmnQ6cMDnAIEEX84AiLBOOQ9cYbl3S5OzFBbcVb8TF55s-eVpiXb/pub)
+- **Team formation: October 14, 2026. Prototype submission: October 18, 2026.** Registration closed October 11. Published pages do not establish an exact cutoff clock/timezone. Confirm the actual portal today. Internal buffers remain freeze October 16 and submit October 17; an earlier portal deadline takes precedence. [Timeline](https://aibuildercup.com/index.html), [FAQ](https://aibuildercup.com/Faqs.html)
 
-## Rules and dates
+Future of Work & Enterprise Productivity is the team's selected theme. Official weights are technical/GenAI 40%, problem/impact 25%, innovation 25%, and experience/design 10%. Confirm the actual portal theme rather than using the Challenges page's inconsistent legacy category examples. [Themes and judging](https://aibuildercup.com/themes.html)
 
-Public requirements were rechecked during S0. The package needs a functional Google Cloud prototype using Google AI or the specified platforms, a public GitHub repository, a proposal deck converted to PDF, and a public demo video. Submission code, documentation, and presentations must be English. Use a working Cloud Run/Firebase URL. [Challenges and requirements](https://aibuildercup.com/themes.html), [FAQ](https://aibuildercup.com/Faqs.html)
+## Captain and account checks
 
-Apply the stricter video rule: **encoded duration <180 seconds**, with an internal target of 165 seconds. The public timeline lists **2026-10-18** for prototype submission and also says to submit before October 18. No exact clock time or timezone is published there. Internally freeze on **October 16** and submit on **October 17**, in Asia/Shanghai; an earlier portal deadline takes precedence. [FAQ](https://aibuildercup.com/Faqs.html), [official timeline](https://aibuildercup.com/index.html), [official terms](https://docs.google.com/document/d/e/2PACX-1vRm7ChZ6Ij9fG7uFDkxzUMpwgVeBmnQ6cMDnAIEEX84AiLBOOQ9cYbl3S5OzFBbcVb8TF55s-eVpiXb/pub)
+- [ ] Confirm the registered two-to-four-member team, each age 21+, eligible professional/entrepreneur/startup, based in JAPAC, with no student members; one team/solution/theme per participant. Keep identity/employment documents private. [Eligibility FAQ](https://aibuildercup.com/Faqs.html)
+- [ ] Verify roster status today, the registered team/leader names, required declarations and selected theme. The Terms/FAQ use overlapping registration/formation wording; do not infer permission for a late roster change without the portal's confirmation.
+- [ ] Inspect actual portal cutoff/timezone, template version, PDF/file-size limits, video/link fields and final-submit behavior. These have not been independently verified.
+- [ ] Confirm submission asset rights and creation dates; confirm the user-reported teammate use of Antigravity without attributing every local extension to Google Build.
+- [ ] Confirm approved project, billing/credits, runtime identity, region/database, rules/indexes, model access and budget responsibilities. New account/paid configuration requires the owner's participation; existing local or bounded test authorization does not enable unrestricted cloud operations.
 
-## S0 prerequisites
+For login, consent, CAPTCHA, payment or personal declarations, ask the authorized person as soon as intervention is required. Do not bypass those controls. Browser login state applies to the current session.
 
-- [x] Delivery scope and the USD 40 budget management target approved by the user; see [scope](SCOPE.md). First new paid-resource configuration still requires separate confirmation.
-- [x] Fresh Google Build baseline and historical evidence identified at `c7adfd6`; see [provenance](PROVENANCE.md).
-- [x] Public deliverables mapped below; this does not certify their final completion or accessibility.
-- [ ] Captain verifies 2–4 members, each age 21+, based in JAPAC, eligible professional/entrepreneur/startup status, no student members, and one team/solution/theme per participant. Keep personal evidence private. Verify team data before the October 11 team-formation close. [Eligibility FAQ](https://aibuildercup.com/Faqs.html)
-- [ ] Captain verifies actual registration/team details, required declarations, and the single portal theme matching Future of Work & Enterprise Productivity.
-- [ ] Read the actual submission portal: exact deadline/timezone, required fields, template version, PDF/file limits, video/link fields, and final-submit behavior. All are currently unknown; do not infer them from this checklist.
-- [ ] Verify Google project ID, account access, region, Firebase setup, billing/credits, IAM, model availability and current pricing; store no secrets in this repository.
-- [ ] Present the first paid-resource configuration and obtain the user's separate confirmation before enabling new paid resources.
-- [ ] Verify the logo/other retained assets' creation dates and use rights before including them in new materials.
+## Verified evidence and remaining package work
 
-The browser connection is currently unavailable after three connection attempts; portal/account checks await the user's reconnection. No account, eligibility, portal, cloud or billing verification is implied. Login, CAPTCHA, payment, eligibility, and personal declarations require the captain's participation when encountered. Stop that account-dependent step immediately and request help; do not bypass it. Login state is only valid for the current session. Independent local development can continue while these items remain pending.
-
-## Deliverable and evidence map
-
-| Requirement / internal acceptance item | File or URL | Current status / completion evidence |
+| Item | Current evidence | Remaining acceptance |
 | --- | --- | --- |
-| Public source | [GitHub repository](https://github.com/sundaylee3100-ljl/AI-Builder-Cup-2026-OpsCrew) | Historical baseline published; final release commit and anonymous access recheck pending |
-| Reproducible English documentation | [README.md](README.md), [PROVENANCE.md](PROVENANCE.md), this checklist, `docs/DEPLOYMENT.md`, `docs/EVALUATION.md` | Baseline docs exist; new release/deployment/evaluation docs and validation pending |
-| Working Google Cloud prototype | Final Cloud Run/Firebase URL, to be recorded in `RELEASE_MANIFEST.json` | Pending; AI Studio/editor/local preview is not the final deployment |
-| Proposal PDF and editable English deck | `submission/OpsCrew_Proposal.pdf` and editable source | Pending; follow actual portal/template requirements; render every PDF page and check links |
-| Public English demo | Final YouTube/Vimeo/public Drive URL; video and English subtitles in `submission/` | Pending; final-version operation, full playback, measured <180 s, anonymous access |
-| Evaluation and safety evidence | `docs/EVALUATION.md`, machine-readable results and redacted run/case evidence | Pending; protocol preregistered in [EVALUATION_PROTOCOL.md](docs/EVALUATION_PROTOCOL.md) |
-| Release identity | `RELEASE_MANIFEST.json` | Pending; commit, cloud revision, policy/prompt/model versions, material hashes and three public URLs |
-| Stage acceptance | `docs/acceptance/Sxx-<stage>.md` | Pending; itemized outcome, versions, evidence, failures, measurements and cleanup |
-| Formal submission | Private portal receipt/status capture; redacted submission record | Pending; uploaded files or saved draft alone do not count as Submitted |
+| Google Build origin | Blank AI Studio Build app created October 7; original archive hashes and prompts retained in provenance | Captain confirms final source/asset declarations |
+| Public GitHub | PR #4 merged to main; PR #6 identified by URL and exact initial head | Complete review, merge eligible changes and record actual final accepted SHA |
+| Local engineering | Current corrected PR #6: 236/236 tests, strict type checks, build and 12 native production-artifact groups pass; prior 232 tests and unchanged-backend emulator/evaluation reports remain dated evidence | Real browser clipboard/asynchronous interaction and current deployed-release checks remain separate |
+| New public-fixture JSON | `docs/acceptance/dev-offline-verification.json`: 12 public cases, 12 risk-repeat attempts, six faults, 350 assertions; injected identity/model, zero real Gemini and production writes | Treat as contract regression evidence, not cloud accuracy or independent held-out validation |
+| Real deployed workflow | [October 13 G3](docs/acceptance/DELIVERY-cloud-G3-2026-10-13.json) and [fixture/safety report](docs/acceptance/DELIVERY-cloud-safety-and-fixtures-2026-10-13.json): bounded DEV-01, the maintained G3 runner's missing-receipt input, and DEV-10, plus one synthetic case, independent readback/replay/isolation and negative checks | Evidence covers that deployed endpoint at that time; obtain candidate source/build/image/revision binding and verify any changed release |
+| Product URL | `https://opscrew-883881551915.us-central1.run.app`; restored probes and bounded API execution observed October 13 | Verify final release/visitor UI and availability; no new cloud configuration is implied |
+| Proposal PDF/PPTX | Current thirteen-page English official-template review contains Sunday Lee and repository/product/YouTube links; rendering and all three hyperlinks checked | Keep the proposal consistent with finally accepted footage and deployed release |
+| Video files | Initial PR #6/owner archive candidates measure 168.181016 seconds but fail content review; excluded from the current submission tree. Owner URL: https://youtu.be/h53-tucE7ig ; public page metadata verified | Select truthful current-cloud footage, complete playback/listening/subtitle review, and verify hosted-video correspondence; metadata and duration alone are insufficient |
+| Release identity | `RELEASE_MANIFEST.json` records the corrected source and current proposal hashes; historical identities retained | Bind the reviewed implementation commit and actual deployment build/image/revision; complete video acceptance and post-submission receipt |
+| Portal submission | No actual Submitted receipt observed | Complete the package and captain's portal checks, submit with authorization, then save actual Submitted/ID/time |
 
-## Final release and submission gates
+## Before submission
 
-- [ ] New-version live Gemini, cloud end-to-end, ownership, approval/revision, concurrency/idempotency, failure/recovery, and readback gates pass; report emulator/offline checks separately.
-- [ ] All critical safety checks pass, all 8 independent held-out cases pass their key semantic assertions, four high-risk cases pass three repetitions each, and the main demo succeeds three consecutive times.
-- [ ] English PDF, video, README and screenshots describe the same final version and make only measured, evidenced claims.
-- [ ] Public product, GitHub, video and any Drive links work in a signed-out/incognito session without a team-private Google login.
-- [ ] PDF renders cleanly with clickable links; video playback, audio, subtitles, encoded duration and disclosed editing are verified.
-- [ ] Clean install, appropriate tests, type checking, production build, secret scan, and delivery-time temporary-file scan/cleanup complete.
-- [ ] Captain/team completes cross-acceptance and verifies final portal fields, team/theme, declarations and URLs.
-- [ ] Portal shows Submitted; receipt/ID/time and final version snapshot saved, then public URLs rechecked.
-- [ ] Evaluation-period availability and budget responsibilities through November 6 are confirmed; do not disable required services after submitting.
+- [ ] Final PDF, video, README and deployed UI describe the same verified release. Claims distinguish measured results, controlled tests, hypotheses and future work; no unsupported OCR, notification, SLA or ROI claim.
+- [ ] Product, public GitHub, named-host video and any Drive links work without the team's private login. The video can be watched completely.
+- [ ] Final deck/PDF has verified leader/team fields and product/video/GitHub links. All PDF pages and hyperlinks are checked; editable source is retained.
+- [ ] Final video has measured duration below 180 seconds, intelligible English narration, appropriate subtitles and truthful footage/disclosed editing.
+- [ ] Appropriate source tests/build/runtime checks, credential scan and final cleanup are complete; formal tests/evidence and user materials are retained. Do not retry inherited previously rejected cleanup targets.
+- [ ] Both teammates review final policy/claims/materials and cloud source/revision/identity/limits/readback evidence. Confirm portal file limits, roster/theme and declarations.
 
-The official scoring weights are 40% technical/Gen AI, 25% problem/impact, 25% innovation, and 10% experience/design. These safety and evaluation thresholds are team engineering choices. [Judging criteria](https://aibuildercup.com/themes.html)
+## Team engineering acceptance
 
-If shortlisted, prepare a separate finale demo, Q&A and failure plan from the actual notice. The published dates are November 7 for the shortlist and December 4 for the Singapore finale; only two members may attend, and visas remain their responsibility. Do not invent stage duration or additional deliverables before notification. [Timeline](https://aibuildercup.com/index.html), [finale FAQ](https://aibuildercup.com/Faqs.html)
+G1 through G7, eight independently sealed held-out cases, four risk categories repeated three times, three consecutive main-demo runs, numeric secret-version policy and the USD40 management target are team standards. The published contest rules do not prescribe those exact counts or JSON schemas. Complete the team's agreed safety work with correct method labels; do not turn missing internal files into an invented official-format violation. USD40 and budget alerts are not a certified currency spending cap.
+
+- [ ] Record actual release stability, failure/recovery and persistent quota behavior within the approved budget; retain all failures.
+- [ ] Independently execute the agreed hidden-set/repeat protocol if claiming those results; public fixtures are not hidden cases.
+- [ ] Review maintenance and budget ownership through the published October 19–November 6 evaluation period.
+
+## At and after final submission
+
+- [ ] Captain confirms final fields and declarations and performs the authorized portal submission.
+- [ ] After submitting, save the actual Submitted state, receipt/ID/time and frozen material/source identities. This receipt is a post-submission record, not a file that must already exist before submission.
+- [ ] Recheck final public links and keep the demo available during evaluation. Retain an owner contact and a bounded incident/restore plan.
+
+If shortlisted, follow the actual notice for the November 7 announcement and December 4 Singapore finale; only two members may attend and visas are their responsibility. [Timeline](https://aibuildercup.com/index.html), [FAQ](https://aibuildercup.com/Faqs.html)

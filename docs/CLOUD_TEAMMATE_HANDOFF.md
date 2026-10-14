@@ -10,7 +10,7 @@ From the application directory, an example for an already authorized public endp
 
 ```powershell
 # Set the approved real Firebase process environment first; do not print tokens/keys.
-node scripts/check-g3-real.mjs --live --base-url https://opscrew-883881551915.us-central1.run.app --output CLOUD-G3-NEW.json
+node --import tsx scripts/check-g3-real.mjs --live --base-url https://opscrew-883881551915.us-central1.run.app --output CLOUD-G3-NEW.json
 ```
 
 Choose a new JSON **basename**, with no directory component. The runner reserves the report exclusively under `docs/acceptance` before any identity/model/write request, checkpoints each request, and preserves failures/unknown write results with original recovery identifiers. Do not change the original command or treat an unknown result as a safe retry. One workflow can consume up to six provider attempts and creates real synthetic data plus anonymous identities; it is not one provider call. The runner does not automatically certify all G3/G4 scenarios or independent G5.
@@ -78,3 +78,6 @@ Create new `docs/acceptance/CLOUD-...-<timestamp>.json/md` reports with actual s
 Owner A updates final claims/deck/video from those reports. G3/G4 pass only for executed real-resource scenarios. G5 requires independent held-out 8/8, 100% critical safety, four high-risk categories ×3 and three consecutive full main-demo runs. G6 requires the final frozen English materials, PDF/editable deck, public video under 180 seconds and anonymously accessible final links. G7 requires the actual portal Submitted receipt/ID/time. These are separate gates. Recheck current [official rules](https://aibuildercup.com/index.html); the use case aligns with Future of Work and Enterprise Productivity on the [official themes page](https://aibuildercup.com/themes.html).
 
 If access/deployment/provider availability blocks a step, record its exact gate and have the authorized owner resolve it. Preserve locally accepted source; an emulator preview cannot substitute for deployed evidence.
+
+
+The resource acceptance CLI imports TypeScript browser/domain modules and requires the installed tsx loader. Use a full checkout with development dependencies, Node 24 and node --import tsx as shown above. The native production application itself does not require this development loader. Choose a fresh evidence filename before authorizing identities/model calls/writes.

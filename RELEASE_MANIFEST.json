@@ -1,15 +1,15 @@
 {
   "schema_version": "opscrew-reviewed-release-1.2.0",
-  "prepared_date": "2026-10-12",
+  "prepared_date": "2026-10-14",
   "timezone": "Asia/Shanghai",
-  "stage": "LOCAL_REVIEW_APPROVED_PENDING_EXACT_HEAD_MERGE",
+  "stage": "REVIEWED_PR06_SOURCE_WITH_REMAINING_SUBMISSION_BLOCKERS",
   "repository": "https://github.com/sundaylee3100-ljl/AI-Builder-Cup-2026-OpsCrew",
-  "review_branch": "feat/precloud-readiness",
+  "review_branch": "release/final-verified-delivery",
   "s3_main_base_commit": "dd0fb3f8cff460b725588447be1d94556ee7f8bb",
-  "implementation_commit": "b5e32e0da85a7353916befb4224b04e14830a2a8",
-  "commit_binding_policy": "After the implementation commit, record that SHA in a manifest-only commit. Deploy the exact accepted PR head or merged main SHA and record it independently in new CLOUD evidence; this document cannot contain its own final commit hash.",
+  "implementation_commit": "9a8bf55f30cac95dba7b950c430a6ee381e0f22f",
+  "commit_binding_policy": "The following pure manifest binding commit records the preceding reviewed implementation/materials commit; historical manifests and executed results are preserved.",
   "runtime_source_binding": {
-    "canonical_sources_sha256": "5acc8cafe5a41e3a1d773905072c23021d76508a4cf7ad4d04c6858fe42f2704",
+    "canonical_sources_sha256": "19348499bfe853aaee1afa6be67910da4119748db1d9b5263f1f953fbbf2b943",
     "byte_policy": "UTF-8 text, CRLF replaced with LF only; raw file SHA-256 also retained. Canonical JSON sorts keys without changing arrays.",
     "files": {
       "package.json": "6c8e1c9ec5d8db1a623a2ae4582416378f6574ec936001358584cb520f3f264d",
@@ -25,9 +25,9 @@
       "src/domain/contracts.ts": "f886004efd3b260155c7e4d4cc6d20a76d734a07c9b37066910b0cbfa931af3a",
       "src/domain/policy.ts": "6a7609217c182579a0b72a451bfb61abfa3433cd6bbc743ed5e07f7aff25c678",
       "src/domain/workflow.ts": "4d79b119c6bc88c3e2113bebf100edb6da6785b6bd63feab072d2d896078dcba",
-      "src/App.tsx": "b08465e33cb1533167eb8cef914e283eae5bda3bf53848931b643c1b7dc78a2a",
+      "src/App.tsx": "e65a8559bfe26dabbb884e6e4d33e7060f5f28231c756344b94d8ae8eb085099",
       "src/components/CaseConfirmation.tsx": "1ca6f51b5f66f38e746ea78bcce55bccb063df01201f24283730d81f72a9a3d5",
-      "src/components/WorkflowReview.tsx": "a7a231b3adf0110a7a940719362a741de8067273154eb8da5be0cbe669485d35",
+      "src/components/WorkflowReview.tsx": "b7226986785117ec7673f7c4a24475da99842172e090fddeccb4ce701c29bac1",
       "src/lib/case-client.ts": "beabbb519e4b267a74d3ae2d2579923272f4365d266756014c6d4a071b4c77be",
       "src/lib/firebase-session.ts": "a37a8479130dcf57fce0c9df12ce884293b2a62a591a40dbc0bcd44dfd1b932a",
       "src/index.css": "7aa67a643b1d6cee0b64c9719fa3e32e780e9a09a5ae8af476c53bbc23ec8b78",
@@ -43,10 +43,143 @@
       ".dockerignore": "199530e0d27c2b097d893b99971f4d3d4f2cacc35f067098ddf8f8dedde4288e",
       "vite.config.ts": "f3e136cc7ecf19ff80480f07732a0f4a4ee42871acdc768508b98684c7667cc0",
       "tsconfig.json": "021b9c55e081891e88a21855b6056174d75ee63a8c716f0d4e3fc19536d2da06",
-      "index.html": "abd1bfe158806da8fbef1f48661c6f0f7cb1985768dfc15df867daf772de9f63"
+      "index.html": "8fab423e906d516d300421824547faf5fca1b5e0676b8227362600448ff842fa"
     }
   },
   "materials": {
+    "submission/OpsCrew_Proposal_Cloud_cloud-public-links-review-2026-10-14.pptx": {
+      "sha256": "5b8a57d2da7959d64f917e82e6e0358f8b25a682c219d3e953d5358b72b0047b",
+      "bytes": 829980,
+      "byte_policy": "Exact binary bytes"
+    },
+    "submission/OpsCrew_Proposal_Cloud_cloud-public-links-review-2026-10-14.pdf": {
+      "sha256": "6166e14400e4f49268b18b8bf42c6ce3f6bf85af0c82d867cc4cbff33dbe9d04",
+      "bytes": 2146700,
+      "byte_policy": "Exact binary bytes"
+    },
+    "submission/OpsCrew_Proposal_Cloud_cloud-public-links-review-2026-10-14.acceptance.json": {
+      "sha256": "f4eddc38c9543491fe12c992914981f24dd1fa23250489db9e58a48e32a5de4c",
+      "bytes": 8608,
+      "byte_policy": "UTF-8 text with CRLF normalized to LF for published Git blob"
+    },
+    "submission/README.md": {
+      "sha256": "08aff6f8f3a83414c894afaa6f17a57ff1f131a6613138eb87b2b5ec5ae7eed9",
+      "bytes": 3781,
+      "byte_policy": "UTF-8 text with CRLF normalized to LF for published Git blob"
+    },
+    "submission/RECORDING_PLAN.md": {
+      "sha256": "80fd2b139eeabe11dd97f1fd6b319d6e7c70ae28d41cc87a8e598503c02dd985",
+      "bytes": 7413,
+      "byte_policy": "UTF-8 text with CRLF normalized to LF for published Git blob"
+    },
+    "submission/build-proposal.mjs": {
+      "sha256": "43a0daa11711fe16da40f5921885277f245effa514377b3d3a2865bdc5b37a8e",
+      "bytes": 21920,
+      "byte_policy": "UTF-8 text with CRLF normalized to LF for published Git blob"
+    },
+    "submission/assets/official-submission-template.pptx": {
+      "sha256": "2c2dbb4a1a8a6f85fe8767744442d4d5697ae43e936fefd0bbbb05321c1514fe",
+      "bytes": 962802,
+      "byte_policy": "Exact binary bytes"
+    },
+    "submission/assets/team-logo.png": {
+      "sha256": "73e178f543dd8a18431f3cc7de04bb3b578ff20902a6e329dc22b3a37d7f8edf",
+      "bytes": 63098,
+      "byte_policy": "Exact binary bytes"
+    }
+  },
+  "acceptance": {
+    "report": "docs/acceptance/PR06-delivery-review-2026-10-14.md",
+    "local_validation": "docs/acceptance/PR06-local-validation-2026-10-14.json",
+    "offline_tests": "236/236",
+    "auth_firestore_emulator_groups": "27/27 at prior source; carried forward for unchanged business code, not rerun",
+    "semantic_assertions": "350/350 at prior source; carried forward for unchanged business code, not rerun",
+    "production_http": "9/9 included in 12 native artifact groups",
+    "artifact_groups": "12/12",
+    "linux_container_build": "NOT_RUN_BY_REVIEWER",
+    "historical_live_evidence": "docs/acceptance/DELIVERY-cloud-G3-2026-10-13.json; 3 valid workflows, 10 provider attempts, 1 synthetic case; first503 preserved, cost unknown",
+    "current_real_cloud_g3_g4": "October13 bounded API core11/11 and extension14/14 on observed endpoint; completeG4/current source-image binding NOT_VERIFIED",
+    "independent_heldout": "PENDING_CUSTODIAN",
+    "prior_local_validation": "PR04-build-integration-2026-10-12.json",
+    "production_browser_mount": "Historical initial Comet AX mount only; current full browser/clipboard NOT_RUN",
+    "carried_forward_business_evidence": {
+      "not_rerun_this_increment": true,
+      "reason": "The prior 27 emulator groups and 350 offline policy assertions are carried forward for unchanged backend, policy, persistence and provider code. PR06 frontend TSX changes have a fresh 236-test suite, type check, build and native artifact verification; historical reports are not relabeled as reruns.",
+      "prior_source_sha256": "35f0f112162996f5a26036a35998d7f53316a89c97f9c30327b0380c4a22d05c",
+      "local_validation": "PR04-local-validation-2026-10-12.json",
+      "auth_firestore_emulator": {
+        "report": "S03-emulator-validation-2026-10-12-pr04.json",
+        "passed": 27,
+        "failed": 0
+      },
+      "semantic_assertions": {
+        "report": "PR04-offline-evaluation-2026-10-12.json",
+        "passed": 350,
+        "failed": 0
+      }
+    }
+  },
+  "deployment": {
+    "source_commit": null,
+    "build_id": null,
+    "image_digest": null,
+    "cloud_run_revision": null,
+    "url": "https://opscrew-883881551915.us-central1.run.app",
+    "reason": "Public endpoint independently observed; reviewed-source/build/image/revision binding unverified. PR06 UI has not been proven deployed.",
+    "reported_historical_url": "https://opscrew-883881551915.us-central1.run.app"
+  },
+  "submission": {
+    "proposal_status": "English 13-page official-template public-links review; Sunday Lee and three links supplied; current footage/release acceptance pending",
+    "video_plan": "165 seconds; final actual video must be under 180 seconds",
+    "video_url": "https://youtu.be/h53-tucE7ig",
+    "submitted_receipt": null,
+    "g6": "PENDING_TRUTHFUL_FINAL_VIDEO_AND_RELEASE_LINK_VERIFICATION",
+    "g7": "PENDING_ACTUAL_SUBMISSION",
+    "captain_public_name": "Sunday Lee",
+    "video_link_evidence": "docs/acceptance/PR06-youtube-public-link-2026-10-14.json",
+    "video_status": "Public metadata playable/168sec; actual anonymous playback/correspondence unverified. Local candidate footage NOT_SUBMISSION_READY.",
+    "proposal_pdf": "submission/OpsCrew_Proposal_Cloud_cloud-public-links-review-2026-10-14.pdf",
+    "proposal_pptx": "submission/OpsCrew_Proposal_Cloud_cloud-public-links-review-2026-10-14.pptx",
+    "proposal_acceptance": "submission/OpsCrew_Proposal_Cloud_cloud-public-links-review-2026-10-14.acceptance.json"
+  },
+  "previous_release": {
+    "implementation_commit": "22be5948fe20fd3b14eaeffac11ae1a31ade414c",
+    "canonical_sources_sha256": "833c353f2fee85d7207d5ff5a44d36ab52fafa11e96f650a1f1005f22edac3de",
+    "source_snapshot": "docs/acceptance/PRECLOUD-freeze-2026-10-11.json",
+    "acceptance": "docs/acceptance/PRECLOUD-readiness-2026-10-11.md",
+    "note": "Historical reviewed precloud identity; retained without rewriting original reports."
+  },
+  "reviewed_teammate_head": "7fb9e03ed21c8e6a3eb01e5be2574ccec3dfae9a",
+  "operational_source_binding": {
+    "byte_policy": "UTF-8, CRLF normalized to LF for tools/config/formal regression source",
+    "files": {
+      ".gcloudignore": "1834d2df8f1428ee67f934c028c45d5205dd4f70bf7a48451f4701eb798df43f",
+      ".node-version": "68ca3fba3b7e864770cb61aeb306d4bd4354b68ab4dd38450860c5d823e42a53",
+      "scripts/check-g3-real.mjs": "9d0aaaea348ca4a62e2d470ce945f1ebbd6aa900f246bb13c5c3cc7623164271",
+      "scripts/cloud-release.ps1": "3cde350353a8c37191ab99c034f7edf1a7268d1894e59c5bc98a2f58f3350ded",
+      "scripts/smoke-runtime-artifact.mjs": "97451b792caee700c07a1ff1ade72b93a7124bed32fa290b892d45b3eb613f0a",
+      "tests/g3-real-runner.test.ts": "1852e669947912ab92b7234670195ce2159c57fa8bd8603d0529d4a06a67d7fa",
+      "scripts/smoke-production.mjs": "1a53bc8df738b59efa493ee5fa8980d8a31e8d0133c7d8b1420e78c303e83a68",
+      "tests/workflow-notice.test.ts": "c3195144b97f537ddd5b1b493af4cb2e80ee55036914891e2f2f2560728e1c74"
+    }
+  },
+  "material_status": "Current English cloud-evidence/public-links review; candidate media excluded from current tree after failed content review. Original PR candidate commits and owner local ZIP retained.",
+  "previous_review": {
+    "implementation_commit": "eb7493b9de398b7901aa8332af911392803409ba",
+    "manifest_commit": "7cbca064621c5091b9ac82c7ea9e2871db13e60d",
+    "reviewed_teammate_head": "6091ed3868bcb1d889a82e3b4b700497c1154058",
+    "canonical_sources_sha256": "35f0f112162996f5a26036a35998d7f53316a89c97f9c30327b0380c4a22d05c",
+    "local_validation": "docs/acceptance/PR04-local-validation-2026-10-12.json",
+    "note": "Historical source-bound review retained. Only build configuration and static production asset checker changed in the next integration."
+  },
+  "reviewed_original_pr_head": "51f99740fe488f74d8ef5de1b9368065ec1dadf1",
+  "previous_delivery_review": {
+    "manifest": "docs/acceptance/PR06-manifest-before-review-2026-10-14.json",
+    "original_pr_head": "51f99740fe488f74d8ef5de1b9368065ec1dadf1",
+    "teammate_offline_evidence": "docs/acceptance/dev-offline-verification.json",
+    "note": "Immutable original manifests and execution evidence are not rewritten."
+  },
+  "historical_materials": {
     "submission/OpsCrew_Proposal_Precloud_final-review.pptx": {
       "sha256": "c5d1aa1663d23d53cd7a023593cbbd34225d8e86e41ed1cd8fdac27060afef58",
       "bytes": 932027
@@ -71,81 +204,5 @@
       "sha256": "0120ca521767dbfbd437f08987ae9ff337d9720405c1c3f969d7c09ecb3672f6",
       "bytes": 18649
     }
-  },
-  "acceptance": {
-    "report": "docs/acceptance/PR04-code-review-2026-10-12.md",
-    "local_validation": "docs/acceptance/PR04-build-integration-2026-10-12.json",
-    "offline_tests": "232/232",
-    "auth_firestore_emulator_groups": "27/27 at prior source; carried forward for unchanged business code, not rerun",
-    "semantic_assertions": "350/350 at prior source; carried forward for unchanged business code, not rerun",
-    "production_http": "9/9 included in fresh artifact groups; all 5 JavaScript chunks checked",
-    "artifact_groups": "12/12",
-    "linux_container_build": "NOT_RUN_BY_REVIEWER",
-    "historical_live_evidence": "Teammate-reported partial planning and later revision4/six-step Firestore happy path; full raw response/attempt journal and accepted source-to-image binding absent. No reviewer live model or business write.",
-    "current_real_cloud_g3_g4": "PARTIAL_TEAMMATE_REPORT_PENDING_ACCEPTED_SOURCE_AND_COMPLETE_RESOURCE_EVIDENCE",
-    "independent_heldout": "PENDING_CUSTODIAN",
-    "prior_local_validation": "PR04-local-validation-2026-10-12.json",
-    "production_browser_mount": "NOT_RUN_BROWSER_TOOL_UNAVAILABLE",
-    "carried_forward_business_evidence": {
-      "not_rerun_this_increment": true,
-      "reason": "Only build configuration and the production static-asset checker changed; all backend, frontend TSX, policy, fixture, persistence, provider and evaluation files match the prior reviewed hashes.",
-      "prior_source_sha256": "35f0f112162996f5a26036a35998d7f53316a89c97f9c30327b0380c4a22d05c",
-      "local_validation": "PR04-local-validation-2026-10-12.json",
-      "auth_firestore_emulator": {
-        "report": "S03-emulator-validation-2026-10-12-pr04.json",
-        "passed": 27,
-        "failed": 0
-      },
-      "semantic_assertions": {
-        "report": "PR04-offline-evaluation-2026-10-12.json",
-        "passed": 350,
-        "failed": 0
-      }
-    }
-  },
-  "deployment": {
-    "source_commit": null,
-    "build_id": null,
-    "image_digest": null,
-    "cloud_run_revision": null,
-    "url": null,
-    "reason": "Teammate historical deployment metadata exists, but this reviewer could not independently attest current source/image/revision/service state. Actual Cloud G3/G4 remains pending.",
-    "reported_historical_url": "https://opscrew-883881551915.us-central1.run.app"
-  },
-  "submission": {
-    "proposal_status": "English precloud review draft; actual public names/product/video pending",
-    "video_plan": "165 seconds; final actual video must be under 180 seconds",
-    "video_url": null,
-    "submitted_receipt": null,
-    "g6": "PENDING_REAL_CLOUD_AND_FINAL_MATERIALS",
-    "g7": "PENDING_ACTUAL_SUBMISSION"
-  },
-  "previous_release": {
-    "implementation_commit": "22be5948fe20fd3b14eaeffac11ae1a31ade414c",
-    "canonical_sources_sha256": "833c353f2fee85d7207d5ff5a44d36ab52fafa11e96f650a1f1005f22edac3de",
-    "source_snapshot": "docs/acceptance/PRECLOUD-freeze-2026-10-11.json",
-    "acceptance": "docs/acceptance/PRECLOUD-readiness-2026-10-11.md",
-    "note": "Historical reviewed precloud identity; retained without rewriting original reports."
-  },
-  "reviewed_teammate_head": "7fb9e03ed21c8e6a3eb01e5be2574ccec3dfae9a",
-  "operational_source_binding": {
-    "byte_policy": "UTF-8, CRLF normalized to LF for tools/config/formal regression source",
-    "files": {
-      ".gcloudignore": "1834d2df8f1428ee67f934c028c45d5205dd4f70bf7a48451f4701eb798df43f",
-      ".node-version": "68ca3fba3b7e864770cb61aeb306d4bd4354b68ab4dd38450860c5d823e42a53",
-      "scripts/check-g3-real.mjs": "9d0aaaea348ca4a62e2d470ce945f1ebbd6aa900f246bb13c5c3cc7623164271",
-      "scripts/cloud-release.ps1": "3cde350353a8c37191ab99c034f7edf1a7268d1894e59c5bc98a2f58f3350ded",
-      "scripts/smoke-runtime-artifact.mjs": "97451b792caee700c07a1ff1ade72b93a7124bed32fa290b892d45b3eb613f0a",
-      "tests/g3-real-runner.test.ts": "1852e669947912ab92b7234670195ce2159c57fa8bd8603d0529d4a06a67d7fa"
-    }
-  },
-  "material_status": "Existing October11 English proposal is a historical precloud review draft; final names/product/video and new accepted-release figures must be updated before G6.",
-  "previous_review": {
-    "implementation_commit": "eb7493b9de398b7901aa8332af911392803409ba",
-    "manifest_commit": "7cbca064621c5091b9ac82c7ea9e2871db13e60d",
-    "reviewed_teammate_head": "6091ed3868bcb1d889a82e3b4b700497c1154058",
-    "canonical_sources_sha256": "35f0f112162996f5a26036a35998d7f53316a89c97f9c30327b0380c4a22d05c",
-    "local_validation": "docs/acceptance/PR04-local-validation-2026-10-12.json",
-    "note": "Historical source-bound review retained. Only build configuration and static production asset checker changed in the next integration."
   }
 }

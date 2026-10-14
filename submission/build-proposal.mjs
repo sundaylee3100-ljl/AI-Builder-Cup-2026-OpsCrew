@@ -7,17 +7,30 @@ import { execFileSync } from "node:child_process";
 
 const repository = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const runtime = process.env.OPSCREW_DOCUMENT_RUNTIME || "C:/Users/admin/.cache/codex-runtimes/codex-primary-runtime/dependencies";
-const skill = process.env.OPSCREW_PRESENTATIONS_SKILL || "C:/Users/admin/.codex/plugins/cache/openai-primary-runtime/presentations/26.1007.11041/skills/presentations";
+const skill = process.env.OPSCREW_PRESENTATIONS_SKILL || "C:/Users/admin/.codex/plugins/cache/openai-primary-runtime/presentations/26.1011.11113/skills/presentations";
 process.env.RUNTIME_NODE_MODULES = path.join(runtime, "node/node_modules");
 const { FileBlob, PresentationFile } = await import(pathToFileURL(path.join(runtime, "node/node_modules/@oai/artifact-tool/dist/artifact_tool.mjs")).href);
-const privateDirectory = path.join(repository, ".materials-build");
 const source = path.join(repository, "submission/assets/official-submission-template.pptx");
 const reportPath = process.argv[2];
 const revision = process.argv[3] || "review";
-if (!reportPath || !/^[a-zA-Z0-9-]+$/.test(revision)) throw new Error("Usage: node submission/build-proposal.mjs METRICS_JSON NEW_REVISION");
+const cloudCorePath = process.argv[4];
+const cloudSafetyPath = process.argv[5];
+if (!reportPath || !cloudCorePath || !cloudSafetyPath || !/^[a-zA-Z0-9-]+$/.test(revision)) throw new Error("Usage: node submission/build-proposal.mjs METRICS_JSON NEW_REVIEW_REVISION CLOUD_G3_JSON CLOUD_SAFETY_JSON");
 const metrics = JSON.parse(await fs.readFile(path.resolve(repository, reportPath), "utf8"));
-const pptx = path.join(repository, `submission/OpsCrew_Proposal_Precloud_${revision}.pptx`);
-const pdf = path.join(repository, `submission/OpsCrew_Proposal_Precloud_${revision}.pdf`);
+const offline = metrics.fresh_executed_checks?.offline_tests;
+const offlineCount = offline ? `${offline.passed} / ${offline.passed + offline.failed}` : metrics.offline_tests;
+if (!offlineCount) throw new Error("Missing recorded offline test result.");
+const offlineDate = metrics.completed_at?.slice(0, 10) || "2026-10-11";
+const core = JSON.parse(await fs.readFile(path.resolve(repository, cloudCorePath), "utf8"));
+const safety = JSON.parse(await fs.readFile(path.resolve(repository, cloudSafetyPath), "utf8"));
+if (!core.ok || !safety.ok || !safety.target?.startsWith("https://") || safety.deployment_source_image_binding !== "UNVERIFIED") throw new Error("This review builder requires successful recorded API evidence with its unverified deployment binding preserved.");
+const cloudUrl = new URL(safety.target).href.replace(/\/$/, "");
+const captain = process.env.OPSCREW_PUBLIC_CAPTAIN_NAME?.trim() || "awaiting verified registration name";
+const videoUrl = process.env.OPSCREW_PUBLIC_VIDEO_URL?.trim();
+if (videoUrl && !/^https:\/\/(?:www\.)?(?:youtube\.com|youtu\.be|vimeo\.com|drive\.google\.com)\//.test(videoUrl)) throw new Error("Use an allowed HTTPS public video host; anonymous playback still requires manual verification.");
+const privateDirectory = path.join(repository, ".materials-build", revision);
+const pptx = path.join(repository, `submission/OpsCrew_Proposal_Cloud_${revision}.pptx`);
+const pdf = path.join(repository, `submission/OpsCrew_Proposal_Cloud_${revision}.pdf`);
 await fs.mkdir(privateDirectory, { recursive: true });
 for (const output of [pptx, pdf]) {
   try { await fs.access(output); throw new Error("Refusing to overwrite an existing material revision."); }
@@ -51,7 +64,7 @@ function text(slide, content, x, y, width, height, size = 22, bold = false, colo
 function title(index, heading, sources) {
   const s = presentation.slides.items[index];
   text(s, heading, 28, 70, 904, 43, 25, true);
-  text(s, `OpsCrew  /  Precloud review  /  ${index + 1}`, 28, 505, 900, 20, 12, false, "#59636E");
+  text(s, `OpsCrew  /  Cloud evidence review  /  ${index + 1}`, 28, 505, 900, 20, 12, false, "#59636E");
   s.speakerNotes.text = sources.join("\n");
   return s;
 }
@@ -64,8 +77,11 @@ function node(slide, label, x, y, width = 265, height = 80) {
   box.text.style = { fontSize: 21, typeface: font, color: "#173B4C", alignment: "center", verticalAlignment: "middle" };
   return box;
 }
-function arrow(slide, x, y, width = 27, height = 22, rotation = 0) {
-  slide.shapes.add({ geometry: "rightArrow", position: { left: x, top: y, width, height, rotation }, fill: "#567481", line: { fill: "none", width: 0 } });
+function arrow(slide, x, y, width = 27, height = 22, direction = "rightArrow") {
+  slide.shapes.add({ geometry: direction, position: { left: x, top: y, width, height }, fill: "#567481", line: { fill: "none", width: 0 } });
+}
+function connect(slide, from, to, fromSide, toSide, kind = "elbow") {
+  return slide.shapes.connect(from, to, { kind, fromSide, toSide, line: { style: "solid", fill: "#567481", width: 2 }, tail: { type: "triangle", width: "med", length: "med" } });
 }
 function table(slide, values, widths, y = 140, height = 290) {
   const t = slide.tables.add({ rows: values.length, columns: values[0].length, left: 36, top: y, width: widths.reduce((a, b) => a + b, 0), height, columnWidths: widths, values });
@@ -84,10 +100,10 @@ const s3 = "docs/acceptance/S03-confirmation-and-cases.md";
 let slide = presentation.slides.items[0];
 text(slide, "Team OpsCrew", 28, 303, 744, 42, 32, true);
 text(slide, "Expense exception plans with human confirmation", 28, 355, 735, 61, 24);
-text(slide, "Captain: sundaylee3100-ljl (GitHub)\nTheme: Future of Work & Enterprise Productivity", 28, 428, 755, 65, 19);
-text(slide, "Precloud review draft  /  11 October 2026", 28, 505, 750, 20, 12, false, "#59636E");
+text(slide, `Captain: ${captain}\nTheme: Future of Work & Enterprise Productivity`, 28, 428, 755, 65, 19);
+text(slide, "Cloud evidence review  /  14 October 2026", 28, 505, 750, 20, 12, false, "#59636E");
 slide.images.add({ blob: new Uint8Array(await fs.readFile(path.join(repository, "submission/assets/team-logo.png"))), contentType: "image/png", alt: "Owner-provided Gemini-generated OpsCrew logo", fit: "contain", position: { left: 802, top: 365, width: 130, height: 129 } });
-slide.speakerNotes.text = `Captain public legal name and teammate names await owner confirmation. GitHub handle is an alias.\n${rules}\nPROVENANCE.md: blank Google AI Studio Build origin. Logo supplied by owner as Gemini-generated.`;
+slide.speakerNotes.text = `Public captain name, when provided, comes from the owner. Eligibility and registration declarations remain the authorized team's responsibility.\n${rules}\nFresh Google AI Studio Build creation on 7 October. Logo supplied by owner as Gemini-generated. The owner reports that the teammate used Google Antigravity to assist Cloud deployment; this is tool attribution, not automated deployment-source attestation.`;
 
 slide = title(1, "Brief about the idea", [rules, "SCOPE.md", "docs/POLICY_AND_CONTRACTS.md"]);
 paragraphs(slide, [
@@ -114,10 +130,11 @@ paragraphs(slide, [
 ], 138, 84);
 
 slide = title(4, "Process flow and confirmation", ["src/domain/workflow.ts", "docs/S3_CONFIRMATION_CASES.md", "docs/PRECLOUD_BACKEND.md"]);
-node(slide, "Synthetic intake", 36, 145); node(slide, "Gemini facts", 346, 145); node(slide, "Planner + Reviewer", 656, 145);
-arrow(slide, 308, 174); arrow(slide, 618, 174); arrow(slide, 777, 243, 28, 25, 90);
-node(slide, "Saved record readback", 36, 293); node(slide, "Human confirmation", 346, 293); node(slide, "Fixed policy checks", 656, 293);
-arrow(slide, 308, 322, 27, 22, 180); arrow(slide, 618, 322, 27, 22, 180);
+node(slide, "Synthetic intake", 36, 145); node(slide, "Gemini facts", 346, 145); const flowReview = node(slide, "Planner + Reviewer", 656, 145);
+arrow(slide, 308, 174); arrow(slide, 618, 174);
+node(slide, "Saved record readback", 36, 293); node(slide, "Human confirmation", 346, 293); const flowPolicy = node(slide, "Fixed policy checks", 656, 293);
+connect(slide, flowReview, flowPolicy, "bottom", "top", "straight");
+arrow(slide, 308, 322, 27, 22, "leftArrow"); arrow(slide, 618, 322, 27, 22, "leftArrow");
 text(slide, "Missing evidence produces a request plan. Contradictions block progression.\nEditing intake requires a new analysis and a new confirmation.", 36, 416, 885, 69, 21);
 
 slide = title(5, "Interface and narrow-screen review", [s3, "docs/acceptance/S03-emulator-ui-mobile-2026-10-10.png"]);
@@ -125,14 +142,17 @@ slide.images.add({ blob: new Uint8Array(await fs.readFile(path.join(repository, 
 text(slide, "Observed local browser behavior", 286, 147, 635, 43, 23, true);
 paragraphs(slide, [], 0);
 text(slide, "Explicit confirmation remains separate from the AI review.\n\nSaved history survives a page reload with the same visitor identity.\n\nThe 390 px viewport had no horizontal overflow. Keyboard focus was visible.", 286, 208, 625, 218, 22);
-text(slide, "Screenshot: local Auth/Firestore emulators and injected model output, 10 October. Public cloud behavior awaits acceptance.", 286, 444, 625, 52, 17, false, "#59636E");
+text(slide, "Historical screenshot: local emulators and injected model output, 10 October. The cloud API evidence on pages 10-11 is separate.", 286, 444, 625, 52, 17, false, "#59636E");
 
-slide = title(6, "Architecture of the proposed cloud deployment", ["docs/CLOUD_TEAMMATE_HANDOFF.md", "docs/PRECLOUD_DEPLOYMENT.md", "server/firebase-runtime.ts"]);
-node(slide, "Browser\nEnglish React interface", 36, 145); node(slide, "Cloud Run\nNode API + validators", 346, 145); node(slide, "Gemini API\nFacts / plan / review", 656, 145);
+slide = title(6, "Cloud architecture and trust boundaries", [cloudCorePath, cloudSafetyPath, "docs/PRECLOUD_DEPLOYMENT.md", "aistudio-export-2026-10-07/server/firebase-runtime.ts"]);
+const browser = node(slide, "Browser\nEnglish React interface", 36, 145); const api = node(slide, "Cloud Run\nNode API + validators", 346, 145); node(slide, "Gemini API\nFacts / plan / review", 656, 145);
 arrow(slide, 308, 174); arrow(slide, 618, 174);
-node(slide, "Firebase Auth\nVerified visitor identity", 36, 304); node(slide, "Firestore\nPlans / cases / quotas", 346, 304); node(slide, "Secret Manager\nServer credential only", 656, 304);
-arrow(slide, 468, 247, 28, 25, 90);
-text(slide, "The server verifies ownership and mediates every business write. Browser Firestore access is denied. Cloud deployment remains the next team gate.", 36, 430, 885, 65, 21);
+const auth = node(slide, "Firebase Auth\nVisitor identity", 36, 304); const store = node(slide, "Firestore\nPlans / cases / quotas", 346, 304); const secret = node(slide, "Secret Manager\nServer credential only", 656, 304);
+connect(slide, api, store, "bottom", "top", "straight");
+connect(slide, browser, auth, "bottom", "top", "straight");
+connect(slide, api, auth, "left", "right");
+connect(slide, secret, api, "left", "right");
+text(slide, "Recorded cloud APIs verify owner access, confirmation and saved-case readback. Direct visitor Firestore access is denied. Source-to-image identity and complete resource controls await verification.", 36, 426, 885, 72, 20);
 
 slide = title(7, "Technologies used in the solution", ["PROVENANCE.md", "aistudio-export-2026-10-07/package-lock.json", "docs/PRECLOUD_DEPLOYMENT.md"]);
 table(slide, [
@@ -141,50 +161,59 @@ table(slide, [
   ["Gemini 3.1 Flash-Lite", "Facts, separately prompted Planner and Reviewer"],
   ["Node 24 / React / TypeScript", "API, explicit review interface and fixed validators"],
   ["Firebase Auth + Firestore", "Visitor ownership, atomic records and shared quotas"],
-  ["Cloud Run + Secret Manager", "Planned public runtime and server-only credential"],
+  ["Cloud Run + Secret Manager", "Cloud API runtime and server-only credential"],
 ], [320, 568], 138, 313);
-text(slide, "Local extensions are disclosed. No code from the earlier non-Google prototype entered this repository.", 36, 465, 888, 35, 18, false, "#59636E");
+text(slide, "Created from zero in AI Studio Build. The teammate used Antigravity to assist Cloud deployment (owner-reported).", 36, 460, 888, 40, 18, false, "#59636E");
 
 slide = title(8, "Implementation cost and traffic controls", ["docs/DELIVERY_WORKBOARD.md", "docs/PRECLOUD_BACKEND.md", "docs/EVALUATION_PROTOCOL.md"]);
 paragraphs(slide, [
   "Team management target: USD 40. Billing alerts and application quotas cannot guarantee a monetary spending cap.",
   "Default model limits: 2 concurrent runs globally, 1 per visitor. Each visitor has 2 runs per minute and 12 per UTC day.",
   "Global limits: 6 runs per minute and 60 per UTC day. Each workflow reserves up to 6 provider attempts. Unknown usage receives no refund.",
-  "Record tokens, elapsed time and failures from real runs. Historical live failures have unknown usage and billed cost. Verify actual cloud pricing before activation.",
+  `13 October observations: ${safety.known_provider_attempts} provider attempts and ${safety.known_tokens.toLocaleString("en-US")} known tokens. One first FACTS call returned 503. Its usage and actual billed cost are unknown.`,
 ], 130, 88, 888, 21);
 
-slide = title(9, "Snapshots of the prototype", [s3, "docs/acceptance/S03-emulator-ui-desktop-2026-10-10.png"]);
-slide.images.add({ blob: new Uint8Array(await fs.readFile(path.join(repository, "docs/acceptance/S03-emulator-ui-desktop-2026-10-10.png"))), contentType: "image/png", alt: "Actual local S3 emulator review and confirmed-case readback", fit: "contain", position: { left: 36, top: 120, width: 585, height: 369 } });
-text(slide, "Synthetic USD 38\nmissing-receipt example", 653, 138, 271, 77, 24, true);
-text(slide, "The plan requests a receipt.\n\nA person confirms the handling record. The API then independently reads the saved case.\n\nNo payment occurs.", 653, 243, 271, 179, 21);
-text(slide, "Local emulators + injected models.\n10 October 2026", 653, 449, 271, 49, 16, false, "#59636E");
+slide = title(9, "Prototype: recorded cloud API results", [cloudCorePath, cloudSafetyPath]);
+table(slide, [
+  ["Synthetic input / check", "Observed cloud result"],
+  ["USD 38, missing receipt", "EVIDENCE_REQUEST plan. Explicit confirmation saved one case; independent readback matched."],
+  ["DEV-01, receipt available", "NO_ACTION_REQUIRED. No exception case."],
+  ["DEV-10, USD 38 form / USD 50 text", "BLOCKED. Conflicting sources prevent case creation."],
+  ["Replay / different visitor", "Same committed case / 404 for the other visitor."],
+], [330, 558], 138, 305);
+text(slide, "Recorded HTTP response evidence, 13 October 2026. Synthetic handling records only. No reimbursement approval or payment occurs.", 36, 462, 888, 39, 18, false, "#59636E");
 
-slide = title(10, "Performance report and evidence boundaries", [reportPath, "docs/PRECLOUD_EVALUATION.md", "docs/acceptance/S02-captured-result-revalidation-2026-10-10.json"]);
+slide = title(10, "Performance report and evidence boundaries", [reportPath, cloudCorePath, cloudSafetyPath, "docs/PRECLOUD_EVALUATION.md"]);
 table(slide, [
   ["Evidence", "Result", "Method"],
-  ["Offline engineering", metrics.offline_tests, "Policy / HTTP / UI regressions"],
-  ["Auth + Firestore", metrics.emulator_checks, "Real local emulators, injected models"],
-  ["Public semantic cases", "12 / 12", "Injected models, MemoryCaseStore"],
-  ["High-risk repeats", "12 / 12", "4 predefined public cases, each 3 runs"],
-  ["Fault / recovery", "6 / 6", "Injected failures and lost responses"],
-  ["Production packaging", metrics.packaging_checks, "Pruned native runtime, no Docker daemon"],
-], [265, 158, 465], 132, 313);
-text(slide, "Current local Gemini: 3 public branches passed after proxy repair. Three earlier failures remain recorded. Cloud stability and independent held-out acceptance remain pending.", 36, 459, 888, 43, 17, false, "#59636E");
+  ["Cloud core API", `${core.passed} / ${core.passed + core.failed}`, "Real Auth, Gemini, Firestore; 13 Oct"],
+  ["Cloud safety API", `${safety.checks.filter(x => x.outcome === "PASS").length} / ${safety.checks.length}`, "Includes core verifier; overlapping checks"],
+  ["Real Gemini workflows", "3 public cases", "Missing receipt, no action, contradiction"],
+  ["Offline engineering", offlineCount, `${offlineDate} local regressions`],
+  ["Historical packaging", "12 groups", "Includes 9 HTTP checks; native runtime, 11 Oct"],
+], [265, 158, 465], 138, 302);
+text(slide, "Three cloud workflow observations: 8.381-12.042 s. The missing-receipt run recovered from one 503. These public cases establish neither an SLA nor independent held-out acceptance.", 36, 456, 888, 47, 17, false, "#59636E");
 
 slide = title(11, "Additional details and future development", ["docs/CLOUD_TEAMMATE_HANDOFF.md", "docs/EVALUATION_PROTOCOL.md", "SUBMISSION_CHECKLIST.md"]);
 paragraphs(slide, [
-  "Next acceptance: deploy the frozen release to Cloud Run with real Firebase identity, Firestore and a server-only Gemini secret.",
+  "Observed cloud APIs complete plan, explicit confirmation and independent record readback. Source-to-image identity and full operational controls still require verification.",
   "The teammate seals eight independent cases before first evaluation. Retain every attempt and run the main demo successfully three times in sequence.",
-  "Then record the real cloud flow, publish the product and sub-three-minute English video, and replace the draft proposal's pending link statuses.",
+  "Record a genuine browser flow on the accepted release. Verify the final sub-three-minute English video through signed-out playback, and complete the team's registration declarations.",
   "After evaluation, consider broader policies and staff timing studies. Production reimbursement integrations require a separate design and authorization.",
 ], 132, 87, 888, 21);
 
 slide = title(12, "Repository, demo and final product links", [git, "SUBMISSION_CHECKLIST.md", "submission/RECORDING_PLAN.md"]);
-const link = text(slide, "Public GitHub repository", 36, 146, 888, 37, 25, true, "#086A86");
+const link = text(slide, "Public GitHub repository", 36, 136, 888, 37, 24, true, "#086A86");
 link.text.get("Public GitHub repository").link = { uri: git, isExternal: true };
-text(slide, git.replace("https://", ""), 36, 194, 888, 52, 19, false, "#59636E");
-text(slide, "Public demo video: pending final cloud recording\nFinal product URL: pending teammate cloud deployment", 36, 285, 888, 105, 24);
-text(slide, "This proposal is a precloud review draft. The team must add working public links and verify anonymous access before contest submission.", 36, 432, 888, 58, 21);
+text(slide, git.replace("https://", ""), 36, 177, 888, 42, 18, false, "#59636E");
+const productLink = text(slide, "Cloud product URL", 36, 234, 888, 33, 23, true, "#086A86");
+productLink.text.get("Cloud product URL").link = { uri: cloudUrl, isExternal: true };
+text(slide, cloudUrl, 36, 274, 888, 42, 18, false, "#59636E");
+const videoText = videoUrl ? "Public demo video (footage acceptance pending)" : "Public demo video: awaiting publication and verification";
+const videoLink = text(slide, videoText, 36, 337, 888, 38, 23, Boolean(videoUrl), videoUrl ? "#086A86" : "#17212B");
+if (videoUrl) videoLink.text.get(videoText).link = { uri: videoUrl, isExternal: true };
+if (videoUrl) text(slide, videoUrl, 36, 378, 888, 36, 18, false, "#59636E");
+text(slide, videoUrl ? "Review version. Public links supplied. Final footage acceptance and accepted release identity remain pending. Recorded product API tests are dated 13 October." : "Review version. Final submission requires the verified team name, public video playback and accepted release identity. The recorded product API tests are dated 13 October.", 36, 443, 888, 54, 19);
 
 // 03. Validate the editable PPTX, export the same deck as PDF, then render all pages.
 const candidate = path.join(privateDirectory, `candidate-${revision}.pptx`);
@@ -213,15 +242,17 @@ const pdfSource = `
 import sys, pathlib
 from reportlab.pdfgen import canvas
 from pypdf import PdfReader
-out, directory, revision, count, url = sys.argv[1:]
+out, directory, revision, count, url = sys.argv[1:6]
 count = int(count)
 doc = canvas.Canvas(out, pagesize=(720,405), pageCompression=1)
-doc.setTitle('OpsCrew: Expense Exception Plan and Review (Precloud draft)')
+doc.setTitle('OpsCrew: Expense Exception Plan and Review (Cloud evidence review)')
 doc.setAuthor('Team OpsCrew')
 for number in range(1,count+1):
     doc.drawImage(str(pathlib.Path(directory) / ('proposal-' + revision + '-' + str(number) + '.png')),0,0,720,405)
     if number == count:
-        doc.linkURL(url,(27,220.5,693,295.5),relative=0,thickness=0)
+        doc.linkURL(url,(27,240.75,693,303),relative=0,thickness=0)
+        doc.linkURL(sys.argv[6],(27,168,693,229.5),relative=0,thickness=0)
+        if sys.argv[7]: doc.linkURL(sys.argv[7],(27,93,693,152.25),relative=0,thickness=0)
     doc.showPage()
 doc.save()
 reader = PdfReader(out)
@@ -229,6 +260,6 @@ assert len(reader.pages) == count
 assert any(annotation.get_object().get('/A',{}).get('/URI') == url for annotation in reader.pages[-1].get('/Annots',[]))
 print('PDF page count and actual GitHub link passed')
 `;
-const pdfCheck = execFileSync(path.join(runtime, "python/python.exe"), ["-B", "-c", pdfSource, pdf, privateDirectory, revision, String(finalDeck.slides.items.length), git], { encoding: "utf8", windowsHide: true });
+const pdfCheck = execFileSync(path.join(runtime, "python/python.exe"), ["-B", "-c", pdfSource, pdf, privateDirectory, revision, String(finalDeck.slides.items.length), git, cloudUrl, videoUrl || ""], { encoding: "utf8", windowsHide: true });
 console.log(pdfCheck.trim());
 console.log(JSON.stringify({ pptx, pdf, slides: finalDeck.slides.items.length, pdfFormat: "192-dpi rendered slide pages with clickable GitHub annotation", manualVisualInspectionRequired: true }));

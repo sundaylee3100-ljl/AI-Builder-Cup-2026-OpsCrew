@@ -1,0 +1,151 @@
+{
+  "schema_version": "opscrew-reviewed-release-1.2.0",
+  "prepared_date": "2026-10-12",
+  "timezone": "Asia/Shanghai",
+  "stage": "LOCAL_REVIEW_APPROVED_PENDING_EXACT_HEAD_MERGE",
+  "repository": "https://github.com/sundaylee3100-ljl/AI-Builder-Cup-2026-OpsCrew",
+  "review_branch": "feat/precloud-readiness",
+  "s3_main_base_commit": "dd0fb3f8cff460b725588447be1d94556ee7f8bb",
+  "implementation_commit": "b5e32e0da85a7353916befb4224b04e14830a2a8",
+  "commit_binding_policy": "After the implementation commit, record that SHA in a manifest-only commit. Deploy the exact accepted PR head or merged main SHA and record it independently in new CLOUD evidence; this document cannot contain its own final commit hash.",
+  "runtime_source_binding": {
+    "canonical_sources_sha256": "5acc8cafe5a41e3a1d773905072c23021d76508a4cf7ad4d04c6858fe42f2704",
+    "byte_policy": "UTF-8 text, CRLF replaced with LF only; raw file SHA-256 also retained. Canonical JSON sorts keys without changing arrays.",
+    "files": {
+      "package.json": "6c8e1c9ec5d8db1a623a2ae4582416378f6574ec936001358584cb520f3f264d",
+      "package-lock.json": "56f765d3d0010e341a736a4239cad42872bfa641dcf4026e8efbf441a0453c79",
+      "server.ts": "b95a1e2e922074f74b2eadf6cfa3f677d7c51480e39ed61ccd270fddd06e6318",
+      "server/runtime-config.ts": "6464c828e78bd8f738fb891ef168bece8857f1d1d4878266ec388d8a81a1dfd3",
+      "server/planning-service.ts": "fb41bf596439f78b377d5858aa95fb6abe2e47f95ba1d231ae529409785be93a",
+      "server/planning-contracts.ts": "4f59d0b0af2ed01c8e46afd7699219419f53a1147a1646f0a3e8dd78aa9ee71c",
+      "server/case-service.ts": "e02bbc486f45b5ad78094b750c79468b7fc48c925cbaa0d2c7721500889d278d",
+      "server/case-routes.ts": "70d8b913f7b3add03e19382e6e304be238db8a6132a26f18142bfaff7187353c",
+      "server/firebase-runtime.ts": "494211f6a2f106efed747e51084356f62847884aeb5860bd39cfbf2fc842bb4b",
+      "server/model-admission.ts": "7d0e8ac9d3903af0d75c0bfb1e04a2606b7c81b48cf56478e6961ae6afc51c14",
+      "src/domain/contracts.ts": "f886004efd3b260155c7e4d4cc6d20a76d734a07c9b37066910b0cbfa931af3a",
+      "src/domain/policy.ts": "6a7609217c182579a0b72a451bfb61abfa3433cd6bbc743ed5e07f7aff25c678",
+      "src/domain/workflow.ts": "4d79b119c6bc88c3e2113bebf100edb6da6785b6bd63feab072d2d896078dcba",
+      "src/App.tsx": "b08465e33cb1533167eb8cef914e283eae5bda3bf53848931b643c1b7dc78a2a",
+      "src/components/CaseConfirmation.tsx": "1ca6f51b5f66f38e746ea78bcce55bccb063df01201f24283730d81f72a9a3d5",
+      "src/components/WorkflowReview.tsx": "a7a231b3adf0110a7a940719362a741de8067273154eb8da5be0cbe669485d35",
+      "src/lib/case-client.ts": "beabbb519e4b267a74d3ae2d2579923272f4365d266756014c6d4a071b4c77be",
+      "src/lib/firebase-session.ts": "a37a8479130dcf57fce0c9df12ce884293b2a62a591a40dbc0bcd44dfd1b932a",
+      "src/index.css": "7aa67a643b1d6cee0b64c9719fa3e32e780e9a09a5ae8af476c53bbc23ec8b78",
+      "src/main.tsx": "30d02ee59cb6576973dea4368093b2dcae692a40668f288fdbc66a114873fcd3",
+      "fixtures/development-cases.json": "bb61b80d158f24dafc2e18274d0a5b9c02cf44296649e550bccb0aabd5fe00c7",
+      "firestore.rules": "1990874ed70e379d013db242e2210ff61537c305be1ec35171004ffb30853709",
+      "firestore.indexes.json": "0c634c030b88d477779f7078f059db1e27cf4f52f4f7458315af93d68ff3abd4",
+      "firebase.json": "bfd28943974b7623fc757f8677194303cf87b2ed1edb67593c4827dcdc56b311",
+      "scripts/evaluate-precloud.mjs": "4c0e8260617fd4ce594014fd09dae4a482ea3dbfd6622d7b4d2a3f0ff3012379",
+      "scripts/check-s3-emulator.mjs": "66c1682d7bfa87c47ccc642d11df292f3928fa9fd4472f312aa58b774cfd3e7c",
+      "scripts/smoke-production.mjs": "1a53bc8df738b59efa493ee5fa8980d8a31e8d0133c7d8b1420e78c303e83a68",
+      "Dockerfile": "7c07a7a4229159a850582b7d6ce66323caaf5d132ba771559517a19bec364fd8",
+      ".dockerignore": "199530e0d27c2b097d893b99971f4d3d4f2cacc35f067098ddf8f8dedde4288e",
+      "vite.config.ts": "f3e136cc7ecf19ff80480f07732a0f4a4ee42871acdc768508b98684c7667cc0",
+      "tsconfig.json": "021b9c55e081891e88a21855b6056174d75ee63a8c716f0d4e3fc19536d2da06",
+      "index.html": "abd1bfe158806da8fbef1f48661c6f0f7cb1985768dfc15df867daf772de9f63"
+    }
+  },
+  "materials": {
+    "submission/OpsCrew_Proposal_Precloud_final-review.pptx": {
+      "sha256": "c5d1aa1663d23d53cd7a023593cbbd34225d8e86e41ed1cd8fdac27060afef58",
+      "bytes": 932027
+    },
+    "submission/OpsCrew_Proposal_Precloud_final-review.pdf": {
+      "sha256": "e8d1b44ac5b6cc77a23f736839be95ba5cf03e102e5a8d174f914575fd0e4697",
+      "bytes": 2532018
+    },
+    "submission/assets/official-submission-template.pptx": {
+      "sha256": "2c2dbb4a1a8a6f85fe8767744442d4d5697ae43e936fefd0bbbb05321c1514fe",
+      "bytes": 962802
+    },
+    "submission/assets/team-logo.png": {
+      "sha256": "73e178f543dd8a18431f3cc7de04bb3b578ff20902a6e329dc22b3a37d7f8edf",
+      "bytes": 63098
+    },
+    "submission/RECORDING_PLAN.md": {
+      "sha256": "adfd3b265fb8693f36d92442644e5a3eb915b34872112841d10a64a1ca36bc1f",
+      "bytes": 5664
+    },
+    "submission/build-proposal.mjs": {
+      "sha256": "0120ca521767dbfbd437f08987ae9ff337d9720405c1c3f969d7c09ecb3672f6",
+      "bytes": 18649
+    }
+  },
+  "acceptance": {
+    "report": "docs/acceptance/PR04-code-review-2026-10-12.md",
+    "local_validation": "docs/acceptance/PR04-build-integration-2026-10-12.json",
+    "offline_tests": "232/232",
+    "auth_firestore_emulator_groups": "27/27 at prior source; carried forward for unchanged business code, not rerun",
+    "semantic_assertions": "350/350 at prior source; carried forward for unchanged business code, not rerun",
+    "production_http": "9/9 included in fresh artifact groups; all 5 JavaScript chunks checked",
+    "artifact_groups": "12/12",
+    "linux_container_build": "NOT_RUN_BY_REVIEWER",
+    "historical_live_evidence": "Teammate-reported partial planning and later revision4/six-step Firestore happy path; full raw response/attempt journal and accepted source-to-image binding absent. No reviewer live model or business write.",
+    "current_real_cloud_g3_g4": "PARTIAL_TEAMMATE_REPORT_PENDING_ACCEPTED_SOURCE_AND_COMPLETE_RESOURCE_EVIDENCE",
+    "independent_heldout": "PENDING_CUSTODIAN",
+    "prior_local_validation": "PR04-local-validation-2026-10-12.json",
+    "production_browser_mount": "NOT_RUN_BROWSER_TOOL_UNAVAILABLE",
+    "carried_forward_business_evidence": {
+      "not_rerun_this_increment": true,
+      "reason": "Only build configuration and the production static-asset checker changed; all backend, frontend TSX, policy, fixture, persistence, provider and evaluation files match the prior reviewed hashes.",
+      "prior_source_sha256": "35f0f112162996f5a26036a35998d7f53316a89c97f9c30327b0380c4a22d05c",
+      "local_validation": "PR04-local-validation-2026-10-12.json",
+      "auth_firestore_emulator": {
+        "report": "S03-emulator-validation-2026-10-12-pr04.json",
+        "passed": 27,
+        "failed": 0
+      },
+      "semantic_assertions": {
+        "report": "PR04-offline-evaluation-2026-10-12.json",
+        "passed": 350,
+        "failed": 0
+      }
+    }
+  },
+  "deployment": {
+    "source_commit": null,
+    "build_id": null,
+    "image_digest": null,
+    "cloud_run_revision": null,
+    "url": null,
+    "reason": "Teammate historical deployment metadata exists, but this reviewer could not independently attest current source/image/revision/service state. Actual Cloud G3/G4 remains pending.",
+    "reported_historical_url": "https://opscrew-883881551915.us-central1.run.app"
+  },
+  "submission": {
+    "proposal_status": "English precloud review draft; actual public names/product/video pending",
+    "video_plan": "165 seconds; final actual video must be under 180 seconds",
+    "video_url": null,
+    "submitted_receipt": null,
+    "g6": "PENDING_REAL_CLOUD_AND_FINAL_MATERIALS",
+    "g7": "PENDING_ACTUAL_SUBMISSION"
+  },
+  "previous_release": {
+    "implementation_commit": "22be5948fe20fd3b14eaeffac11ae1a31ade414c",
+    "canonical_sources_sha256": "833c353f2fee85d7207d5ff5a44d36ab52fafa11e96f650a1f1005f22edac3de",
+    "source_snapshot": "docs/acceptance/PRECLOUD-freeze-2026-10-11.json",
+    "acceptance": "docs/acceptance/PRECLOUD-readiness-2026-10-11.md",
+    "note": "Historical reviewed precloud identity; retained without rewriting original reports."
+  },
+  "reviewed_teammate_head": "7fb9e03ed21c8e6a3eb01e5be2574ccec3dfae9a",
+  "operational_source_binding": {
+    "byte_policy": "UTF-8, CRLF normalized to LF for tools/config/formal regression source",
+    "files": {
+      ".gcloudignore": "1834d2df8f1428ee67f934c028c45d5205dd4f70bf7a48451f4701eb798df43f",
+      ".node-version": "68ca3fba3b7e864770cb61aeb306d4bd4354b68ab4dd38450860c5d823e42a53",
+      "scripts/check-g3-real.mjs": "9d0aaaea348ca4a62e2d470ce945f1ebbd6aa900f246bb13c5c3cc7623164271",
+      "scripts/cloud-release.ps1": "3cde350353a8c37191ab99c034f7edf1a7268d1894e59c5bc98a2f58f3350ded",
+      "scripts/smoke-runtime-artifact.mjs": "97451b792caee700c07a1ff1ade72b93a7124bed32fa290b892d45b3eb613f0a",
+      "tests/g3-real-runner.test.ts": "1852e669947912ab92b7234670195ce2159c57fa8bd8603d0529d4a06a67d7fa"
+    }
+  },
+  "material_status": "Existing October11 English proposal is a historical precloud review draft; final names/product/video and new accepted-release figures must be updated before G6.",
+  "previous_review": {
+    "implementation_commit": "eb7493b9de398b7901aa8332af911392803409ba",
+    "manifest_commit": "7cbca064621c5091b9ac82c7ea9e2871db13e60d",
+    "reviewed_teammate_head": "6091ed3868bcb1d889a82e3b4b700497c1154058",
+    "canonical_sources_sha256": "35f0f112162996f5a26036a35998d7f53316a89c97f9c30327b0380c4a22d05c",
+    "local_validation": "docs/acceptance/PR04-local-validation-2026-10-12.json",
+    "note": "Historical source-bound review retained. Only build configuration and static production asset checker changed in the next integration."
+  }
+}
