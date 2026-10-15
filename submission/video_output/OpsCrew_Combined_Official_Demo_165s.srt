@@ -36,3 +36,8 @@ The checkbox starts unchecked. I now submit that authorization.
 00:01:52,020 --> 00:02:00,520
 Success appears only after a separate read of the saved record from Firestore.
 The case record is atomic and policy-verified.
+
+9
+00:02:22,500 --> 00:02:33,500
+Thank you for watching! Explore OpsCrew live on Google Cloud Run.
+Autonomous multi-agent copilot built for the AI Builder Cup 2026.

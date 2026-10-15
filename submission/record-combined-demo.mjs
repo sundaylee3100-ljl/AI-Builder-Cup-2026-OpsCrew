@@ -20,6 +20,10 @@ fs.mkdirSync(AUDIO_DIR, { recursive: true });
 const PART1_VIDEO = path.join(OUTPUT_DIR, "part1_slides.mp4");
 const PART1_DURATION = 20.02; // exact duration in seconds matching render-part1-slides.py
 
+// Part 3 Video File (Outro / Thank You)
+const PART3_VIDEO = path.join(OUTPUT_DIR, "part3_outro.mp4");
+const PART3_DURATION = 12.00;
+
 // Part 2 Clips Configuration (Total Duration = 122.0s)
 const PART2_CLIPS = [
   {
@@ -155,6 +159,14 @@ function generateCombinedSubtitles(part1DurationSec, part2ClipDurations) {
       text: c.sub
     });
   }
+
+  // Part 3 Outro Entry
+  const part3BaseMs = part2BaseMs + Math.round(122.0 * 1000);
+  allEntries.push({
+    startMs: part3BaseMs + 500,
+    endMs: part3BaseMs + 11500,
+    text: "Thank you for watching! Explore OpsCrew live on Google Cloud Run.\nAutonomous multi-agent copilot built for the AI Builder Cup 2026."
+  });
 
   let srt = "";
   let vtt = "WEBVTT\n\n";
@@ -638,13 +650,13 @@ async function run() {
   console.log(`Part 2 demo ready: ${part2Mp4} (${p2Dur.toFixed(2)}s)`);
 
   // =========================================================================
-  // CONCATENATE PART 1 (SLIDES) + PART 2 (LIVE DEMO)
+  // CONCATENATE PART 1 (SLIDES) + PART 2 (LIVE DEMO) + PART 3 (OUTRO)
   // =========================================================================
-  console.log("\n=== Seamlessly Concatenating Part 1 (Slides) and Part 2 (Live Cloud Demo) ===");
+  console.log("\n=== Seamlessly Concatenating Part 1 (Slides), Part 2 (Live Cloud Demo) & Part 3 (Outro) ===");
   const finalCombinedMp4 = path.join(OUTPUT_DIR, "OpsCrew_Combined_Official_Demo_165s.mp4");
 
   execSync(
-    `ffmpeg -y -i "${PART1_VIDEO}" -i "${part2Mp4}" -filter_complex "[0:v][0:a][1:v][1:a]concat=n=2:v=1:a=1[v][a]" -map "[v]" -map "[a]" -c:v libx264 -preset medium -crf 19 -pix_fmt yuv420p -r 25 -c:a aac -b:a 192k -ar 48000 "${finalCombinedMp4}"`,
+    `ffmpeg -y -i "${PART1_VIDEO}" -i "${part2Mp4}" -i "${PART3_VIDEO}" -filter_complex "[0:v][0:a][1:v][1:a][2:v][2:a]concat=n=3:v=1:a=1[v][a]" -map "[v]" -map "[a]" -c:v libx264 -preset medium -crf 19 -pix_fmt yuv420p -r 25 -c:a aac -b:a 192k -ar 48000 "${finalCombinedMp4}"`,
     { stdio: "inherit" }
   );
 
@@ -664,6 +676,7 @@ async function run() {
   console.log("SHA256 Checksum:  ", sha256);
   console.log("Part 1 (Slides):  ", `${PART1_DURATION}s`);
   console.log("Part 2 (Demo):    ", `${p2Dur.toFixed(2)}s`);
+  console.log("Part 3 (Outro):   ", `${PART3_DURATION}s`);
   console.log("===============================================================================\n");
 }
 
