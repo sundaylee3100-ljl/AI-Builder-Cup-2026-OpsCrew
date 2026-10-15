@@ -6,7 +6,10 @@ import {
 } from "../src/domain/contracts.ts";
 import type { ExpenseFacts, PolicyDecision, ProposedCase, VersionBinding } from "../src/domain/contracts.ts";
 import { assertPlanMatchesPolicy, evaluatePolicy, policyCitations, SYNTHETIC_USD_POLICY } from "../src/domain/policy.ts";
-import { ALLOWED_GEMINI_MODELS, PROMPT_VERSIONS, PLANNING_CALL_TIMEOUT_MS, PLANNING_TOTAL_TIMEOUT_MS, geminiGenerationControls } from "./runtime-config.ts";
+import {
+  ALLOWED_GEMINI_MODELS, PROMPT_VERSIONS, PLANNING_CALL_TIMEOUT_MS, PLANNING_TOTAL_TIMEOUT_MS,
+  geminiGenerationControls, createGenAIClient, isVertexAiActive,
+} from "./runtime-config.ts";
 import type {
   PlanningGenerateContentArgs, PlanningGenerateContentFn, PlanningGenerateContentResult,
   PlanningReviewResult, PlanningStep, TokenUsage,
@@ -57,7 +60,10 @@ export interface RunPlanningReviewOptions {
   facts: ExpenseFacts;
   runId: string;
   model: string;
-  apiKey: string;
+  apiKey?: string;
+  vertexai?: boolean;
+  project?: string;
+  location?: string;
   signal: AbortSignal;
   inputVersion?: number;
   generateContentFn?: PlanningGenerateContentFn;
@@ -84,9 +90,12 @@ export class PlanningReviewError extends Error {
 }
 
 async function defaultGenerateContent(args: PlanningGenerateContentArgs): Promise<PlanningGenerateContentResult> {
-  const ai = new GoogleGenAI({
+  const ai = createGenAIClient({
     apiKey: args.apiKey,
-    httpOptions: { timeout: args.timeoutMs, retryOptions: { attempts: 1 } },
+    vertexai: args.vertexai,
+    project: args.project,
+    location: args.location,
+    timeoutMs: args.timeoutMs,
   });
   const response = await ai.models.generateContent({
     model: args.model,
@@ -258,8 +267,9 @@ export async function runPlanningReview(options: RunPlanningReviewOptions): Prom
     planner_rationale: null, execution_authorized: false, binding, steps: [], prompt_versions: PROMPT_VERSIONS,
   };
   const fail = (code: string, message: string, status: number, upstream: number | null = null) => new PlanningReviewError(code, message, status, upstream, result);
+  const isVertex = options.vertexai ?? isVertexAiActive();
   if (!(ALLOWED_GEMINI_MODELS as readonly string[]).includes(options.model)) throw fail("MODEL_NOT_ALLOWED", "The requested model is not in the server allowlist.", 400);
-  if (typeof options.apiKey !== "string" || !options.apiKey.trim()) throw fail("GEMINI_KEY_MISSING", "A server-side Gemini API key is required. No model call was made.", 500);
+  if (!isVertex && (typeof options.apiKey !== "string" || !options.apiKey.trim())) throw fail("GEMINI_KEY_MISSING", "A server-side Gemini API key is required. No model call was made.", 500);
   if (options.signal.aborted) {
     const cancelled = incomingCancellation(options.signal);
     throw fail(cancelled ? "WORKFLOW_CANCELLED" : "GEMINI_REQUEST_TIMEOUT", cancelled ? "The workflow was cancelled before the Planner call." : "The workflow deadline expired before the Planner call.", cancelled ? 499 : 504);
@@ -290,7 +300,12 @@ export async function runPlanningReview(options: RunPlanningReviewOptions): Prom
       result.steps.push(step);
       try {
         const response = await withAbort(() => provider({
-          role, apiKey: options.apiKey, model: options.model,
+          role,
+          apiKey: options.apiKey,
+          vertexai: isVertex,
+          project: options.project,
+          location: options.location,
+          model: options.model,
           promptPayload: JSON.stringify(payload),
           systemInstruction: `${BASE_INSTRUCTION} ${role === "PLANNER" ? "Apply the policy to the facts while preserving the server's authoritative deterministic_decision. Your branch MUST equal deterministic_decision.branch, your action MUST equal deterministic_decision.allowed_action, and your citation_ids MUST contain exactly the clause_id values from deterministic_decision.citations, with no additions or omissions. If contradictions exist, the branch remains BLOCKED even when a receipt is missing or an amount exceeds the threshold. For an eligible case, propose only create_exception_case and preserve every supplied fact exactly, including description and evidence_requirements. For every noneligible branch, including BLOCKED and NEEDS_INFO, action and proposed_case MUST be null. Explain the supported outcome briefly." : "You are a separate Reviewer, checking the facts, policy, and Planner proposal in a fresh call. PASS means the recommendation is supported, never that execution is authorized. PASS requires issues=[]. Use NEEDS_INFO or BLOCKED with concrete issues if this recommendation needs clarification or must be stopped. Review every branch, including no-action and blocked recommendations. A PASS for a blocked or incomplete decision only confirms that decision; it cannot make a case eligible. Your citation_ids MUST contain exactly the clause_id values from deterministic_decision.citations, with no additions, omissions, or duplicates, even when additional clauses look relevant."}`,
           responseJsonSchema: role === "PLANNER" ? PLANNER_RESPONSE_SCHEMA : REVIEWER_RESPONSE_SCHEMA,

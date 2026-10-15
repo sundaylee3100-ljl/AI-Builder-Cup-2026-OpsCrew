@@ -43,3 +43,10 @@ CLAUDE.local.md
 
 # Team-internal resource guide with private emails, GCP project and billing IDs
 AI-Builder-Cup-2026-Gemini-API使用指南.md
+
+# Submission video binaries and intermediate recording build caches
+submission/video_output/*.mp4
+submission/video_output/*.webm
+submission/video_output/build/
+submission/video_output/raw*/
+submission/video_output/audio*/

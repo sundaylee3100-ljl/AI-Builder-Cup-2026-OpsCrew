@@ -140,6 +140,9 @@ const SYNTHETIC_PRESETS: SyntheticPreset[] = [
 ];
 
 const DEFAULT_ALLOWED_MODELS = [
+  "gemini-2.5-flash",
+  "gemini-2.5-pro",
+  "gemini-2.5-flash-lite",
   "gemini-3.8-flash",
   "gemini-3.1-flash-lite",
   "gemini-flash-latest",
