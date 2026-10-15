@@ -9,35 +9,40 @@ Deployed on Google Cloud Run with dual-mode Vertex AI & Gemini API, Firestore, a
 Now, let us examine OpsCrew operating live in production.
 
 3
-00:00:20,820 --> 00:00:31,920
+00:00:20,520 --> 00:00:32,796
 I explicitly start a Firebase visitor session. Synthetic example DEV-04 is a
 $38 parking expense for employee SYNTH-EMP-100, with a missing receipt.
 
 4
-00:00:38,020 --> 00:00:48,420
+00:00:32,520 --> 00:00:42,495
 Gemini extracts facts, then a separately prompted Planner proposes handling steps.
 A Reviewer checks the proposal. This timer measures elapsed time.
 
 5
-00:00:58,020 --> 00:01:04,220
+00:00:50,020 --> 00:00:56,053
 Completed role attempts appear after the response; it is not live progress inside each stage.
 
 6
-00:01:10,020 --> 00:01:22,820
+00:00:55,520 --> 00:01:08,253
 The result requests receipt evidence. Clause SYN-004 asks for an itemized receipt or explanation.
 The passing plan and review grant no permission to create a case, reimburse or pay.
 
 7
-00:01:29,020 --> 00:01:41,420
+00:01:07,520 --> 00:01:19,180
 I prepare human confirmation, inspect this specific plan, and explicitly authorize the record.
 The checkbox starts unchecked. I now submit that authorization.
 
 8
-00:01:52,020 --> 00:02:00,520
+00:01:18,520 --> 00:01:26,507
 Success appears only after a separate read of the saved record from Firestore.
 The case record is atomic and policy-verified.
 
 9
-00:02:22,500 --> 00:02:33,500
+00:01:26,020 --> 00:01:35,300
+I refresh visitor history and reopen the same case to verify state parity.
+OpsCrew requires human authorization and never issues payment automatically.
+
+10
+00:01:36,520 --> 00:01:47,520
 Thank you for watching! Explore OpsCrew live on Google Cloud Run.
 Autonomous multi-agent copilot built for the AI Builder Cup 2026.

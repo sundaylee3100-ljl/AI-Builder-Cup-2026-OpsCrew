@@ -23,48 +23,49 @@ const PART1_DURATION = 20.02; // exact duration in seconds matching render-part1
 // Part 3 Video File (Outro / Thank You)
 const PART3_VIDEO = path.join(OUTPUT_DIR, "part3_outro.mp4");
 const PART3_DURATION = 12.00;
+const PART2_DURATION = 76.00;
 
-// Part 2 Clips Configuration (Total Duration = 122.0s)
+// Part 2 Clips Configuration (Total Duration = 76.0s)
 const PART2_CLIPS = [
   {
     id: "p2_c1",
-    delayMs: 800, // 00:00.80 relative to Part 2 start
+    delayMs: 500, // 00:00.50 relative to Part 2 start
     text: "I explicitly start a Firebase visitor session. This synthetic example is a thirty-eight-dollar parking expense for employee SYNTH-EMP-100, with a missing receipt.",
     sub: "I explicitly start a Firebase visitor session. Synthetic example DEV-04 is a\n$38 parking expense for employee SYNTH-EMP-100, with a missing receipt."
   },
   {
     id: "p2_c2",
-    delayMs: 18000, // 00:18.00
+    delayMs: 12500, // 00:12.50
     text: "Gemini extracts facts, then a separately prompted Planner proposes handling steps. A Reviewer checks the proposal. This timer measures elapsed time.",
     sub: "Gemini extracts facts, then a separately prompted Planner proposes handling steps.\nA Reviewer checks the proposal. This timer measures elapsed time."
   },
   {
     id: "p2_c3",
-    delayMs: 38000, // 00:38.00
+    delayMs: 30000, // 00:30.00
     text: "Completed role attempts appear after the response; it is not live progress inside each stage.",
     sub: "Completed role attempts appear after the response; it is not live progress inside each stage."
   },
   {
     id: "p2_c4",
-    delayMs: 50000, // 00:50.00
+    delayMs: 35500, // 00:35.50
     text: "The current result requests receipt evidence. Clause SYN-004 asks for an itemized receipt or a written explanation. The passing plan and review grant no permission to create a case, reimburse or pay.",
     sub: "The result requests receipt evidence. Clause SYN-004 asks for an itemized receipt or explanation.\nThe passing plan and review grant no permission to create a case, reimburse or pay."
   },
   {
     id: "p2_c5",
-    delayMs: 69000, // 01:09.00
+    delayMs: 47500, // 00:47.50
     text: "I prepare human confirmation, inspect this specific plan, and explicitly authorize the synthetic exception record. The checkbox starts unchecked. I now submit that authorization.",
     sub: "I prepare human confirmation, inspect this specific plan, and explicitly authorize the record.\nThe checkbox starts unchecked. I now submit that authorization."
   },
   {
     id: "p2_c6",
-    delayMs: 92000, // 01:32.00
+    delayMs: 58500, // 00:58.50
     text: "Success appears only after a separate read of the saved record from Firestore. The case record is atomic and policy-verified.",
     sub: "Success appears only after a separate read of the saved record from Firestore.\nThe case record is atomic and policy-verified."
   },
   {
     id: "p2_c7",
-    delayMs: 104000, // 01:44.00
+    delayMs: 66000, // 01:06.00
     text: "I refresh visitor history and reopen the same case to verify state parity. OpsCrew requires human authorization and never issues payment automatically.",
     sub: "I refresh visitor history and reopen the same case to verify state parity.\nOpsCrew requires human authorization and never issues payment automatically."
   }
@@ -89,7 +90,7 @@ function prepareAudioClips(audioDir) {
 }
 
 // Assemble Part 2 master audio track
-function buildPart2MasterAudio(audioDir, clipDurations, totalSec = 122.0) {
+function buildPart2MasterAudio(audioDir, clipDurations, totalSec = PART2_DURATION) {
   console.log(`\n=== Assembling Part 2 Master Audio Track (${totalSec.toFixed(1)}s) ===`);
   const inputs = [`-f lavfi -t ${totalSec.toFixed(2)} -i anullsrc=r=48000:cl=stereo`];
   const filterParts = ["[0:a]anull[a0]"];
@@ -130,7 +131,7 @@ function formatVttTime(ms) {
   return formatSrtTime(ms).replace(",", ".");
 }
 
-function generateCombinedSubtitles(part1DurationSec, part2ClipDurations) {
+function generateCombinedSubtitles(part1DurationSec, part2DurationSec, part2ClipDurations) {
   console.log("=== Generating Combined Subtitles (SRT & VTT) ===");
   const part1Entries = [
     {
@@ -161,7 +162,7 @@ function generateCombinedSubtitles(part1DurationSec, part2ClipDurations) {
   }
 
   // Part 3 Outro Entry
-  const part3BaseMs = part2BaseMs + Math.round(122.0 * 1000);
+  const part3BaseMs = part2BaseMs + Math.round(part2DurationSec * 1000);
   allEntries.push({
     startMs: part3BaseMs + 500,
     endMs: part3BaseMs + 11500,
@@ -198,7 +199,7 @@ async function run() {
   }
 
   const clipDurations = prepareAudioClips(AUDIO_DIR);
-  const part2MasterAudio = buildPart2MasterAudio(AUDIO_DIR, clipDurations, 122.0);
+  const part2MasterAudio = buildPart2MasterAudio(AUDIO_DIR, clipDurations, PART2_DURATION);
 
   console.log("\n[Playwright] Launching Chrome with explicit 1920x1080 window size...");
   const browser = await chromium.launch({
@@ -324,7 +325,7 @@ async function run() {
   console.log(`[Zero-Blank] Part 2 Web application ready at raw offset: ${pageReadyOffsetSec.toFixed(3)}s`);
 
   // =========================================================================
-  // PART 2 TIMELINE (0.0s to 117.0s)
+  // PART 2 TIMELINE (0.0s to 82.0s)
   // =========================================================================
   const demoStartTime = Date.now();
   const getElapsedMs = () => Date.now() - demoStartTime;
@@ -394,27 +395,27 @@ async function run() {
   await moveCursorTo(1450, 160);
 
   // ==========================================
-  // SEGMENT 1 (00:00 - 00:18): Visitor Session & DEV-04 Intake
+  // SEGMENT 1 (00:00 - 00:12.5): Visitor Session & DEV-04 Intake
   // ==========================================
   logStep("Segment 1: Start visitor session & DEV-04 intake...");
-  await waitTargetTime(0.8);
+  await waitTargetTime(0.5);
   const c1DurMs = Math.round((clipDurations["p2_c1"] + 0.6) * 1000);
-  await setSubtitle("I explicitly start a Firebase visitor session. This synthetic example is a thirty-eight-dollar parking expense for employee SYNTH-EMP-100, with a missing receipt.", c1DurMs);
+  await setSubtitle(PART2_CLIPS[0].sub, c1DurMs);
 
   // Click start visitor session
-  await smoothScrollTo(720, 600);
+  await smoothScrollTo(720, 500);
   const sessionBtn = page.locator('button:has-text("Start visitor session")');
   await clickLocator(sessionBtn);
 
   logStep("Waiting for Firebase visitor session active...");
   await page.waitForSelector("text=Firebase visitor session", { timeout: 20000 });
-  await page.waitForTimeout(1000);
+  await page.waitForTimeout(400);
 
   // Scroll back to form
-  await smoothScrollTo(180, 600);
+  await smoothScrollTo(180, 500);
   const clearBtn = page.locator('button:has-text("Clear Form")');
   await clickLocator(clearBtn);
-  await page.waitForTimeout(400);
+  await page.waitForTimeout(200);
 
   // Enter DEV-04 facts
   logStep("Entering DEV-04 description...");
@@ -424,8 +425,8 @@ async function run() {
   if (descBox) await moveCursorTo(descBox.x + 100, descBox.y + 30);
   await page.evaluate(() => window.__clickCursor());
   await descLoc.click();
-  await descLoc.pressSequentially("[SYNTHETIC] Parking fee $38.00 for SYNTH-EMP-100. Receipt lost.", { delay: 30 });
-  await page.waitForTimeout(300);
+  await descLoc.pressSequentially("[SYNTHETIC] Parking fee $38.00 for SYNTH-EMP-100. Receipt lost.", { delay: 20 });
+  await page.waitForTimeout(150);
 
   // Enter Amount
   logStep("Entering amount 38.00...");
@@ -434,14 +435,14 @@ async function run() {
   if (amtBox) await moveCursorTo(amtBox.x + 80, amtBox.y + 15);
   await page.evaluate(() => window.__clickCursor());
   await amtLoc.click();
-  await amtLoc.pressSequentially("38.00", { delay: 45 });
-  await page.waitForTimeout(250);
+  await amtLoc.pressSequentially("38.00", { delay: 30 });
+  await page.waitForTimeout(150);
 
   // Select Missing Receipt
   logStep("Selecting missing receipt radio...");
   const missingRadio = page.locator('label[for="receipt-status-missing"]');
   await clickLocator(missingRadio);
-  await page.waitForTimeout(250);
+  await page.waitForTimeout(150);
 
   // Enter Employee Identifier
   logStep("Entering employee identifier SYNTH-EMP-100...");
@@ -450,19 +451,23 @@ async function run() {
   if (empBox) await moveCursorTo(empBox.x + 80, empBox.y + 15);
   await page.evaluate(() => window.__clickCursor());
   await empLoc.click();
-  await empLoc.pressSequentially("SYNTH-EMP-100", { delay: 40 });
+  await empLoc.pressSequentially("SYNTH-EMP-100", { delay: 30 });
 
-  await waitTargetTime(18.0);
+  // Glide cursor to Analyze button
+  const analyzeBtn = page.locator('button:has-text("Analyze, plan & review")').first();
+  await analyzeBtn.scrollIntoViewIfNeeded();
+  const aBox = await analyzeBtn.boundingBox();
+  if (aBox) await moveCursorTo(aBox.x + aBox.width / 2, aBox.y + aBox.height / 2);
+
+  await waitTargetTime(12.5);
 
   // ==========================================
-  // SEGMENT 2 (00:18 - 00:38): Run Multi-Agent Review & Deliberation
+  // SEGMENT 2 (00:12.5 - 00:30.0): Run Multi-Agent Review & Deliberation
   // ==========================================
   logStep("Segment 2: Triggering Analyze, plan & review...");
   const c2DurMs = Math.round((clipDurations["p2_c2"] + 0.6) * 1000);
-  await setSubtitle("Gemini extracts facts, then a separately prompted Planner proposes handling steps. A Reviewer checks the proposal. This timer measures elapsed time.", c2DurMs);
+  await setSubtitle(PART2_CLIPS[1].sub, c2DurMs);
 
-  const analyzeBtn = page.locator('button:has-text("Analyze, plan & review")').first();
-  await analyzeBtn.scrollIntoViewIfNeeded();
   await clickLocator(analyzeBtn);
 
   logStep("Waiting for telemetry timer badge...");
@@ -475,38 +480,39 @@ async function run() {
 
   // Smooth hover over right panel
   await moveCursorTo(1350, 420);
-  await waitTargetTime(38.0);
+  await waitTargetTime(30.0);
 
   // ==========================================
-  // SEGMENT 3 (00:38 - 00:50): Inspect Completed Telemetry
+  // SEGMENT 3 (00:30.0 - 00:35.5): Inspect Completed Telemetry
   // ==========================================
   logStep("Segment 3: Expanding telemetry details...");
   const c3DurMs = Math.round((clipDurations["p2_c3"] + 0.6) * 1000);
-  await setSubtitle("Completed role attempts appear after the response; it is not live progress inside each stage.", c3DurMs);
-  await smoothScrollTo(360, 600);
+  await setSubtitle(PART2_CLIPS[2].sub, c3DurMs);
+  await smoothScrollTo(360, 400);
 
   const teleSummary = page.locator('summary:has-text("Run versions and completed-step telemetry")');
   await clickLocator(teleSummary);
-  await page.waitForTimeout(1500);
+  await page.waitForTimeout(600);
 
   await moveCursorTo(1150, 750);
-  await page.waitForTimeout(2500);
+  await page.waitForTimeout(1200);
   await moveCursorTo(1350, 750);
+  await page.waitForTimeout(1000);
 
-  await waitTargetTime(50.0);
+  await waitTargetTime(35.5);
 
   // ==========================================
-  // SEGMENT 4 (00:50 - 00:69): Inspect SYN-004 & Decision
+  // SEGMENT 4 (00:35.5 - 00:47.5): Inspect SYN-004 & Decision
   // ==========================================
   logStep("Segment 4: Inspecting decision and clause SYN-004...");
   const c4DurMs = Math.round((clipDurations["p2_c4"] + 0.6) * 1000);
-  await setSubtitle("The current result requests receipt evidence. Clause SYN-004 asks for an itemized receipt or a written explanation. The passing plan and review grant no permission to create a case, reimburse or pay.", c4DurMs);
-  await smoothScrollTo(220, 700);
-  await page.waitForTimeout(1200);
+  await setSubtitle(PART2_CLIPS[3].sub, c4DurMs);
+  await smoothScrollTo(220, 500);
+  await page.waitForTimeout(400);
 
   logStep("Hovering over EVIDENCE_REQUEST...");
   await moveCursorTo(1100, 280);
-  await page.waitForTimeout(2500);
+  await page.waitForTimeout(1600);
 
   logStep("Inspecting SYN-004 citation...");
   const syn004Loc = page.locator('text=SYN-004').first();
@@ -514,7 +520,7 @@ async function run() {
     const sBox = await syn004Loc.boundingBox();
     if (sBox) await moveCursorTo(sBox.x + 30, sBox.y + 10);
   }
-  await page.waitForTimeout(3000);
+  await page.waitForTimeout(1800);
 
   logStep("Inspecting Reviewer PASS verdict...");
   const passLoc = page.locator('text=PASS').first();
@@ -522,40 +528,45 @@ async function run() {
     const pBox = await passLoc.boundingBox();
     if (pBox) await moveCursorTo(pBox.x + 20, pBox.y + 10);
   }
-  await page.waitForTimeout(3000);
+  await page.waitForTimeout(1800);
 
   // Scroll down to Employee Notice Pre-Draft
-  await smoothScrollTo(430, 600);
+  logStep("Inspecting Employee Notice Pre-Draft...");
+  await smoothScrollTo(430, 500);
   await moveCursorTo(1150, 520);
+  await page.waitForTimeout(2000);
 
-  await waitTargetTime(69.0);
+  // Glide cursor down towards Human Confirmation
+  await moveCursorTo(1150, 700);
+
+  await waitTargetTime(47.5);
 
   // ==========================================
-  // SEGMENT 5 (00:69 - 00:93): Human Confirmation (Unchecked Pause)
+  // SEGMENT 5 (00:47.5 - 00:58.5): Human Confirmation (Unchecked Pause)
   // ==========================================
   logStep("Segment 5: Human Confirmation with explicit unchecked pause...");
   const c5DurMs = Math.round((clipDurations["p2_c5"] + 0.6) * 1000);
-  await setSubtitle("I prepare human confirmation, inspect this specific plan, and explicitly authorize the synthetic exception record. The checkbox starts unchecked. I now submit that authorization.", c5DurMs);
-  await smoothScrollTo(720, 700);
-  await page.waitForTimeout(1000);
+  await setSubtitle(PART2_CLIPS[4].sub, c5DurMs);
+  await smoothScrollTo(720, 500);
+  await page.waitForTimeout(300);
 
   logStep("Clicking Prepare human confirmation...");
   const prepBtn = page.locator('button:has-text("Prepare human confirmation")');
   await clickLocator(prepBtn);
-  await page.waitForTimeout(1000);
+  await page.waitForTimeout(400);
 
-  // Move cursor directly over the authorization checkbox and hold for 4.5 seconds UNCHECKED!
-  logStep("Demonstrating authorization checkbox is initially UNCHECKED (hovering for 4.5s)...");
+  // Move cursor directly over the authorization checkbox and hold for 2.0 seconds UNCHECKED!
+  logStep("Demonstrating authorization checkbox is initially UNCHECKED (hovering for 2.0s)...");
   const cbLoc = page.locator('input[type="checkbox"]');
   await cbLoc.waitFor({ state: "visible", timeout: 10000 });
   const cbBox = await cbLoc.boundingBox();
   if (cbBox) await moveCursorTo(cbBox.x + 8, cbBox.y + 8);
-  await page.waitForTimeout(4500);
+  await page.waitForTimeout(2000);
 
   logStep("Now checking authorization checkbox...");
   await page.evaluate(() => window.__clickCursor());
   await cbLoc.check();
-  await page.waitForTimeout(1200);
+  await page.waitForTimeout(500);
 
   logStep("Clicking Confirm & create synthetic case...");
   const confirmBtn = page.locator('button:has-text("Confirm & create synthetic case")');
@@ -564,21 +575,29 @@ async function run() {
   logStep("Waiting for verified readback...");
   await page.waitForSelector("text=Saved case verified by independent readback", { timeout: 20000 });
 
-  await waitTargetTime(92.0);
+  await waitTargetTime(58.5);
 
   // ==========================================
-  // SEGMENT 6A (00:92 - 01:04): Independent Readback & Firestore Persistence
+  // SEGMENT 6A (00:58.5 - 01:06.0): Independent Readback & Firestore Persistence
   // ==========================================
   logStep("Segment 6A: Independent readback verification & Firestore centering...");
   const c6DurMs = Math.round((clipDurations["p2_c6"] + 0.6) * 1000);
-  await setSubtitle("Success appears only after a separate read of the saved record from Firestore. The case record is atomic and policy-verified.", c6DurMs);
+  await setSubtitle(PART2_CLIPS[5].sub, c6DurMs);
 
-  // Smooth scroll down to 950 to clearly center the verified receipt and history container in viewport
-  await smoothScrollTo(950, 800);
-  await page.waitForTimeout(500);
+  // IMMEDIATELY smooth scroll down to 950 to clearly center the verified receipt and history container in viewport
+  await smoothScrollTo(950, 600);
+  await page.waitForTimeout(300);
+
+  logStep("Inspecting readback verification banner...");
+  const bannerLoc = page.locator('text=Saved case verified by independent readback').first();
+  if (await bannerLoc.count() > 0) {
+    const box = await bannerLoc.boundingBox();
+    if (box) await moveCursorTo(box.x + box.width / 2, box.y + box.height / 2);
+  }
+  await page.waitForTimeout(1500);
 
   // Hover over verified case record and Case ID
-  logStep("Inspecting verified case record and Case ID...");
+  logStep("Inspecting verified Case ID...");
   const caseIdLoc = page.locator('text=Saved case verified by independent readback').locator('..').locator('dd.font-mono').first();
   if (await caseIdLoc.count() > 0) {
     const b = await caseIdLoc.boundingBox();
@@ -586,29 +605,35 @@ async function run() {
   } else {
     await moveCursorTo(1100, 520);
   }
-  await page.waitForTimeout(2500);
+  await page.waitForTimeout(2000);
 
-  await waitTargetTime(104.0);
+  // Glide towards Refresh history button
+  const refreshBtn = page.locator('button:has-text("Refresh history")');
+  if (await refreshBtn.count() > 0) {
+    const rBox = await refreshBtn.boundingBox();
+    if (rBox) await moveCursorTo(rBox.x + rBox.width / 2, rBox.y + rBox.height / 2);
+  }
+
+  await waitTargetTime(66.0);
 
   // ==========================================
-  // SEGMENT 6B (01:04 - 02:02): History Parity & Reopen Verification
+  // SEGMENT 6B (01:06.0 - 01:16.0): History Parity & Reopen Verification
   // ==========================================
   logStep("Segment 6B: Refreshing history and reopening saved case...");
   const c7DurMs = Math.round((clipDurations["p2_c7"] + 0.6) * 1000);
-  await setSubtitle("I refresh visitor history and reopen the same case to verify state parity. OpsCrew requires human authorization and never issues payment automatically.", c7DurMs);
+  await setSubtitle(PART2_CLIPS[6].sub, c7DurMs);
 
   // Click Refresh history
   logStep("Clicking Refresh history...");
-  const refreshBtn = page.locator('button:has-text("Refresh history")');
   await clickLocator(refreshBtn);
-  await page.waitForTimeout(2000);
+  await page.waitForTimeout(800);
 
   // Click Open & verify case on the top history item
   logStep("Clicking Open & verify case on saved case...");
   const openBtn = page.locator('button:has-text("Open & verify case")').first();
   if (await openBtn.count() > 0) {
     await clickLocator(openBtn);
-    await page.waitForTimeout(2000);
+    await page.waitForTimeout(1000);
   }
 
   // Hover over reopened case verification notice
@@ -620,10 +645,14 @@ async function run() {
   } else {
     await moveCursorTo(1050, 680);
   }
+  await page.waitForTimeout(2500);
 
-  // Graceful concluding hold until exactly 122.0s
-  logStep("Holding final verified state until 122.0s mark (8-second calm conclusion)...");
-  await waitTargetTime(123.5);
+  // Smoothly move cursor towards center for a clean closing presentation
+  await moveCursorTo(960, 540);
+
+  // Graceful concluding hold until exactly 76.0s
+  logStep("Holding final verified state until 76.0s mark (calm conclusion)...");
+  await waitTargetTime(76.0);
 
   logStep("Closing browser context...");
   await context.close();
@@ -642,7 +671,7 @@ async function run() {
   console.log(`[Zero-Blank Trimming] Removing ${pageReadyOffsetSec.toFixed(3)}s loading blank from Part 2 raw capture...`);
 
   execSync(
-    `ffmpeg -y -ss ${pageReadyOffsetSec.toFixed(3)} -i "${rawFile}" -i "${part2MasterAudio}" -t 122.0 -c:v libx264 -preset medium -crf 19 -pix_fmt yuv420p -r 25 -c:a aac -b:a 192k -ar 48000 -map 0:v:0 -map 1:a:0 -shortest "${part2Mp4}"`,
+    `ffmpeg -y -ss ${pageReadyOffsetSec.toFixed(3)} -i "${rawFile}" -i "${part2MasterAudio}" -t ${PART2_DURATION.toFixed(1)} -c:v libx264 -preset medium -crf 19 -pix_fmt yuv420p -r 25 -c:a aac -b:a 192k -ar 48000 -map 0:v:0 -map 1:a:0 -shortest "${part2Mp4}"`,
     { stdio: "inherit" }
   );
 
@@ -664,7 +693,7 @@ async function run() {
   const sha256 = execSync(`shasum -a 256 "${finalCombinedMp4}"`).toString().split(" ")[0];
 
   // Generate unified subtitles
-  const { srtFile, vttFile } = generateCombinedSubtitles(PART1_DURATION, clipDurations);
+  const { srtFile, vttFile } = generateCombinedSubtitles(PART1_DURATION, PART2_DURATION, clipDurations);
 
   console.log("\n===============================================================================");
   console.log("       COMBINED OFFICIAL DEMO VIDEO GENERATED SUCCESSFULLY!                    ");
