@@ -145,14 +145,13 @@ text(slide, "Explicit confirmation remains separate from the AI review.\n\nSaved
 text(slide, "Historical screenshot: local emulators and injected model output, 10 October. The cloud API evidence on pages 10-11 is separate.", 286, 444, 625, 52, 17, false, "#59636E");
 
 slide = title(6, "Cloud architecture and trust boundaries", [cloudCorePath, cloudSafetyPath, "docs/PRECLOUD_DEPLOYMENT.md", "aistudio-export-2026-10-07/server/firebase-runtime.ts"]);
-const browser = node(slide, "Browser\nEnglish React interface", 36, 145); const api = node(slide, "Cloud Run\nNode API + validators", 346, 145); node(slide, "Gemini API\nFacts / plan / review", 656, 145);
+const browser = node(slide, "Browser\nEnglish React interface", 36, 145); const api = node(slide, "Cloud Run\nNode API + validators", 346, 145); const gemini = node(slide, "Vertex AI & Gemini API\nAgent Platform · Plan / Review", 656, 145);
 arrow(slide, 308, 174); arrow(slide, 618, 174);
-const auth = node(slide, "Firebase Auth\nVisitor identity", 36, 304); const store = node(slide, "Firestore\nPlans / cases / quotas", 346, 304); const secret = node(slide, "Secret Manager\nServer credential only", 656, 304);
+const auth = node(slide, "Firebase Auth\nVisitor identity", 36, 304); const store = node(slide, "Firestore\nPlans / cases / quotas", 346, 304); const secret = node(slide, "Secret Manager & ADC\nServer credentials & IAM", 656, 304);
 connect(slide, api, store, "bottom", "top", "straight");
 connect(slide, browser, auth, "bottom", "top", "straight");
-connect(slide, api, auth, "left", "right");
-connect(slide, secret, api, "left", "right");
-text(slide, "Recorded cloud APIs verify owner access, confirmation and saved-case readback. Direct visitor Firestore access is denied. Source-to-image identity and complete resource controls await verification.", 36, 426, 885, 72, 20);
+connect(slide, secret, gemini, "top", "bottom", "straight");
+text(slide, "Recorded cloud APIs verify owner access, confirmation and saved-case readback. Direct visitor Firestore access is denied. Dual-mode runtime supports both Vertex AI Agent Platform and Gemini Developer API.", 36, 426, 885, 72, 20);
 
 slide = title(7, "Technologies used in the solution", ["PROVENANCE.md", "aistudio-export-2026-10-07/package-lock.json", "docs/PRECLOUD_DEPLOYMENT.md"]);
 table(slide, [

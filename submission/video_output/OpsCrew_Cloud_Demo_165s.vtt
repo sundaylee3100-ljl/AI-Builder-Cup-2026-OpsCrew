@@ -1,0 +1,22 @@
+WEBVTT
+
+00:00:01.002 --> 00:00:13.670
+We are OpsCrew. We built this expense exception prototype from zero in Google AI Studio Build. Gemini plans and reviews the handling steps. Our teammate used Antigravity to assist deployment.
+
+00:00:15.001 --> 00:00:27.477
+I explicitly start a Firebase visitor session. This synthetic example is a thirty-eight-dollar parking expense for employee SYNTH-EMP-100, with a missing receipt.
+
+00:00:35.000 --> 00:00:45.175
+Gemini extracts facts, then a separately prompted Planner proposes handling steps. A Reviewer checks the proposal. This timer measures elapsed time.
+
+00:01:10.001 --> 00:01:16.234
+Completed role attempts appear after the response; it is not live progress inside each stage.
+
+00:01:35.002 --> 00:01:47.935
+The current result requests receipt evidence. Clause SYN-004 asks for an itemized receipt or a written explanation. The passing plan and review grant no permission to create a case, reimburse or pay.
+
+00:02:08.001 --> 00:02:19.861
+I prepare human confirmation, inspect this specific plan, and explicitly authorize the synthetic exception record. The checkbox starts unchecked. I now submit that authorization.
+
+00:02:28.002 --> 00:02:40.577
+Success appears only after a separate read of the saved record. I refresh this visitor's history and reopen the same case. OpsCrew does not approve reimbursement, issue payment or send a message automatically.

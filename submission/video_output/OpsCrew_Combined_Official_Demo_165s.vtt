@@ -1,0 +1,32 @@
+WEBVTT
+
+00:00:00.500 --> 00:00:09.500
+Welcome to OpsCrew, an autonomous multi-agent copilot
+built in Google AI Studio Build for the AI Builder Cup 2026.
+
+00:00:09.900 --> 00:00:20.000
+Deployed on Google Cloud Run with dual-mode Vertex AI & Gemini API, Firestore, and Secret Manager.
+Now, let us examine OpsCrew operating live in production.
+
+00:00:20.820 --> 00:00:31.920
+I explicitly start a Firebase visitor session. Synthetic example DEV-04 is a
+$38 parking expense for employee SYNTH-EMP-100, with a missing receipt.
+
+00:00:38.020 --> 00:00:48.420
+Gemini extracts facts, then a separately prompted Planner proposes handling steps.
+A Reviewer checks the proposal. This timer measures elapsed time.
+
+00:00:58.020 --> 00:01:04.220
+Completed role attempts appear after the response; it is not live progress inside each stage.
+
+00:01:10.020 --> 00:01:22.820
+The result requests receipt evidence. Clause SYN-004 asks for an itemized receipt or explanation.
+The passing plan and review grant no permission to create a case, reimburse or pay.
+
+00:01:29.020 --> 00:01:41.420
+I prepare human confirmation, inspect this specific plan, and explicitly authorize the record.
+The checkbox starts unchecked. I now submit that authorization.
+
+00:01:52.020 --> 00:02:00.520
+Success appears only after a separate read of the saved record from Firestore.
+The case record is atomic and policy-verified.

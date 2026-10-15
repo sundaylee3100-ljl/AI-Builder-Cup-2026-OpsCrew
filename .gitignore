@@ -18,6 +18,7 @@ __pycache__/
 *.pyc
 tmp_*
 nul
+scratch/
 
 # Local Firebase emulator state and downloaded tool/runtime caches
 .firebase/
