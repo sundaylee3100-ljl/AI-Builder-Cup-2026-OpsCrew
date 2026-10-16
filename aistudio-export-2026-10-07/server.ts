@@ -16,6 +16,9 @@ import {
   PLANNING_CALL_TIMEOUT_MS,
   PROMPT_VERSIONS,
   geminiGenerationControls,
+  createGenAIClient,
+  isVertexAiActive,
+  getVertexAiConfig,
 } from "./server/runtime-config.ts";
 import { PlanningReviewError, runPlanningReview } from "./server/planning-service.ts";
 import type { PlanningReviewResult, PlanningStep, TokenUsage, WorkflowResponse } from "./server/planning-contracts.ts";
@@ -661,7 +664,10 @@ export function isTimeoutError(err: unknown): boolean {
 }
 
 export interface GenerateContentCallArgs {
-  apiKey: string;
+  apiKey?: string;
+  vertexai?: boolean;
+  project?: string;
+  location?: string;
   model: string;
   promptPayload: string;
   systemInstruction: string;
@@ -683,20 +689,14 @@ export interface GenerateContentCallResult {
 async function defaultGenerateContent(
   args: GenerateContentCallArgs
 ): Promise<GenerateContentCallResult> {
-  const ai = new GoogleGenAI({
+  const ai = createGenAIClient({
     apiKey: args.apiKey,
-    httpOptions: {
-      timeout: args.timeoutMs ?? GEMINI_SDK_TIMEOUT_MS,
-      retryOptions: {
-        // The service records and bounds each attempt; no hidden SDK retry.
-        attempts: 1,
-        initialDelay: 0.5,
-        maxDelay: 2.0,
-        expBase: 2.0,
-      },
-      headers: {
-        "User-Agent": "aistudio-build",
-      },
+    vertexai: args.vertexai,
+    project: args.project,
+    location: args.location,
+    timeoutMs: args.timeoutMs ?? GEMINI_SDK_TIMEOUT_MS,
+    headers: {
+      "User-Agent": "aistudio-build",
     },
   });
 
@@ -780,6 +780,9 @@ export interface CreateAppOptions {
   caseRuntime?: FirebaseRuntime;
   generateContentFn?: (args: GenerateContentCallArgs) => Promise<GenerateContentCallResult>;
   apiKeyOverride?: string;
+  vertexaiOverride?: boolean;
+  projectOverride?: string;
+  locationOverride?: string;
   routeTimeoutMs?: number;
   workflowTimeoutMs?: number;
   planningGenerateContentFn?: Parameters<typeof runPlanningReview>[0]["generateContentFn"];
@@ -863,8 +866,18 @@ export function createApp(options: CreateAppOptions = {}): Express {
   if (modelEnabledText && modelEnabledText !== "true" && modelEnabledText !== "false") throw new Error("OPSCREW_MODEL_ENABLED must be true or false.");
   const modelEnabled = options.modelEnabled ?? modelEnabledText !== "false";
   const storageTimeoutMs = options.caseStorageTimeoutMs === undefined ? 30_000 : Math.min(30_000, Math.max(1, options.caseStorageTimeoutMs));
-  const hasModelKey = () => {
-    const key = options.apiKeyOverride ?? process.env.GEMINI_API_KEY;
+  const isVertexMode = options.vertexaiOverride ?? isVertexAiActive();
+  const vertexConfig = getVertexAiConfig();
+  const activeProject = options.projectOverride || vertexConfig.project;
+  const activeLocation = options.locationOverride || vertexConfig.location;
+  const hasModelCredentials = () => {
+    if (options.apiKeyOverride !== undefined) {
+      return Boolean(options.apiKeyOverride.trim() && options.apiKeyOverride !== "MY_GEMINI_API_KEY");
+    }
+    if (isVertexMode) {
+      return true;
+    }
+    const key = process.env.GEMINI_API_KEY;
     return Boolean(key?.trim() && key !== "MY_GEMINI_API_KEY");
   };
 
@@ -881,7 +894,7 @@ export function createApp(options: CreateAppOptions = {}): Express {
   // Liveness is deliberately separate from deployability. This probe makes no model call.
   app.get("/api/ready", async (_req: Request, res: Response) => {
     const production = process.env.NODE_ENV === "production";
-    if (!modelEnabled || !hasModelKey() || !caseRuntime.config.enabled || !caseRuntime.caseService || !caseRuntime.verifyIdToken || production && caseRuntime.config.mode !== "firestore") {
+    if (!modelEnabled || !hasModelCredentials() || !caseRuntime.config.enabled || !caseRuntime.caseService || !caseRuntime.verifyIdToken || production && caseRuntime.config.mode !== "firestore") {
       res.status(503).json({ok: false, ready: false, stage: "S4", error: {code: "SANDBOX_NOT_READY", message: "The sandbox's model, trusted identity and persistent storage configuration must be ready before use."}}); return;
     }
     try {
@@ -905,6 +918,12 @@ export function createApp(options: CreateAppOptions = {}): Express {
       route_timeout_ms: routeTimeoutMs,
       max_attempts: GEMINI_MAX_ATTEMPTS,
       api_key_configured: keyConfigured,
+      backend_mode: isVertexMode ? "vertexai_agent_platform" : "developer_api",
+      vertexai: {
+        active: isVertexMode,
+        project: isVertexMode ? activeProject : null,
+        location: isVertexMode ? activeLocation : null,
+      },
       stage: "S4",
       case_backend: caseRuntime.config,
       policy_version: POLICY_VERSION,
@@ -1123,7 +1142,7 @@ export function createApp(options: CreateAppOptions = {}): Express {
         requested_model_id: requestedModel, model_id: requestedModel,
         error: {code: "MODEL_LIMITS_UNAVAILABLE", message: "Production model processing requires trusted identity and persistent shared limits. No model call was made."}}); return;
     }
-    if (!apiKey || apiKey.trim() === "" || apiKey === "MY_GEMINI_API_KEY") {
+    if (!hasModelCredentials()) {
       await reply(500, {
         ok: false,
         run_id: runId,
@@ -1209,6 +1228,9 @@ export function createApp(options: CreateAppOptions = {}): Express {
         try {
           response = await abortable(generateContentFn({
             apiKey,
+            vertexai: isVertexMode,
+            project: isVertexMode ? activeProject : undefined,
+            location: isVertexMode ? activeLocation : undefined,
             model: requestedModel,
             promptPayload,
             systemInstruction,
@@ -1326,6 +1348,9 @@ export function createApp(options: CreateAppOptions = {}): Express {
         try {
           workflow = await runPlanningReview({
             facts: validatedFacts, runId, model: requestedModel, apiKey,
+            vertexai: isVertexMode,
+            project: isVertexMode ? activeProject : undefined,
+            location: isVertexMode ? activeLocation : undefined,
             signal: abortController.signal,
             inputVersion: body.input_version === undefined ? 1 : Number(body.input_version),
             generateContentFn: options.planningGenerateContentFn,
