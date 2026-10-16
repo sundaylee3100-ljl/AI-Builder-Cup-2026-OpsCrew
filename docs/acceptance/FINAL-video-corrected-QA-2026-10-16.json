@@ -1,0 +1,225 @@
+{
+  "date_local": "2026-10-16",
+  "timezone": "Asia/Shanghai",
+  "status": "OFFLINE_TECHNICAL_AND_VISUAL_PASS_HUMAN_LISTEN_PUBLICATION_PENDING",
+  "output": {
+    "path": "submission/OpsCrew_Submission_Demo_2026-10-16.mp4",
+    "sha256": "f9ca540644f96677aed1833cbbcc83d71e69cedf0bbc336acad8a43fb5613650",
+    "bytes": 10012205,
+    "duration_seconds": 103.981333,
+    "streams": [
+      {
+        "codec_type": "video",
+        "codec_name": "h264",
+        "width": 1920,
+        "height": 1080,
+        "nb_frames": "2599"
+      },
+      {
+        "codec_type": "audio",
+        "codec_name": "aac",
+        "sample_rate": "48000",
+        "channels": 2,
+        "nb_frames": "4884"
+      }
+    ]
+  },
+  "source": {
+    "path": "submission/Final-video.mp4",
+    "sha256": "79b6bbef75b76ce236de25a4364fe911697c6c28acfc4f12681bd79441c90c43",
+    "allowed_source_sha256_variants": [
+      "79b6bbef75b76ce236de25a4364fe911697c6c28acfc4f12681bd79441c90c43",
+      "cb64b670e057709cdcb85aa55dde7e2f05fbc3eb3490042cd13eacd4c36a6772"
+    ],
+    "variants_are_byte_identical": false,
+    "unchanged": true
+  },
+  "checks": {
+    "builder_syntax": "PASS",
+    "source_hash_before_and_after": "PASS",
+    "full_audio_video_decode_exit_code": 0,
+    "decoder_errors_observed": false,
+    "duration_strictly_under_180_seconds": true,
+    "caption_timeline_order_and_duration": "PASS",
+    "srt_vtt_same_14_texts_as_narration": "PASS",
+    "visual_cue_states_inspected": 14,
+    "additional_full_resolution_states_inspected": 11,
+    "new_text_control_glyph_problem_corrected": true,
+    "critical_checkbox_case_id_readback_and_history_controls_observable": true,
+    "same_recorded_case_fields_and_identifiers": "PASS",
+    "source_ui_recorded_order_and_speed_preserved": "PASS",
+    "owner_input_check_only": "PASS",
+    "alternate_input_check_only": "PASS",
+    "audio_mean_volume_db": -24.9,
+    "audio_max_volume_db": -5.5,
+    "non_silent_audio_signal": true,
+    "alternate_input_path": "submission/Original_Recorded_Demo_2026-10-16.mp4",
+    "alternate_input_sha256": "cb64b670e057709cdcb85aa55dde7e2f05fbc3eb3490042cd13eacd4c36a6772",
+    "path_handoff_enoent_then_resolved": true
+  },
+  "narration": {
+    "engine": "Windows System.Speech",
+    "voice": "Microsoft Zira Desktop",
+    "locale": "en-US",
+    "offline": true,
+    "rate": 3,
+    "words": 199,
+    "speech_duration_seconds": 67.613786,
+    "full_listen": "NOT_PERFORMED",
+    "transcription": "NOT_PERFORMED",
+    "same_input_used_for_tts_and_captions": true,
+    "caption_audio_alignment_method": "Measured each synthesized WAV; shared timeline for audio delay, burned caption enable interval, SRT and VTT. AAC/video initial offset approximately 21 milliseconds."
+  },
+  "edit_decision_list": [
+    {
+      "id": "intro",
+      "kind": "card",
+      "duration": 14,
+      "outputStart": 0,
+      "outputEnd": 14
+    },
+    {
+      "id": "intake",
+      "kind": "recording",
+      "duration": 14,
+      "outputStart": 14,
+      "outputEnd": 28,
+      "source_start": 24.04,
+      "source_end": 38.04
+    },
+    {
+      "id": "roles",
+      "kind": "recording",
+      "duration": 19,
+      "outputStart": 28,
+      "outputEnd": 47,
+      "source_start": 42.04,
+      "source_end": 61.04
+    },
+    {
+      "id": "decision",
+      "kind": "recording",
+      "duration": 17,
+      "outputStart": 47,
+      "outputEnd": 64,
+      "source_start": 65.04,
+      "source_end": 82.04
+    },
+    {
+      "id": "consent",
+      "kind": "recording",
+      "duration": 13,
+      "outputStart": 64,
+      "outputEnd": 77,
+      "source_start": 86.04,
+      "source_end": 99.04
+    },
+    {
+      "id": "readback",
+      "kind": "recording",
+      "duration": 14.96,
+      "outputStart": 77,
+      "outputEnd": 91.96000000000001,
+      "source_start": 103.04,
+      "source_end": 118.0
+    },
+    {
+      "id": "outro",
+      "kind": "card",
+      "duration": 12,
+      "outputStart": 91.96000000000001,
+      "outputEnd": 103.96000000000001
+    }
+  ],
+  "contact_sheet_cue_midpoints_seconds": [
+    2.972,
+    7.867,
+    16.601,
+    21.2,
+    30.574,
+    36.27,
+    49.452,
+    54.342,
+    66.637,
+    71.602,
+    79.007,
+    84.287,
+    95.261,
+    100.702
+  ],
+  "full_resolution_timestamps_seconds": [
+    3,
+    31,
+    43.96,
+    49,
+    56.96,
+    66.96,
+    69.96,
+    73.96,
+    81.96,
+    96,
+    101
+  ],
+  "files": [
+    {
+      "path": "submission/OpsCrew_Submission_Demo_2026-10-16.mp4",
+      "bytes": 10012205,
+      "sha256": "f9ca540644f96677aed1833cbbcc83d71e69cedf0bbc336acad8a43fb5613650"
+    },
+    {
+      "path": "submission/OpsCrew_Submission_Demo_2026-10-16.srt",
+      "bytes": 1852,
+      "sha256": "f95eac1ee611c7cbdcb8e43b5649eb94721e6c62e399d95b849a17aeb76127fc"
+    },
+    {
+      "path": "submission/OpsCrew_Submission_Demo_2026-10-16.vtt",
+      "bytes": 1827,
+      "sha256": "bfe3bc0b7b4f14a6918a27215cd34f84d6d6b66716c6d0332c7e795044ce57bf"
+    },
+    {
+      "path": "submission/build-reviewed-demo.mjs",
+      "bytes": 16151,
+      "sha256": "9dc63181b97cc53b4e59d2b299f1e2b5414f22199bcc063dd9ae973fadd88022"
+    },
+    {
+      "path": "docs/acceptance/FINAL-video-corrected-contactsheet-2026-10-16.png",
+      "bytes": 1166299,
+      "sha256": "e76a5c69161bec35970aba8da61099bf08d70e9320c639506f157fc2f66e82a1"
+    }
+  ],
+  "hosted_video": {
+    "old_owner_supplied_url": "https://youtu.be/8MACVIPWCt8",
+    "is_corrected_video_url": false,
+    "new_public_url": null,
+    "full_anonymous_playback": "NOT_PERFORMED",
+    "old_hosted_video_updated_by_agent": false
+  },
+  "boundaries": {
+    "new_cloud_calls": 0,
+    "new_model_calls": 0,
+    "paid_tts_calls": 0,
+    "browser_actions": 0,
+    "original_audio_included": false,
+    "old_intro_chapter_cards_outro_included": false,
+    "new_success_state_or_business_field_overlaid": false,
+    "source_overlay_is_native_browser_address_bar": false,
+    "footage_backend_run_independently_reverified_by_this_edit": false
+  },
+  "cleanup": {
+    "status": "RECYCLED_AFTER_QA",
+    "verified_absent": true
+  },
+  "remaining_acceptance": [
+    "Complete human listening check of the final generated voice track",
+    "Publish corrected asset and verify full anonymous playback/content identity",
+    "Update final proposal/submission to the approved corrected public URL"
+  ],
+  "post_qa_cleanup": {
+    "directory": ".review-media-20261016",
+    "status": "RECYCLED_AFTER_QA",
+    "method": "Scoped Windows Recycle Bin operation after resolved-root, ownership-marker and final-output checks",
+    "verified_absent": true,
+    "output_preserved": true,
+    "previously_rejected_materials_directory": "NOT_RETRIED"
+  }
+}
