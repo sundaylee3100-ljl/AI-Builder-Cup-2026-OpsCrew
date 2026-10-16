@@ -1,0 +1,276 @@
+{
+  "review_date_local": "2026-10-16",
+  "timezone": "Asia/Shanghai",
+  "status": "TECHNICAL_PASS_CONTENT_CORRECTIONS_REQUIRED",
+  "asset": {
+    "path": "submission/Final-video.mp4",
+    "sha256": "79b6bbef75b76ce236de25a4364fe911697c6c28acfc4f12681bd79441c90c43",
+    "bytes": 15450681,
+    "duration_seconds": 132.04,
+    "under_180_seconds": true,
+    "video": {
+      "codec": "h264",
+      "profile": "High",
+      "width": 1920,
+      "height": 1080,
+      "fps": 25,
+      "frames": 3301,
+      "pixel_format": "yuv420p"
+    },
+    "audio": {
+      "codec": "aac",
+      "profile": "LC",
+      "sample_rate": 48000,
+      "channels": 2,
+      "duration_seconds": 132.037,
+      "mean_volume_db": -28.1,
+      "max_volume_db": -8.1
+    }
+  },
+  "technical": {
+    "full_audio_video_decode_exit_code": 0,
+    "decoder_errors_observed": false,
+    "non_silent_signal": true
+  },
+  "visual_method": {
+    "primary_frame_timestamps_seconds": [
+      0.5,
+      8,
+      18,
+      28,
+      38,
+      48,
+      58,
+      68,
+      78,
+      88,
+      98,
+      108,
+      118,
+      128
+    ],
+    "full_resolution_detail_timestamps_seconds": [
+      25,
+      39,
+      58,
+      75,
+      83,
+      89,
+      96,
+      105,
+      119
+    ],
+    "additional_gate_crop_timestamps_actually_displayed_seconds": [
+      85,
+      87,
+      90,
+      91,
+      92,
+      94
+    ],
+    "additional_chapter_timestamps_seconds": [
+      63,
+      80,
+      101
+    ],
+    "distinct_timestamps_actually_inspected": 31,
+    "contact_sheet_timestamps_seconds": [
+      0.5,
+      8,
+      25,
+      39,
+      58,
+      63,
+      75,
+      83,
+      87,
+      91,
+      92,
+      96,
+      101,
+      108,
+      119
+    ],
+    "contact_sheet_path": "docs/acceptance/FINAL-video-review-2026-10-16-contactsheet.png",
+    "frames_extracted_to_disk": false
+  },
+  "observed_recorded_workflow": {
+    "displayed_url": "https://opscrew-883881551915.us-central1.run.app",
+    "fresh_live_access_verified": false,
+    "input": {
+      "amount_minor": 3800,
+      "currency": "USD",
+      "receipt_status": "missing",
+      "employee_identifier": "SYNTH-EMP-100",
+      "description": "[SYNTHETIC] Parking fee $38.00 for SYNTH-EMP-100. Receipt lost.",
+      "entry_method": "manual; not the Synthetic 04 employee-mismatch preset"
+    },
+    "model_displayed": "gemini-2.5-flash",
+    "server_reported_completed_step_seconds": {
+      "FACTS": 2.74,
+      "PLANNER": 2.88,
+      "REVIEWER": 6.37
+    },
+    "review_status": "PASS",
+    "workflow_status": "REVIEWABLE",
+    "policy_branch": "EVIDENCE_REQUEST",
+    "syn_004_in_visible_citation_list": true,
+    "operator_draft_copy_only_notice_visible": true,
+    "prepare_confirmation_observed": true,
+    "initial_unchecked_checkbox_independently_proven_by_frames": false,
+    "initial_checkbox_visual_limit": "Blue cursor overlay obscures the checkbox at sampled preview frames",
+    "checked_confirm_observed": true,
+    "independent_readback_success_ui_observed": true,
+    "same_visitor_history_open_verify_observed": true,
+    "case_id": "case_766f41e6495acdc3ac35d68c81c4a2381059748b98fbcc51644e7c87f05ddeba",
+    "plan_id": "plan_c213aad8-fb40-4a0d-bf9a-13b7a373b94f",
+    "plan_version": 1,
+    "created_at_displayed": "2026-10-15T11:53:31.376Z",
+    "saved_status": "OPEN",
+    "saved_action": "create_exception_case",
+    "inspected_saved_fields_match_recorded_plan": true,
+    "payment_or_reimbursement_execution_observed": false,
+    "automatic_message_dispatch_observed": false,
+    "ocr_observed": false,
+    "displayed_url_provenance": "Teammate recording script uses a DOM overlay, not native browser chrome; independently reported by root. No HAR/source-identity proof from the overlay."
+  },
+  "content_corrections_required": [
+    {
+      "id": "V01",
+      "at_seconds": [
+        39,
+        58
+      ],
+      "topic": "immutable telemetry and provider-specific execution claim",
+      "replacement_scope": "completed-step telemetry; name provider only with deployment evidence"
+    },
+    {
+      "id": "V02",
+      "at_seconds": [
+        63,
+        119
+      ],
+      "topic": "zero-hallucination claim",
+      "replacement_scope": "deterministic synthetic-policy checks with validated AI outputs"
+    },
+    {
+      "id": "V03",
+      "at_seconds": [
+        83,
+        85
+      ],
+      "topic": "signed immutable case creation / cryptographic audit binding",
+      "replacement_scope": "explicit human confirmation bound to current input and plan"
+    },
+    {
+      "id": "V04",
+      "at_seconds": [
+        101
+      ],
+      "topic": "perfect parity across visitor sessions / permanent immutable audit trail",
+      "replacement_scope": "one synthetic case, same-visitor history verification"
+    },
+    {
+      "id": "V05",
+      "at_seconds": [
+        105,
+        108
+      ],
+      "topic": "direct browser Firestore read / perfect cryptographic parity",
+      "replacement_scope": "authenticated server API readback and displayed-field comparison"
+    },
+    {
+      "id": "V06",
+      "at_seconds": [
+        119,
+        128
+      ],
+      "topic": "15-second SLA and 48-hour backlog reduction",
+      "replacement_scope": "one measured recorded sample, or omit timing claim"
+    },
+    {
+      "id": "V07",
+      "at_seconds": [
+        119,
+        128
+      ],
+      "topic": "USD 40 monthly hard cap",
+      "replacement_scope": "team budget target, not billing hard stop"
+    },
+    {
+      "id": "V08",
+      "at_seconds": [
+        119,
+        128
+      ],
+      "topic": "100-percent readback parity and universal integrity guarantee",
+      "replacement_scope": "one independently read synthetic saved case"
+    },
+    {
+      "id": "V09",
+      "at_seconds": [
+        119,
+        128
+      ],
+      "topic": "automatic provider failover",
+      "replacement_scope": "supported configuration modes only unless failover evidence is supplied"
+    },
+    {
+      "id": "V10",
+      "at_seconds": [
+        119,
+        128
+      ],
+      "topic": "undated 232 test total",
+      "replacement_scope": "final reviewed current test total with date and scope, or omit"
+    },
+    {
+      "id": "V11",
+      "at_seconds": [
+        25,
+        28
+      ],
+      "topic": "DEV-04 versus manual example and Synthetic 04",
+      "replacement_scope": "manual synthetic missing-receipt example"
+    }
+  ],
+  "audio_full_listen": "NOT_PERFORMED",
+  "speech_transcription": "NOT_PERFORMED",
+  "caption_review": "VISUAL_SAMPLED_BURNED_IN_TEXT_ONLY",
+  "hosted_video": {
+    "supplied_url": "https://youtu.be/8MACVIPWCt8",
+    "opened_by_this_agent": false,
+    "full_anonymous_playback": "NOT_PERFORMED",
+    "identity_to_local_asset": "UNVERIFIED"
+  },
+  "no_new_cloud_calls": true,
+  "no_new_model_calls": true,
+  "application_or_video_modified": false,
+  "cleanup": {
+    "temporary_files_created": 0,
+    "temporary_directories_created": 0,
+    "disk_outputs_are_retained_formal_review_evidence": true
+  },
+  "proposal_ui_evidence": [
+    {
+      "path": "docs/acceptance/FINAL-video-ui-plan-2026-10-16.png",
+      "source_seconds": 75,
+      "crop": {
+        "x": 305,
+        "y": 42,
+        "width": 1325,
+        "height": 870
+      }
+    },
+    {
+      "path": "docs/acceptance/FINAL-video-ui-savedcase-2026-10-16.png",
+      "source_seconds": 96,
+      "crop": {
+        "x": 305,
+        "y": 442,
+        "width": 1325,
+        "height": 445
+      }
+    }
+  ]
+}

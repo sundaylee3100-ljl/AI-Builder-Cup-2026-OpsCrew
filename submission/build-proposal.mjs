@@ -7,20 +7,36 @@ import { execFileSync } from "node:child_process";
 
 const repository = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const runtime = process.env.OPSCREW_DOCUMENT_RUNTIME || "C:/Users/admin/.cache/codex-runtimes/codex-primary-runtime/dependencies";
-const skill = process.env.OPSCREW_PRESENTATIONS_SKILL || "C:/Users/admin/.codex/plugins/cache/openai-primary-runtime/presentations/26.1011.11113/skills/presentations";
+const skill = process.env.OPSCREW_PRESENTATIONS_SKILL || "C:/Users/admin/.codex/plugins/cache/openai-primary-runtime/presentations/26.1013.11914/skills/presentations";
 process.env.RUNTIME_NODE_MODULES = path.join(runtime, "node/node_modules");
 const { FileBlob, PresentationFile } = await import(pathToFileURL(path.join(runtime, "node/node_modules/@oai/artifact-tool/dist/artifact_tool.mjs")).href);
 const source = path.join(repository, "submission/assets/official-submission-template.pptx");
-const reportPath = process.argv[2];
+const requestedReportPath = process.argv[2];
 const revision = process.argv[3] || "review";
 const cloudCorePath = process.argv[4];
 const cloudSafetyPath = process.argv[5];
-if (!reportPath || !cloudCorePath || !cloudSafetyPath || !/^[a-zA-Z0-9-]+$/.test(revision)) throw new Error("Usage: node submission/build-proposal.mjs METRICS_JSON NEW_REVIEW_REVISION CLOUD_G3_JSON CLOUD_SAFETY_JSON");
-const metrics = JSON.parse(await fs.readFile(path.resolve(repository, reportPath), "utf8"));
-const offline = metrics.fresh_executed_checks?.offline_tests;
+if (!requestedReportPath || !cloudCorePath || !cloudSafetyPath || !/^[a-zA-Z0-9-]+$/.test(revision)) throw new Error("Usage: node submission/build-proposal.mjs METRICS_JSON NEW_REVIEW_REVISION CLOUD_G3_JSON CLOUD_SAFETY_JSON");
+// Prefer the integrated provider review when available. An older CLI evidence path
+// remains a fallback, but its observations retain their original dates and scope.
+let reportPath = requestedReportPath;
+let metrics;
+const integratedReportPath = "docs/acceptance/FINAL-integrated-validation-2026-10-16.json";
+try {
+  metrics = JSON.parse(await fs.readFile(path.resolve(repository, integratedReportPath), "utf8"));
+  if (!metrics.metrics?.offline_tests) throw new Error("Integrated evidence has no recorded offline result.");
+  reportPath = integratedReportPath;
+} catch (error) {
+  if (error.code !== "ENOENT") throw error;
+  metrics = JSON.parse(await fs.readFile(path.resolve(repository, reportPath), "utf8"));
+}
+const offline = metrics.metrics?.offline_tests || metrics.fresh_executed_checks?.offline_tests || (typeof metrics.offline_tests === "object" ? metrics.offline_tests : null);
 const offlineCount = offline ? `${offline.passed} / ${offline.passed + offline.failed}` : metrics.offline_tests;
 if (!offlineCount) throw new Error("Missing recorded offline test result.");
-const offlineDate = metrics.completed_at?.slice(0, 10) || "2026-10-11";
+const offlineDate = metrics.completed_at?.slice(0, 10) || metrics.audit_date;
+if (!/^\d{4}-\d{2}-\d{2}$/.test(offlineDate || "")) throw new Error("The offline evidence must supply its actual execution/audit date.");
+const nativeArtifact = metrics.metrics?.native_production_artifact || metrics.native_production_artifact || metrics.fresh_executed_checks?.native_production_artifact;
+const nativeArtifactCount = Number.isInteger(nativeArtifact?.passed_groups) && nativeArtifact.status !== "PENDING" ? `${nativeArtifact.passed_groups} groups` : "Pending";
+const nativeArtifactMethod = nativeArtifactCount === "Pending" ? "No completed result for current source" : `${Number.isInteger(nativeArtifact.http_checks_included) ? `${nativeArtifact.http_checks_included} HTTP checks included, ` : "Native runtime, "}${offlineDate}`;
 const core = JSON.parse(await fs.readFile(path.resolve(repository, cloudCorePath), "utf8"));
 const safety = JSON.parse(await fs.readFile(path.resolve(repository, cloudSafetyPath), "utf8"));
 if (!core.ok || !safety.ok || !safety.target?.startsWith("https://") || safety.deployment_source_image_binding !== "UNVERIFIED") throw new Error("This review builder requires successful recorded API evidence with its unverified deployment binding preserved.");
@@ -28,6 +44,16 @@ const cloudUrl = new URL(safety.target).href.replace(/\/$/, "");
 const captain = process.env.OPSCREW_PUBLIC_CAPTAIN_NAME?.trim() || "awaiting verified registration name";
 const videoUrl = process.env.OPSCREW_PUBLIC_VIDEO_URL?.trim();
 if (videoUrl && !/^https:\/\/(?:www\.)?(?:youtube\.com|youtu\.be|vimeo\.com|drive\.google\.com)\//.test(videoUrl)) throw new Error("Use an allowed HTTPS public video host; anonymous playback still requires manual verification.");
+const videoAccepted = process.env.OPSCREW_VIDEO_CONTENT_ACCEPTED === "true";
+if (videoAccepted && !videoUrl) throw new Error("Accepted footage still requires an anonymously playable public video URL.");
+const publicVideoAccepted = videoAccepted && process.env.OPSCREW_VIDEO_ANONYMOUS_PLAYBACK_ACCEPTED === "true";
+const proposalLabel = videoAccepted ? "Competition proposal" : "Submission review";
+const screenshotPath = process.env.OPSCREW_CLOUD_SCREENSHOT?.trim();
+const screenshotSeconds = process.env.OPSCREW_CLOUD_SCREENSHOT_SECONDS?.trim();
+if (screenshotPath && !/^\d+(?:\.\d+)?$/.test(screenshotSeconds || "")) throw new Error("Cloud footage screenshots require their actual source timestamp in seconds.");
+const savedScreenshotPath = process.env.OPSCREW_CLOUD_SAVEDCASE_SCREENSHOT?.trim();
+const savedScreenshotSeconds = process.env.OPSCREW_CLOUD_SAVEDCASE_SCREENSHOT_SECONDS?.trim();
+if (savedScreenshotPath && !/^\d+(?:\.\d+)?$/.test(savedScreenshotSeconds || "")) throw new Error("Saved-case screenshots require their actual source timestamp in seconds.");
 const privateDirectory = path.join(repository, ".materials-build", revision);
 const pptx = path.join(repository, `submission/OpsCrew_Proposal_Cloud_${revision}.pptx`);
 const pdf = path.join(repository, `submission/OpsCrew_Proposal_Cloud_${revision}.pdf`);
@@ -64,7 +90,7 @@ function text(slide, content, x, y, width, height, size = 22, bold = false, colo
 function title(index, heading, sources) {
   const s = presentation.slides.items[index];
   text(s, heading, 28, 70, 904, 43, 25, true);
-  text(s, `OpsCrew  /  Cloud evidence review  /  ${index + 1}`, 28, 505, 900, 20, 12, false, "#59636E");
+  text(s, `OpsCrew  /  ${proposalLabel}  /  ${index + 1}`, 28, 505, 900, 20, 12, false, "#59636E");
   s.speakerNotes.text = sources.join("\n");
   return s;
 }
@@ -101,7 +127,7 @@ let slide = presentation.slides.items[0];
 text(slide, "Team OpsCrew", 28, 303, 744, 42, 32, true);
 text(slide, "Expense exception plans with human confirmation", 28, 355, 735, 61, 24);
 text(slide, `Captain: ${captain}\nTheme: Future of Work & Enterprise Productivity`, 28, 428, 755, 65, 19);
-text(slide, "Cloud evidence review  /  14 October 2026", 28, 505, 750, 20, 12, false, "#59636E");
+text(slide, `${proposalLabel}  /  16 October 2026`, 28, 505, 750, 20, 12, false, "#59636E");
 slide.images.add({ blob: new Uint8Array(await fs.readFile(path.join(repository, "submission/assets/team-logo.png"))), contentType: "image/png", alt: "Owner-provided Gemini-generated OpsCrew logo", fit: "contain", position: { left: 802, top: 365, width: 130, height: 129 } });
 slide.speakerNotes.text = `Public captain name, when provided, comes from the owner. Eligibility and registration declarations remain the authorized team's responsibility.\n${rules}\nFresh Google AI Studio Build creation on 7 October. Logo supplied by owner as Gemini-generated. The owner reports that the teammate used Google Antigravity to assist Cloud deployment; this is tool attribution, not automated deployment-source attestation.`;
 
@@ -137,43 +163,52 @@ connect(slide, flowReview, flowPolicy, "bottom", "top", "straight");
 arrow(slide, 308, 322, 27, 22, "leftArrow"); arrow(slide, 618, 322, 27, 22, "leftArrow");
 text(slide, "Missing evidence produces a request plan. Contradictions block progression.\nEditing intake requires a new analysis and a new confirmation.", 36, 416, 885, 69, 21);
 
-slide = title(5, "Interface and narrow-screen review", [s3, "docs/acceptance/S03-emulator-ui-mobile-2026-10-10.png"]);
-slide.images.add({ blob: new Uint8Array(await fs.readFile(path.join(repository, "docs/acceptance/S03-emulator-ui-mobile-2026-10-10.png"))), contentType: "image/png", alt: "Actual S3 local emulator narrow-screen UI", fit: "contain", position: { left: 36, top: 125, width: 215, height: 370 } });
-text(slide, "Observed local browser behavior", 286, 147, 635, 43, 23, true);
-paragraphs(slide, [], 0);
-text(slide, "Explicit confirmation remains separate from the AI review.\n\nSaved history survives a page reload with the same visitor identity.\n\nThe 390 px viewport had no horizontal overflow. Keyboard focus was visible.", 286, 208, 625, 218, 22);
-text(slide, "Historical screenshot: local emulators and injected model output, 10 October. The cloud API evidence on pages 10-11 is separate.", 286, 444, 625, 52, 17, false, "#59636E");
+slide = title(5, screenshotPath ? "Interface in the recorded cloud demonstration" : "Interface and narrow-screen review", [s3, screenshotPath || "docs/acceptance/S03-emulator-ui-mobile-2026-10-10.png"]);
+if (screenshotPath) {
+  slide.images.add({ blob: new Uint8Array(await fs.readFile(path.resolve(repository, screenshotPath))), contentType: "image/png", alt: `Actual cloud interface in the supplied recording at ${screenshotSeconds} seconds`, fit: "contain", position: { left: 36, top: 125, width: 640, height: 360 } });
+  text(slide, "A person reviews the current result before confirming an eligible handling record.", 702, 145, 220, 147, 21);
+  text(slide, `Recorded UI, 15 October 2026, at ${screenshotSeconds} s. Synthetic example supplied by the team.`, 702, 324, 220, 169, 17, false, "#59636E");
+} else {
+  slide.images.add({ blob: new Uint8Array(await fs.readFile(path.join(repository, "docs/acceptance/S03-emulator-ui-mobile-2026-10-10.png"))), contentType: "image/png", alt: "Actual S3 local emulator narrow-screen UI", fit: "contain", position: { left: 36, top: 125, width: 215, height: 370 } });
+  text(slide, "Observed local browser behavior", 286, 147, 635, 43, 23, true);
+  text(slide, "Explicit confirmation remains separate from the AI review.\n\nSaved history survives a page reload with the same visitor identity.\n\nThe 390 px viewport had no horizontal overflow. Keyboard focus was visible.", 286, 208, 625, 218, 22);
+  text(slide, "Historical screenshot: local emulators and injected model output, 10 October. The cloud API evidence on pages 10-11 is separate.", 286, 444, 625, 52, 17, false, "#59636E");
+}
 
-slide = title(6, "Cloud architecture and trust boundaries", [cloudCorePath, cloudSafetyPath, "docs/PRECLOUD_DEPLOYMENT.md", "aistudio-export-2026-10-07/server/firebase-runtime.ts"]);
-const browser = node(slide, "Browser\nEnglish React interface", 36, 145); const api = node(slide, "Cloud Run\nNode API + validators", 346, 145); node(slide, "Gemini API\nFacts / plan / review", 656, 145);
+slide = title(6, "Cloud architecture and trust boundaries", [reportPath, "docs/acceptance/FINAL-cloud-readonly-2026-10-16.json", "aistudio-export-2026-10-07/server/runtime-config.ts", "aistudio-export-2026-10-07/server/planning-service.ts"]);
+const browser = node(slide, "Browser\nEnglish React interface", 36, 145); const api = node(slide, "Cloud Run\nNode API + validators", 346, 145); node(slide, "Vertex AI / Gemini\nDeveloper API option", 656, 145);
 arrow(slide, 308, 174); arrow(slide, 618, 174);
-const auth = node(slide, "Firebase Auth\nVisitor identity", 36, 304); const store = node(slide, "Firestore\nPlans / cases / quotas", 346, 304); const secret = node(slide, "Secret Manager\nServer credential only", 656, 304);
+const auth = node(slide, "Firebase Auth\nVisitor identity", 36, 304); const store = node(slide, "Firestore\nPlans / cases / quotas", 346, 304); const credential = node(slide, "ADC service identity\nAPI key optional", 656, 304);
 connect(slide, api, store, "bottom", "top", "straight");
 connect(slide, browser, auth, "bottom", "top", "straight");
 connect(slide, api, auth, "left", "right");
-connect(slide, secret, api, "left", "right");
-text(slide, "Recorded cloud APIs verify owner access, confirmation and saved-case readback. Direct visitor Firestore access is denied. Source-to-image identity and complete resource controls await verification.", 36, 426, 885, 72, 20);
+connect(slide, credential, api, "left", "right");
+text(slide, "The server selects Vertex AI with ADC or the optional Developer API route. Model credentials stay on the server. Visitor identity controls access to plans and saved cases.", 36, 426, 885, 72, 20);
 
-slide = title(7, "Technologies used in the solution", ["PROVENANCE.md", "aistudio-export-2026-10-07/package-lock.json", "docs/PRECLOUD_DEPLOYMENT.md"]);
+slide = title(7, "Technologies used in the solution", ["PROVENANCE.md", reportPath, "docs/acceptance/FINAL-cloud-readonly-2026-10-16.json", "aistudio-export-2026-10-07/server/runtime-config.ts"]);
 table(slide, [
   ["Component", "Role"],
   ["Google AI Studio Build", "Fresh application origin on 7 October"],
-  ["Gemini 3.1 Flash-Lite", "Facts, separately prompted Planner and Reviewer"],
-  ["Node 24 / React / TypeScript", "API, explicit review interface and fixed validators"],
-  ["Firebase Auth + Firestore", "Visitor ownership, atomic records and shared quotas"],
-  ["Cloud Run + Secret Manager", "Cloud API runtime and server-only credential"],
+  ["Gemini server modes", "Vertex AI with ADC; optional Developer API"],
+  ["Current service config", "Gemini 2.5 Flash, self-reported on 16 October"],
+  ["Node 24 / React / TypeScript", "Explicit confirmation and fixed API policy checks"],
+  ["Cloud Run + Firebase", "Hosting, visitor identity and saved handling records"],
 ], [320, 568], 138, 313);
-text(slide, "Created from zero in AI Studio Build. The teammate used Antigravity to assist Cloud deployment (owner-reported).", 36, 460, 888, 40, 18, false, "#59636E");
+text(slide, "From zero in AI Studio Build. Antigravity assisted deployment (team-reported).", 36, 460, 888, 40, 18, false, "#59636E");
 
 slide = title(8, "Implementation cost and traffic controls", ["docs/DELIVERY_WORKBOARD.md", "docs/PRECLOUD_BACKEND.md", "docs/EVALUATION_PROTOCOL.md"]);
 paragraphs(slide, [
   "Team management target: USD 40. Billing alerts and application quotas cannot guarantee a monetary spending cap.",
   "Default model limits: 2 concurrent runs globally, 1 per visitor. Each visitor has 2 runs per minute and 12 per UTC day.",
   "Global limits: 6 runs per minute and 60 per UTC day. Each workflow reserves up to 6 provider attempts. Unknown usage receives no refund.",
-  `13 October observations: ${safety.known_provider_attempts} provider attempts and ${safety.known_tokens.toLocaleString("en-US")} known tokens. One first FACTS call returned 503. Its usage and actual billed cost are unknown.`,
+  `Historical 13 October Developer API observations: ${safety.known_provider_attempts} attempts and ${safety.known_tokens.toLocaleString("en-US")} known tokens. One FACTS call returned 503. Its usage and actual billed cost are unknown.`,
 ], 130, 88, 888, 21);
 
-slide = title(9, "Prototype: recorded cloud API results", [cloudCorePath, cloudSafetyPath]);
+slide = title(9, savedScreenshotPath ? "Prototype: confirmed case and independent readback" : "Prototype: recorded cloud API results", [cloudCorePath, cloudSafetyPath, ...(savedScreenshotPath ? [savedScreenshotPath] : [])]);
+if (savedScreenshotPath) {
+  slide.images.add({ blob: new Uint8Array(await fs.readFile(path.resolve(repository, savedScreenshotPath))), contentType: "image/png", alt: `Actual saved-case interface in the supplied recording at ${savedScreenshotSeconds} seconds`, fit: "contain", position: { left: 36, top: 140, width: 888, height: 299 } });
+  text(slide, `Recorded UI, 15 October 2026, at ${savedScreenshotSeconds} s. The confirmed USD 38 synthetic request is OPEN. No reimbursement approval or payment occurs.`, 36, 454, 888, 49, 18, false, "#59636E");
+} else {
 table(slide, [
   ["Synthetic input / check", "Observed cloud result"],
   ["USD 38, missing receipt", "EVIDENCE_REQUEST plan. Explicit confirmation saved one case; independent readback matched."],
@@ -182,23 +217,25 @@ table(slide, [
   ["Replay / different visitor", "Same committed case / 404 for the other visitor."],
 ], [330, 558], 138, 305);
 text(slide, "Recorded HTTP response evidence, 13 October 2026. Synthetic handling records only. No reimbursement approval or payment occurs.", 36, 462, 888, 39, 18, false, "#59636E");
+}
 
 slide = title(10, "Performance report and evidence boundaries", [reportPath, cloudCorePath, cloudSafetyPath, "docs/PRECLOUD_EVALUATION.md"]);
-table(slide, [
+const performanceTable = table(slide, [
   ["Evidence", "Result", "Method"],
-  ["Cloud core API", `${core.passed} / ${core.passed + core.failed}`, "Real Auth, Gemini, Firestore; 13 Oct"],
-  ["Cloud safety API", `${safety.checks.filter(x => x.outcome === "PASS").length} / ${safety.checks.length}`, "Includes core verifier; overlapping checks"],
-  ["Real Gemini workflows", "3 public cases", "Missing receipt, no action, contradiction"],
+  ["Historical cloud core", `${core.passed} / ${core.passed + core.failed}`, "3.1 Flash-Lite Developer API, 13 Oct"],
+  ["Historical cloud safety", `${safety.checks.filter(x => x.outcome === "PASS").length} / ${safety.checks.length}`, "13 Oct, includes overlapping core checks"],
+  ["Historical real workflows", "3 public cases", "3.1 Flash-Lite, 13 Oct"],
   ["Offline engineering", offlineCount, `${offlineDate} local regressions`],
-  ["Historical packaging", "12 groups", "Includes 9 HTTP checks; native runtime, 11 Oct"],
+  ["Native artifact checks", nativeArtifactCount, nativeArtifactMethod],
 ], [265, 158, 465], 138, 302);
-text(slide, "Three cloud workflow observations: 8.381-12.042 s. The missing-receipt run recovered from one 503. These public cases establish neither an SLA nor independent held-out acceptance.", 36, 456, 888, 47, 17, false, "#59636E");
+for (let r = 0; r < 6; r++) for (let c = 0; c < 3; c++) performanceTable.getCell(r, c).text.style = { fontSize: 18, typeface: font, bold: r === 0, color: "#17212B" };
+text(slide, "13 October workflow observations: 8.381-12.042 s, including recovery from one 503. These results do not certify the current Vertex backend, an SLA or independent held-out acceptance.", 36, 456, 888, 47, 17, false, "#59636E");
 
 slide = title(11, "Additional details and future development", ["docs/CLOUD_TEAMMATE_HANDOFF.md", "docs/EVALUATION_PROTOCOL.md", "SUBMISSION_CHECKLIST.md"]);
 paragraphs(slide, [
-  "Observed cloud APIs complete plan, explicit confirmation and independent record readback. Source-to-image identity and full operational controls still require verification.",
-  "The teammate seals eight independent cases before first evaluation. Retain every attempt and run the main demo successfully three times in sequence.",
-  "Record a genuine browser flow on the accepted release. Verify the final sub-three-minute English video through signed-out playback, and complete the team's registration declarations.",
+  "Extend deployment operations checks and provider regression coverage. The retained real-model API evidence is dated 13 October; current provider switching has separate offline tests.",
+  "Current evidence uses public synthetic examples. Independent held-out evaluation and staff timing studies remain future validation work.",
+  videoAccepted ? "The demonstration presents recorded interface operation with English narration, synthetic data and disclosed edits. A person reviews each eligible plan before creating its case." : "The replacement video uses recorded interface footage. Final publication and complete public playback require acceptance.",
   "After evaluation, consider broader policies and staff timing studies. Production reimbursement integrations require a separate design and authorization.",
 ], 132, 87, 888, 21);
 
@@ -209,11 +246,11 @@ text(slide, git.replace("https://", ""), 36, 177, 888, 42, 18, false, "#59636E")
 const productLink = text(slide, "Cloud product URL", 36, 234, 888, 33, 23, true, "#086A86");
 productLink.text.get("Cloud product URL").link = { uri: cloudUrl, isExternal: true };
 text(slide, cloudUrl, 36, 274, 888, 42, 18, false, "#59636E");
-const videoText = videoUrl ? "Public demo video (footage acceptance pending)" : "Public demo video: awaiting publication and verification";
+const videoText = videoAccepted ? "Demo video" : videoUrl ? "Candidate video link (acceptance pending)" : "Public demo video: replacement upload pending";
 const videoLink = text(slide, videoText, 36, 337, 888, 38, 23, Boolean(videoUrl), videoUrl ? "#086A86" : "#17212B");
 if (videoUrl) videoLink.text.get(videoText).link = { uri: videoUrl, isExternal: true };
 if (videoUrl) text(slide, videoUrl, 36, 378, 888, 36, 18, false, "#59636E");
-text(slide, videoUrl ? "Review version. Public links supplied. Final footage acceptance and accepted release identity remain pending. Recorded product API tests are dated 13 October." : "Review version. Final submission requires the verified team name, public video playback and accepted release identity. The recorded product API tests are dated 13 October.", 36, 443, 888, 54, 19);
+text(slide, videoAccepted ? `Created in Google AI Studio Build on 7 October. Historical cloud API evidence: 13 October. Integrated offline checks: ${offlineDate}.` : "Submission review. Replacement public video and signed-out playback remain pending. Historical cloud API tests do not certify the current Vertex backend.", 36, 443, 888, 54, 19);
 
 // 03. Validate the editable PPTX, export the same deck as PDF, then render all pages.
 const candidate = path.join(privateDirectory, `candidate-${revision}.pptx`);
@@ -245,7 +282,7 @@ from pypdf import PdfReader
 out, directory, revision, count, url = sys.argv[1:6]
 count = int(count)
 doc = canvas.Canvas(out, pagesize=(720,405), pageCompression=1)
-doc.setTitle('OpsCrew: Expense Exception Plan and Review (Cloud evidence review)')
+doc.setTitle('OpsCrew: Expense Exception Plan and Review | AI Builder Cup 2026')
 doc.setAuthor('Team OpsCrew')
 for number in range(1,count+1):
     doc.drawImage(str(pathlib.Path(directory) / ('proposal-' + revision + '-' + str(number) + '.png')),0,0,720,405)
@@ -262,4 +299,4 @@ print('PDF page count and actual GitHub link passed')
 `;
 const pdfCheck = execFileSync(path.join(runtime, "python/python.exe"), ["-B", "-c", pdfSource, pdf, privateDirectory, revision, String(finalDeck.slides.items.length), git, cloudUrl, videoUrl || ""], { encoding: "utf8", windowsHide: true });
 console.log(pdfCheck.trim());
-console.log(JSON.stringify({ pptx, pdf, slides: finalDeck.slides.items.length, pdfFormat: "192-dpi rendered slide pages with clickable GitHub annotation", manualVisualInspectionRequired: true }));
+console.log(JSON.stringify({ pptx, pdf, slides: finalDeck.slides.items.length, pdfFormat: "192-dpi rendered slide pages with clickable public link annotations", manualVisualInspectionRequired: true, acceptanceGenerationNotes: { engineeringReport: reportPath, offlineDate, offlineCount, nativeArtifactCount, currentProvider: "Reviewed Vertex AI ADC / optional Developer API source; Gemini 2.5 Flash is current public configuration self-report", historicalCloud: "13 October Gemini 3.1 Flash-Lite Developer API observations only", currentVertexLive: "NOT_EXECUTED_BY_REVIEWER", deploymentBinding: "Team-reported identifiers, no independent control-plane/source archive attestation", noADKorAgentEngineRuntimeClaim: true, publicVideoAccepted } }));

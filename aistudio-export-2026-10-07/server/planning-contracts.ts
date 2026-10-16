@@ -61,7 +61,10 @@ export interface WorkflowResponse {
 
 export interface PlanningGenerateContentArgs {
   role: "PLANNER" | "REVIEWER";
-  apiKey: string;
+  apiKey?: string;
+  vertexai?: boolean;
+  project?: string;
+  location?: string;
   model: string;
   promptPayload: string;
   systemInstruction: string;

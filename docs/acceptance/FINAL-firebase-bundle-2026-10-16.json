@@ -1,0 +1,11 @@
+{
+  "date": "2026-10-16",
+  "observed_at": "2026-10-16T01:39:11.649Z",
+  "mode": "normal-TLS-public-GET-no-auth-model-or-write",
+  "path": "/assets/vendor-firebase-DlPj4ys7.js",
+  "http": 200,
+  "bytes": 158270,
+  "sha256": "7f5036f1e2a26b969bfd2bfb504baa48d16ac0e1b60ba8285e8bf46a9f7bcc42",
+  "local_sha256": "7f5036f1e2a26b969bfd2bfb504baa48d16ac0e1b60ba8285e8bf46a9f7bcc42",
+  "byte_identical": true
+}

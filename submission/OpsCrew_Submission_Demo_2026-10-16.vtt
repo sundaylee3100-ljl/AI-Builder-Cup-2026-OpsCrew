@@ -1,0 +1,43 @@
+WEBVTT
+
+00:00:00.203 --> 00:00:07.388
+Meet OpsCrew, a finance copilot for expense exception plans. People control every saved case.
+
+00:00:07.788 --> 00:00:12.757
+Built in Google AI Studio Build, it uses Gemini and runs on Google Cloud Run.
+
+00:00:13.335 --> 00:00:20.685
+First, we start a visitor session and enter a synthetic parking expense: thirty-eight dollars, with a missing receipt.
+
+00:00:21.085 --> 00:00:26.585
+These text and form inputs are what the system checks. It doesn't read receipt images.
+
+00:00:27.359 --> 00:00:34.136
+Gemini extracts the facts, proposes a plan, and reviews it. Each role has a separate job.
+
+00:00:34.536 --> 00:00:45.561
+After processing, we can inspect each attempt and its duration. These timings describe this run, not a service guarantee. All three steps finish successfully.
+
+00:00:46.446 --> 00:00:52.939
+A missing receipt means we need more evidence. The plan asks for it, without approving reimbursement.
+
+00:00:53.339 --> 00:01:02.474
+Here's a draft the operator can copy and edit. Copying it sends no message and makes no payment. The plan still shows the missing receipt.
+
+00:01:03.287 --> 00:01:08.346
+We prepare confirmation, check the current plan, and explicitly check consent.
+
+00:01:08.746 --> 00:01:15.633
+This saves one synthetic record, with the same facts and plan. It doesn't approve reimbursement or payment.
+
+00:01:16.174 --> 00:01:19.977
+Now we request the saved record through the authenticated server API.
+
+00:01:20.377 --> 00:01:31.506
+Readback and this visitor's history show matching case details. That verifies this example, without claiming universal data integrity. This is still a synthetic record.
+
+00:01:31.938 --> 00:01:37.475
+OpsCrew brings AI assistance, human confirmation, and saved-case verification together.
+
+00:01:37.875 --> 00:01:43.702
+Explore the public source and cloud prototype. All the data demonstrated here is synthetic.

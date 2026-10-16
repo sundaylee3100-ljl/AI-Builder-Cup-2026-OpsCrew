@@ -1,23 +1,23 @@
 {
-  "schema_version": "opscrew-reviewed-release-1.2.0",
-  "prepared_date": "2026-10-14",
+  "schema_version": "opscrew-reviewed-release-1.3.0",
+  "prepared_date": "2026-10-16",
   "timezone": "Asia/Shanghai",
-  "stage": "REVIEWED_RUNTIME_WITH_OWNER_CONFIRMED_VIDEO_REWORK",
+  "stage": "REVIEWED_GOOGLE_RUNTIME_FINAL_MATERIALS_CAPTAIN_CHECKS_PENDING",
   "repository": "https://github.com/sundaylee3100-ljl/AI-Builder-Cup-2026-OpsCrew",
-  "review_branch": "release/final-verified-delivery",
+  "review_branch": "review/final-delivery-20261016",
   "s3_main_base_commit": "dd0fb3f8cff460b725588447be1d94556ee7f8bb",
-  "implementation_commit": "43ea95421fa7ac29080e899280187dcbe472103a",
-  "commit_binding_policy": "The following pure manifest binding commit records the preceding reviewed implementation/materials commit; historical manifests and executed results are preserved.",
+  "implementation_commit": "29dd746e66083c5a5fbabb54898ceccf82dbb1a6",
+  "commit_binding_policy": "This pure manifest binding commit records the preceding integrated source/materials commit. Historical executed reports and prior material identities retain their original dates.",
   "runtime_source_binding": {
-    "canonical_sources_sha256": "19348499bfe853aaee1afa6be67910da4119748db1d9b5263f1f953fbbf2b943",
-    "byte_policy": "UTF-8 text, CRLF replaced with LF only; raw file SHA-256 also retained. Canonical JSON sorts keys without changing arrays.",
+    "canonical_sources_sha256": "c3fca02c49c36cf8c88c9883edd3db2dfdbcaad507dadd4e4803bb5ebd3b598c",
+    "byte_policy": "UTF-8, CRLF normalized to LF; canonical JSON sorted object keys without changing arrays",
     "files": {
       "package.json": "6c8e1c9ec5d8db1a623a2ae4582416378f6574ec936001358584cb520f3f264d",
       "package-lock.json": "56f765d3d0010e341a736a4239cad42872bfa641dcf4026e8efbf441a0453c79",
-      "server.ts": "b95a1e2e922074f74b2eadf6cfa3f677d7c51480e39ed61ccd270fddd06e6318",
-      "server/runtime-config.ts": "6464c828e78bd8f738fb891ef168bece8857f1d1d4878266ec388d8a81a1dfd3",
-      "server/planning-service.ts": "fb41bf596439f78b377d5858aa95fb6abe2e47f95ba1d231ae529409785be93a",
-      "server/planning-contracts.ts": "4f59d0b0af2ed01c8e46afd7699219419f53a1147a1646f0a3e8dd78aa9ee71c",
+      "server.ts": "6d6b09fc67ddbe6b40710d75d7faca315e0b817ca3e45bf57fc287f36f16eebc",
+      "server/runtime-config.ts": "729f651dffd0fbd4bb3087f24b9b2082192b3065939bb9afcc822043ec0f6e39",
+      "server/planning-service.ts": "a41e535a5607ed1d030135dce5d4a3a76acd11950bdae7f0f63dcdbe5c0ed0e6",
+      "server/planning-contracts.ts": "15af91f1c2a3e495aedbd921c49c965249aa5321f9b662d7bed501145440e0a2",
       "server/case-service.ts": "e02bbc486f45b5ad78094b750c79468b7fc48c925cbaa0d2c7721500889d278d",
       "server/case-routes.ts": "70d8b913f7b3add03e19382e6e304be238db8a6132a26f18142bfaff7187353c",
       "server/firebase-runtime.ts": "494211f6a2f106efed747e51084356f62847884aeb5860bd39cfbf2fc842bb4b",
@@ -25,7 +25,7 @@
       "src/domain/contracts.ts": "f886004efd3b260155c7e4d4cc6d20a76d734a07c9b37066910b0cbfa931af3a",
       "src/domain/policy.ts": "6a7609217c182579a0b72a451bfb61abfa3433cd6bbc743ed5e07f7aff25c678",
       "src/domain/workflow.ts": "4d79b119c6bc88c3e2113bebf100edb6da6785b6bd63feab072d2d896078dcba",
-      "src/App.tsx": "e65a8559bfe26dabbb884e6e4d33e7060f5f28231c756344b94d8ae8eb085099",
+      "src/App.tsx": "389349815b32d93b1efc6c1628e4ce7291bec8882a37c639f96b4cf100c0dae5",
       "src/components/CaseConfirmation.tsx": "1ca6f51b5f66f38e746ea78bcce55bccb063df01201f24283730d81f72a9a3d5",
       "src/components/WorkflowReview.tsx": "b7226986785117ec7673f7c4a24475da99842172e090fddeccb4ce701c29bac1",
       "src/lib/case-client.ts": "beabbb519e4b267a74d3ae2d2579923272f4365d266756014c6d4a071b4c77be",
@@ -38,44 +38,108 @@
       "firebase.json": "bfd28943974b7623fc757f8677194303cf87b2ed1edb67593c4827dcdc56b311",
       "scripts/evaluate-precloud.mjs": "4c0e8260617fd4ce594014fd09dae4a482ea3dbfd6622d7b4d2a3f0ff3012379",
       "scripts/check-s3-emulator.mjs": "66c1682d7bfa87c47ccc642d11df292f3928fa9fd4472f312aa58b774cfd3e7c",
-      "scripts/smoke-production.mjs": "1a53bc8df738b59efa493ee5fa8980d8a31e8d0133c7d8b1420e78c303e83a68",
+      "scripts/smoke-production.mjs": "70e9b4b40fd8701c298e6ba2b2875ff8e2ceb529a77468a1caa547f31b9b387d",
       "Dockerfile": "7c07a7a4229159a850582b7d6ce66323caaf5d132ba771559517a19bec364fd8",
       ".dockerignore": "199530e0d27c2b097d893b99971f4d3d4f2cacc35f067098ddf8f8dedde4288e",
       "vite.config.ts": "f3e136cc7ecf19ff80480f07732a0f4a4ee42871acdc768508b98684c7667cc0",
       "tsconfig.json": "021b9c55e081891e88a21855b6056174d75ee63a8c716f0d4e3fc19536d2da06",
       "index.html": "8fab423e906d516d300421824547faf5fca1b5e0676b8227362600448ff842fa"
+    },
+    "raw_file_sha256": {
+      "package.json": "4b8c8082dfdf0932c3ff5a2a4e82488382d027ba15a75382f1a3e8dd0d8543fe",
+      "package-lock.json": "9eec8bcf49b5b6bfa642c8ccbedb4b279aea9f15504383c67f4bb8be99b6e53d",
+      "server.ts": "b46da0b376feb7c1c1b2095a0bf6fec695498bdb438c80b47b14c67a9a95917b",
+      "server/runtime-config.ts": "50c7f7a407450c8a7cb7f7b5a669ab24897ce0e05668280c14e651efccc6f190",
+      "server/planning-service.ts": "48e957880a37dcdae04c0d9696eaef2a0fad2cc5e0e961b8f3c359599fbd7599",
+      "server/planning-contracts.ts": "393d1a1b5f5dfa2697384f7cf3209b58fcf0d6284e68c35e50e0aa385c888685",
+      "server/case-service.ts": "42dac18bda0cf9c60cee63219cc2526b88a4bf566f344e22aa1601ea0fd38a0a",
+      "server/case-routes.ts": "0df24d99a34153eb94ab313b05efe237c54d1270493b5fd2280916e0972e062c",
+      "server/firebase-runtime.ts": "c5c10edebb4731da691e97859f38f3a2adb15ad4c672f6c824489c76acdf8681",
+      "server/model-admission.ts": "feb8aed5f6b83569fe40618d15db6e144abff7b934fdf650d55dad5c65592ad6",
+      "src/domain/contracts.ts": "cf39527563943d22c2878e44cca70b333c3d4ae697ff52e923f68582af6f3e9c",
+      "src/domain/policy.ts": "8b5f894fcf0a1a1c6ccaf4cbe3b048848fd5a64cee0737eec2bee4d34ab079b2",
+      "src/domain/workflow.ts": "e87bb173bda3711379e5b88dec1801c5a2a27329b2094faf5216edd63a81b3e6",
+      "src/App.tsx": "83cf184c6bec33de43b8fb416e0c13b7368cd0b7ec894a4c971c45532020f01d",
+      "src/components/CaseConfirmation.tsx": "a1181dfa23b298a1e0d5309f39a8edf5092c6480125bc803a8f21abca1d39a6e",
+      "src/components/WorkflowReview.tsx": "f10df4ff72c567d82feee6f9eb6840fefa10fee90fed6cebb8753d69618d51fa",
+      "src/lib/case-client.ts": "efa290988e1fc192d6b5e5725812abda45cb409e5db1d683c3740232fef1c328",
+      "src/lib/firebase-session.ts": "5bb1ea74c0cc930c41fe774461642504993cec45126ad3804a3a6af4319c4235",
+      "src/index.css": "7aa67a643b1d6cee0b64c9719fa3e32e780e9a09a5ae8af476c53bbc23ec8b78",
+      "src/main.tsx": "30d02ee59cb6576973dea4368093b2dcae692a40668f288fdbc66a114873fcd3",
+      "fixtures/development-cases.json": "eb0193a2a9717fdb67ad1e4d94f50a9128d8e5e9a93c6d6360854854f986526e",
+      "firestore.rules": "a7f5f29da4d2e178b03364f9a7c0d6fce287d7f8bf8fe4e2ebee61fcea0d21ac",
+      "firestore.indexes.json": "bf5304587a652c96bbecbe853dc1562add6f20dd0a3150bd2b5db04e2d0eb6b0",
+      "firebase.json": "a055db21716a94fbdbe5a101a528fca4fb170c6b2e9fd9b0b633f0ac111f7f33",
+      "scripts/evaluate-precloud.mjs": "0848886bf203c43836b68bdf71b4fe4a5a7d37fcda78b4c7e93a329a4c0c986b",
+      "scripts/check-s3-emulator.mjs": "e866c9d1bcdf9ddab087bc2c4b572a7641d9045ea881e97dfb630d539cf041c2",
+      "scripts/smoke-production.mjs": "8ed26d749a82d940184cc75d3e41d639e70662d756c511a945c39798d7136c12",
+      "Dockerfile": "0256ae55a6552559974d913a136852d79b9c9a60fa05055d01a9d9404026d41f",
+      ".dockerignore": "5bf66f78cef741b8072010a780cf7b1d5fd8f035580415a3895019ce867521bf",
+      "vite.config.ts": "478a71bdb519bc47e75dee208113445bc21b9776d96d1a3d1661d161018a1e6d",
+      "tsconfig.json": "693686ce7aeb4b8aa704835be0867ffb5477c1ffe746e3ce52f1809a98429c48",
+      "index.html": "e5a08ddfee04fc4ab1c9b8d4b44e728b0a293c7180c1246250ea9246898796b2"
     }
   },
   "materials": {
-    "submission/OpsCrew_Proposal_Cloud_cloud-public-links-review-2026-10-14.pptx": {
-      "sha256": "5b8a57d2da7959d64f917e82e6e0358f8b25a682c219d3e953d5358b72b0047b",
-      "bytes": 829980,
+    "submission/OpsCrew_Proposal_Cloud_submission-final-2026-10-16.pdf": {
+      "sha256": "c4c3ea70e7cc02ac510b776618d61ef932df8c77b1b492466cdb92fac47fea70",
+      "bytes": 2991130,
       "byte_policy": "Exact binary bytes"
     },
-    "submission/OpsCrew_Proposal_Cloud_cloud-public-links-review-2026-10-14.pdf": {
-      "sha256": "6166e14400e4f49268b18b8bf42c6ce3f6bf85af0c82d867cc4cbff33dbe9d04",
-      "bytes": 2146700,
+    "submission/OpsCrew_Proposal_Cloud_submission-final-2026-10-16.pptx": {
+      "sha256": "f48d4174178bbdd74b6820043bfcfed76e085efb962fa0e557c4f7ea69f0c927",
+      "bytes": 1761843,
       "byte_policy": "Exact binary bytes"
     },
-    "submission/OpsCrew_Proposal_Cloud_cloud-public-links-review-2026-10-14.acceptance.json": {
-      "sha256": "f4eddc38c9543491fe12c992914981f24dd1fa23250489db9e58a48e32a5de4c",
-      "bytes": 8608,
-      "byte_policy": "UTF-8 text with CRLF normalized to LF for published Git blob"
+    "submission/OpsCrew_Proposal_Cloud_submission-final-2026-10-16.acceptance.json": {
+      "sha256": "3d3c90327f2c2899d69ceb0f3cf06c5a9c96088e61bd0d4c7eb538560668f0b6",
+      "bytes": 3112,
+      "byte_policy": "UTF-8 text, CRLF normalized to LF for Git blob"
+    },
+    "submission/OpsCrew_Submission_Demo_2026-10-16.mp4": {
+      "sha256": "f7926c166ec12be50a83557209c4cb982142bdbe5512ebfaed9012c72020ee0a",
+      "bytes": 10687569,
+      "byte_policy": "Exact binary bytes"
+    },
+    "submission/OpsCrew_Submission_Demo_2026-10-16.srt": {
+      "sha256": "39ffe880e3e013968d8c7c9616fd953b4074d9f1b15a523bcaea730403a8702e",
+      "bytes": 1940,
+      "byte_policy": "UTF-8 text, CRLF normalized to LF for Git blob"
+    },
+    "submission/OpsCrew_Submission_Demo_2026-10-16.vtt": {
+      "sha256": "ec7c052288dbb1f9bf17833dc3cdbe8f9ad5e6d1352f01e36bfd33f2eec90e3b",
+      "bytes": 1915,
+      "byte_policy": "UTF-8 text, CRLF normalized to LF for Git blob"
     },
     "submission/README.md": {
-      "sha256": "ab34ab5ce97c42d81a01b1a013032db58bee6d416b27047a5fb7f504e7339608",
-      "bytes": 4798,
-      "byte_policy": "UTF-8 text with CRLF normalized to LF for published Git blob"
+      "sha256": "2c06027e576eceb9c493aa310aa0aaa2745be336f8ff6c52452a20cc594ffe47",
+      "bytes": 3731,
+      "byte_policy": "UTF-8 text, CRLF normalized to LF for Git blob"
+    },
+    "submission/SUBMISSION_FORM.md": {
+      "sha256": "fd1b7c09fcde79cc868f14d2b4fae1e6368b726eee5ee8eee6217222d90acf21",
+      "bytes": 5662,
+      "byte_policy": "UTF-8 text, CRLF normalized to LF for Git blob"
     },
     "submission/RECORDING_PLAN.md": {
-      "sha256": "57c2cae27ef3b31099172f0fea3cb13a23980be01a97315a8865221b52ef44e5",
-      "bytes": 10041,
-      "byte_policy": "UTF-8 text with CRLF normalized to LF for published Git blob"
+      "sha256": "f0698354b4200a7034431aa57566b30f117d14c7474607ed8ede597b627493f2",
+      "bytes": 3692,
+      "byte_policy": "UTF-8 text, CRLF normalized to LF for Git blob"
+    },
+    "submission/YOUTUBE_METADATA.md": {
+      "sha256": "026e7e59878d70920542f0f10505f6f7fea989ad8ba6584b65a0bc8c8de93916",
+      "bytes": 2813,
+      "byte_policy": "UTF-8 text, CRLF normalized to LF for Git blob"
     },
     "submission/build-proposal.mjs": {
-      "sha256": "43a0daa11711fe16da40f5921885277f245effa514377b3d3a2865bdc5b37a8e",
-      "bytes": 21920,
-      "byte_policy": "UTF-8 text with CRLF normalized to LF for published Git blob"
+      "sha256": "5849f5d27736c29f9d6e62129baef88a9776b12cd83bd80186fc8879343d7fef",
+      "bytes": 26743,
+      "byte_policy": "UTF-8 text, CRLF normalized to LF for Git blob"
+    },
+    "submission/build-reviewed-demo.mjs": {
+      "sha256": "f99950f805488ca70996bd1ac2084ff819cae216a446bcfd2ff428b94c5e1fcf",
+      "bytes": 19282,
+      "byte_policy": "UTF-8 text, CRLF normalized to LF for Git blob"
     },
     "submission/assets/official-submission-template.pptx": {
       "sha256": "2c2dbb4a1a8a6f85fe8767744442d4d5697ae43e936fefd0bbbb05321c1514fe",
@@ -89,16 +153,16 @@
     }
   },
   "acceptance": {
-    "report": "docs/acceptance/PR06-delivery-review-2026-10-14.md",
-    "local_validation": "docs/acceptance/PR06-local-validation-2026-10-14.json",
-    "offline_tests": "236/236",
+    "report": "docs/acceptance/FINAL-delivery-review-2026-10-16.md",
+    "local_validation": "docs/acceptance/FINAL-integrated-validation-2026-10-16.json",
+    "offline_tests": "246/246, serial file scheduling, October16; intermediate timing failure retained",
     "auth_firestore_emulator_groups": "27/27 at prior source; carried forward for unchanged business code, not rerun",
     "semantic_assertions": "350/350 at prior source; carried forward for unchanged business code, not rerun",
-    "production_http": "9/9 included in 12 native artifact groups",
-    "artifact_groups": "12/12",
+    "production_http": "9/9 included in 12 native artifact groups, October16",
+    "artifact_groups": "12/12, October16",
     "linux_container_build": "NOT_RUN_BY_REVIEWER",
     "historical_live_evidence": "docs/acceptance/DELIVERY-cloud-G3-2026-10-13.json; 3 valid workflows, 10 provider attempts, 1 synthetic case; first503 preserved, cost unknown",
-    "current_real_cloud_g3_g4": "October13 bounded API core11/11 and extension14/14 on observed endpoint; completeG4/current source-image binding NOT_VERIFIED",
+    "current_real_cloud_g3_g4": "Current public probes and five frontend JavaScript identities match integrated source build. New Vertex real workflow not executed; October13 API reports are historical.",
     "independent_heldout": "PENDING_CUSTODIAN",
     "prior_local_validation": "PR04-build-integration-2026-10-12.json",
     "production_browser_mount": "Historical initial Comet AX mount only; current full browser/clipboard NOT_RUN",
@@ -119,32 +183,48 @@
       }
     },
     "owner_followup": "docs/acceptance/PR06-owner-followup-2026-10-14.json",
-    "documentation_followup": "Application source unchanged from PR06; fresh runtime suite not repeated; prior executed results and hashes retained."
+    "documentation_followup": "Public 877 Vertex SDK source integrated with explicit Developer API mode fix; recorded media narration is being revised after owner listening feedback.",
+    "publication_check": "docs/acceptance/FINAL-publication-check-2026-10-16.json"
   },
   "deployment": {
-    "source_commit": null,
-    "build_id": null,
-    "image_digest": null,
-    "cloud_run_revision": null,
+    "source_commit": "87767c905a0468120bb7858e9df1cf158291d10c",
+    "build_id": "66f32f78-b90c-4cfa-bece-43baa15c6719",
+    "image_digest": "sha256:5f5e72ebce9d24001eec458227163d1b9d8d872c69f6f28030367230b6350236",
+    "cloud_run_revision": "opscrew-00005-g99",
     "url": "https://opscrew-883881551915.us-central1.run.app",
-    "reason": "Public endpoint independently observed; reviewed-source/build/image/revision binding unverified. PR06 UI has not been proven deployed.",
-    "reported_historical_url": "https://opscrew-883881551915.us-central1.run.app"
+    "deployment_evidence": "docs/acceptance/PR06-cloud-deployment-binding-2026-10-16.json",
+    "reason": "Teammate reports source877/build66f32f78/image5f5e72/revision00005g99 at100percent. Public source, runtime configuration and frontend are consistent. Reviewer has not authenticated the full build/image/traffic chain; timestamp clarification pending. Candidate includes a DeveloperAPI-mode fix not proven deployed.",
+    "reported_historical_url": "https://opscrew-883881551915.us-central1.run.app",
+    "verification_level": "TEAM_REPORTED_RESOURCE_IDS_PUBLIC_SOURCE_AND_CONFIG_RECONCILED",
+    "control_plane_independently_authenticated": false,
+    "source_archive_full_comparison": "NOT_SUPPLIED",
+    "reported_verified_at": "2026-10-16T09:03:55Z",
+    "timestamp_issue": "Declared UTC verification time postdates containing commit2026-10-16T01:10:03Z; possible timezone error, not silently corrected."
   },
   "submission": {
-    "proposal_status": "English 13-page review with Sunday Lee; its historical video hyperlink points to rejected footage and must be replaced and rerendered before final submission. Existing proposal hashes retained.",
-    "video_plan": "165 seconds; final actual video must be under 180 seconds",
-    "video_url": null,
+    "proposal_status": "Final13page English official-template revision; integrated provider architecture,246offline evidence and accepted new video link; all pages/links checked",
+    "video_plan": "103.941333seconds, default rate0, approximately19.17percent slower words/minute",
+    "video_url": "https://youtu.be/j94ffx_yrng",
     "submitted_receipt": null,
-    "g6": "PENDING_TRUTHFUL_FINAL_VIDEO_AND_RELEASE_LINK_VERIFICATION",
+    "g6": "FINAL_LOCAL_MATERIALS_AND_OWNER_VIDEO_ACCEPTED_PUBLIC_ACCESS_CAPTAIN_CHECK_PENDING",
     "g7": "PENDING_ACTUAL_SUBMISSION",
     "captain_public_name": "Sunday Lee",
-    "video_link_evidence": "docs/acceptance/PR06-youtube-public-link-2026-10-14.json",
-    "video_status": "Owner confirms existing hosted video is the same content-rejected ZIP; remake required. Complete browser playback not performed by reviewer.",
-    "proposal_pdf": "submission/OpsCrew_Proposal_Cloud_cloud-public-links-review-2026-10-14.pdf",
-    "proposal_pptx": "submission/OpsCrew_Proposal_Cloud_cloud-public-links-review-2026-10-14.pptx",
-    "proposal_acceptance": "submission/OpsCrew_Proposal_Cloud_cloud-public-links-review-2026-10-14.acceptance.json",
+    "video_link_evidence": "docs/acceptance/FINAL-video-corrected-QA-2026-10-16.json",
+    "video_status": "OWNER_CONTENT_AND_SIGNED_IN_PLAYBACK_ACCEPTED_ANONYMOUS_FULL_PLAYBACK_UNVERIFIED",
+    "proposal_pdf": "submission/OpsCrew_Proposal_Cloud_submission-final-2026-10-16.pdf",
+    "proposal_pptx": "submission/OpsCrew_Proposal_Cloud_submission-final-2026-10-16.pptx",
+    "proposal_acceptance": "submission/OpsCrew_Proposal_Cloud_submission-final-2026-10-16.acceptance.json",
     "rejected_video_url": "https://youtu.be/h53-tucE7ig",
-    "owner_followup": "docs/acceptance/PR06-owner-followup-2026-10-14.json"
+    "owner_followup": "docs/acceptance/PR06-owner-followup-2026-10-14.json",
+    "rejected_video_urls": [
+      "https://youtu.be/h53-tucE7ig",
+      "https://youtu.be/8MACVIPWCt8"
+    ],
+    "video_link_evidence_boundary": "Owner supplied matching upload and confirmed signed-in playback. Reviewer public page/title opens; full anonymous streamed playback not verified.",
+    "prepared_fields": "submission/SUBMISSION_FORM.md",
+    "corrected_video_qa": "docs/acceptance/FINAL-video-corrected-QA-2026-10-16.json",
+    "video_sha256": "f7926c166ec12be50a83557209c4cb982142bdbe5512ebfaed9012c72020ee0a",
+    "video_duration_seconds": 103.941333
   },
   "previous_release": {
     "implementation_commit": "22be5948fe20fd3b14eaeffac11ae1a31ade414c",
@@ -153,7 +233,7 @@
     "acceptance": "docs/acceptance/PRECLOUD-readiness-2026-10-11.md",
     "note": "Historical reviewed precloud identity; retained without rewriting original reports."
   },
-  "reviewed_teammate_head": "7fb9e03ed21c8e6a3eb01e5be2574ccec3dfae9a",
+  "reviewed_teammate_head": "662b5777552d0c59707bd2080f050a0cc0bce6f7",
   "operational_source_binding": {
     "byte_policy": "UTF-8, CRLF normalized to LF for tools/config/formal regression source",
     "files": {
@@ -161,13 +241,15 @@
       ".node-version": "68ca3fba3b7e864770cb61aeb306d4bd4354b68ab4dd38450860c5d823e42a53",
       "scripts/check-g3-real.mjs": "9d0aaaea348ca4a62e2d470ce945f1ebbd6aa900f246bb13c5c3cc7623164271",
       "scripts/cloud-release.ps1": "3cde350353a8c37191ab99c034f7edf1a7268d1894e59c5bc98a2f58f3350ded",
-      "scripts/smoke-runtime-artifact.mjs": "97451b792caee700c07a1ff1ade72b93a7124bed32fa290b892d45b3eb613f0a",
+      "scripts/smoke-runtime-artifact.mjs": "b7074e78365ca1e7c9a17549eeb40c7db11b851f18971b3229511ca12d11a47f",
       "tests/g3-real-runner.test.ts": "1852e669947912ab92b7234670195ce2159c57fa8bd8603d0529d4a06a67d7fa",
-      "scripts/smoke-production.mjs": "1a53bc8df738b59efa493ee5fa8980d8a31e8d0133c7d8b1420e78c303e83a68",
-      "tests/workflow-notice.test.ts": "c3195144b97f537ddd5b1b493af4cb2e80ee55036914891e2f2f2560728e1c74"
+      "scripts/smoke-production.mjs": "70e9b4b40fd8701c298e6ba2b2875ff8e2ceb529a77468a1caa547f31b9b387d",
+      "tests/workflow-notice.test.ts": "c3195144b97f537ddd5b1b493af4cb2e80ee55036914891e2f2f2560728e1c74",
+      "tests/dual-mode-vertexai.test.ts": "1f33b0edfd1daca745042f3609ab0ccb3aae42b92d46093e37d86754bf875d5a",
+      ".env.example": "6ee527f83c75270c12d38d5a37d081ab0cd329db9882f26bd9a82e36b502240f"
     }
   },
-  "material_status": "Current English cloud-evidence/public-links review; candidate media excluded from current tree after failed content review. Original PR candidate commits and owner local ZIP retained.",
+  "material_status": "Current final13page official-template proposal and owner-accepted natural narration edit. Earlier rejected raw footage retained separately only for reproducibility; public access/captain portal checks pending.",
   "previous_review": {
     "implementation_commit": "eb7493b9de398b7901aa8332af911392803409ba",
     "manifest_commit": "7cbca064621c5091b9ac82c7ea9e2871db13e60d",
@@ -207,6 +289,99 @@
     "submission/build-proposal.mjs": {
       "sha256": "0120ca521767dbfbd437f08987ae9ff337d9720405c1c3f969d7c09ecb3672f6",
       "bytes": 18649
+    }
+  },
+  "previous_source_review": {
+    "implementation_commit": "43ea95421fa7ac29080e899280187dcbe472103a",
+    "merged_main": "c6c4b75777d57d2da283d936750e8b9261a66648",
+    "runtime_source_binding": {
+      "canonical_sources_sha256": "19348499bfe853aaee1afa6be67910da4119748db1d9b5263f1f953fbbf2b943",
+      "byte_policy": "UTF-8 text, CRLF replaced with LF only; raw file SHA-256 also retained. Canonical JSON sorts keys without changing arrays.",
+      "files": {
+        "package.json": "6c8e1c9ec5d8db1a623a2ae4582416378f6574ec936001358584cb520f3f264d",
+        "package-lock.json": "56f765d3d0010e341a736a4239cad42872bfa641dcf4026e8efbf441a0453c79",
+        "server.ts": "b95a1e2e922074f74b2eadf6cfa3f677d7c51480e39ed61ccd270fddd06e6318",
+        "server/runtime-config.ts": "6464c828e78bd8f738fb891ef168bece8857f1d1d4878266ec388d8a81a1dfd3",
+        "server/planning-service.ts": "fb41bf596439f78b377d5858aa95fb6abe2e47f95ba1d231ae529409785be93a",
+        "server/planning-contracts.ts": "4f59d0b0af2ed01c8e46afd7699219419f53a1147a1646f0a3e8dd78aa9ee71c",
+        "server/case-service.ts": "e02bbc486f45b5ad78094b750c79468b7fc48c925cbaa0d2c7721500889d278d",
+        "server/case-routes.ts": "70d8b913f7b3add03e19382e6e304be238db8a6132a26f18142bfaff7187353c",
+        "server/firebase-runtime.ts": "494211f6a2f106efed747e51084356f62847884aeb5860bd39cfbf2fc842bb4b",
+        "server/model-admission.ts": "7d0e8ac9d3903af0d75c0bfb1e04a2606b7c81b48cf56478e6961ae6afc51c14",
+        "src/domain/contracts.ts": "f886004efd3b260155c7e4d4cc6d20a76d734a07c9b37066910b0cbfa931af3a",
+        "src/domain/policy.ts": "6a7609217c182579a0b72a451bfb61abfa3433cd6bbc743ed5e07f7aff25c678",
+        "src/domain/workflow.ts": "4d79b119c6bc88c3e2113bebf100edb6da6785b6bd63feab072d2d896078dcba",
+        "src/App.tsx": "e65a8559bfe26dabbb884e6e4d33e7060f5f28231c756344b94d8ae8eb085099",
+        "src/components/CaseConfirmation.tsx": "1ca6f51b5f66f38e746ea78bcce55bccb063df01201f24283730d81f72a9a3d5",
+        "src/components/WorkflowReview.tsx": "b7226986785117ec7673f7c4a24475da99842172e090fddeccb4ce701c29bac1",
+        "src/lib/case-client.ts": "beabbb519e4b267a74d3ae2d2579923272f4365d266756014c6d4a071b4c77be",
+        "src/lib/firebase-session.ts": "a37a8479130dcf57fce0c9df12ce884293b2a62a591a40dbc0bcd44dfd1b932a",
+        "src/index.css": "7aa67a643b1d6cee0b64c9719fa3e32e780e9a09a5ae8af476c53bbc23ec8b78",
+        "src/main.tsx": "30d02ee59cb6576973dea4368093b2dcae692a40668f288fdbc66a114873fcd3",
+        "fixtures/development-cases.json": "bb61b80d158f24dafc2e18274d0a5b9c02cf44296649e550bccb0aabd5fe00c7",
+        "firestore.rules": "1990874ed70e379d013db242e2210ff61537c305be1ec35171004ffb30853709",
+        "firestore.indexes.json": "0c634c030b88d477779f7078f059db1e27cf4f52f4f7458315af93d68ff3abd4",
+        "firebase.json": "bfd28943974b7623fc757f8677194303cf87b2ed1edb67593c4827dcdc56b311",
+        "scripts/evaluate-precloud.mjs": "4c0e8260617fd4ce594014fd09dae4a482ea3dbfd6622d7b4d2a3f0ff3012379",
+        "scripts/check-s3-emulator.mjs": "66c1682d7bfa87c47ccc642d11df292f3928fa9fd4472f312aa58b774cfd3e7c",
+        "scripts/smoke-production.mjs": "1a53bc8df738b59efa493ee5fa8980d8a31e8d0133c7d8b1420e78c303e83a68",
+        "Dockerfile": "7c07a7a4229159a850582b7d6ce66323caaf5d132ba771559517a19bec364fd8",
+        ".dockerignore": "199530e0d27c2b097d893b99971f4d3d4f2cacc35f067098ddf8f8dedde4288e",
+        "vite.config.ts": "f3e136cc7ecf19ff80480f07732a0f4a4ee42871acdc768508b98684c7667cc0",
+        "tsconfig.json": "021b9c55e081891e88a21855b6056174d75ee63a8c716f0d4e3fc19536d2da06",
+        "index.html": "8fab423e906d516d300421824547faf5fca1b5e0676b8227362600448ff842fa"
+      }
+    },
+    "note": "October14 historical reviewed runtime; not relabeled as the Vertex integration."
+  },
+  "reviewed_cloud_source": "87767c905a0468120bb7858e9df1cf158291d10c",
+  "cleanup": {
+    "status": "COMPLETE_CURRENT_TASK",
+    "owner_cleared_previous_blocked_directory": ".materials-build/submission-review-2026-10-16",
+    "owner_clearance_verified_absent": true,
+    "new_private_render_media_and_unselected_draft_outputs": "Recycled after actual QA and final file preservation; all8targets verified absent",
+    "scope": "Formal tests, historical committed evidence, runtime dependencies and owner input/result files retained; inherited rejected targets not retried."
+  },
+  "historical_materials_oct14": {
+    "submission/OpsCrew_Proposal_Cloud_cloud-public-links-review-2026-10-14.pptx": {
+      "sha256": "5b8a57d2da7959d64f917e82e6e0358f8b25a682c219d3e953d5358b72b0047b",
+      "bytes": 829980,
+      "byte_policy": "Exact binary bytes"
+    },
+    "submission/OpsCrew_Proposal_Cloud_cloud-public-links-review-2026-10-14.pdf": {
+      "sha256": "6166e14400e4f49268b18b8bf42c6ce3f6bf85af0c82d867cc4cbff33dbe9d04",
+      "bytes": 2146700,
+      "byte_policy": "Exact binary bytes"
+    },
+    "submission/OpsCrew_Proposal_Cloud_cloud-public-links-review-2026-10-14.acceptance.json": {
+      "sha256": "f4eddc38c9543491fe12c992914981f24dd1fa23250489db9e58a48e32a5de4c",
+      "bytes": 8608,
+      "byte_policy": "UTF-8 text with CRLF normalized to LF for published Git blob"
+    },
+    "submission/README.md": {
+      "sha256": "ab34ab5ce97c42d81a01b1a013032db58bee6d416b27047a5fb7f504e7339608",
+      "bytes": 4798,
+      "byte_policy": "UTF-8 text with CRLF normalized to LF for published Git blob"
+    },
+    "submission/RECORDING_PLAN.md": {
+      "sha256": "57c2cae27ef3b31099172f0fea3cb13a23980be01a97315a8865221b52ef44e5",
+      "bytes": 10041,
+      "byte_policy": "UTF-8 text with CRLF normalized to LF for published Git blob"
+    },
+    "submission/build-proposal.mjs": {
+      "sha256": "43a0daa11711fe16da40f5921885277f245effa514377b3d3a2865bdc5b37a8e",
+      "bytes": 21920,
+      "byte_policy": "UTF-8 text with CRLF normalized to LF for published Git blob"
+    },
+    "submission/assets/official-submission-template.pptx": {
+      "sha256": "2c2dbb4a1a8a6f85fe8767744442d4d5697ae43e936fefd0bbbb05321c1514fe",
+      "bytes": 962802,
+      "byte_policy": "Exact binary bytes"
+    },
+    "submission/assets/team-logo.png": {
+      "sha256": "73e178f543dd8a18431f3cc7de04bb3b578ff20902a6e329dc22b3a37d7f8edf",
+      "bytes": 63098,
+      "byte_policy": "Exact binary bytes"
     }
   }
 }

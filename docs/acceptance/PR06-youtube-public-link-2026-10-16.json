@@ -1,0 +1,25 @@
+{
+  "audit_date": "2026-10-16",
+  "video": "https://youtu.be/8MACVIPWCt8",
+  "video_id": "8MACVIPWCt8",
+  "mode": "public-oembed-and-page-metadata-verification",
+  "observed_at": "2026-10-16T08:22:36Z",
+  "results": [
+    {
+      "kind": "oembed",
+      "http": 200,
+      "metadata": {
+        "title": "OpsCrew: Expense Exception Plan & Review | AI Builder Cup 2026",
+        "author_name": "AI瑶",
+        "author_url": "https://www.youtube.com/@AI%E7%91%B6",
+        "provider_name": "YouTube",
+        "provider_url": "https://www.youtube.com/",
+        "thumbnail_url": "https://i.ytimg.com/vi/8MACVIPWCt8/hqdefault.jpg",
+        "embed_html_present": true
+      }
+    }
+  ],
+  "verified_title": "OpsCrew: Expense Exception Plan & Review | AI Builder Cup 2026",
+  "channel": "AI瑶 (@AI瑶)",
+  "submission_binding": "Verified final master demo release with chapter slides, ElevenLabs narration, and live Cloud Run execution."
+}

@@ -1,6 +1,6 @@
 # Google Build provenance
 
-Updated October 14, 2026. OpsCrew's submitted development route is a fresh Google AI Studio Build application, Gemini-powered facts/planning/review, and Google Cloud deployment. This document records the evidence level of each contribution.
+Updated October 16, 2026. OpsCrew's submitted development route is a fresh Google AI Studio Build application, Gemini-powered facts/planning/review, and Google Cloud deployment. This document records the evidence level of each contribution.
 
 ## Google AI Studio Build origin
 
@@ -32,6 +32,18 @@ The owner states that the team created this application from zero in AI Studio, 
 | PR #6 | Initial head `51f99740fe488f74d8ef5de1b9368065ec1dadf1`; corrected source approved at `be9f5f3977558424a656f5d015c30116cd0ba1a7`, merged as `43793118b6ad338569317eee9a618b7b4df32450`. Public injected-provider evidence remains offline; candidate footage is excluded from main and still requires replacement |
 
 Google Cloud/Firebase and Gemini runtime evidence is distinct from emulator/injected-provider testing. The new `dev-offline-verification.json` explicitly uses public development fixtures and injected identities/models, with zero real Gemini calls or production writes. Original failures, dated reports and Git history are retained; a rerun or merged branch is not a new cloud attestation.
+
+## October 16 source and recording reconciliation
+
+The teammate supplied three material commits ending at `b53e21eae92516912e4880911fd530c48b4b9679` on the already closed PR #6 branch. These commits changed no application source. The review integrates the later main guidance and preserves the original October 14 proposal and executed acceptance records rather than overwriting their historical identities.
+
+The separate publicly retrievable source commit `87767c905a0468120bb7858e9df1cf158291d10c` adds Google Gen AI SDK Vertex AI mode with application-default credentials, alongside the Developer API route. All three prompted stages use the shared client factory. This is an SDK provider integration; it does not establish an ADK or hosted Agent Engine deployment. The October 16 public configuration reports Vertex AI mode and `gemini-2.5-flash`, consistent with that source's default. Public entry-bundle comparison identifies the added 2.5-model fallback candidates. Configuration and matching assets alone do not prove which model call actually ran.
+
+The teammate's [deployment binding](docs/acceptance/PR06-cloud-deployment-binding-2026-10-16.json) reports source `87767c9`, Cloud Build `66f32f78-b90c-4cfa-bece-43baa15c6719`, image digest `sha256:5f5e72ebce9d24001eec458227163d1b9d8d872c69f6f28030367230b6350236`, and revision `opscrew-00005-g99` at 100% traffic. These are teammate-supplied resource observations; this reviewer has not independently authenticated to Cloud Build or Cloud Run control-plane APIs. Earlier October 13 real Gemini results remain evidence for that earlier endpoint observation, not fresh real-model verification of this provider change.
+
+The new recorded interface provides a synthetic USD38 missing-receipt plan, explicit human confirmation, saved-case readback and same-visitor history. Its original titles, narration and captions included unsupported claims and were rejected. The first corrected local edit passed technical and visual checks but the owner requested slower narration. The owner subsequently accepted the default-rate revised file and supplied https://youtu.be/j94ffx_yrng, confirming signed-in hosted playback. The frozen local file is103.941333 seconds with SHA-256f7926c166ec12be50a83557209c4cb982142bdbe5512ebfaed9012c72020ee0a. The same maintained `submission/build-reviewed-demo.mjs` and [video QA](docs/acceptance/FINAL-video-corrected-QA-2026-10-16.md) record measured19.17 percent slower speech and remaining anonymous public-playback verification.
+
+The edit preserves the team's recorded business values and result states. New narration, cards, captions and the editorial target-service label are disclosed. The label is not a native address-bar attestation. The raw recording is retained as `submission/Original_Recorded_Demo_2026-10-16.mp4`; it is not the submission video. Neither previously supplied YouTube candidate is an accepted final replacement.
 
 ## Submission assets and final identity
 
