@@ -6,8 +6,8 @@
   "repository": "https://github.com/sundaylee3100-ljl/AI-Builder-Cup-2026-OpsCrew",
   "review_branch": "review/final-delivery-20261016",
   "s3_main_base_commit": "dd0fb3f8cff460b725588447be1d94556ee7f8bb",
-  "implementation_commit": "920528e848c29c82f6a424d31f5c6d9dd1f2cd45",
-  "commit_binding_policy": "The following pure manifest binding commit records the preceding reviewed implementation/materials commit; historical manifests and executed results are preserved.",
+  "implementation_commit": "29dd746e66083c5a5fbabb54898ceccf82dbb1a6",
+  "commit_binding_policy": "This pure manifest binding commit records the preceding integrated source/materials commit. Historical executed reports and prior material identities retain their original dates.",
   "runtime_source_binding": {
     "canonical_sources_sha256": "c3fca02c49c36cf8c88c9883edd3db2dfdbcaad507dadd4e4803bb5ebd3b598c",
     "byte_policy": "UTF-8, CRLF normalized to LF; canonical JSON sorted object keys without changing arrays",
@@ -183,7 +183,8 @@
       }
     },
     "owner_followup": "docs/acceptance/PR06-owner-followup-2026-10-14.json",
-    "documentation_followup": "Public 877 Vertex SDK source integrated with explicit Developer API mode fix; recorded media narration is being revised after owner listening feedback."
+    "documentation_followup": "Public 877 Vertex SDK source integrated with explicit Developer API mode fix; recorded media narration is being revised after owner listening feedback.",
+    "publication_check": "docs/acceptance/FINAL-publication-check-2026-10-16.json"
   },
   "deployment": {
     "source_commit": "87767c905a0468120bb7858e9df1cf158291d10c",
