@@ -2,9 +2,9 @@
   "schema_version": "opscrew-cloud-proposal-review-1.0.0",
   "audit_date": "2026-10-14",
   "ready_for_final_submission": false,
-  "status": "REVIEW_PUBLIC_LINKS_SUPPLIED_AND_VERIFIED",
-  "pptx_sha256": "81b483300bb50891b3948abe2a0ce8aac9193cefc96f23ac04c4410f4531f4e1",
-  "pdf_sha256": "0b43c7e7d73c3d6ba7b6c61ff5d7a847068e3cea3afae95840ca56130b0e7583",
+  "status": "REVIEW_PUBLIC_LINKS_SUPPLIED_FOOTAGE_ACCEPTANCE_PENDING",
+  "pptx_sha256": "5b8a57d2da7959d64f917e82e6e0358f8b25a682c219d3e953d5358b72b0047b",
+  "pdf_sha256": "6166e14400e4f49268b18b8bf42c6ce3f6bf85af0c82d867cc4cbff33dbe9d04",
   "slides": 13,
   "pdf_pages": 13,
   "pdf_embedded_pages_equal_final_pptx_render_pixels": [
@@ -26,20 +26,20 @@
   "actual_pdf_uris": [
     "https://github.com/sundaylee3100-ljl/AI-Builder-Cup-2026-OpsCrew",
     "https://opscrew-883881551915.us-central1.run.app",
-    "https://youtu.be/8MACVIPWCt8"
+    "https://youtu.be/h53-tucE7ig"
   ],
   "actual_pptx_uris": [
     "https://github.com/sundaylee3100-ljl/AI-Builder-Cup-2026-OpsCrew",
     "https://opscrew-883881551915.us-central1.run.app",
-    "https://youtu.be/8MACVIPWCt8"
+    "https://youtu.be/h53-tucE7ig"
   ],
   "captain_public_name": "Sunday Lee",
   "public_name_and_video_url_source": "Direct owner-provided values, passed as process environment variables; no builder userdata default changed.",
-  "video_scope": "Public video published and verified at https://youtu.be/8MACVIPWCt8. Public oEmbed HTTP 200 metadata verified.",
+  "video_scope": "Parent review reports public metadata HTTP200 and length168 seconds; anonymous playback and correspondence to local ZIP are NOTVERIFIED. This document does not accept footage claims.",
   "finalizer_receipt": {
     "schemaVersion": "presentation-finalization.v1",
-    "finalSha256": "81b483300bb50891b3948abe2a0ce8aac9193cefc96f23ac04c4410f4531f4e1",
-    "byteCount": 829618,
+    "finalSha256": "5b8a57d2da7959d64f917e82e6e0358f8b25a682c219d3e953d5358b72b0047b",
+    "byteCount": 829980,
     "packageIntegrity": {
       "chart_count": 0,
       "claim_boundary": "Structural package checks only; no slide text, notes, formulas, chart values, or native PowerPoint execution were inspected.",

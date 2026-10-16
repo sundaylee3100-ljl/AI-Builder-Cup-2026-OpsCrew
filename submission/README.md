@@ -6,12 +6,16 @@ The new **Cloud evidence review** PDF/PPTX contain thirteen substantive slides f
 
 `build-proposal.mjs` is one maintained authoring script. It imports the official template and preserves the artwork, original fonts and slide size. Text, tables and diagrams remain editable in the PPTX. The PDF uses matching 192-dpi page images and clickable repository/product/video links. Its text is not searchable; edit the PPTX for final changes. A clearly labeled historical local screenshot remains on the interface page. The cloud result page contains genuine recorded response evidence, not a fabricated browser screenshot. Actual final browser recording remains necessary.
 
-The script uses the bundled Artifact Tool, not application runtime dependencies. Set `OPSCREW_DOCUMENT_RUNTIME` and `OPSCREW_PRESENTATIONS_SKILL` for another equivalent runtime. From the repository root, use new output revisions and the recorded source files:
+The script uses the bundled Artifact Tool, not application runtime dependencies. Set `OPSCREW_DOCUMENT_RUNTIME` and `OPSCREW_PRESENTATIONS_SKILL` for another equivalent runtime. After new footage and its public link pass acceptance, use a new output revision from the repository root. Do not rerun the historical output name or reuse the rejected video:
 
 ```powershell
 $env:OPSCREW_PUBLIC_CAPTAIN_NAME = 'Sunday Lee'
-$env:OPSCREW_PUBLIC_VIDEO_URL = 'https://youtu.be/8MACVIPWCt8'
-node submission/build-proposal.mjs docs/acceptance/PR04-build-integration-2026-10-12.json cloud-public-links-review-2026-10-14 docs/acceptance/DELIVERY-cloud-G3-2026-10-13.json docs/acceptance/DELIVERY-cloud-safety-and-fixtures-2026-10-13.json
+$env:OPSCREW_PUBLIC_VIDEO_URL = Read-Host 'Enter the content-accepted public video URL'
+if ([string]::IsNullOrWhiteSpace($env:OPSCREW_PUBLIC_VIDEO_URL) -or $env:OPSCREW_PUBLIC_VIDEO_URL -match 'h53-tucE7ig') {
+  throw 'An accepted replacement video URL is required; do not use the rejected video.'
+}
+$opsProposalRevision = 'cloud-video-review-' + (Get-Date -Format 'yyyyMMdd-HHmmss')
+node submission/build-proposal.mjs docs/acceptance/PR04-build-integration-2026-10-12.json $opsProposalRevision docs/acceptance/DELIVERY-cloud-G3-2026-10-13.json docs/acceptance/DELIVERY-cloud-safety-and-fixtures-2026-10-13.json
 ```
 
 Optional `OPSCREW_PUBLIC_CAPTAIN_NAME` and `OPSCREW_PUBLIC_VIDEO_URL` accept only verified public values. A supplied video URI does not automatically prove anonymous access or correct footage. All new slides and independently rerendered PDF pages require actual visual inspection. Check the editable deck in PowerPoint or the submission authoring tool before final export. The October 12 material acceptance applies only to its historical hashes. Keep private authoring previews separate from final files and bind final submitted materials to SHA-256.
@@ -21,13 +25,6 @@ Follow [the recording plan](RECORDING_PLAN.md), [cloud handoff](../docs/CLOUD_TE
 
 ## Unaccepted candidate footage
 
-The videos submitted in original PR head 51f99740fe488f74d8ef5de1b9368065ec1dadf1 are review inputs, not approved final deliverables. Their technical encoding is valid but their content does not match the claimed current cloud demo. Candidate media/source are excluded from the current submission index; no supplied local file was deleted. See [the video audit](../docs/acceptance/PR06-video-review-2026-10-14.md) and the owner archive. The official public YouTube demo video is published and verified at https://youtu.be/8MACVIPWCt8 (oEmbed HTTP 200).
+The videos submitted in original PR head 51f99740fe488f74d8ef5de1b9368065ec1dadf1 are review inputs, not approved final deliverables. Their technical encoding is valid but their content does not match the claimed current cloud demo. Candidate media/source are excluded from the current submission index; no supplied local file was deleted. See [the video audit](../docs/acceptance/PR06-video-review-2026-10-14.md) and the owner archive. Initial review verified public page metadata; at that time footage correspondence and actual playback were unverified. The newer owner confirmation below resolves correspondence while retaining the playback method boundary.
 
-## Final Accepted Master Demo Video (2026-10-15)
-
-- **Master Video Deliverable**: [`video_output/OpsCrew_Combined_Official_Demo_165s.mp4`](video_output/OpsCrew_Combined_Official_Demo_165s.mp4)
-- **Duration**: **132.04 seconds** (Strictly `< 180.00s` requirement: **PASS**, ~48s safety buffer).
-- **SHA-256**: `cb64b670e057709cdcb85aa55dde7e2f05fbc3eb3490042cd13eacd4c36a6772`
-- **Subtitles**: [`video_output/OpsCrew_Combined_Official_Demo_165s.srt`](video_output/OpsCrew_Combined_Official_Demo_165s.srt) and [`.vtt`](video_output/OpsCrew_Combined_Official_Demo_165s.vtt)
-- **Structure**: 12-segment pipeline with 5 standalone chapter intermission slides (`CHAPTER 01 OF 05` through `CHAPTER 05 OF 05`), clean subtitle capsules in Title-Safe zone, live Cloud Run recording, and vertically balanced Outro slide with direct links and verifiable metrics.
-- **Narration**: ElevenLabs Studio Voice `Brian` (`nPczCjzI2devNBz1zQrb`, `eleven_multilingual_v2`), engineered with executive pacing and studio cadence.
+The subsequent [owner follow-up](../docs/acceptance/PR06-owner-followup-2026-10-14.json) confirms that the hosted video is the same rejected ZIP and needs to be remade. It is not an accepted final video. The current review PDF/PPTX still contain that historical video hyperlink; replace it and rerender/check a new revision after truthful footage is accepted. The executed proposal and metadata reports retain their original hashes and methods. The review checkout/render caches have been manually removed and their absence independently inspected.

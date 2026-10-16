@@ -29,7 +29,7 @@ The owner states that the team created this application from zero in AI Studio, 
 | S3 | Firebase visitor identity, Firestore transactions, explicit human confirmation, idempotency, independent readback and recovery. [S3 acceptance](docs/acceptance/S03-confirmation-and-cases.md) |
 | PR #4 | Teammate updates and independent local review: strict intake/security, exact-citation Reviewer prompt, persistent model limits, deadlines, guarded deployment tooling and vendor-split build. Merged to main `fbce9fdefa0baf1f82872c717e772576d4cccfaf`. [Code review](docs/acceptance/PR04-code-review-2026-10-12.md) |
 | October 13 cloud audit | Bounded real Gemini/Firebase API workflows and one confirmed synthetic case with independent readback/replay/isolation. Actual source/build/image/revision attestation remains a separate release record |
-| PR #6 | `release/final-verified-delivery`, initial reviewed head `51f99740fe488f74d8ef5de1b9368065ec1dadf1`; interface/build changes, public injected-provider regression evidence and video candidates require final review |
+| PR #6 | Initial head `51f99740fe488f74d8ef5de1b9368065ec1dadf1`; corrected source approved at `be9f5f3977558424a656f5d015c30116cd0ba1a7`, merged as `43793118b6ad338569317eee9a618b7b4df32450`. Public injected-provider evidence remains offline; candidate footage is excluded from main and still requires replacement |
 
 Google Cloud/Firebase and Gemini runtime evidence is distinct from emulator/injected-provider testing. The new `dev-offline-verification.json` explicitly uses public development fixtures and injected identities/models, with zero real Gemini calls or production writes. Original failures, dated reports and Git history are retained; a rerun or merged branch is not a new cloud attestation.
 

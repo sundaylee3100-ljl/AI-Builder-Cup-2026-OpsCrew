@@ -1,12 +1,12 @@
 {
   "schema_version": "opscrew-reviewed-release-1.2.0",
-  "prepared_date": "2026-10-16",
+  "prepared_date": "2026-10-14",
   "timezone": "Asia/Shanghai",
-  "stage": "VERIFIED_PUBLIC_LINKS_AND_MASTER_VIDEO_DELIVERY",
+  "stage": "REVIEWED_RUNTIME_WITH_OWNER_CONFIRMED_VIDEO_REWORK",
   "repository": "https://github.com/sundaylee3100-ljl/AI-Builder-Cup-2026-OpsCrew",
   "review_branch": "release/final-verified-delivery",
   "s3_main_base_commit": "dd0fb3f8cff460b725588447be1d94556ee7f8bb",
-  "implementation_commit": "9a8bf55f30cac95dba7b950c430a6ee381e0f22f",
+  "implementation_commit": "43ea95421fa7ac29080e899280187dcbe472103a",
   "commit_binding_policy": "The following pure manifest binding commit records the preceding reviewed implementation/materials commit; historical manifests and executed results are preserved.",
   "runtime_source_binding": {
     "canonical_sources_sha256": "19348499bfe853aaee1afa6be67910da4119748db1d9b5263f1f953fbbf2b943",
@@ -48,28 +48,28 @@
   },
   "materials": {
     "submission/OpsCrew_Proposal_Cloud_cloud-public-links-review-2026-10-14.pptx": {
-      "sha256": "81b483300bb50891b3948abe2a0ce8aac9193cefc96f23ac04c4410f4531f4e1",
-      "bytes": 829618,
+      "sha256": "5b8a57d2da7959d64f917e82e6e0358f8b25a682c219d3e953d5358b72b0047b",
+      "bytes": 829980,
       "byte_policy": "Exact binary bytes"
     },
     "submission/OpsCrew_Proposal_Cloud_cloud-public-links-review-2026-10-14.pdf": {
-      "sha256": "0b43c7e7d73c3d6ba7b6c61ff5d7a847068e3cea3afae95840ca56130b0e7583",
-      "bytes": 2235729,
+      "sha256": "6166e14400e4f49268b18b8bf42c6ce3f6bf85af0c82d867cc4cbff33dbe9d04",
+      "bytes": 2146700,
       "byte_policy": "Exact binary bytes"
     },
     "submission/OpsCrew_Proposal_Cloud_cloud-public-links-review-2026-10-14.acceptance.json": {
-      "sha256": "e9e329d48a3fc2b82db884d0d288dda971cc31786d9fb9fe98760e140d8dfa22",
-      "bytes": 8522,
+      "sha256": "f4eddc38c9543491fe12c992914981f24dd1fa23250489db9e58a48e32a5de4c",
+      "bytes": 8608,
       "byte_policy": "UTF-8 text with CRLF normalized to LF for published Git blob"
     },
     "submission/README.md": {
-      "sha256": "c8ed575023e1eab40327025ff650bc3e9dcab8a0627c84d5c4b55ffc393d3c02",
-      "bytes": 4747,
+      "sha256": "ab34ab5ce97c42d81a01b1a013032db58bee6d416b27047a5fb7f504e7339608",
+      "bytes": 4798,
       "byte_policy": "UTF-8 text with CRLF normalized to LF for published Git blob"
     },
     "submission/RECORDING_PLAN.md": {
-      "sha256": "21060db3c105a8b2f118d87802170833a596d536e2097e6c5a4f30233e763972",
-      "bytes": 8945,
+      "sha256": "57c2cae27ef3b31099172f0fea3cb13a23980be01a97315a8865221b52ef44e5",
+      "bytes": 10041,
       "byte_policy": "UTF-8 text with CRLF normalized to LF for published Git blob"
     },
     "submission/build-proposal.mjs": {
@@ -117,7 +117,9 @@
         "passed": 350,
         "failed": 0
       }
-    }
+    },
+    "owner_followup": "docs/acceptance/PR06-owner-followup-2026-10-14.json",
+    "documentation_followup": "Application source unchanged from PR06; fresh runtime suite not repeated; prior executed results and hashes retained."
   },
   "deployment": {
     "source_commit": null,
@@ -129,18 +131,20 @@
     "reported_historical_url": "https://opscrew-883881551915.us-central1.run.app"
   },
   "submission": {
-    "proposal_status": "English 13-page official-template public-links verified; Sunday Lee and three verified public links supplied (GitHub, Cloud Run, YouTube).",
-    "video_plan": "132 seconds master demo with standalone chapter slides and ElevenLabs voice; strictly under 180 seconds",
-    "video_url": "https://youtu.be/8MACVIPWCt8",
+    "proposal_status": "English 13-page review with Sunday Lee; its historical video hyperlink points to rejected footage and must be replaced and rerendered before final submission. Existing proposal hashes retained.",
+    "video_plan": "165 seconds; final actual video must be under 180 seconds",
+    "video_url": null,
     "submitted_receipt": null,
-    "g6": "VERIFIED_MASTER_DEMO_PUBLISHED_TO_YOUTUBE",
+    "g6": "PENDING_TRUTHFUL_FINAL_VIDEO_AND_RELEASE_LINK_VERIFICATION",
     "g7": "PENDING_ACTUAL_SUBMISSION",
     "captain_public_name": "Sunday Lee",
-    "video_link_evidence": "docs/acceptance/PR06-youtube-public-link-2026-10-16.json",
-    "video_status": "Public oEmbed metadata HTTP 200, title 'OpsCrew: Expense Exception Plan & Review | AI Builder Cup 2026', verified live YouTube release 8MACVIPWCt8.",
+    "video_link_evidence": "docs/acceptance/PR06-youtube-public-link-2026-10-14.json",
+    "video_status": "Owner confirms existing hosted video is the same content-rejected ZIP; remake required. Complete browser playback not performed by reviewer.",
     "proposal_pdf": "submission/OpsCrew_Proposal_Cloud_cloud-public-links-review-2026-10-14.pdf",
     "proposal_pptx": "submission/OpsCrew_Proposal_Cloud_cloud-public-links-review-2026-10-14.pptx",
-    "proposal_acceptance": "submission/OpsCrew_Proposal_Cloud_cloud-public-links-review-2026-10-14.acceptance.json"
+    "proposal_acceptance": "submission/OpsCrew_Proposal_Cloud_cloud-public-links-review-2026-10-14.acceptance.json",
+    "rejected_video_url": "https://youtu.be/h53-tucE7ig",
+    "owner_followup": "docs/acceptance/PR06-owner-followup-2026-10-14.json"
   },
   "previous_release": {
     "implementation_commit": "22be5948fe20fd3b14eaeffac11ae1a31ade414c",
