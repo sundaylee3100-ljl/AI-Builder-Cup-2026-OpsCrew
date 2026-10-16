@@ -1,55 +1,55 @@
 1
-00:00:00,350 --> 00:00:05,593
-OpsCrew helps finance teams prepare expense exception plans, while people keep control of every saved case.
+00:00:00,203 --> 00:00:07,388
+Meet OpsCrew, a finance copilot for expense exception plans. People control every saved case.
 
 2
-00:00:05,873 --> 00:00:09,862
+00:00:07,788 --> 00:00:12,757
 Built in Google AI Studio Build, it uses Gemini and runs on Google Cloud Run.
 
 3
-00:00:14,350 --> 00:00:18,853
-Start a visitor session, then enter a synthetic thirty-eight dollar parking expense with a missing receipt.
+00:00:13,335 --> 00:00:20,685
+First, we start a visitor session and enter a synthetic parking expense: thirty-eight dollars, with a missing receipt.
 
 4
-00:00:19,133 --> 00:00:23,267
-The inputs are text and form fields. No receipt image is uploaded or read.
+00:00:21,085 --> 00:00:26,585
+These text and form inputs are what the system checks. It doesn't read receipt images.
 
 5
-00:00:28,350 --> 00:00:32,798
-Gemini performs three distinct roles: fact extraction, planning, and independent review.
+00:00:27,359 --> 00:00:34,136
+Gemini extracts the facts, proposes a plan, and reviews it. Each role has a separate job.
 
 6
-00:00:33,078 --> 00:00:39,461
-The interface shows completed attempts and their measured durations. This recorded run passes review; it is not a service-level guarantee.
+00:00:34,536 --> 00:00:45,561
+After processing, we can inspect each attempt and its duration. These timings describe this run, not a service guarantee. All three steps finish successfully.
 
 7
-00:00:47,350 --> 00:00:51,553
-The synthetic missing-receipt rule leads to an evidence request, not reimbursement approval.
+00:00:46,446 --> 00:00:52,939
+A missing receipt means we need more evidence. The plan asks for it, without approving reimbursement.
 
 8
-00:00:51,833 --> 00:00:56,851
-The operator can copy a communication draft. Copying sends no message and executes no payment.
+00:00:53,339 --> 00:01:02,474
+Here's a draft the operator can copy and edit. Copying it sends no message and makes no payment. The plan still shows the missing receipt.
 
 9
-00:01:04,350 --> 00:01:08,923
-Prepare the current confirmation, inspect the facts and plan, then explicitly check consent.
+00:01:03,287 --> 00:01:08,346
+We prepare confirmation, check the current plan, and explicitly check consent.
 
 10
-00:01:09,203 --> 00:01:14,001
-Confirming creates one synthetic exception record. It does not authorize reimbursement or payment.
+00:01:08,746 --> 00:01:15,633
+This saves one synthetic record, with the same facts and plan. It doesn't approve reimbursement or payment.
 
 11
-00:01:17,350 --> 00:01:20,663
-The browser requests the saved record through the authenticated server API.
+00:01:16,174 --> 00:01:19,977
+Now we request the saved record through the authenticated server API.
 
 12
-00:01:20,943 --> 00:01:27,631
-Independent readback and the same visitor's history show matching case details. This verifies this example, not universal data integrity.
+00:01:20,377 --> 00:01:31,506
+Readback and this visitor's history show matching case details. That verifies this example, without claiming universal data integrity. This is still a synthetic record.
 
 13
-00:01:32,310 --> 00:01:38,213
-OpsCrew combines policy-grounded AI assistance, explicit human confirmation, and verifiable saved-case results.
+00:01:31,938 --> 00:01:37,475
+OpsCrew brings AI assistance, human confirmation, and saved-case verification together.
 
 14
-00:01:38,493 --> 00:01:42,911
-Explore the public source and cloud prototype. All demonstrated data is synthetic.
+00:01:37,875 --> 00:01:43,702
+Explore the public source and cloud prototype. All the data demonstrated here is synthetic.

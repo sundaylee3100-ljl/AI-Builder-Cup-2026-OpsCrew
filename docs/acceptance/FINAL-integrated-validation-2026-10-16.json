@@ -1,0 +1,197 @@
+{
+  "schema_version": "opscrew-final-integrated-validation-1.0.0",
+  "audit_date": "2026-10-16",
+  "timezone": "Asia/Shanghai",
+  "status": "OFFLINE_SOURCE_AND_NATIVE_ARTIFACT_PASS",
+  "reviewed_implementation_commit": "920528e848c29c82f6a424d31f5c6d9dd1f2cd45",
+  "deployed_source_commit_reported": "87767c905a0468120bb7858e9df1cf158291d10c",
+  "runtime_source_binding": {
+    "canonical_sources_sha256": "c3fca02c49c36cf8c88c9883edd3db2dfdbcaad507dadd4e4803bb5ebd3b598c",
+    "byte_policy": "UTF-8, CRLF normalized to LF; canonical JSON sorted object keys without changing arrays",
+    "files": {
+      "package.json": "6c8e1c9ec5d8db1a623a2ae4582416378f6574ec936001358584cb520f3f264d",
+      "package-lock.json": "56f765d3d0010e341a736a4239cad42872bfa641dcf4026e8efbf441a0453c79",
+      "server.ts": "6d6b09fc67ddbe6b40710d75d7faca315e0b817ca3e45bf57fc287f36f16eebc",
+      "server/runtime-config.ts": "729f651dffd0fbd4bb3087f24b9b2082192b3065939bb9afcc822043ec0f6e39",
+      "server/planning-service.ts": "a41e535a5607ed1d030135dce5d4a3a76acd11950bdae7f0f63dcdbe5c0ed0e6",
+      "server/planning-contracts.ts": "15af91f1c2a3e495aedbd921c49c965249aa5321f9b662d7bed501145440e0a2",
+      "server/case-service.ts": "e02bbc486f45b5ad78094b750c79468b7fc48c925cbaa0d2c7721500889d278d",
+      "server/case-routes.ts": "70d8b913f7b3add03e19382e6e304be238db8a6132a26f18142bfaff7187353c",
+      "server/firebase-runtime.ts": "494211f6a2f106efed747e51084356f62847884aeb5860bd39cfbf2fc842bb4b",
+      "server/model-admission.ts": "7d0e8ac9d3903af0d75c0bfb1e04a2606b7c81b48cf56478e6961ae6afc51c14",
+      "src/domain/contracts.ts": "f886004efd3b260155c7e4d4cc6d20a76d734a07c9b37066910b0cbfa931af3a",
+      "src/domain/policy.ts": "6a7609217c182579a0b72a451bfb61abfa3433cd6bbc743ed5e07f7aff25c678",
+      "src/domain/workflow.ts": "4d79b119c6bc88c3e2113bebf100edb6da6785b6bd63feab072d2d896078dcba",
+      "src/App.tsx": "389349815b32d93b1efc6c1628e4ce7291bec8882a37c639f96b4cf100c0dae5",
+      "src/components/CaseConfirmation.tsx": "1ca6f51b5f66f38e746ea78bcce55bccb063df01201f24283730d81f72a9a3d5",
+      "src/components/WorkflowReview.tsx": "b7226986785117ec7673f7c4a24475da99842172e090fddeccb4ce701c29bac1",
+      "src/lib/case-client.ts": "beabbb519e4b267a74d3ae2d2579923272f4365d266756014c6d4a071b4c77be",
+      "src/lib/firebase-session.ts": "a37a8479130dcf57fce0c9df12ce884293b2a62a591a40dbc0bcd44dfd1b932a",
+      "src/index.css": "7aa67a643b1d6cee0b64c9719fa3e32e780e9a09a5ae8af476c53bbc23ec8b78",
+      "src/main.tsx": "30d02ee59cb6576973dea4368093b2dcae692a40668f288fdbc66a114873fcd3",
+      "fixtures/development-cases.json": "bb61b80d158f24dafc2e18274d0a5b9c02cf44296649e550bccb0aabd5fe00c7",
+      "firestore.rules": "1990874ed70e379d013db242e2210ff61537c305be1ec35171004ffb30853709",
+      "firestore.indexes.json": "0c634c030b88d477779f7078f059db1e27cf4f52f4f7458315af93d68ff3abd4",
+      "firebase.json": "bfd28943974b7623fc757f8677194303cf87b2ed1edb67593c4827dcdc56b311",
+      "scripts/evaluate-precloud.mjs": "4c0e8260617fd4ce594014fd09dae4a482ea3dbfd6622d7b4d2a3f0ff3012379",
+      "scripts/check-s3-emulator.mjs": "66c1682d7bfa87c47ccc642d11df292f3928fa9fd4472f312aa58b774cfd3e7c",
+      "scripts/smoke-production.mjs": "70e9b4b40fd8701c298e6ba2b2875ff8e2ceb529a77468a1caa547f31b9b387d",
+      "Dockerfile": "7c07a7a4229159a850582b7d6ce66323caaf5d132ba771559517a19bec364fd8",
+      ".dockerignore": "199530e0d27c2b097d893b99971f4d3d4f2cacc35f067098ddf8f8dedde4288e",
+      "vite.config.ts": "f3e136cc7ecf19ff80480f07732a0f4a4ee42871acdc768508b98684c7667cc0",
+      "tsconfig.json": "021b9c55e081891e88a21855b6056174d75ee63a8c716f0d4e3fc19536d2da06",
+      "index.html": "8fab423e906d516d300421824547faf5fca1b5e0676b8227362600448ff842fa"
+    },
+    "raw_file_sha256": {
+      "package.json": "4b8c8082dfdf0932c3ff5a2a4e82488382d027ba15a75382f1a3e8dd0d8543fe",
+      "package-lock.json": "9eec8bcf49b5b6bfa642c8ccbedb4b279aea9f15504383c67f4bb8be99b6e53d",
+      "server.ts": "b46da0b376feb7c1c1b2095a0bf6fec695498bdb438c80b47b14c67a9a95917b",
+      "server/runtime-config.ts": "50c7f7a407450c8a7cb7f7b5a669ab24897ce0e05668280c14e651efccc6f190",
+      "server/planning-service.ts": "48e957880a37dcdae04c0d9696eaef2a0fad2cc5e0e961b8f3c359599fbd7599",
+      "server/planning-contracts.ts": "393d1a1b5f5dfa2697384f7cf3209b58fcf0d6284e68c35e50e0aa385c888685",
+      "server/case-service.ts": "42dac18bda0cf9c60cee63219cc2526b88a4bf566f344e22aa1601ea0fd38a0a",
+      "server/case-routes.ts": "0df24d99a34153eb94ab313b05efe237c54d1270493b5fd2280916e0972e062c",
+      "server/firebase-runtime.ts": "c5c10edebb4731da691e97859f38f3a2adb15ad4c672f6c824489c76acdf8681",
+      "server/model-admission.ts": "feb8aed5f6b83569fe40618d15db6e144abff7b934fdf650d55dad5c65592ad6",
+      "src/domain/contracts.ts": "cf39527563943d22c2878e44cca70b333c3d4ae697ff52e923f68582af6f3e9c",
+      "src/domain/policy.ts": "8b5f894fcf0a1a1c6ccaf4cbe3b048848fd5a64cee0737eec2bee4d34ab079b2",
+      "src/domain/workflow.ts": "e87bb173bda3711379e5b88dec1801c5a2a27329b2094faf5216edd63a81b3e6",
+      "src/App.tsx": "83cf184c6bec33de43b8fb416e0c13b7368cd0b7ec894a4c971c45532020f01d",
+      "src/components/CaseConfirmation.tsx": "a1181dfa23b298a1e0d5309f39a8edf5092c6480125bc803a8f21abca1d39a6e",
+      "src/components/WorkflowReview.tsx": "f10df4ff72c567d82feee6f9eb6840fefa10fee90fed6cebb8753d69618d51fa",
+      "src/lib/case-client.ts": "efa290988e1fc192d6b5e5725812abda45cb409e5db1d683c3740232fef1c328",
+      "src/lib/firebase-session.ts": "5bb1ea74c0cc930c41fe774461642504993cec45126ad3804a3a6af4319c4235",
+      "src/index.css": "7aa67a643b1d6cee0b64c9719fa3e32e780e9a09a5ae8af476c53bbc23ec8b78",
+      "src/main.tsx": "30d02ee59cb6576973dea4368093b2dcae692a40668f288fdbc66a114873fcd3",
+      "fixtures/development-cases.json": "eb0193a2a9717fdb67ad1e4d94f50a9128d8e5e9a93c6d6360854854f986526e",
+      "firestore.rules": "a7f5f29da4d2e178b03364f9a7c0d6fce287d7f8bf8fe4e2ebee61fcea0d21ac",
+      "firestore.indexes.json": "bf5304587a652c96bbecbe853dc1562add6f20dd0a3150bd2b5db04e2d0eb6b0",
+      "firebase.json": "a055db21716a94fbdbe5a101a528fca4fb170c6b2e9fd9b0b633f0ac111f7f33",
+      "scripts/evaluate-precloud.mjs": "0848886bf203c43836b68bdf71b4fe4a5a7d37fcda78b4c7e93a329a4c0c986b",
+      "scripts/check-s3-emulator.mjs": "e866c9d1bcdf9ddab087bc2c4b572a7641d9045ea881e97dfb630d539cf041c2",
+      "scripts/smoke-production.mjs": "8ed26d749a82d940184cc75d3e41d639e70662d756c511a945c39798d7136c12",
+      "Dockerfile": "0256ae55a6552559974d913a136852d79b9c9a60fa05055d01a9d9404026d41f",
+      ".dockerignore": "5bf66f78cef741b8072010a780cf7b1d5fd8f035580415a3895019ce867521bf",
+      "vite.config.ts": "478a71bdb519bc47e75dee208113445bc21b9776d96d1a3d1661d161018a1e6d",
+      "tsconfig.json": "693686ce7aeb4b8aa704835be0867ffb5477c1ffe746e3ce52f1809a98429c48",
+      "index.html": "e5a08ddfee04fc4ab1c9b8d4b44e728b0a293c7180c1246250ea9246898796b2"
+    }
+  },
+  "previous_runtime_canonical_sha256": "19348499bfe853aaee1afa6be67910da4119748db1d9b5263f1f953fbbf2b943",
+  "source_review": {
+    "vertex_source": "Three SDK calls share server-side provider configuration; production identity, persistent admission, deterministic gates, bounded retries/timeouts and telemetry retained. No body-controlled provider/project.",
+    "fixed_p2": "Explicit vertexai:false prevents SDK Vertex/Enterprise environment flags from overriding a Developer API selection. Actual SDK request regression uses dummy key and intercepted fetch only.",
+    "targeted_regression": {
+      "passed": 10,
+      "total": 10,
+      "real_network": false,
+      "adc_requests": 0
+    },
+    "new_model_calls": 0,
+    "new_signups": 0,
+    "case_writes": 0,
+    "cloud_mutations": 0
+  },
+  "metrics": {
+    "offline_tests": {
+      "passed": 246,
+      "total": 246,
+      "failed": 0,
+      "duration_ms": 54863.1491,
+      "command": "node --import tsx --test --test-concurrency=1 tests/*.test.ts"
+    },
+    "typecheck": {
+      "exit_code": 0,
+      "command": "npm run lint",
+      "after_fix": true
+    },
+    "production_build": {
+      "exit_code": 0,
+      "modules": 1677,
+      "duration_seconds": 4.38,
+      "entry": "assets/index-Dlntfva0.js",
+      "entry_sha256": "e048c63727730d59860a64ad9133771dde0dd663ae41b8172c950c158e2a891c"
+    },
+    "native_production_artifact": {
+      "status": "PASS",
+      "passed_groups": 12,
+      "total_groups": 12,
+      "http_checks_included": 9,
+      "javascript_chunks_verified": 5,
+      "elapsed_ms": 126838,
+      "exit_code": 0,
+      "command": "npm run smoke:artifact",
+      "mode": "native-production-artifact-without-credentials",
+      "container_build": "NOT_RUN",
+      "owned_temp_cleanup": "Runner completed finally cleanup with exit 0"
+    }
+  },
+  "executed_attempts_preserved": [
+    {
+      "stage": "teammate provider integration before reviewer fix",
+      "passed": 245,
+      "total": 245,
+      "failed": 0,
+      "duration_ms": 40324.0259
+    },
+    {
+      "stage": "after explicit-provider fix, default test concurrency alongside production build",
+      "passed": 245,
+      "total": 246,
+      "failed": 1,
+      "duration_ms": 34105.0034,
+      "failure": {
+        "test": "HTTP deadline while verifying identity responds promptly with zero admission/model writes",
+        "assertion": "performance.now() - started < 200",
+        "test_duration_ms": 674.1847,
+        "interpretation": "Wall-clock assertion exceeded during parallel local work; resource contention is plausible, not independently proven. No test threshold or application timeout was relaxed."
+      }
+    },
+    {
+      "stage": "targeted unchanged deadline test-file rerun",
+      "passed": 11,
+      "total": 11,
+      "failed": 0,
+      "duration_ms": 5727.8098,
+      "deadline_test_duration_ms": 43.1382
+    },
+    {
+      "stage": "complete integrated suite, serial file scheduling",
+      "passed": 246,
+      "total": 246,
+      "failed": 0,
+      "duration_ms": 54863.1491
+    }
+  ],
+  "frontend_equivalence": {
+    "entry_matches_observed_public_sha256": true,
+    "observed_entry_sha256": "e048c63727730d59860a64ad9133771dde0dd663ae41b8172c950c158e2a891c",
+    "other_public_runtime_lucide_react_chunks_match": true,
+    "firebase_chunk_report": "docs/acceptance/FINAL-firebase-bundle-2026-10-16.json",
+    "meaning": "All five JavaScript chunk bytes match the dated public observations; frontend asset identity does not attest backend source or image identity."
+  },
+  "deployment_record_review": {
+    "record": "docs/acceptance/PR06-cloud-deployment-binding-2026-10-16.json",
+    "level": "TEAM_REPORTED_RESOURCE_IDS_PUBLIC_SOURCE_AND_CONFIG_RECONCILED",
+    "control_plane_independently_authenticated": false,
+    "source_archive_full_comparison": "NOT_SUPPLIED",
+    "timestamp_issue": "Record verified_at=2026-10-16T09:03:55Z postdates containing commit at 2026-10-16T01:10:03Z; potential timezone error, not silently corrected."
+  },
+  "historical_evidence": "October14 236 tests/native12 groups and October13 three Gemini3.1 workflows retain original identities; they are not new Vertex live execution.",
+  "current_vertex_live_workflow": "NOT_EXECUTED_BY_REVIEWER",
+  "linux_container_build": "NOT_RUN_BY_REVIEWER",
+  "independent_heldout": "NOT_RUN",
+  "ready_for_portal_submission": false,
+  "remaining": [
+    "Captain confirms public-video access; reviewer full anonymous playback not verified",
+    "Captain verifies portal limits, roster, declarations and submits; retain actual Submitted receipt"
+  ],
+  "owner_accepted_video": {
+    "path": "submission/OpsCrew_Submission_Demo_2026-10-16.mp4",
+    "sha256": "f7926c166ec12be50a83557209c4cb982142bdbe5512ebfaed9012c72020ee0a",
+    "url": "https://youtu.be/j94ffx_yrng",
+    "signed_in_playback_confirmed": true,
+    "anonymous_full_playback_verified": false
+  },
+  "final_proposal": "submission/OpsCrew_Proposal_Cloud_submission-final-2026-10-16.acceptance.json"
+}

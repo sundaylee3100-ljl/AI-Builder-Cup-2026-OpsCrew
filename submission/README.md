@@ -1,30 +1,34 @@
-# Submission materials and cloud evidence review
+# Submission package
 
-OpsCrew is a fresh application created from zero in Google AI Studio Build during the competition. Gemini 3.1 Flash-Lite performs fact extraction and separately prompted Planner and Reviewer stages. The owner reports that the teammate used Google Antigravity to assist Cloud deployment. The original official template and the owner-reported Gemini-generated team logo are in `assets/`.
+Current selection:16 October 2026. Captain: Sunday Lee. OpsCrew was created from zero in Google AI Studio Build; Gemini and Cloud Run/Firebase form the Google route. See [prepared submission fields](SUBMISSION_FORM.md) and [checklist](../SUBMISSION_CHECKLIST.md).
 
-The new **Cloud evidence review** PDF/PPTX contain thirteen substantive slides following the official template. They distinguish the October 13 recorded cloud API checks from historical local/injected tests. The latest `cloud-public-links-review-2026-10-14` revision includes the owner-supplied public captain name Sunday Lee and YouTube URL, alongside the recorded product URL. Final footage acceptance, signed-out playback, source-to-image identity, independent held-out evaluation and remaining resource controls must be completed before declaring a final submission ready. A public URL does not validate the video's claims. Earlier proposal binaries remain historical and are not overwritten.
+## Use these files
 
-`build-proposal.mjs` is one maintained authoring script. It imports the official template and preserves the artwork, original fonts and slide size. Text, tables and diagrams remain editable in the PPTX. The PDF uses matching 192-dpi page images and clickable repository/product/video links. Its text is not searchable; edit the PPTX for final changes. A clearly labeled historical local screenshot remains on the interface page. The cloud result page contains genuine recorded response evidence, not a fabricated browser screenshot. Actual final browser recording remains necessary.
+| Deliverable | File / link |
+| --- | --- |
+| Official-template PDF | [Final proposal](OpsCrew_Proposal_Cloud_submission-final-2026-10-16.pdf) |
+| Editable source | [Final presentation](OpsCrew_Proposal_Cloud_submission-final-2026-10-16.pptx) |
+| Final local video | [Accepted video](OpsCrew_Submission_Demo_2026-10-16.mp4) |
+| English caption files | [SRT](OpsCrew_Submission_Demo_2026-10-16.srt), [VTT](OpsCrew_Submission_Demo_2026-10-16.vtt) |
+| Hosted video | https://youtu.be/j94ffx_yrng |
+| Live prototype | https://opscrew-883881551915.us-central1.run.app |
+| Public source | https://github.com/sundaylee3100-ljl/AI-Builder-Cup-2026-OpsCrew |
+| Prepared form / description | [SUBMISSION_FORM.md](SUBMISSION_FORM.md) |
 
-The script uses the bundled Artifact Tool, not application runtime dependencies. Set `OPSCREW_DOCUMENT_RUNTIME` and `OPSCREW_PRESENTATIONS_SKILL` for another equivalent runtime. After new footage and its public link pass acceptance, use a new output revision from the repository root. Do not rerun the historical output name or reuse the rejected video:
+The owner accepted the revised narration and confirmed matching signed-in hosted playback. The local file is103.941333 seconds,1920x1080/25fps; SHA-256 `f7926c166ec12be50a83557209c4cb982142bdbe5512ebfaed9012c72020ee0a`. Rate0 narration is about19.17 percent slower words/minute than the prior edit, with0.4 s scheduled semantic gaps and no detected silence over1.5 s. Fourteen caption cues share the measured narration timing. [Video QA](../docs/acceptance/FINAL-video-corrected-QA-2026-10-16.md)
+
+Full anonymous hosted playback is not verified. Ordinary public/unlisted YouTube videos generally do not require a Google account; confirm public access before submission. The earlier `8MACVIPWCt8` and `h53-tucE7ig` candidates are rejected and must not be used. The raw `Original_Recorded_Demo_2026-10-16.mp4` is preserved only for reproducibility. Historical proposals are not current submission selections.
+
+The final13-page PDF has real GitHub/product/video hyperlink annotations and image-based pages; the PPTX retains editable text, tables and diagrams. [Proposal acceptance](OpsCrew_Proposal_Cloud_submission-final-2026-10-16.acceptance.json) records final hashes, template/package checks and page inspection. No API key is included or required from a judge. The server uses Vertex AI ADC or optional server-only Developer API credentials.
+
+## Maintained builders
+
+`build-reviewed-demo.mjs` uses local Windows System.Speech/Zira and FFmpeg/FFprobe. It checks a whitelist input hash before writing and does not contact cloud/models/accounts or paid TTS. The five recorded UI sections remain in original order/speed; the0.8 s history hold and all editorial narration/caption/label changes are disclosed. Do not rebuild an accepted video without a new content review and matching publication. An input-only check creates no output:
 
 ```powershell
-$env:OPSCREW_PUBLIC_CAPTAIN_NAME = 'Sunday Lee'
-$env:OPSCREW_PUBLIC_VIDEO_URL = Read-Host 'Enter the content-accepted public video URL'
-if ([string]::IsNullOrWhiteSpace($env:OPSCREW_PUBLIC_VIDEO_URL) -or $env:OPSCREW_PUBLIC_VIDEO_URL -match 'h53-tucE7ig') {
-  throw 'An accepted replacement video URL is required; do not use the rejected video.'
-}
-$opsProposalRevision = 'cloud-video-review-' + (Get-Date -Format 'yyyyMMdd-HHmmss')
-node submission/build-proposal.mjs docs/acceptance/PR04-build-integration-2026-10-12.json $opsProposalRevision docs/acceptance/DELIVERY-cloud-G3-2026-10-13.json docs/acceptance/DELIVERY-cloud-safety-and-fixtures-2026-10-13.json
+node submission/build-reviewed-demo.mjs --input=submission/Original_Recorded_Demo_2026-10-16.mp4 --check-input-only
 ```
 
-Optional `OPSCREW_PUBLIC_CAPTAIN_NAME` and `OPSCREW_PUBLIC_VIDEO_URL` accept only verified public values. A supplied video URI does not automatically prove anonymous access or correct footage. All new slides and independently rerendered PDF pages require actual visual inspection. Check the editable deck in PowerPoint or the submission authoring tool before final export. The October 12 material acceptance applies only to its historical hashes. Keep private authoring previews separate from final files and bind final submitted materials to SHA-256.
+`build-proposal.mjs` uses the bundled local Artifact Tool and official template. The final builder prefers the dated integrated 246-test report while retaining October 13 real-model observations as historical evidence. Future revisions require a new descriptive output name, verified links and full visual review; do not overwrite dated execution records. Environment examples and documented setup contain no real secrets.
 
-Follow [the recording plan](RECORDING_PLAN.md), [cloud handoff](../docs/CLOUD_TEAMMATE_HANDOFF.md) and [submission checklist](../SUBMISSION_CHECKLIST.md). A review proposal or local video is not final G6 acceptance or a portal Submitted receipt.
-
-
-## Unaccepted candidate footage
-
-The videos submitted in original PR head 51f99740fe488f74d8ef5de1b9368065ec1dadf1 are review inputs, not approved final deliverables. Their technical encoding is valid but their content does not match the claimed current cloud demo. Candidate media/source are excluded from the current submission index; no supplied local file was deleted. See [the video audit](../docs/acceptance/PR06-video-review-2026-10-14.md) and the owner archive. Initial review verified public page metadata; at that time footage correspondence and actual playback were unverified. The newer owner confirmation below resolves correspondence while retaining the playback method boundary.
-
-The subsequent [owner follow-up](../docs/acceptance/PR06-owner-followup-2026-10-14.json) confirms that the hosted video is the same rejected ZIP and needs to be remade. It is not an accepted final video. The current review PDF/PPTX still contain that historical video hyperlink; replace it and rerender/check a new revision after truthful footage is accepted. The executed proposal and metadata reports retain their original hashes and methods. The review checkout/render caches have been manually removed and their absence independently inspected.
+[Recording/acceptance plan](RECORDING_PLAN.md), [cloud handoff](../docs/CLOUD_TEAMMATE_HANDOFF.md) and [provenance](../PROVENANCE.md) distinguish source verification, team deployment records and actual model tests. The final package is prepared for captain portal checks; no Submitted receipt is claimed.

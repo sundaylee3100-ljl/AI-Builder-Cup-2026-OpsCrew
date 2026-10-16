@@ -1,0 +1,43 @@
+{
+  "schema_version": "opscrew-cloud-deployment-binding-1.0.0",
+  "audit_date": "2026-10-16",
+  "verified_at": "2026-10-16T09:03:55Z",
+  "service": "opscrew",
+  "project_id": "project-b2db87f6-7a4e-4020-972",
+  "project_number": "883881551915",
+  "region": "us-central1",
+  "url": "https://opscrew-883881551915.us-central1.run.app",
+  "active_revision": "opscrew-00005-g99",
+  "traffic_percent": 100,
+  "cloud_build_id": "66f32f78-b90c-4cfa-bece-43baa15c6719",
+  "image_digest": "sha256:5f5e72ebce9d24001eec458227163d1b9d8d872c69f6f28030367230b6350236",
+  "image_uri": "us-central1-docker.pkg.dev/project-b2db87f6-7a4e-4020-972/cloud-run-source-deploy/opscrew@sha256:5f5e72ebce9d24001eec458227163d1b9d8d872c69f6f28030367230b6350236",
+  "source_commit": "87767c905a0468120bb7858e9df1cf158291d10c",
+  "source_commit_message": "feat(llm): implement dual-mode adaptive architecture for Vertex AI Agent Platform and Developer API",
+  "deployed_by": "yaochanged@gmail.com",
+  "deployed_at": "2026-10-15T08:18:17.726007Z",
+  "cloud_build_details": {
+    "create_time": "2026-10-15T08:14:36.818101864Z",
+    "finish_time": "2026-10-15T08:17:53.564032Z",
+    "status": "SUCCESS",
+    "source_location": "gs://run-sources-project-b2db87f6-7a4e-4020-972-us-central1/services/opscrew/1792052071.997012-b9b9b234231b4927b31e961c157ed680.zip#1792052073802566",
+    "log_url": "https://console.cloud.google.com/cloud-build/builds;region=us-central1/66f32f78-b90c-4cfa-bece-43baa15c6719?project=883881551915"
+  },
+  "runtime_probe_results": {
+    "/api/health": {
+      "status": 200,
+      "response": {
+        "ok": true,
+        "service": "opscrew",
+        "stage": "S4",
+        "case_backend_mode": "firestore"
+      }
+    },
+    "/api/config": {
+      "status": 200,
+      "default_model": "gemini-2.5-flash",
+      "backend_mode": "vertexai_agent_platform",
+      "stage": "S4"
+    }
+  }
+}

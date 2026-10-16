@@ -1,0 +1,212 @@
+{
+  "schema_version": "opscrew-final-public-readonly-1.0.0",
+  "audit_date": "2026-10-16",
+  "timezone": "Asia/Shanghai",
+  "observed_at": "2026-10-16T01:11:39.939Z",
+  "target": "https://opscrew-883881551915.us-central1.run.app",
+  "mode": "normal-TLS-readonly-no-auth-model-or-write",
+  "model_calls": 0,
+  "signups": 0,
+  "case_writes": 0,
+  "cloud_identity": "NOT_ATTESTED",
+  "probes": [
+    {
+      "path": "/",
+      "http": 200,
+      "duration_ms": 1355,
+      "title": "OpsCrew \u2014 Expense Exception Plan &amp; Review",
+      "root_present": true
+    },
+    {
+      "path": "/api/health",
+      "http": 200,
+      "duration_ms": 796,
+      "observed": {
+        "ok": true,
+        "service": "opscrew",
+        "stage": "S4",
+        "case_backend_mode": "firestore"
+      }
+    },
+    {
+      "path": "/api/config",
+      "http": 200,
+      "duration_ms": 318,
+      "observed": {
+        "ok": true,
+        "default_model": "gemini-2.5-flash",
+        "allowed_models": [
+          "gemini-2.5-flash",
+          "gemini-2.5-pro",
+          "gemini-2.5-flash-lite",
+          "gemini-3.8-flash",
+          "gemini-3.1-flash-lite",
+          "gemini-flash-latest"
+        ],
+        "request_timeout_ms": 40000,
+        "route_timeout_ms": 45000,
+        "max_attempts": 2,
+        "api_key_configured": true,
+        "backend_mode": "vertexai_agent_platform",
+        "vertexai": {
+          "active": true,
+          "project": "project-b2db87f6-7a4e-4020-972",
+          "location": "us-central1"
+        },
+        "stage": "S4",
+        "case_backend": {
+          "enabled": true,
+          "mode": "firestore",
+          "firebase": {
+            "apiKey": "REDACTED",
+            "authDomain": "project-b2db87f6-7a4e-4020-972.firebaseapp.com",
+            "projectId": "project-b2db87f6-7a4e-4020-972",
+            "appId": "1:883881551915:web:337e3dc54e23649b55a26e"
+          },
+          "auth_emulator_url": null
+        },
+        "policy_version": "synthetic-expense-usd-1.0.0",
+        "workflow_timeout_ms": 90000,
+        "planning_step_timeout_ms": 30000,
+        "model_enabled": true,
+        "model_admission": {
+          "enabled": true,
+          "limits": {
+            "globalConcurrent": 2,
+            "ownerConcurrent": 1,
+            "globalMinuteRequests": 6,
+            "ownerMinuteRequests": 2,
+            "globalDailyRequests": 60,
+            "ownerDailyRequests": 12,
+            "globalMinuteCalls": 36,
+            "ownerMinuteCalls": 12,
+            "globalDailyCalls": 360,
+            "ownerDailyCalls": 72,
+            "leaseMs": 180000
+          },
+          "workflow_reserved_calls": 6,
+          "facts_reserved_calls": 2,
+          "reset_timezone": "UTC",
+          "unknown_usage_refunded": false
+        }
+      }
+    },
+    {
+      "path": "/api/ready",
+      "http": 200,
+      "duration_ms": 1009,
+      "observed": {
+        "ok": true,
+        "ready": true,
+        "stage": "S4",
+        "case_backend_mode": "firestore",
+        "model_calls": 0
+      }
+    },
+    {
+      "path": "/assets/index-hWjBHJRH.js",
+      "http": 200,
+      "bytes": 84394,
+      "sha256": "e048c63727730d59860a64ad9133771dde0dd663ae41b8172c950c158e2a891c",
+      "local_same_filename_exists": false,
+      "local_bytes_identical": null,
+      "feature_strings": {
+        "copy_only_draft": true,
+        "human_confirmation": true,
+        "claims15s": false,
+        "claims184k": true,
+        "immutable": false
+      }
+    },
+    {
+      "path": "/assets/rolldown-runtime-hePW80VL.js",
+      "http": 200,
+      "bytes": 716,
+      "sha256": "580ad8c58061a4dde99bde0a56905e382f0568516ee2f5b84dbfb52085709021",
+      "local_same_filename_exists": true,
+      "local_bytes_identical": true,
+      "feature_strings": {
+        "copy_only_draft": false,
+        "human_confirmation": false,
+        "claims15s": false,
+        "claims184k": false,
+        "immutable": false
+      }
+    },
+    {
+      "path": "/assets/vendor-lucide-DROjtd-i.js",
+      "http": 200,
+      "bytes": 11612,
+      "sha256": "02884d3869771778c3ff01d326a3f15b5c1dd81de6287c58122abf804fd93b7b",
+      "local_same_filename_exists": true,
+      "local_bytes_identical": true,
+      "feature_strings": {
+        "copy_only_draft": false,
+        "human_confirmation": false,
+        "claims15s": false,
+        "claims184k": false,
+        "immutable": false
+      }
+    },
+    {
+      "path": "/assets/vendor-react-C08RTgzM.js",
+      "http": 200,
+      "bytes": 210996,
+      "sha256": "76d0f06937a9ce68dec4cb50e29266099c7e249658aaa9f4ccfcd890df5e863b",
+      "local_same_filename_exists": true,
+      "local_bytes_identical": true,
+      "feature_strings": {
+        "copy_only_draft": false,
+        "human_confirmation": false,
+        "claims15s": false,
+        "claims184k": false,
+        "immutable": false
+      }
+    }
+  ],
+  "current_local_build": {
+    "date": "2026-10-16",
+    "exit_code": 0,
+    "modules": 1677,
+    "duration_seconds": 5.83,
+    "files": [
+      {
+        "path": "assets/index-BOGAoMX_.js",
+        "sha256": "7d03f98c41c692292bdfa5f3d10a5cd539bb3a3e0dc6ec1d32de129544f912ba"
+      },
+      {
+        "path": "assets/index-C5fm-aAq.css",
+        "sha256": "64ce080cf1093e025b06d779a8dfd92ae99a33786183bb5f45a61f00825e7724"
+      },
+      {
+        "path": "assets/rolldown-runtime-hePW80VL.js",
+        "sha256": "580ad8c58061a4dde99bde0a56905e382f0568516ee2f5b84dbfb52085709021"
+      },
+      {
+        "path": "assets/vendor-firebase-DlPj4ys7.js",
+        "sha256": "7f5036f1e2a26b969bfd2bfb504baa48d16ac0e1b60ba8285e8bf46a9f7bcc42"
+      },
+      {
+        "path": "assets/vendor-lucide-DROjtd-i.js",
+        "sha256": "02884d3869771778c3ff01d326a3f15b5c1dd81de6287c58122abf804fd93b7b"
+      },
+      {
+        "path": "assets/vendor-react-C08RTgzM.js",
+        "sha256": "76d0f06937a9ce68dec4cb50e29266099c7e249658aaa9f4ccfcd890df5e863b"
+      }
+    ]
+  },
+  "frontend_build_equivalence": "NOT_ESTABLISHED",
+  "limitations": [
+    "No current backend source/build/image/revision attestation",
+    "No new Gemini workflow, signup or saved-case mutation",
+    "Anonymous full interactive browser operation not executed in this probe",
+    "October13 real Gemini3.1FlashLite results do not certify this newly reported VertexAI/Gemini2.5 backend"
+  ],
+  "heuristic_notes": [
+    "The original claims184k boolean was a raw substring search for 184.5; contextual inspection finds the $184.50 Synthetic02 conflict fixture, not an ROI claim.",
+    "The served frontend differs from this build only in the model fallback candidates; see FINAL-frontend-difference-2026-10-16.json.",
+    "Current service configuration reports Vertex AI and gemini-2.5-flash; those backend fields are absent from the reviewed public server source. Configuration self-report is not an independently attested provider call."
+  ],
+  "source_configuration_drift": "CURRENT_SERVICE_REPORTS_VERTEX_AI_AND_GEMINI_2_5_FLASH_NOT_BOUND_TO_REVIEWED_BACKEND"
+}

@@ -1,26 +1,26 @@
 {
   "date_local": "2026-10-16",
   "timezone": "Asia/Shanghai",
-  "status": "OFFLINE_TECHNICAL_AND_VISUAL_PASS_HUMAN_LISTEN_PUBLICATION_PENDING",
+  "status": "OWNER_CONTENT_ACCEPTED_HOSTED_PLAYBACK_PENDING",
   "output": {
     "path": "submission/OpsCrew_Submission_Demo_2026-10-16.mp4",
-    "sha256": "f9ca540644f96677aed1833cbbcc83d71e69cedf0bbc336acad8a43fb5613650",
-    "bytes": 10012205,
-    "duration_seconds": 103.981333,
+    "sha256": "f7926c166ec12be50a83557209c4cb982142bdbe5512ebfaed9012c72020ee0a",
+    "bytes": 10687569,
+    "duration_seconds": 103.941333,
     "streams": [
       {
         "codec_type": "video",
         "codec_name": "h264",
         "width": 1920,
         "height": 1080,
-        "nb_frames": "2599"
+        "nb_frames": "2598"
       },
       {
         "codec_type": "audio",
         "codec_name": "aac",
         "sample_rate": "48000",
         "channels": 2,
-        "nb_frames": "4884"
+        "nb_frames": "4881"
       }
     ]
   },
@@ -34,192 +34,405 @@
     "variants_are_byte_identical": false,
     "unchanged": true
   },
-  "checks": {
-    "builder_syntax": "PASS",
-    "source_hash_before_and_after": "PASS",
-    "full_audio_video_decode_exit_code": 0,
-    "decoder_errors_observed": false,
-    "duration_strictly_under_180_seconds": true,
-    "caption_timeline_order_and_duration": "PASS",
-    "srt_vtt_same_14_texts_as_narration": "PASS",
-    "visual_cue_states_inspected": 14,
-    "additional_full_resolution_states_inspected": 11,
-    "new_text_control_glyph_problem_corrected": true,
-    "critical_checkbox_case_id_readback_and_history_controls_observable": true,
-    "same_recorded_case_fields_and_identifiers": "PASS",
-    "source_ui_recorded_order_and_speed_preserved": "PASS",
-    "owner_input_check_only": "PASS",
-    "alternate_input_check_only": "PASS",
-    "audio_mean_volume_db": -24.9,
-    "audio_max_volume_db": -5.5,
-    "non_silent_audio_signal": true,
-    "alternate_input_path": "submission/Original_Recorded_Demo_2026-10-16.mp4",
-    "alternate_input_sha256": "cb64b670e057709cdcb85aa55dde7e2f05fbc3eb3490042cd13eacd4c36a6772",
-    "path_handoff_enoent_then_resolved": true
+  "builder": {
+    "path": "submission/build-reviewed-demo.mjs",
+    "sha256": "f99950f805488ca70996bd1ac2084ff819cae216a446bcfd2ff428b94c5e1fcf",
+    "network_calls": 0,
+    "model_calls": 0,
+    "tts": "Windows System.Speech, Microsoft Zira Desktop, en-US, offline",
+    "original_audio_included": false,
+    "original_intro_chapter_cards_outro_included": false,
+    "recorded_ui_speed": 1,
+    "work_directory": ".review-media-20261016",
+    "cleanup": "PENDING_AFTER_QA"
+  },
+  "previous_version": {
+    "commit": "e088742",
+    "sha256": "f9ca540644f96677aed1833cbbcc83d71e69cedf0bbc336acad8a43fb5613650",
+    "reason": "Owner found rate3 narration too fast. Original QA remains in Git history."
   },
   "narration": {
     "engine": "Windows System.Speech",
     "voice": "Microsoft Zira Desktop",
     "locale": "en-US",
     "offline": true,
-    "rate": 3,
-    "words": 199,
-    "speech_duration_seconds": 67.613786,
-    "full_listen": "NOT_PERFORMED",
-    "transcription": "NOT_PERFORMED",
-    "same_input_used_for_tts_and_captions": true,
-    "caption_audio_alignment_method": "Measured each synthesized WAV; shared timeline for audio delay, burned caption enable interval, SRT and VTT. AAC/video initial offset approximately 21 milliseconds."
+    "rate": 0,
+    "words": 230,
+    "speech_duration_seconds": 96.675239,
+    "words_per_minute": 142.74596207618373,
+    "previous_words_per_minute": 176.5912058230255,
+    "pace_reduction_percent": 19.165871589755422,
+    "time_stretch": false,
+    "semantic_inter_cue_pause_seconds": 0.4,
+    "audio": {
+      "exit_code": 0,
+      "silence_threshold_db": -40,
+      "minimum_detected_seconds": 0.1,
+      "detected_intervals": 43,
+      "max_silence_seconds": 0.970667,
+      "no_silence_over_1_5_seconds": true,
+      "mean_volume_db": -22.9,
+      "max_volume_db": -5.2,
+      "decoded_video_frames": 2598,
+      "sampled_caption_midpoints": 14
+    },
+    "full_listen_by_reviewer": "NOT_PERFORMED",
+    "owner_full_playback_and_content_acceptance": "Owner reports watching the generated file, accepting it and publishing corresponding video. Recorded from the owner follow-up; no reviewer listening claim.",
+    "transcription": "NOT_PERFORMED"
+  },
+  "checks": {
+    "source_unchanged": true,
+    "full_audio_video_decode_exit_code": 0,
+    "duration_strictly_under_180_seconds": true,
+    "caption_timeline_order_and_duration": true,
+    "srt_vtt_same_14_texts_as_narration": true,
+    "cue_midpoint_contactsheet_states_inspected": 14,
+    "additional_full_resolution_states_inspected": 3,
+    "confirmation_checkbox_case_id_amount_and_history_unobscured": true,
+    "recorded_ui_original_order_and_speed": true,
+    "frame_holds": [
+      {
+        "id": "readback",
+        "hold_seconds": 0.8,
+        "disclosed": "EDITED HOLD - LAST RECORDED FRAME"
+      }
+    ],
+    "silence_over_1_5_seconds": false
   },
   "edit_decision_list": [
     {
       "id": "intro",
       "kind": "card",
-      "duration": 14,
+      "duration": 12.96,
+      "title": "OpsCrew",
+      "subtitle": "Expense exception plans with human confirmation",
+      "cues": [
+        "Meet OpsCrew, a finance copilot for expense exception plans. People control every saved case.",
+        "Built in Google AI Studio Build, it uses Gemini and runs on Google Cloud Run."
+      ],
+      "audio": [
+        {
+          "text": "Meet OpsCrew, a finance copilot for expense exception plans. People control every saved case.",
+          "file": "voice-00.wav",
+          "duration": 7.184943,
+          "start": 0.20310650000000124,
+          "end": 7.388049500000001
+        },
+        {
+          "text": "Built in Google AI Studio Build, it uses Gemini and runs on Google Cloud Run.",
+          "file": "voice-01.wav",
+          "duration": 4.968844,
+          "start": 7.788049500000001,
+          "end": 12.7568935
+        }
+      ],
+      "voiceRate": 0,
+      "recordedDuration": null,
+      "holdSeconds": 0,
       "outputStart": 0,
-      "outputEnd": 14
+      "outputEnd": 12.96
     },
     {
       "id": "intake",
       "kind": "recording",
+      "start": 24.04,
       "duration": 14,
-      "outputStart": 14,
-      "outputEnd": 28,
-      "source_start": 24.04,
-      "source_end": 38.04
+      "title": "1. Visitor session and synthetic input",
+      "cues": [
+        "First, we start a visitor session and enter a synthetic parking expense: thirty-eight dollars, with a missing receipt.",
+        "These text and form inputs are what the system checks. It doesn't read receipt images."
+      ],
+      "audio": [
+        {
+          "text": "First, we start a visitor session and enter a synthetic parking expense: thirty-eight dollars, with a missing receipt.",
+          "file": "voice-02.wav",
+          "duration": 7.350295,
+          "start": 0.37494300000000075,
+          "end": 7.725238000000001
+        },
+        {
+          "text": "These text and form inputs are what the system checks. It doesn't read receipt images.",
+          "file": "voice-03.wav",
+          "duration": 5.499819,
+          "start": 8.125238000000001,
+          "end": 13.625057
+        }
+      ],
+      "voiceRate": 0,
+      "recordedDuration": 14,
+      "holdSeconds": 0,
+      "outputStart": 12.96,
+      "outputEnd": 26.96
     },
     {
       "id": "roles",
       "kind": "recording",
+      "start": 42.04,
       "duration": 19,
-      "outputStart": 28,
-      "outputEnd": 47,
-      "source_start": 42.04,
-      "source_end": 61.04
+      "title": "2. Facts, planning and independent review",
+      "cues": [
+        "Gemini extracts the facts, proposes a plan, and reviews it. Each role has a separate job.",
+        "After processing, we can inspect each attempt and its duration. These timings describe this run, not a service guarantee. All three steps finish successfully."
+      ],
+      "audio": [
+        {
+          "text": "Gemini extracts the facts, proposes a plan, and reviews it. Each role has a separate job.",
+          "file": "voice-04.wav",
+          "duration": 6.776644,
+          "start": 0.39911549999999957,
+          "end": 7.1757595
+        },
+        {
+          "text": "After processing, we can inspect each attempt and its duration. These timings describe this run, not a service guarantee. All three steps finish successfully.",
+          "file": "voice-05.wav",
+          "duration": 11.025125,
+          "start": 7.5757595,
+          "end": 18.6008845
+        }
+      ],
+      "voiceRate": 0,
+      "recordedDuration": 19,
+      "holdSeconds": 0,
+      "outputStart": 26.96,
+      "outputEnd": 45.96
     },
     {
       "id": "decision",
       "kind": "recording",
+      "start": 65.04,
       "duration": 17,
-      "outputStart": 47,
-      "outputEnd": 64,
-      "source_start": 65.04,
-      "source_end": 82.04
+      "title": "3. Evidence request and copy-only draft",
+      "cues": [
+        "A missing receipt means we need more evidence. The plan asks for it, without approving reimbursement.",
+        "Here's a draft the operator can copy and edit. Copying it sends no message and makes no payment. The plan still shows the missing receipt."
+      ],
+      "audio": [
+        {
+          "text": "A missing receipt means we need more evidence. The plan asks for it, without approving reimbursement.",
+          "file": "voice-06.wav",
+          "duration": 6.493379,
+          "start": 0.48573699999999925,
+          "end": 6.979115999999999
+        },
+        {
+          "text": "Here's a draft the operator can copy and edit. Copying it sends no message and makes no payment. The plan still shows the missing receipt.",
+          "file": "voice-07.wav",
+          "duration": 9.135147,
+          "start": 7.379116,
+          "end": 16.514263
+        }
+      ],
+      "voiceRate": 0,
+      "recordedDuration": 17,
+      "holdSeconds": 0,
+      "outputStart": 45.96,
+      "outputEnd": 62.96
     },
     {
       "id": "consent",
       "kind": "recording",
+      "start": 86.04,
       "duration": 13,
-      "outputStart": 64,
-      "outputEnd": 77,
-      "source_start": 86.04,
-      "source_end": 99.04
+      "title": "4. Explicit human confirmation",
+      "cues": [
+        "We prepare confirmation, check the current plan, and explicitly check consent.",
+        "This saves one synthetic record, with the same facts and plan. It doesn't approve reimbursement or payment."
+      ],
+      "audio": [
+        {
+          "text": "We prepare confirmation, check the current plan, and explicitly check consent.",
+          "file": "voice-08.wav",
+          "duration": 5.059365,
+          "start": 0.3269615000000002,
+          "end": 5.3863265
+        },
+        {
+          "text": "This saves one synthetic record, with the same facts and plan. It doesn't approve reimbursement or payment.",
+          "file": "voice-09.wav",
+          "duration": 6.886712,
+          "start": 5.7863265,
+          "end": 12.6730385
+        }
+      ],
+      "voiceRate": 0,
+      "recordedDuration": 13,
+      "holdSeconds": 0,
+      "outputStart": 62.96,
+      "outputEnd": 75.96000000000001
     },
     {
       "id": "readback",
       "kind": "recording",
-      "duration": 14.96,
-      "outputStart": 77,
-      "outputEnd": 91.96000000000001,
-      "source_start": 103.04,
-      "source_end": 118.0
+      "start": 103.04,
+      "duration": 15.76,
+      "title": "5. Independent readback and same-visitor history",
+      "cues": [
+        "Now we request the saved record through the authenticated server API.",
+        "Readback and this visitor's history show matching case details. That verifies this example, without claiming universal data integrity. This is still a synthetic record."
+      ],
+      "audio": [
+        {
+          "text": "Now we request the saved record through the authenticated server API.",
+          "file": "voice-10.wav",
+          "duration": 3.802902,
+          "start": 0.21437650000000003,
+          "end": 4.0172785
+        },
+        {
+          "text": "Readback and this visitor's history show matching case details. That verifies this example, without claiming universal data integrity. This is still a synthetic record.",
+          "file": "voice-11.wav",
+          "duration": 11.128345,
+          "start": 4.4172785,
+          "end": 15.545623500000001
+        }
+      ],
+      "voiceRate": 0,
+      "recordedDuration": 14.96,
+      "holdSeconds": 0.8,
+      "outputStart": 75.96000000000001,
+      "outputEnd": 91.72000000000001
     },
     {
       "id": "outro",
       "kind": "card",
-      "duration": 12,
-      "outputStart": 91.96000000000001,
-      "outputEnd": 103.96000000000001
+      "duration": 12.2,
+      "title": "Human control. Verifiable saved cases.",
+      "subtitle": "Explore OpsCrew",
+      "cues": [
+        "OpsCrew brings AI assistance, human confirmation, and saved-case verification together.",
+        "Explore the public source and cloud prototype. All the data demonstrated here is synthetic."
+      ],
+      "audio": [
+        {
+          "text": "OpsCrew brings AI assistance, human confirmation, and saved-case verification together.",
+          "file": "voice-12.wav",
+          "duration": 5.537143,
+          "start": 0.21814049999999946,
+          "end": 5.7552835
+        },
+        {
+          "text": "Explore the public source and cloud prototype. All the data demonstrated here is synthetic.",
+          "file": "voice-13.wav",
+          "duration": 5.826576,
+          "start": 6.1552835,
+          "end": 11.9818595
+        }
+      ],
+      "voiceRate": 0,
+      "recordedDuration": null,
+      "holdSeconds": 0,
+      "outputStart": 91.72000000000001,
+      "outputEnd": 103.92000000000002
     }
   ],
-  "contact_sheet_cue_midpoints_seconds": [
-    2.972,
-    7.867,
-    16.601,
-    21.2,
-    30.574,
-    36.27,
-    49.452,
-    54.342,
-    66.637,
-    71.602,
-    79.007,
-    84.287,
-    95.261,
-    100.702
-  ],
-  "full_resolution_timestamps_seconds": [
-    3,
-    31,
-    43.96,
-    49,
-    56.96,
-    66.96,
-    69.96,
-    73.96,
-    81.96,
-    96,
-    101
-  ],
-  "files": [
+  "captions": [
     {
-      "path": "submission/OpsCrew_Submission_Demo_2026-10-16.mp4",
-      "bytes": 10012205,
-      "sha256": "f9ca540644f96677aed1833cbbcc83d71e69cedf0bbc336acad8a43fb5613650"
+      "start": 0.20310650000000124,
+      "end": 7.388049500000001,
+      "text": "Meet OpsCrew, a finance copilot for expense exception plans. People control every saved case."
     },
     {
-      "path": "submission/OpsCrew_Submission_Demo_2026-10-16.srt",
-      "bytes": 1852,
-      "sha256": "f95eac1ee611c7cbdcb8e43b5649eb94721e6c62e399d95b849a17aeb76127fc"
+      "start": 7.788049500000001,
+      "end": 12.7568935,
+      "text": "Built in Google AI Studio Build, it uses Gemini and runs on Google Cloud Run."
     },
     {
-      "path": "submission/OpsCrew_Submission_Demo_2026-10-16.vtt",
-      "bytes": 1827,
-      "sha256": "bfe3bc0b7b4f14a6918a27215cd34f84d6d6b66716c6d0332c7e795044ce57bf"
+      "start": 13.334943,
+      "end": 20.685238000000002,
+      "text": "First, we start a visitor session and enter a synthetic parking expense: thirty-eight dollars, with a missing receipt."
     },
     {
-      "path": "submission/build-reviewed-demo.mjs",
-      "bytes": 16151,
-      "sha256": "9dc63181b97cc53b4e59d2b299f1e2b5414f22199bcc063dd9ae973fadd88022"
+      "start": 21.085238000000004,
+      "end": 26.585057,
+      "text": "These text and form inputs are what the system checks. It doesn't read receipt images."
     },
     {
-      "path": "docs/acceptance/FINAL-video-corrected-contactsheet-2026-10-16.png",
-      "bytes": 1166299,
-      "sha256": "e76a5c69161bec35970aba8da61099bf08d70e9320c639506f157fc2f66e82a1"
+      "start": 27.3591155,
+      "end": 34.1357595,
+      "text": "Gemini extracts the facts, proposes a plan, and reviews it. Each role has a separate job."
+    },
+    {
+      "start": 34.5357595,
+      "end": 45.5608845,
+      "text": "After processing, we can inspect each attempt and its duration. These timings describe this run, not a service guarantee. All three steps finish successfully."
+    },
+    {
+      "start": 46.445737,
+      "end": 52.939116,
+      "text": "A missing receipt means we need more evidence. The plan asks for it, without approving reimbursement."
+    },
+    {
+      "start": 53.339116000000004,
+      "end": 62.474263,
+      "text": "Here's a draft the operator can copy and edit. Copying it sends no message and makes no payment. The plan still shows the missing receipt."
+    },
+    {
+      "start": 63.286961500000004,
+      "end": 68.3463265,
+      "text": "We prepare confirmation, check the current plan, and explicitly check consent."
+    },
+    {
+      "start": 68.7463265,
+      "end": 75.6330385,
+      "text": "This saves one synthetic record, with the same facts and plan. It doesn't approve reimbursement or payment."
+    },
+    {
+      "start": 76.17437650000001,
+      "end": 79.97727850000001,
+      "text": "Now we request the saved record through the authenticated server API."
+    },
+    {
+      "start": 80.3772785,
+      "end": 91.50562350000001,
+      "text": "Readback and this visitor's history show matching case details. That verifies this example, without claiming universal data integrity. This is still a synthetic record."
+    },
+    {
+      "start": 91.93814050000002,
+      "end": 97.47528350000002,
+      "text": "OpsCrew brings AI assistance, human confirmation, and saved-case verification together."
+    },
+    {
+      "start": 97.87528350000001,
+      "end": 103.70185950000001,
+      "text": "Explore the public source and cloud prototype. All the data demonstrated here is synthetic."
     }
   ],
-  "hosted_video": {
-    "old_owner_supplied_url": "https://youtu.be/8MACVIPWCt8",
-    "is_corrected_video_url": false,
-    "new_public_url": null,
-    "full_anonymous_playback": "NOT_PERFORMED",
-    "old_hosted_video_updated_by_agent": false
+  "publication": {
+    "url": "https://youtu.be/j94ffx_yrng",
+    "source": "Owner supplied and explicitly identified as corresponding to accepted local file",
+    "reviewer_public_page_title": "OpsCrew: Expense Exception Plan & Review | AI Builder Cup 2026",
+    "reviewer_public_page_access": "Web tool opened public title/page; oEmbed via local proxy timed out",
+    "reviewer_full_anonymous_playback": "NOT_PERFORMED",
+    "owner_full_anonymous_playback": "NOT_VERIFIED_OWNER_CHECKED_WHILE_SIGNED_IN",
+    "owner_followup": "Owner confirms full signed-in playback is correct; assumes YouTube requires sign-in. This is content confirmation, not a signed-out access test.",
+    "browser_attempt": "In-app browser navigation timed out; no successful streamed playback. Public web page/title opened; no finding that the video is private."
   },
-  "boundaries": {
-    "new_cloud_calls": 0,
-    "new_model_calls": 0,
-    "paid_tts_calls": 0,
-    "browser_actions": 0,
-    "original_audio_included": false,
-    "old_intro_chapter_cards_outro_included": false,
-    "new_success_state_or_business_field_overlaid": false,
-    "source_overlay_is_native_browser_address_bar": false,
-    "footage_backend_run_independently_reverified_by_this_edit": false
+  "files": {
+    "submission/OpsCrew_Submission_Demo_2026-10-16.mp4": {
+      "sha256": "f7926c166ec12be50a83557209c4cb982142bdbe5512ebfaed9012c72020ee0a",
+      "bytes": 10687569
+    },
+    "submission/OpsCrew_Submission_Demo_2026-10-16.srt": {
+      "sha256": "39ffe880e3e013968d8c7c9616fd953b4074d9f1b15a523bcaea730403a8702e",
+      "bytes": 1940
+    },
+    "submission/OpsCrew_Submission_Demo_2026-10-16.vtt": {
+      "sha256": "ec7c052288dbb1f9bf17833dc3cdbe8f9ad5e6d1352f01e36bfd33f2eec90e3b",
+      "bytes": 1915
+    },
+    "submission/build-reviewed-demo.mjs": {
+      "sha256": "f99950f805488ca70996bd1ac2084ff819cae216a446bcfd2ff428b94c5e1fcf",
+      "bytes": 19282
+    },
+    "docs/acceptance/FINAL-video-corrected-contactsheet-2026-10-16.png": {
+      "sha256": "b60ec8690f98cf9f2e1fc7eee63588e2ef95747a56e31a0f92a27f8c80570d89",
+      "bytes": 340451
+    }
   },
-  "cleanup": {
-    "status": "RECYCLED_AFTER_QA",
-    "verified_absent": true
-  },
-  "remaining_acceptance": [
-    "Complete human listening check of the final generated voice track",
-    "Publish corrected asset and verify full anonymous playback/content identity",
-    "Update final proposal/submission to the approved corrected public URL"
-  ],
   "post_qa_cleanup": {
-    "directory": ".review-media-20261016",
     "status": "RECYCLED_AFTER_QA",
-    "method": "Scoped Windows Recycle Bin operation after resolved-root, ownership-marker and final-output checks",
+    "directory": ".review-media-20261016",
     "verified_absent": true,
-    "output_preserved": true,
-    "previously_rejected_materials_directory": "NOT_RETRIED"
+    "accepted_video_preserved": true
   }
 }

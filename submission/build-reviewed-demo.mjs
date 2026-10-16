@@ -23,35 +23,37 @@ const font = filterPath('C:/Windows/Fonts/segoeui.ttf');
 const bold = filterPath('C:/Windows/Fonts/segoeuib.ttf');
 const fps = 25;
 let actualSourceHash;
+const previousDelivery = { commit: 'e088742', sha256: 'f9ca540644f96677aed1833cbbcc83d71e69cedf0bbc336acad8a43fb5613650', words: 199, voiceSeconds: 67.613786, voiceRate: 3, containerSeconds: 103.981333 };
+const narrationRevision = 'Owner feedback: previous narration sounded too fast; use the default natural voice, conversational clauses and short semantic pauses.';
 
 const timeline = [
   { id: 'intro', kind: 'card', duration: 14, title: 'OpsCrew', subtitle: 'Expense exception plans with human confirmation', cues: [
-    'OpsCrew helps finance teams prepare expense exception plans, while people keep control of every saved case.',
+    'Meet OpsCrew, a finance copilot for expense exception plans. People control every saved case.',
     'Built in Google AI Studio Build, it uses Gemini and runs on Google Cloud Run.'
   ] },
   { id: 'intake', kind: 'recording', start: 24.04, duration: 14, title: '1. Visitor session and synthetic input', cues: [
-    'Start a visitor session, then enter a synthetic thirty-eight dollar parking expense with a missing receipt.',
-    'The inputs are text and form fields. No receipt image is uploaded or read.'
+    'First, we start a visitor session and enter a synthetic parking expense: thirty-eight dollars, with a missing receipt.',
+    "These text and form inputs are what the system checks. It doesn't read receipt images."
   ] },
   { id: 'roles', kind: 'recording', start: 42.04, duration: 19, title: '2. Facts, planning and independent review', cues: [
-    'Gemini performs three distinct roles: fact extraction, planning, and independent review.',
-    'The interface shows completed attempts and their measured durations. This recorded run passes review; it is not a service-level guarantee.'
+    'Gemini extracts the facts, proposes a plan, and reviews it. Each role has a separate job.',
+    'After processing, we can inspect each attempt and its duration. These timings describe this run, not a service guarantee. All three steps finish successfully.'
   ] },
   { id: 'decision', kind: 'recording', start: 65.04, duration: 17, title: '3. Evidence request and copy-only draft', cues: [
-    'The synthetic missing-receipt rule leads to an evidence request, not reimbursement approval.',
-    'The operator can copy a communication draft. Copying sends no message and executes no payment.'
+    "A missing receipt means we need more evidence. The plan asks for it, without approving reimbursement.",
+    "Here's a draft the operator can copy and edit. Copying it sends no message and makes no payment. The plan still shows the missing receipt."
   ] },
   { id: 'consent', kind: 'recording', start: 86.04, duration: 13, title: '4. Explicit human confirmation', cues: [
-    'Prepare the current confirmation, inspect the facts and plan, then explicitly check consent.',
-    'Confirming creates one synthetic exception record. It does not authorize reimbursement or payment.'
+    'We prepare confirmation, check the current plan, and explicitly check consent.',
+    "This saves one synthetic record, with the same facts and plan. It doesn't approve reimbursement or payment."
   ] },
   { id: 'readback', kind: 'recording', start: 103.04, duration: 14.96, title: '5. Independent readback and same-visitor history', cues: [
-    'The browser requests the saved record through the authenticated server API.',
-    "Independent readback and the same visitor's history show matching case details. This verifies this example, not universal data integrity."
+    'Now we request the saved record through the authenticated server API.',
+    "Readback and this visitor's history show matching case details. That verifies this example, without claiming universal data integrity. This is still a synthetic record."
   ] },
   { id: 'outro', kind: 'card', duration: 12, title: 'Human control. Verifiable saved cases.', subtitle: 'Explore OpsCrew', cues: [
-    'OpsCrew combines policy-grounded AI assistance, explicit human confirmation, and verifiable saved-case results.',
-    'Explore the public source and cloud prototype. All demonstrated data is synthetic.'
+    'OpsCrew brings AI assistance, human confirmation, and saved-case verification together.',
+    'Explore the public source and cloud prototype. All the data demonstrated here is synthetic.'
   ] }
 ];
 
@@ -75,40 +77,54 @@ function stage1_validateSource() {
 function stage2_offlineNarration() {
   let counter = 0;
   for (const segment of timeline) segment.audio = segment.cues.map(text => ({ text, file: `voice-${String(counter++).padStart(2, '0')}.wav` }));
-  if (process.argv.includes('--reuse-audio')) {
-    const previous = JSON.parse(fs.readFileSync(path.join(evidence, 'FINAL-video-corrected-build-2026-10-16.json'), 'utf8'));
-    if (JSON.stringify(previous.timeline.map(s => s.cues)) !== JSON.stringify(timeline.map(s => s.cues))) throw new Error('Narration changed; cannot reuse audio.');
-    for (const segment of timeline) {
-      let cursor = 0.35;
-      for (const cue of segment.audio) {
-        cue.duration = Number(probe(path.join(work, cue.file)).format.duration);
-        cue.start = cursor; cue.end = cursor + cue.duration; cursor = cue.end + 0.28;
-      }
-      segment.voiceRate = previous.timeline.find(s => s.id === segment.id).voiceRate;
-      if (cursor > segment.duration - 0.2) throw new Error('Existing narration does not fit.');
-    }
-    return;
-  }
-  for (let rate = 0; rate <= 4; rate++) {
-    const jobs = timeline.flatMap(s => s.audio.map(c => ({ text: c.text, path: path.join(work, c.file) })));
+  const xml = text => text.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
+  for (const rate of [0]) {
+    const jobs = timeline.flatMap(s => s.audio.map(c => ({ text: c.text, ssml: `<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="en-US"><p>${xml(c.text).replace('human confirmation', '<emphasis level="moderate">human confirmation</emphasis>')}</p></speak>`, path: path.join(work, c.file.replace('.wav', '-raw.wav')) })));
     const jobs64 = Buffer.from(JSON.stringify(jobs), 'utf8').toString('base64');
-    const ps = `Add-Type -AssemblyName System.Speech\n$speech=[System.Speech.Synthesis.SpeechSynthesizer]::new()\n$speech.SelectVoice('Microsoft Zira Desktop')\n$speech.Rate=${rate}\n$speech.Volume=100\n$jobs=ConvertFrom-Json ([Text.Encoding]::UTF8.GetString([Convert]::FromBase64String('${jobs64}')))\nforeach($job in $jobs){$speech.SetOutputToWaveFile($job.path);$speech.Speak($job.text);$speech.SetOutputToNull()}\n$speech.Dispose()\nWrite-Output 'OFFLINE_TTS_COMPLETE'`;
-    run('powershell.exe', ['-NoProfile', '-NonInteractive', '-EncodedCommand', Buffer.from(ps, 'utf16le').toString('base64')]);
-    let fits = true;
+    const ps = `$ProgressPreference='SilentlyContinue'\nAdd-Type -AssemblyName System.Speech\n$speech=[System.Speech.Synthesis.SpeechSynthesizer]::new()\n$speech.SelectVoice('Microsoft Zira Desktop')\n$speech.Rate=${rate}\n$speech.Volume=100\n$jobs=ConvertFrom-Json ([Text.Encoding]::UTF8.GetString([Convert]::FromBase64String('${jobs64}')))\nforeach($job in $jobs){$speech.SetOutputToWaveFile($job.path);$speech.SpeakSsml($job.ssml);$speech.SetOutputToNull()}\n$speech.Dispose()\nWrite-Output 'OFFLINE_TTS_COMPLETE'`;
+    if (!process.argv.includes('--reuse-audio')) {
+      run('powershell.exe', ['-NoProfile', '-NonInteractive', '-EncodedCommand', Buffer.from(ps, 'utf16le').toString('base64')]);
+      for (const segment of timeline) for (const cue of segment.audio) run('ffmpeg', ['-hide_banner', '-loglevel', 'error', '-y', '-i', path.join(work, cue.file.replace('.wav', '-raw.wav')), '-af', 'silenceremove=start_periods=1:start_duration=0.04:start_threshold=-55dB:start_silence=0.06,areverse,silenceremove=start_periods=1:start_duration=0.04:start_threshold=-55dB:start_silence=0.10,areverse', path.join(work, cue.file)]);
+      fs.writeFileSync(path.join(work, 'NARRATION.json'), JSON.stringify({ rate, cues: timeline.map(s => s.cues) }));
+    } else {
+      const previous = JSON.parse(fs.readFileSync(path.join(work, 'NARRATION.json'), 'utf8'));
+      if (previous.rate !== 0 || JSON.stringify(previous.cues) !== JSON.stringify(timeline.map(s => s.cues))) throw new Error('Cannot reuse different narration.');
+    }
     for (const segment of timeline) {
-      let cursor = 0.35;
+      let cursor = 0.20;
       for (const cue of segment.audio) {
         cue.duration = Number(probe(path.join(work, cue.file)).format.duration);
         cue.start = cursor;
         cue.end = cursor + cue.duration;
-        cursor = cue.end + 0.28;
+        cursor = cue.end + 0.40;
       }
       segment.voiceRate = rate;
-      if (cursor > segment.duration - 0.2) fits = false;
+      segment.recordedDuration = segment.kind === 'recording' ? segment.duration : null;
+      const minimumDuration = segment.audio.at(-1).end + 0.20;
+      segment.duration = Math.ceil(Math.max(segment.recordedDuration ?? 0, minimumDuration) * fps) / fps;
+      segment.holdSeconds = segment.recordedDuration ? Number((segment.duration - segment.recordedDuration).toFixed(6)) : 0;
+      const spare = segment.duration - minimumDuration;
+      if (spare > 0) {
+        for (const cue of segment.audio) { cue.start += spare / 2; cue.end += spare / 2; }
+      }
+      console.log(JSON.stringify({ stage: 'measured_natural_voice', segment: segment.id, seconds: segment.audio.reduce((n, c) => n + c.duration, 0), visual_seconds: segment.duration, added_labeled_hold_seconds: segment.holdSeconds }));
     }
-    if (fits) return;
+    const words = timeline.flatMap(s => s.cues).join(' ').split(/\s+/).length;
+    let offset = 0;
+    let previousEnd = null;
+    const gaps = [];
+    for (const segment of timeline) {
+      for (const cue of segment.audio) {
+        if (previousEnd !== null) gaps.push(offset + cue.start - previousEnd);
+        previousEnd = offset + cue.end;
+      }
+      offset += segment.duration;
+    }
+    console.log(JSON.stringify({ stage: 'scheduled_semantic_gaps', seconds: gaps, maximum: Math.max(...gaps) }));
+    if (Math.max(...gaps) > 1.20) throw new Error('Narration leaves an excessive empty interval. Revise the explanation rather than increasing speech speed.');
+    console.log(JSON.stringify({ stage: 'narration_plan', words, voice_seconds: timeline.reduce((n, s) => n + s.audio.reduce((t, c) => t + c.duration, 0), 0), planned_video_seconds: timeline.reduce((n, s) => n + s.duration, 0) }));
+    return;
   }
-  throw new Error('Narration cannot fit the original recorded action intervals without excessive speed.');
 }
 
 function stage3_textAssets() {
@@ -160,7 +176,11 @@ function stage4_renderSegments() {
     const filters = [];
     let visual = '';
     if (segment.kind === 'recording') {
-      visual = `drawbox=x=0:y=0:w=1920:h=42:color=0x0F172A:t=fill,${drawText('recorded-label.txt', 18, 20, 8)},drawbox=x=514:y=918:w=894:h=108:color=0x0F172A:t=fill`;
+      visual = `trim=duration=${segment.recordedDuration},setpts=PTS-STARTPTS,tpad=stop_mode=clone:stop_duration=${segment.holdSeconds},drawbox=x=0:y=0:w=1920:h=42:color=0x0F172A:t=fill,${drawText('recorded-label.txt', 18, 20, 8)},drawbox=x=514:y=918:w=894:h=108:color=0x0F172A:t=fill`;
+      if (segment.holdSeconds > 0) {
+        fs.writeFileSync(path.join(work, 'hold-label.txt'), 'EDITED HOLD - LAST RECORDED FRAME');
+        visual += `,${drawText('hold-label.txt', 18, 1390, 8, `:enable='gte(t,${segment.recordedDuration})'`)}`;
+      }
     } else {
       visual = `drawbox=x=110:y=135:w=1700:h=6:color=0x34D2BF:t=fill,drawtext=fontfile='${bold}':textfile='${segment.id}-title.txt':fontcolor=white:fontsize=${segment.id === 'intro' ? 95 : 67}:x=110:y=215,${drawText(`${segment.id}-subtitle.txt`, 40, 110, 335)},${drawText(`${segment.id}-body.txt`, segment.id === 'intro' ? 37 : 31, 110, 440)}`;
       visual += `,${drawText(segment.id === 'intro' ? 'edit-disclosure.txt' : 'tts-disclosure.txt', 22, 110, 1040)}`;
@@ -212,6 +232,7 @@ function stage5_captionsAndBuildEvidence() {
     builder: { path: 'submission/build-reviewed-demo.mjs', sha256: hash(fileURLToPath(import.meta.url)), network_calls: 0, model_calls: 0, tts: 'Windows System.Speech, Microsoft Zira Desktop, en-US, offline', original_audio_included: false, original_intro_chapter_cards_outro_included: false, recorded_ui_speed: 1, work_directory: '.review-media-20261016', cleanup: 'PENDING_AFTER_QA' },
     overlay_regions: { old_hud_replaced: { x: 0, y: 0, width: 1920, height: 42 }, existing_burned_caption_area_replaced: { x: 514, y: 918, width: 894, height: 108 }, no_added_success_state_or_field_values: true },
     timeline, captions, narration_words: captions.map(c => c.text).join(' ').split(/\s+/).length,
+    narration_revision: { reason: narrationRevision, previous_delivery: previousDelivery, natural_voice_rate: 0, speech_time_stretch: false, semantic_inter_cue_gap_seconds: 0.40, boundary_silence_only_trimmed: true, ssml_emphasis: 'One moderate emphasis on human confirmation; no prosody speed changes' },
     limitations: ['The supplied original footage is recorded evidence, not a new live production test. Its apparent address bar was a DOM overlay, not native browser chrome; the overlay establishes neither network origin nor source identity.', 'The complete new audio requires a human listening pass; technical decoding alone is insufficient.', 'The hosted old video is not updated by this local edit. A public approved replacement URL is still required.']
   };
   fs.writeFileSync(path.join(evidence, 'FINAL-video-corrected-build-2026-10-16.json'), JSON.stringify(build, null, 2) + '\n');
@@ -220,6 +241,7 @@ function stage5_captionsAndBuildEvidence() {
 
 stage1_validateSource();
 stage2_offlineNarration();
+if (process.argv.includes('--narration-only')) process.exit(0);
 stage3_textAssets();
 stage4_renderSegments();
 stage5_captionsAndBuildEvidence();
