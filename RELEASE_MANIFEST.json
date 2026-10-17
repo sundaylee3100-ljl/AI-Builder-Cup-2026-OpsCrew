@@ -1,13 +1,13 @@
 {
-  "schema_version": "opscrew-reviewed-release-1.3.0",
-  "prepared_date": "2026-10-16",
+  "schema_version": "opscrew-reviewed-release-1.6.0",
+  "prepared_date": "2026-10-17",
   "timezone": "Asia/Shanghai",
-  "stage": "REVIEWED_GOOGLE_RUNTIME_FINAL_MATERIALS_CAPTAIN_CHECKS_PENDING",
+  "stage": "SUBMITTED_OWNER_REPORTED_REPOSITORY_CANDIDATE_REVIEWED",
   "repository": "https://github.com/sundaylee3100-ljl/AI-Builder-Cup-2026-OpsCrew",
-  "review_branch": "review/final-delivery-20261016",
+  "review_branch": "release/submitted-materials-20261017",
   "s3_main_base_commit": "dd0fb3f8cff460b725588447be1d94556ee7f8bb",
-  "implementation_commit": "29dd746e66083c5a5fbabb54898ceccf82dbb1a6",
-  "commit_binding_policy": "This pure manifest binding commit records the preceding integrated source/materials commit. Historical executed reports and prior material identities retain their original dates.",
+  "implementation_commit": "b04067917c6bd671ce3328dd1dc7d184871f965b",
+  "commit_binding_policy": "Pure manifest commit binds the preceding source/materials commit based on main be13166. Runtime unchanged. New video MP4 is absent from candidate tree and reachable history; use the owner-provided YouTube URL. Submission is owner-reported; no receipt or independent portal attestation is fabricated.",
   "runtime_source_binding": {
     "canonical_sources_sha256": "c3fca02c49c36cf8c88c9883edd3db2dfdbcaad507dadd4e4803bb5ebd3b598c",
     "byte_policy": "UTF-8, CRLF normalized to LF; canonical JSON sorted object keys without changing arrays",
@@ -81,64 +81,119 @@
     }
   },
   "materials": {
-    "submission/OpsCrew_Proposal_Cloud_submission-final-2026-10-16.pdf": {
-      "sha256": "c4c3ea70e7cc02ac510b776618d61ef932df8c77b1b492466cdb92fac47fea70",
-      "bytes": 2991130,
-      "byte_policy": "Exact binary bytes"
-    },
-    "submission/OpsCrew_Proposal_Cloud_submission-final-2026-10-16.pptx": {
-      "sha256": "f48d4174178bbdd74b6820043bfcfed76e085efb962fa0e557c4f7ea69f0c927",
-      "bytes": 1761843,
-      "byte_policy": "Exact binary bytes"
-    },
-    "submission/OpsCrew_Proposal_Cloud_submission-final-2026-10-16.acceptance.json": {
-      "sha256": "3d3c90327f2c2899d69ceb0f3cf06c5a9c96088e61bd0d4c7eb538560668f0b6",
-      "bytes": 3112,
+    "PROVENANCE.md": {
+      "sha256": "252aca4841d4c810df1462ca666a7de61c9f97226d24690b15f0a34cfa3f4f4c",
+      "bytes": 10009,
       "byte_policy": "UTF-8 text, CRLF normalized to LF for Git blob"
     },
-    "submission/OpsCrew_Submission_Demo_2026-10-16.mp4": {
-      "sha256": "f7926c166ec12be50a83557209c4cb982142bdbe5512ebfaed9012c72020ee0a",
-      "bytes": 10687569,
-      "byte_policy": "Exact binary bytes"
-    },
-    "submission/OpsCrew_Submission_Demo_2026-10-16.srt": {
-      "sha256": "39ffe880e3e013968d8c7c9616fd953b4074d9f1b15a523bcaea730403a8702e",
-      "bytes": 1940,
+    "README.md": {
+      "sha256": "80dfcfdb09db93f106e22ec253e720dc07818b5ea8679a6764afcce1ff76c1c8",
+      "bytes": 5867,
       "byte_policy": "UTF-8 text, CRLF normalized to LF for Git blob"
     },
-    "submission/OpsCrew_Submission_Demo_2026-10-16.vtt": {
-      "sha256": "ec7c052288dbb1f9bf17833dc3cdbe8f9ad5e6d1352f01e36bfd33f2eec90e3b",
-      "bytes": 1915,
+    "SUBMISSION_CHECKLIST.md": {
+      "sha256": "be88beab96db72b8d09a6258a7c2cf29df7e676fd8a7d077248fc2be10623d6c",
+      "bytes": 6713,
+      "byte_policy": "UTF-8 text, CRLF normalized to LF for Git blob"
+    },
+    "docs/CLOUD_TEAMMATE_HANDOFF.md": {
+      "sha256": "cb2cf1f0a1dd45cc836493fb5c35dd92badd65b07f7b8cba65d17e8b0fc96657",
+      "bytes": 14944,
+      "byte_policy": "UTF-8 text, CRLF normalized to LF for Git blob"
+    },
+    "docs/DELIVERY_WORKBOARD.md": {
+      "sha256": "5d6b401ea9e64903c334f1639f3e8f11c499946f3b9cffc63a277ccc54355a1b",
+      "bytes": 20095,
+      "byte_policy": "UTF-8 text, CRLF normalized to LF for Git blob"
+    },
+    "docs/DEPLOYMENT_AND_USAGE_REPORT.md": {
+      "sha256": "b187a468977dc8b5ca2311205d40a8786250623f9dbc2a5eb24027ebfcf062ac",
+      "bytes": 20690,
+      "byte_policy": "UTF-8 text, CRLF normalized to LF for Git blob"
+    },
+    "docs/OPSCREW_TEAM_SYNC_AND_DELIVERY_REPORT.md": {
+      "sha256": "20b7e9c53e98b7e6817b33b10cdc6c7d5370bdffa490ec125fc94c93305ca07c",
+      "bytes": 6540,
+      "byte_policy": "UTF-8 text, CRLF normalized to LF for Git blob"
+    },
+    "docs/acceptance/VIDEO-3to4-QA-2026-10-16.json": {
+      "sha256": "47d0ea027248d8aeb01f009944787c15f04c912c4ebd51bafd584f3793992efb",
+      "bytes": 45032,
+      "byte_policy": "UTF-8 text, CRLF normalized to LF for Git blob"
+    },
+    "docs/acceptance/VIDEO-3to4-QA-2026-10-16.md": {
+      "sha256": "5dac931078cfc450ef92acf9a28b9036e361d1380ed24eb404cf2c17422e1c13",
+      "bytes": 1448,
+      "byte_policy": "UTF-8 text, CRLF normalized to LF for Git blob"
+    },
+    "docs/acceptance/VIDEO-3to4-build-2026-10-16.json": {
+      "sha256": "ac8cd774ceb001efb9dbe758eb5d676263b3f121760cfa45073547c6b642d4c8",
+      "bytes": 24831,
+      "byte_policy": "UTF-8 text, CRLF normalized to LF for Git blob"
+    },
+    "docs/acceptance/VIDEO-3to4-contactsheet-2026-10-16.png": {
+      "sha256": "6aa2a08d7be57a888191cd7d0707dbd5216502bf85eb496c3c775b36f0117ff3",
+      "bytes": 2038996,
+      "byte_policy": "Exact binary bytes"
+    },
+    "docs/acceptance/VIDEO-3to4-duration-rule-2026-10-16.md": {
+      "sha256": "604ecb73c4a7c36a305f42d60a93f25a6e991de528b2d1c7dc5dc8304ab5b6cc",
+      "bytes": 2214,
+      "byte_policy": "UTF-8 text, CRLF normalized to LF for Git blob"
+    },
+    "docs/acceptance/VIDEO-3to4-final-review-2026-10-16.json": {
+      "sha256": "22b9adeb48515efb3ecb352e1425fbb5b28225d934282e0ce8a61409c9fab314",
+      "bytes": 3140,
+      "byte_policy": "UTF-8 text, CRLF normalized to LF for Git blob"
+    },
+    "docs/acceptance/VIDEO-3to4-manifest-before-revision-2026-10-16.json": {
+      "sha256": "3954879809e723b414248be502954c04d2f0b2db7f3b8c8d958f97d63a40a19a",
+      "bytes": 26218,
+      "byte_policy": "UTF-8 text, CRLF normalized to LF for Git blob"
+    },
+    "docs/acceptance/VIDEO-3to4-submission-field-2026-10-16.png": {
+      "sha256": "072fb97fd500e34204c7537f2f129eedea07bfce6d091d473b5a9f6346875089",
+      "bytes": 7721,
+      "byte_policy": "Exact binary bytes"
+    },
+    "submission/OpsCrew_Submission_Demo_3to4min_2026-10-16.srt": {
+      "sha256": "3d0b8a82b383d60faff1e42a5fb84186a418559f2ac48ff559233deb3b3099cb",
+      "bytes": 3971,
+      "byte_policy": "UTF-8 text, CRLF normalized to LF for Git blob"
+    },
+    "submission/OpsCrew_Submission_Demo_3to4min_2026-10-16.vtt": {
+      "sha256": "0956619c1f35b4ed7cfd05cfa34ec406d13c9ea405e0a7bbec84a9ff6263009f",
+      "bytes": 3913,
       "byte_policy": "UTF-8 text, CRLF normalized to LF for Git blob"
     },
     "submission/README.md": {
-      "sha256": "2c06027e576eceb9c493aa310aa0aaa2745be336f8ff6c52452a20cc594ffe47",
-      "bytes": 3731,
-      "byte_policy": "UTF-8 text, CRLF normalized to LF for Git blob"
-    },
-    "submission/SUBMISSION_FORM.md": {
-      "sha256": "fd1b7c09fcde79cc868f14d2b4fae1e6368b726eee5ee8eee6217222d90acf21",
-      "bytes": 5662,
+      "sha256": "b7927b93a69c8219d770e648affeff8166f379e20c2b6050e0e2c3e43a7ee552",
+      "bytes": 4212,
       "byte_policy": "UTF-8 text, CRLF normalized to LF for Git blob"
     },
     "submission/RECORDING_PLAN.md": {
-      "sha256": "f0698354b4200a7034431aa57566b30f117d14c7474607ed8ede597b627493f2",
-      "bytes": 3692,
+      "sha256": "57cce6490083916b4da49af8db868c975a843a3b5773d01da73c36dfdaf00fa9",
+      "bytes": 5144,
+      "byte_policy": "UTF-8 text, CRLF normalized to LF for Git blob"
+    },
+    "submission/SUBMISSION_FORM.md": {
+      "sha256": "7084ec98b43dad6fda17b91ec84217c2bbca8ded152688af288a0ad4566fa6a9",
+      "bytes": 5761,
       "byte_policy": "UTF-8 text, CRLF normalized to LF for Git blob"
     },
     "submission/YOUTUBE_METADATA.md": {
-      "sha256": "026e7e59878d70920542f0f10505f6f7fea989ad8ba6584b65a0bc8c8de93916",
-      "bytes": 2813,
+      "sha256": "2f44cefc19788f14408d4161d7eea8be19bf8acf300d895024efcdd876ca0162",
+      "bytes": 4393,
+      "byte_policy": "UTF-8 text, CRLF normalized to LF for Git blob"
+    },
+    "submission/build-submission-demo-3to4.mjs": {
+      "sha256": "4f09c17f2f197fcc6180c3afb05c71d4e37e8a78e464e556356a5f801de28b45",
+      "bytes": 21775,
       "byte_policy": "UTF-8 text, CRLF normalized to LF for Git blob"
     },
     "submission/build-proposal.mjs": {
-      "sha256": "5849f5d27736c29f9d6e62129baef88a9776b12cd83bd80186fc8879343d7fef",
-      "bytes": 26743,
-      "byte_policy": "UTF-8 text, CRLF normalized to LF for Git blob"
-    },
-    "submission/build-reviewed-demo.mjs": {
-      "sha256": "f99950f805488ca70996bd1ac2084ff819cae216a446bcfd2ff428b94c5e1fcf",
-      "bytes": 19282,
+      "sha256": "52ed849b489d7f0f48c88899d694d3ba73823f97e4181bd14771c2ae9b6e29b9",
+      "bytes": 28084,
       "byte_policy": "UTF-8 text, CRLF normalized to LF for Git blob"
     },
     "submission/assets/official-submission-template.pptx": {
@@ -150,10 +205,60 @@
       "sha256": "73e178f543dd8a18431f3cc7de04bb3b578ff20902a6e329dc22b3a37d7f8edf",
       "bytes": 63098,
       "byte_policy": "Exact binary bytes"
+    },
+    "submission/OpsCrew_Proposal_Cloud_submission-final-2026-10-17.pdf": {
+      "sha256": "7de46c58f3a83778f5b9f88597faf92ca2caed2023d9fe03cca0dc96b8237642",
+      "bytes": 2997537,
+      "byte_policy": "Exact binary bytes"
+    },
+    "submission/OpsCrew_Proposal_Cloud_submission-final-2026-10-17.pptx": {
+      "sha256": "591635c6c324c5add2918281935fedd568a3528a6dbfd1b124540713661b03cf",
+      "bytes": 1761885,
+      "byte_policy": "Exact binary bytes"
+    },
+    "submission/OpsCrew_Proposal_Cloud_submission-final-2026-10-17.acceptance.json": {
+      "sha256": "9a3662a4add562694ffa32ffb3fad13f37be639f4e54783d27d1e33187e698a8",
+      "bytes": 3314,
+      "byte_policy": "UTF-8 text, CRLF normalized to LF for Git blob"
+    },
+    "docs/acceptance/PROPOSAL-publication-2026-10-17.json": {
+      "sha256": "f4e8471f35ca33b795a61885ba49b24204479ad5c16cd6cecb06e94d02ddee9a",
+      "bytes": 7827,
+      "byte_policy": "UTF-8 text, CRLF normalized to LF for Git blob"
+    },
+    "docs/acceptance/PROPOSAL-publication-2026-10-17-overview.png": {
+      "sha256": "8424a948d0b3f8642d4f474d0015294a89f1644c9770c90a05e5d78b9f7708a9",
+      "bytes": 696032,
+      "byte_policy": "Exact binary bytes"
+    },
+    "docs/acceptance/PROPOSAL-publication-2026-10-17-links.png": {
+      "sha256": "8e96237608b9b3d32b37f0b84307d66334d457469cff97c87dbf7dcc91f240c0",
+      "bytes": 112894,
+      "byte_policy": "Exact binary bytes"
+    },
+    "docs/acceptance/VIDEO-3to4-owner-publication-2026-10-17.json": {
+      "sha256": "a35cd63bc0d75ab565f895ee556e0c26c0378574a064720cf23909c032bd45a6",
+      "bytes": 2110,
+      "byte_policy": "UTF-8 text, CRLF normalized to LF for Git blob"
+    },
+    "docs/acceptance/SUBMISSION-link-update-2026-10-17.json": {
+      "sha256": "90adba1c89a6f03b9f345b558c947271ee62dd84f36e2bd1d9872dda24b58b21",
+      "bytes": 4654,
+      "byte_policy": "UTF-8 text, CRLF normalized to LF for Git blob"
+    },
+    "docs/acceptance/SUBMISSION-owner-confirmation-2026-10-17.json": {
+      "sha256": "77a5d24c4d20cc05ac1de89a943af6cef9a10cd7c7282a540b90af9ee0d82941",
+      "bytes": 1972,
+      "byte_policy": "UTF-8 text, CRLF normalized to LF for Git blob"
+    },
+    "docs/acceptance/GITHUB-submitted-release-review-2026-10-17.json": {
+      "sha256": "d11327ae09aa8b2cd4bbe27da5c09c36b7817ef79bb75618c1f1f0360ccc7250",
+      "bytes": 1960,
+      "byte_policy": "UTF-8 text, CRLF normalized to LF for Git blob"
     }
   },
   "acceptance": {
-    "report": "docs/acceptance/FINAL-delivery-review-2026-10-16.md",
+    "report": "docs/acceptance/GITHUB-submitted-release-review-2026-10-17.json",
     "local_validation": "docs/acceptance/FINAL-integrated-validation-2026-10-16.json",
     "offline_tests": "246/246, serial file scheduling, October16; intermediate timing failure retained",
     "auth_firestore_emulator_groups": "27/27 at prior source; carried forward for unchanged business code, not rerun",
@@ -182,9 +287,18 @@
         "failed": 0
       }
     },
-    "owner_followup": "docs/acceptance/PR06-owner-followup-2026-10-14.json",
-    "documentation_followup": "Public 877 Vertex SDK source integrated with explicit Developer API mode fix; recorded media narration is being revised after owner listening feedback.",
-    "publication_check": "docs/acceptance/FINAL-publication-check-2026-10-16.json"
+    "owner_followup": "docs/acceptance/VIDEO-3to4-owner-publication-2026-10-17.json",
+    "documentation_followup": "Owner confirmed submission complete and requested hosted-video distribution. Current README, index, checklist and manifest reflect this report. Frozen proposal/media QA unchanged; runtime32/operational10 identities unchanged; application tests not rerun for documentation-only work.",
+    "publication_check": "docs/acceptance/VIDEO-3to4-owner-publication-2026-10-17.json",
+    "historical_final_delivery_report": "docs/acceptance/FINAL-delivery-review-2026-10-16.md",
+    "previous_publication_check": "docs/acceptance/FINAL-publication-check-2026-10-16.json",
+    "current_video_technical": "docs/acceptance/VIDEO-3to4-QA-2026-10-16.json",
+    "current_video_build": "docs/acceptance/VIDEO-3to4-build-2026-10-16.json",
+    "previous_video_review_report": "docs/acceptance/VIDEO-3to4-final-review-2026-10-16.json",
+    "previous_owner_followup": "docs/acceptance/PR06-owner-followup-2026-10-14.json",
+    "proposal_publication": "docs/acceptance/PROPOSAL-publication-2026-10-17.json",
+    "previous_material_link_report": "docs/acceptance/SUBMISSION-link-update-2026-10-17.json",
+    "owner_submission_confirmation": "docs/acceptance/SUBMISSION-owner-confirmation-2026-10-17.json"
   },
   "deployment": {
     "source_commit": "87767c905a0468120bb7858e9df1cf158291d10c",
@@ -202,29 +316,64 @@
     "timestamp_issue": "Declared UTC verification time postdates containing commit2026-10-16T01:10:03Z; possible timezone error, not silently corrected."
   },
   "submission": {
-    "proposal_status": "Final13page English official-template revision; integrated provider architecture,246offline evidence and accepted new video link; all pages/links checked",
-    "video_plan": "103.941333seconds, default rate0, approximately19.17percent slower words/minute",
-    "video_url": "https://youtu.be/j94ffx_yrng",
+    "proposal_status": "REVIEWED_13_PAGE_PAIRED_PROPOSAL; OWNER_REPORTS_SUBMISSION_COMPLETE; EXACT_PORTAL_UPLOAD_NOT_INDEPENDENTLY_INSPECTED",
+    "video_plan": "210.661333 seconds; 476 English words; default Zira rate0; 144.003491 words/minute; no time stretching or UI holds",
+    "video_url": "https://youtu.be/rdbS1XUNUjw",
     "submitted_receipt": null,
-    "g6": "FINAL_LOCAL_MATERIALS_AND_OWNER_VIDEO_ACCEPTED_PUBLIC_ACCESS_CAPTAIN_CHECK_PENDING",
-    "g7": "PENDING_ACTUAL_SUBMISSION",
+    "g6": "REVIEWED_PACKAGE_OWNER_VIDEO_ACCEPTED_EXTERNAL_LINK_DISTRIBUTION",
+    "g7": "SUBMITTED_OWNER_REPORTED",
     "captain_public_name": "Sunday Lee",
-    "video_link_evidence": "docs/acceptance/FINAL-video-corrected-QA-2026-10-16.json",
-    "video_status": "OWNER_CONTENT_AND_SIGNED_IN_PLAYBACK_ACCEPTED_ANONYMOUS_FULL_PLAYBACK_UNVERIFIED",
-    "proposal_pdf": "submission/OpsCrew_Proposal_Cloud_submission-final-2026-10-16.pdf",
-    "proposal_pptx": "submission/OpsCrew_Proposal_Cloud_submission-final-2026-10-16.pptx",
-    "proposal_acceptance": "submission/OpsCrew_Proposal_Cloud_submission-final-2026-10-16.acceptance.json",
+    "video_link_evidence": "docs/acceptance/VIDEO-3to4-owner-publication-2026-10-17.json",
+    "video_status": "OWNER_CONTENT_ACCEPTED_UPLOAD_LINK_SUPPLIED_FULL_ANONYMOUS_PLAYBACK_UNVERIFIED",
+    "proposal_pdf": "submission/OpsCrew_Proposal_Cloud_submission-final-2026-10-17.pdf",
+    "proposal_pptx": "submission/OpsCrew_Proposal_Cloud_submission-final-2026-10-17.pptx",
+    "proposal_acceptance": "submission/OpsCrew_Proposal_Cloud_submission-final-2026-10-17.acceptance.json",
     "rejected_video_url": "https://youtu.be/h53-tucE7ig",
     "owner_followup": "docs/acceptance/PR06-owner-followup-2026-10-14.json",
     "rejected_video_urls": [
       "https://youtu.be/h53-tucE7ig",
       "https://youtu.be/8MACVIPWCt8"
     ],
-    "video_link_evidence_boundary": "Owner supplied matching upload and confirmed signed-in playback. Reviewer public page/title opens; full anonymous streamed playback not verified.",
+    "video_link_evidence_boundary": "Owner accepted video, supplied rdbS1XUNUjw, confirmed submission and requested link-only GitHub distribution. Complete anonymous remote playback and portal uploaded bytes remain independently unverified.",
     "prepared_fields": "submission/SUBMISSION_FORM.md",
-    "corrected_video_qa": "docs/acceptance/FINAL-video-corrected-QA-2026-10-16.json",
-    "video_sha256": "f7926c166ec12be50a83557209c4cb982142bdbe5512ebfaed9012c72020ee0a",
-    "video_duration_seconds": 103.941333
+    "corrected_video_qa": "docs/acceptance/VIDEO-3to4-QA-2026-10-16.json",
+    "video_sha256": "61eca16cd41fc99439023f259ca8152903de4fe9b22b9d86359955a746ef85b3",
+    "video_duration_seconds": 210.661333,
+    "video_file": null,
+    "prior_proposal": {
+      "pdf": "submission/OpsCrew_Proposal_Cloud_submission-final-2026-10-16.pdf",
+      "pptx": "submission/OpsCrew_Proposal_Cloud_submission-final-2026-10-16.pptx",
+      "acceptance": "submission/OpsCrew_Proposal_Cloud_submission-final-2026-10-16.acceptance.json",
+      "video_url": "https://youtu.be/j94ffx_yrng",
+      "status": "HISTORICAL_CONTAINS_OLD_SHORT_VIDEO_URL_NEW_PAIRED_REVISION_REQUIRED"
+    },
+    "prior_short_video": {
+      "url": "https://youtu.be/j94ffx_yrng",
+      "path": "submission/OpsCrew_Submission_Demo_2026-10-16.mp4",
+      "sha256": "f7926c166ec12be50a83557209c4cb982142bdbe5512ebfaed9012c72020ee0a",
+      "duration_seconds": 103.941333,
+      "owner_content_acceptance": "HISTORICAL_ACCEPTED_CONTENT",
+      "current_duration_compliance": false
+    },
+    "final_local_video_review": "docs/acceptance/VIDEO-3to4-final-review-2026-10-16.json",
+    "duration_rule": {
+      "source": "Owner-supplied actual submission field screenshot",
+      "requirement": "3–4 minutes",
+      "safe_min_seconds_exclusive": 180,
+      "safe_max_seconds_exclusive": 240,
+      "evidence": "docs/acceptance/VIDEO-3to4-duration-rule-2026-10-16.md",
+      "screenshot": "docs/acceptance/VIDEO-3to4-submission-field-2026-10-16.png",
+      "public_website_conflict": "Themes says3 minutes; FAQ saysunder3 minutes; current actual form followed explicitly; no organizer clarification claimed"
+    },
+    "publication_owner_followup": "docs/acceptance/VIDEO-3to4-owner-publication-2026-10-17.json",
+    "status": "SUBMITTED_OWNER_REPORTED",
+    "submission_owner_confirmation": "docs/acceptance/SUBMISSION-owner-confirmation-2026-10-17.json",
+    "reported_date_local": "2026-10-17",
+    "exact_submitted_at": null,
+    "receipt_status": "NOT_PROVIDED_NOT_FABRICATED",
+    "portal_independently_inspected": false,
+    "uploaded_file_bytes_independently_inspected": false,
+    "video_distribution": "YOUTUBE_LINK; LOCAL_MASTER_NOT_IN_REPOSITORY"
   },
   "previous_release": {
     "implementation_commit": "22be5948fe20fd3b14eaeffac11ae1a31ade414c",
@@ -249,7 +398,7 @@
       ".env.example": "6ee527f83c75270c12d38d5a37d081ab0cd329db9882f26bd9a82e36b502240f"
     }
   },
-  "material_status": "Current final13page official-template proposal and owner-accepted natural narration edit. Earlier rejected raw footage retained separately only for reproducibility; public access/captain portal checks pending.",
+  "material_status": "Owner reports submission complete. Repository indexes accepted hosted3:30.66 video and reviewed13-page October17 proposal. New MP4 remains local, outside repository material hashes and reachable publication history. Receipt/time and uploaded bytes not independently attested.",
   "previous_review": {
     "implementation_commit": "eb7493b9de398b7901aa8332af911392803409ba",
     "manifest_commit": "7cbca064621c5091b9ac82c7ea9e2871db13e60d",
@@ -336,11 +485,9 @@
   },
   "reviewed_cloud_source": "87767c905a0468120bb7858e9df1cf158291d10c",
   "cleanup": {
-    "status": "COMPLETE_CURRENT_TASK",
-    "owner_cleared_previous_blocked_directory": ".materials-build/submission-review-2026-10-16",
-    "owner_clearance_verified_absent": true,
-    "new_private_render_media_and_unselected_draft_outputs": "Recycled after actual QA and final file preservation; all8targets verified absent",
-    "scope": "Formal tests, historical committed evidence, runtime dependencies and owner input/result files retained; inherited rejected targets not retried."
+    "status": "NO_NEW_PRIVATE_BUILD_FILES; FINAL_DELIVERY_SCAN_REQUIRED",
+    "record": "docs/acceptance/GITHUB-submitted-release-review-2026-10-17.json",
+    "scope": "No new private helper scripts or rendered drafts. Prior owned authoring directories remain absent; maintained tests/dependencies, owner inputs, local master and necessary results retained."
   },
   "historical_materials_oct14": {
     "submission/OpsCrew_Proposal_Cloud_cloud-public-links-review-2026-10-14.pptx": {
@@ -383,5 +530,78 @@
       "bytes": 63098,
       "byte_policy": "Exact binary bytes"
     }
+  },
+  "previous_duration_review": {
+    "main_commit": "be13166c1b07ee399593a5a10a851672badacaeb",
+    "manifest": "docs/acceptance/VIDEO-3to4-manifest-before-revision-2026-10-16.json",
+    "note": "Previous short-video selection and incomplete duration review retained without rewriting executed evidence."
+  },
+  "historical_materials_short_video_revision": {
+    "submission/OpsCrew_Proposal_Cloud_submission-final-2026-10-16.pdf": {
+      "sha256": "c4c3ea70e7cc02ac510b776618d61ef932df8c77b1b492466cdb92fac47fea70",
+      "bytes": 2991130,
+      "byte_policy": "Exact binary bytes"
+    },
+    "submission/OpsCrew_Proposal_Cloud_submission-final-2026-10-16.pptx": {
+      "sha256": "f48d4174178bbdd74b6820043bfcfed76e085efb962fa0e557c4f7ea69f0c927",
+      "bytes": 1761843,
+      "byte_policy": "Exact binary bytes"
+    },
+    "submission/OpsCrew_Proposal_Cloud_submission-final-2026-10-16.acceptance.json": {
+      "sha256": "3d3c90327f2c2899d69ceb0f3cf06c5a9c96088e61bd0d4c7eb538560668f0b6",
+      "bytes": 3112,
+      "byte_policy": "UTF-8 text, CRLF normalized to LF for Git blob"
+    },
+    "submission/OpsCrew_Submission_Demo_2026-10-16.mp4": {
+      "sha256": "f7926c166ec12be50a83557209c4cb982142bdbe5512ebfaed9012c72020ee0a",
+      "bytes": 10687569,
+      "byte_policy": "Exact binary bytes"
+    },
+    "submission/OpsCrew_Submission_Demo_2026-10-16.srt": {
+      "sha256": "39ffe880e3e013968d8c7c9616fd953b4074d9f1b15a523bcaea730403a8702e",
+      "bytes": 1940,
+      "byte_policy": "UTF-8 text, CRLF normalized to LF for Git blob"
+    },
+    "submission/OpsCrew_Submission_Demo_2026-10-16.vtt": {
+      "sha256": "ec7c052288dbb1f9bf17833dc3cdbe8f9ad5e6d1352f01e36bfd33f2eec90e3b",
+      "bytes": 1915,
+      "byte_policy": "UTF-8 text, CRLF normalized to LF for Git blob"
+    },
+    "submission/build-reviewed-demo.mjs": {
+      "sha256": "f99950f805488ca70996bd1ac2084ff819cae216a446bcfd2ff428b94c5e1fcf",
+      "bytes": 19282,
+      "byte_policy": "UTF-8 text, CRLF normalized to LF for Git blob"
+    }
+  },
+  "previous_cleanup": {
+    "status": "COMPLETE_CURRENT_TASK",
+    "owner_cleared_previous_blocked_directory": ".materials-build/submission-review-2026-10-16",
+    "owner_clearance_verified_absent": true,
+    "new_private_render_media_and_unselected_draft_outputs": "Recycled after actual QA and final file preservation; all8targets verified absent",
+    "scope": "Formal tests, historical committed evidence, runtime dependencies and owner input/result files retained; inherited rejected targets not retried."
+  },
+  "previous_local_material_review": {
+    "manifest_commit": "7e104d1c0f05ad6576742e5396447c7d294aaa3d",
+    "implementation_commit": "f6daea47d1b1f1774554921c292dc1051cf97cfc",
+    "note": "October16 local210.661333-second video before later owner acceptance and new upload link; original build/QA/final-review records unchanged."
+  },
+  "external_materials": {
+    "submission_video": {
+      "url": "https://youtu.be/rdbS1XUNUjw",
+      "distribution": "HOSTED_YOUTUBE_NO_NEW_REPOSITORY_BINARY",
+      "owner_instruction": "Use the link rather than upload the new MP4",
+      "local_master_retained": true,
+      "local_master_filename": "OpsCrew_Submission_Demo_3to4min_2026-10-16.mp4",
+      "local_master_sha256": "61eca16cd41fc99439023f259ca8152903de4fe9b22b9d86359955a746ef85b3",
+      "duration_seconds": 210.661333,
+      "in_repository": false,
+      "remote_stream_byte_comparison": "NOT_INDEPENDENTLY_VERIFIED"
+    }
+  },
+  "local_only_material_predecessor": {
+    "manifest_commit": "9f0e385c73f75d26d341a598d552811cb4f520c9",
+    "implementation_commit": "73ef523dac1707c534e2d5dde3ce209f4f0f56a9",
+    "preserved_local_branch": "fix/submission-video-3to4-20261016",
+    "reason": "Preserve earlier local media history without uploading new MP4; not a claim those local-only commits are publicly hosted."
   }
 }
