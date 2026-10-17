@@ -1,0 +1,1665 @@
+{
+  "date_local": "2026-10-16",
+  "timezone": "Asia/Shanghai",
+  "status": "TECHNICAL_PASS_VISUAL_AND_HUMAN_LISTENING_PENDING",
+  "input_build_sha256": "ac8cd774ceb001efb9dbe758eb5d676263b3f121760cfa45073547c6b642d4c8",
+  "output": {
+    "path": "submission/OpsCrew_Submission_Demo_3to4min_2026-10-16.mp4",
+    "sha256": "61eca16cd41fc99439023f259ca8152903de4fe9b22b9d86359955a746ef85b3",
+    "bytes": 13829566,
+    "duration_seconds": 210.661333,
+    "streams": [
+      {
+        "codec_type": "video",
+        "codec_name": "h264",
+        "width": 1920,
+        "height": 1080,
+        "nb_frames": "5266",
+        "avg_frame_rate": "25/1"
+      },
+      {
+        "codec_type": "audio",
+        "codec_name": "aac",
+        "sample_rate": "48000",
+        "channels": 2,
+        "nb_frames": "9892",
+        "avg_frame_rate": "0/0"
+      }
+    ]
+  },
+  "checks": {
+    "portal_duration_strictly_between_180_and_240": true,
+    "full_audiovisual_decode_exit_code": 0,
+    "subtitle_cues": 25,
+    "subtitle_order_and_bounds": true,
+    "font_measurement_line_count": 112,
+    "all_measured_text_fits": true,
+    "caption_max_lines": 3,
+    "natural_voice_rate": 0,
+    "speech_time_stretch": false,
+    "ui_playback_speed": 1,
+    "ui_holds_seconds": 0,
+    "source_unchanged": true
+  },
+  "narration": {
+    "words": 476,
+    "voice_seconds": 198.328525,
+    "rate": 0,
+    "inter_cue_gap_seconds": 0.4,
+    "boundary_silence_only_trimmed": true,
+    "no_prosody_speed_change": true,
+    "words_per_minute": 144.003491177076,
+    "previous_fast_voice_words_per_minute": 176.5912058230255
+  },
+  "silence_detection": {
+    "threshold_db": -40,
+    "minimum_interval_seconds": 0.3,
+    "intervals": [
+      {
+        "end": 1.569625,
+        "duration": 0.408958,
+        "start": 1.1606670000000001
+      },
+      {
+        "end": 4.389271,
+        "duration": 0.862875,
+        "start": 3.526396
+      },
+      {
+        "end": 7.233625,
+        "duration": 0.413229,
+        "start": 6.820396
+      },
+      {
+        "end": 8.728104,
+        "duration": 0.437437,
+        "start": 8.290667000000001
+      },
+      {
+        "end": 10.755313,
+        "duration": 0.509146,
+        "start": 10.246167
+      },
+      {
+        "end": 15.099208,
+        "duration": 0.852667,
+        "start": 14.246541
+      },
+      {
+        "end": 17.465167,
+        "duration": 0.415563,
+        "start": 17.049604000000002
+      },
+      {
+        "end": 19.366083,
+        "duration": 0.521833,
+        "start": 18.84425
+      },
+      {
+        "end": 23.420521,
+        "duration": 0.894771,
+        "start": 22.525750000000002
+      },
+      {
+        "end": 26.865104,
+        "duration": 0.484854,
+        "start": 26.38025
+      },
+      {
+        "end": 33.001875,
+        "duration": 0.41625,
+        "start": 32.585625
+      },
+      {
+        "end": 35.406312,
+        "duration": 0.521271,
+        "start": 34.885041
+      },
+      {
+        "end": 39.375021,
+        "duration": 0.874333,
+        "start": 38.500688
+      },
+      {
+        "end": 43.466021,
+        "duration": 0.502437,
+        "start": 42.963584
+      },
+      {
+        "end": 45.973667,
+        "duration": 0.899021,
+        "start": 45.074646
+      },
+      {
+        "end": 49.044937,
+        "duration": 0.411771,
+        "start": 48.633165999999996
+      },
+      {
+        "end": 52.61025,
+        "duration": 0.864167,
+        "start": 51.746083
+      },
+      {
+        "end": 54.839583,
+        "duration": 0.490062,
+        "start": 54.349520999999996
+      },
+      {
+        "end": 57.247729,
+        "duration": 0.404812,
+        "start": 56.842917
+      },
+      {
+        "end": 59.349625,
+        "duration": 0.667063,
+        "start": 58.682562000000004
+      },
+      {
+        "end": 60.22625,
+        "duration": 0.428292,
+        "start": 59.797958
+      },
+      {
+        "end": 64.084125,
+        "duration": 0.456792,
+        "start": 63.627333
+      },
+      {
+        "end": 65.492896,
+        "duration": 0.415625,
+        "start": 65.077271
+      },
+      {
+        "end": 67.075458,
+        "duration": 0.497958,
+        "start": 66.5775
+      },
+      {
+        "end": 70.818104,
+        "duration": 0.855229,
+        "start": 69.96287500000001
+      },
+      {
+        "end": 73.208604,
+        "duration": 0.602021,
+        "start": 72.606583
+      },
+      {
+        "end": 76.677937,
+        "duration": 0.868271,
+        "start": 75.80966599999999
+      },
+      {
+        "end": 80.73575,
+        "duration": 0.850292,
+        "start": 79.885458
+      },
+      {
+        "end": 84.009438,
+        "duration": 0.498,
+        "start": 83.511438
+      },
+      {
+        "end": 86.554479,
+        "duration": 0.402917,
+        "start": 86.151562
+      },
+      {
+        "end": 88.704667,
+        "duration": 0.867667,
+        "start": 87.837
+      },
+      {
+        "end": 93.581292,
+        "duration": 0.861375,
+        "start": 92.71991700000001
+      },
+      {
+        "end": 95.939667,
+        "duration": 0.874437,
+        "start": 95.06523
+      },
+      {
+        "end": 100.635979,
+        "duration": 0.417167,
+        "start": 100.218812
+      },
+      {
+        "end": 103.262521,
+        "duration": 0.498604,
+        "start": 102.763917
+      },
+      {
+        "end": 106.020292,
+        "duration": 0.429917,
+        "start": 105.590375
+      },
+      {
+        "end": 108.480333,
+        "duration": 0.853271,
+        "start": 107.627062
+      },
+      {
+        "end": 112.317583,
+        "duration": 0.894188,
+        "start": 111.423395
+      },
+      {
+        "end": 116.395958,
+        "duration": 0.85525,
+        "start": 115.540708
+      },
+      {
+        "end": 119.064333,
+        "duration": 0.88675,
+        "start": 118.177583
+      },
+      {
+        "end": 123.080104,
+        "duration": 0.48625,
+        "start": 122.59385400000001
+      },
+      {
+        "end": 126.063583,
+        "duration": 0.88225,
+        "start": 125.181333
+      },
+      {
+        "end": 129.246083,
+        "duration": 0.558604,
+        "start": 128.687479
+      },
+      {
+        "end": 132.689812,
+        "duration": 0.878958,
+        "start": 131.81085399999998
+      },
+      {
+        "end": 137.477875,
+        "duration": 0.485354,
+        "start": 136.992521
+      },
+      {
+        "end": 141.555729,
+        "duration": 0.877646,
+        "start": 140.67808300000002
+      },
+      {
+        "end": 143.402437,
+        "duration": 0.431021,
+        "start": 142.971416
+      },
+      {
+        "end": 147.794312,
+        "duration": 0.668854,
+        "start": 147.12545799999998
+      },
+      {
+        "end": 149.559104,
+        "duration": 0.407604,
+        "start": 149.1515
+      },
+      {
+        "end": 150.866979,
+        "duration": 0.405208,
+        "start": 150.461771
+      },
+      {
+        "end": 152.701917,
+        "duration": 0.886292,
+        "start": 151.815625
+      },
+      {
+        "end": 155.234542,
+        "duration": 0.484063,
+        "start": 154.750479
+      },
+      {
+        "end": 158.676896,
+        "duration": 0.872396,
+        "start": 157.8045
+      },
+      {
+        "end": 161.068813,
+        "duration": 1.057542,
+        "start": 160.011271
+      },
+      {
+        "end": 161.946042,
+        "duration": 0.431062,
+        "start": 161.51498
+      },
+      {
+        "end": 167.158542,
+        "duration": 0.485708,
+        "start": 166.67283400000002
+      },
+      {
+        "end": 171.515812,
+        "duration": 0.875771,
+        "start": 170.64004100000002
+      },
+      {
+        "end": 173.42325,
+        "duration": 0.425792,
+        "start": 172.997458
+      },
+      {
+        "end": 175.611271,
+        "duration": 0.915625,
+        "start": 174.69564599999998
+      },
+      {
+        "end": 177.553313,
+        "duration": 0.438729,
+        "start": 177.114584
+      },
+      {
+        "end": 180.721146,
+        "duration": 0.852563,
+        "start": 179.868583
+      },
+      {
+        "end": 185.175458,
+        "duration": 0.490583,
+        "start": 184.684875
+      },
+      {
+        "end": 188.277604,
+        "duration": 0.862375,
+        "start": 187.415229
+      },
+      {
+        "end": 191.802854,
+        "duration": 0.870854,
+        "start": 190.932
+      },
+      {
+        "end": 196.246146,
+        "duration": 0.521167,
+        "start": 195.72497900000002
+      },
+      {
+        "end": 203.472771,
+        "duration": 0.499146,
+        "start": 202.973625
+      },
+      {
+        "end": 209.222625,
+        "duration": 0.894479,
+        "start": 208.328146
+      },
+      {
+        "end": 210.677333,
+        "duration": 0.314083,
+        "start": 210.36325
+      }
+    ],
+    "maximum_all_seconds": 1.057542,
+    "maximum_internal_seconds": 1.057542
+  },
+  "audio": {
+    "loudness_measurement": {
+      "input_i": "-19.82",
+      "input_tp": "-4.73",
+      "input_lra": "2.20",
+      "input_thresh": "-30.19",
+      "output_i": "-15.99",
+      "output_tp": "-1.50",
+      "output_lra": "2.30",
+      "output_thresh": "-26.37",
+      "normalization_type": "dynamic",
+      "target_offset": "-0.01"
+    },
+    "maximum_volume_dbfs": -4.7,
+    "measurement_does_not_change_output": true
+  },
+  "visual_samples": [
+    {
+      "id": 1,
+      "segment": "intro",
+      "start": 0.2,
+      "end": 10.305079,
+      "sample_time": 5.252539499999999,
+      "text": "Meet OpsCrew, our expense operations copilot. It helps an operator understand an exception, choose a next step, and keep control of the record.",
+      "sample_frame_sha256": "861ab1b134385ffe2fc88d455c49fe4b5944878d1624cd89bf143aa193ca8ade"
+    },
+    {
+      "id": 2,
+      "segment": "intro",
+      "start": 10.705079,
+      "end": 18.886031,
+      "sample_time": 14.795555,
+      "text": "This walkthrough uses synthetic data and a demonstration policy. It shows assistance and case handling, rather than a payment system.",
+      "sample_frame_sha256": "2c7fec6d429ac783f98fafaa1fa82bf43c5eec734b8fd6e9ce68e2063aa0f4aa"
+    },
+    {
+      "id": 3,
+      "segment": "problem",
+      "start": 19.32,
+      "end": 26.418594000000002,
+      "sample_time": 22.869297000000003,
+      "text": "An incomplete expense can mean repeated checks and follow-up. An operator needs to know what is missing and why it matters.",
+      "sample_frame_sha256": "580cf5e91a64c481c826fafc43621f3d49492e16804a85f487a7e0f021043239"
+    },
+    {
+      "id": 4,
+      "segment": "problem",
+      "start": 26.818594,
+      "end": 34.951156,
+      "sample_time": 30.884875,
+      "text": "OpsCrew brings the facts, policy references, and suggested action into one reviewable workflow, while leaving the decision with a person.",
+      "sample_frame_sha256": "902d0aca91af24baf8243aef3d1e5319bda28efd24c52ce382516eea09818654"
+    },
+    {
+      "id": 5,
+      "segment": "build",
+      "start": 35.36,
+      "end": 43.019728,
+      "sample_time": 39.189864,
+      "text": "We started the application in Google AI Studio Build. Our teammate used Antigravity for the Google Cloud deployment work.",
+      "sample_frame_sha256": "a00b7b1b3a1c0d4b80b7e09cb914b4e1f0cf67de02d210c5e883a7d71470bb99"
+    },
+    {
+      "id": 6,
+      "segment": "build",
+      "start": 43.419728,
+      "end": 54.390522,
+      "sample_time": 48.905125,
+      "text": "Cloud Run hosts the service. Firebase Authentication identifies the visitor, and Cloud Firestore stores confirmed cases. Gemini is called through the server.",
+      "sample_frame_sha256": "8916d917cc8bb131aef7d1335d4d3cb4be559322c4a70cae873db823355592d5"
+    },
+    {
+      "id": 7,
+      "segment": "build",
+      "start": 54.790521999999996,
+      "end": 58.749252,
+      "sample_time": 56.769887,
+      "text": "The model credentials stay on the server, outside the browser bundle.",
+      "sample_frame_sha256": "9aca7de4e012dc9dc9d9665cafb6d61b4f881e76dc6ffcf109b06bf7837f06cb"
+    },
+    {
+      "id": 8,
+      "segment": "intake",
+      "start": 59.274466999999994,
+      "end": 66.62476199999999,
+      "sample_time": 62.949614499999996,
+      "text": "First, we start a visitor session and enter a synthetic parking expense: thirty-eight dollars, with a missing receipt.",
+      "sample_frame_sha256": "20ff8fced669d121b446e11fc55e0d8fbda4d69e0890002d9d782f1dd67edbd0"
+    },
+    {
+      "id": 9,
+      "segment": "intake",
+      "start": 67.024762,
+      "end": 72.645533,
+      "sample_time": 69.8351475,
+      "text": "These text and form inputs are what the system checks. It does not read receipt images.",
+      "sample_frame_sha256": "01feabec68407f772ae45e8a357f79ae133081c7a6d27b3ecb32756c9ded8fc5"
+    },
+    {
+      "id": 10,
+      "segment": "rolemap",
+      "start": 73.16,
+      "end": 83.558776,
+      "sample_time": 78.359388,
+      "text": "The facts stage extracts submitted information. The planner proposes a next action with policy references. A separately prompted reviewer checks that proposal.",
+      "sample_frame_sha256": "acbe677fa9d69ce5895144795b5233c3a52b3f3f5563a24d237e144d32809cef"
+    },
+    {
+      "id": 11,
+      "segment": "rolemap",
+      "start": 83.958776,
+      "end": 92.78544299999999,
+      "sample_time": 88.3721095,
+      "text": "These are distinct stages using Gemini, not independent people. Structured validation adds another check before an action can become available.",
+      "sample_frame_sha256": "6810651e2730be5f65a4d86e53b819c3cb2463a6a298ceaed1ce5477a5c495fd"
+    },
+    {
+      "id": 12,
+      "segment": "roles",
+      "start": 93.5345805,
+      "end": 102.8136285,
+      "sample_time": 98.1741045,
+      "text": "We now run the analysis. The interface records each processing attempt, its outcome, and its duration, so the operator can inspect what happened.",
+      "sample_frame_sha256": "720bb65a169b8f2053f0a1dc1d30a3373e2f05bfdd5e6eef458e38fd6d83d8e2"
+    },
+    {
+      "id": 13,
+      "segment": "roles",
+      "start": 103.2136285,
+      "end": 111.4654195,
+      "sample_time": 107.339524,
+      "text": "The displayed timings describe this example; they are not a service guarantee. All three stages finish successfully in this recording.",
+      "sample_frame_sha256": "14d02105c83da92e31eaf098648ad0b8b2c9bb2d292748b18ad527fbe86c4d86"
+    },
+    {
+      "id": 14,
+      "segment": "decision",
+      "start": 112.269388,
+      "end": 122.634195,
+      "sample_time": 117.45179150000001,
+      "text": "The plan identifies the missing receipt and asks for evidence. It does not approve reimbursement. The operator can inspect the explanation and policy references.",
+      "sample_frame_sha256": "5c48d5ff4f5e2e5c251decfa9031da627e623eb44bdef184fd65869abb7e2329"
+    },
+    {
+      "id": 15,
+      "segment": "decision",
+      "start": 123.034195,
+      "end": 128.730612,
+      "sample_time": 125.88240350000001,
+      "text": "A draft is available to copy and edit. Copying sends no message and makes no payment.",
+      "sample_frame_sha256": "c52bfb3c75e58c246df9d67be2e40673420ef3ba5cb423d2ba924c77aeaca05d"
+    },
+    {
+      "id": 16,
+      "segment": "control",
+      "start": 129.2,
+      "end": 137.031429,
+      "sample_time": 133.1157145,
+      "text": "An AI proposal alone cannot save a case. The operator must review the current plan and explicitly confirm an eligible action.",
+      "sample_frame_sha256": "b66a7f686e0164860898a1bc412ea7b1423dac3690bc28897dbe1b6ab721f203"
+    },
+    {
+      "id": 17,
+      "segment": "control",
+      "start": 137.431429,
+      "end": 147.187257,
+      "sample_time": 142.309343,
+      "text": "Version checks protect against confirming an outdated plan. This boundary is important: saving a handling record is different from approving or paying an expense.",
+      "sample_frame_sha256": "8d0dd080711dac97f42e1258c105baeb203ce34aea2c5b428ab39ba2e76403dc"
+    },
+    {
+      "id": 18,
+      "segment": "consent",
+      "start": 147.747642,
+      "end": 154.78551000000002,
+      "sample_time": 151.26657600000001,
+      "text": "We prepare confirmation, review the plan, and check consent. The server saves one synthetic case.",
+      "sample_frame_sha256": "a03da1db351a3484e780a04819ba5014962b2785438d234c6ee09b2fd03a3612"
+    },
+    {
+      "id": 19,
+      "segment": "consent",
+      "start": 155.18551,
+      "end": 160.052358,
+      "sample_time": 157.618934,
+      "text": "The case contains the expense facts and plan. The receipt is still missing.",
+      "sample_frame_sha256": "b1ded98dc6d8f68419413dcfbd2376a6e732e336ff157c9c604fb35b0af0deea"
+    },
+    {
+      "id": 20,
+      "segment": "readback",
+      "start": 161.01805000000002,
+      "end": 166.710295,
+      "sample_time": 163.8641725,
+      "text": "Next, we independently retrieve the saved case through an authenticated server API request.",
+      "sample_frame_sha256": "2c94943856aafd1763b37362cfef21a2d7a3245d5ed8642c78a688139c205246"
+    },
+    {
+      "id": 21,
+      "segment": "readback",
+      "start": 167.110295,
+      "end": 174.74195,
+      "sample_time": 170.92612250000002,
+      "text": "The readback and same-visitor history show matching case details. This verifies the example, using synthetic data.",
+      "sample_frame_sha256": "0cb69a0b6caf42161b765cfa58bb89accf57cb24a1577bee96cd1706982c50bf"
+    },
+    {
+      "id": 22,
+      "segment": "limits",
+      "start": 175.56,
+      "end": 184.724354,
+      "sample_time": 180.142177,
+      "text": "This is a focused prototype, not a universal finance decision engine. It uses synthetic policy data and does not extract receipt images.",
+      "sample_frame_sha256": "6ecfe9670132d258043b1e193730a4cd7fc0f1931a400b778ed9cb8cc38e8b26"
+    },
+    {
+      "id": 23,
+      "segment": "limits",
+      "start": 185.124354,
+      "end": 195.775374,
+      "sample_time": 190.449864,
+      "text": "Model requests can fail or take time. People should inspect the evidence and proposed action. These explanations do not claim guaranteed accuracy or turnaround.",
+      "sample_frame_sha256": "2cc28f6b218da375e67df1cede752275f74f960c019cd8927b13a73ac856b798"
+    },
+    {
+      "id": 24,
+      "segment": "outro",
+      "start": 196.2,
+      "end": 203.014875,
+      "sample_time": 199.6074375,
+      "text": "OpsCrew combines structured AI assistance, explicit confirmation, and saved-case verification in one workflow.",
+      "sample_frame_sha256": "decf299d2899284788e95a5ed08e880b26df0ef4247e4d4a4769b34a3249299e"
+    },
+    {
+      "id": 25,
+      "segment": "outro",
+      "start": 203.414875,
+      "end": 210.402267,
+      "sample_time": 206.908571,
+      "text": "You can explore the deployed Google Cloud prototype and public source using the links shown here. Thank you for watching.",
+      "sample_frame_sha256": "97b69175bf2fb5c537ed27cb228a9070a508322a7207ed0e0cb652678dbd8500"
+    }
+  ],
+  "contact_sheet": {
+    "path": "docs/acceptance/VIDEO-3to4-contactsheet-2026-10-16.png",
+    "sha256": "6aa2a08d7be57a888191cd7d0707dbd5216502bf85eb496c3c775b36f0117ff3"
+  },
+  "font_measurements": [
+    {
+      "segment": "intro",
+      "region": "title",
+      "text": "OpsCrew",
+      "width": 384.44140625,
+      "height": 122.3671875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "intro",
+      "region": "eyebrow",
+      "text": "EXPENSE EXCEPTION PLAN & REVIEW",
+      "width": 402.4921875,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "intro",
+      "region": "subtitle",
+      "text": "AI assistance. Human confirmation. Verified saved cases.",
+      "width": 840.6865234375,
+      "height": 45.22265625,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "intro",
+      "region": "body",
+      "text": "A practical finance-operations copilot",
+      "width": 594.10546875,
+      "height": 47.8828125,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "intro",
+      "region": "body",
+      "text": "Synthetic expenses and demonstration policy",
+      "width": 717.22265625,
+      "height": 47.8828125,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "intro",
+      "region": "body",
+      "text": "Recorded walkthrough with factual explanations",
+      "width": 763.365234375,
+      "height": 47.8828125,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "intro",
+      "region": "caption",
+      "text": "Meet OpsCrew, our expense operations copilot. It helps an",
+      "width": 618.48046875,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "intro",
+      "region": "caption",
+      "text": "operator understand an exception, choose a next step, and",
+      "width": 621.8671875,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "intro",
+      "region": "caption",
+      "text": "keep control of the record.",
+      "width": 282.08203125,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "intro",
+      "region": "caption",
+      "text": "This walkthrough uses synthetic data and a demonstration",
+      "width": 616.34765625,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "intro",
+      "region": "caption",
+      "text": "policy. It shows assistance and case handling, rather than a",
+      "width": 619.76953125,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "intro",
+      "region": "caption",
+      "text": "payment system.",
+      "width": 177.984375,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "problem",
+      "region": "title",
+      "text": "A missing receipt creates work",
+      "width": 917.84375,
+      "height": 85.125,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "problem",
+      "region": "eyebrow",
+      "text": "THE PROBLEM",
+      "width": 152.96484375,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "problem",
+      "region": "subtitle",
+      "text": "Turn scattered expense facts into a reviewable next action.",
+      "width": 872.1298828125,
+      "height": 45.22265625,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "problem",
+      "region": "body",
+      "text": "Capture the facts",
+      "width": 270.4921875,
+      "height": 47.8828125,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "problem",
+      "region": "body",
+      "text": "Explain the relevant policy",
+      "width": 413.771484375,
+      "height": 47.8828125,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "problem",
+      "region": "body",
+      "text": "Ask for missing evidence before proceeding",
+      "width": 696.0234375,
+      "height": 47.8828125,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "problem",
+      "region": "caption",
+      "text": "An incomplete expense can mean repeated checks and follow-up.",
+      "width": 694.48828125,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "problem",
+      "region": "caption",
+      "text": "An operator needs to know what is missing and why it matters.",
+      "width": 664.79296875,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "problem",
+      "region": "caption",
+      "text": "OpsCrew brings the facts, policy references, and suggested",
+      "width": 622.72265625,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "problem",
+      "region": "caption",
+      "text": "action into one reviewable workflow, while leaving the",
+      "width": 572.05078125,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "problem",
+      "region": "caption",
+      "text": "decision with a person.",
+      "width": 242.0625,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "build",
+      "region": "title",
+      "text": "Built with Google technology",
+      "width": 880.84375,
+      "height": 85.125,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "build",
+      "region": "eyebrow",
+      "text": "FROM IDEA TO CLOUD PROTOTYPE",
+      "width": 379.06640625,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "build",
+      "region": "subtitle",
+      "text": "Google AI Studio Build  →  Gemini  →  Google Cloud",
+      "width": 786.615234375,
+      "height": 45.22265625,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "build",
+      "region": "body",
+      "text": "Application created in Google AI Studio Build",
+      "width": 717.873046875,
+      "height": 47.8828125,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "build",
+      "region": "body",
+      "text": "Team used Antigravity for deployment work",
+      "width": 697.341796875,
+      "height": 47.8828125,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "build",
+      "region": "body",
+      "text": "Cloud Run + Firebase Authentication + Cloud Firestore",
+      "width": 870.29296875,
+      "height": 47.8828125,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "build",
+      "region": "caption",
+      "text": "We started the application in Google AI Studio Build. Our",
+      "width": 604.171875,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "build",
+      "region": "caption",
+      "text": "teammate used Antigravity for the Google Cloud deployment",
+      "width": 649.2890625,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "build",
+      "region": "caption",
+      "text": "work.",
+      "width": 56.8828125,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "build",
+      "region": "caption",
+      "text": "Cloud Run hosts the service. Firebase Authentication",
+      "width": 554.2734375,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "build",
+      "region": "caption",
+      "text": "identifies the visitor, and Cloud Firestore stores confirmed",
+      "width": 610.69921875,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "build",
+      "region": "caption",
+      "text": "cases. Gemini is called through the server.",
+      "width": 441.71484375,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "build",
+      "region": "caption",
+      "text": "The model credentials stay on the server, outside the browser",
+      "width": 649.88671875,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "build",
+      "region": "caption",
+      "text": "bundle.",
+      "width": 78.97265625,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "intake",
+      "region": "caption",
+      "text": "First, we start a visitor session and enter a synthetic",
+      "width": 540.046875,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "intake",
+      "region": "caption",
+      "text": "parking expense: thirty-eight dollars, with a missing",
+      "width": 543.9609375,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "intake",
+      "region": "caption",
+      "text": "receipt.",
+      "width": 77.7890625,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "intake",
+      "region": "caption",
+      "text": "These text and form inputs are what the system checks. It",
+      "width": 605.05078125,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "intake",
+      "region": "caption",
+      "text": "does not read receipt images.",
+      "width": 313.59375,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "rolemap",
+      "region": "title",
+      "text": "Three roles, separate questions",
+      "width": 933.1875,
+      "height": 85.125,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "rolemap",
+      "region": "eyebrow",
+      "text": "HOW GEMINI SUPPORTS THE WORKFLOW",
+      "width": 452.6953125,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "rolemap",
+      "region": "subtitle",
+      "text": "FACTS  →  PLANNER  →  REVIEWER",
+      "width": 528.2119140625,
+      "height": 45.22265625,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "rolemap",
+      "region": "body",
+      "text": "Facts: extract the submitted information",
+      "width": 632.49609375,
+      "height": 47.8828125,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "rolemap",
+      "region": "body",
+      "text": "Planner: propose a policy-grounded next action",
+      "width": 756.017578125,
+      "height": 47.8828125,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "rolemap",
+      "region": "body",
+      "text": "Reviewer: check the proposed plan",
+      "width": 552.41015625,
+      "height": 47.8828125,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "rolemap",
+      "region": "body",
+      "text": "Structured validation also checks the outputs",
+      "width": 713.267578125,
+      "height": 47.8828125,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "rolemap",
+      "region": "caption",
+      "text": "The facts stage extracts submitted information. The planner",
+      "width": 627.9140625,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "rolemap",
+      "region": "caption",
+      "text": "proposes a next action with policy references. A separately",
+      "width": 617.6015625,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "rolemap",
+      "region": "caption",
+      "text": "prompted reviewer checks that proposal.",
+      "width": 431.9765625,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "rolemap",
+      "region": "caption",
+      "text": "These are distinct stages using Gemini, not independent",
+      "width": 592.72265625,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "rolemap",
+      "region": "caption",
+      "text": "people. Structured validation adds another check before an",
+      "width": 626.6015625,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "rolemap",
+      "region": "caption",
+      "text": "action can become available.",
+      "width": 303.94921875,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "roles",
+      "region": "caption",
+      "text": "We now run the analysis. The interface records each",
+      "width": 547.7578125,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "roles",
+      "region": "caption",
+      "text": "processing attempt, its outcome, and its duration, so the",
+      "width": 596.89453125,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "roles",
+      "region": "caption",
+      "text": "operator can inspect what happened.",
+      "width": 393.75,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "roles",
+      "region": "caption",
+      "text": "The displayed timings describe this example; they are not a",
+      "width": 624.33984375,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "roles",
+      "region": "caption",
+      "text": "service guarantee. All three stages finish successfully in",
+      "width": 579.26953125,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "roles",
+      "region": "caption",
+      "text": "this recording.",
+      "width": 151.53515625,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "decision",
+      "region": "caption",
+      "text": "The plan identifies the missing receipt and asks for",
+      "width": 534.6796875,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "decision",
+      "region": "caption",
+      "text": "evidence. It does not approve reimbursement. The operator can",
+      "width": 673.359375,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "decision",
+      "region": "caption",
+      "text": "inspect the explanation and policy references.",
+      "width": 482.5546875,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "decision",
+      "region": "caption",
+      "text": "A draft is available to copy and edit. Copying sends no",
+      "width": 575.05078125,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "decision",
+      "region": "caption",
+      "text": "message and makes no payment.",
+      "width": 351.97265625,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "control",
+      "region": "title",
+      "text": "An AI plan is not permission",
+      "width": 846.34375,
+      "height": 85.125,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "control",
+      "region": "eyebrow",
+      "text": "HUMAN CONTROL",
+      "width": 202.3125,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "control",
+      "region": "subtitle",
+      "text": "Review the current plan. Explicitly confirm the eligible action.",
+      "width": 907.90625,
+      "height": 45.22265625,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "control",
+      "region": "body",
+      "text": "A copied draft is not automatically sent",
+      "width": 621.87890625,
+      "height": 47.8828125,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "control",
+      "region": "body",
+      "text": "Confirmation is required before saving a case",
+      "width": 717.486328125,
+      "height": 47.8828125,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "control",
+      "region": "body",
+      "text": "Version checks reject a stale plan",
+      "width": 522.03515625,
+      "height": 47.8828125,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "control",
+      "region": "body",
+      "text": "No reimbursement approval or payment execution",
+      "width": 803.970703125,
+      "height": 47.8828125,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "control",
+      "region": "caption",
+      "text": "An AI proposal alone cannot save a case. The operator must",
+      "width": 633.421875,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "control",
+      "region": "caption",
+      "text": "review the current plan and explicitly confirm an eligible",
+      "width": 591.43359375,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "control",
+      "region": "caption",
+      "text": "action.",
+      "width": 70.08984375,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "control",
+      "region": "caption",
+      "text": "Version checks protect against confirming an outdated plan.",
+      "width": 636.80859375,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "control",
+      "region": "caption",
+      "text": "This boundary is important: saving a handling record is",
+      "width": 579.6328125,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "control",
+      "region": "caption",
+      "text": "different from approving or paying an expense.",
+      "width": 499.4296875,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "consent",
+      "region": "caption",
+      "text": "We prepare confirmation, review the plan, and check consent.",
+      "width": 651.6796875,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "consent",
+      "region": "caption",
+      "text": "The server saves one synthetic case.",
+      "width": 377.77734375,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "consent",
+      "region": "caption",
+      "text": "The case contains the expense facts and plan. The receipt is",
+      "width": 627.19921875,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "consent",
+      "region": "caption",
+      "text": "still missing.",
+      "width": 127.91015625,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "readback",
+      "region": "caption",
+      "text": "Next, we independently retrieve the saved case through an",
+      "width": 621.3515625,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "readback",
+      "region": "caption",
+      "text": "authenticated server API request.",
+      "width": 348.87890625,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "readback",
+      "region": "caption",
+      "text": "The readback and same-visitor history show matching case",
+      "width": 622.4296875,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "readback",
+      "region": "caption",
+      "text": "details. This verifies the example, using synthetic data.",
+      "width": 568.72265625,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "limits",
+      "region": "title",
+      "text": "A focused prototype, clear limits",
+      "width": 980.125,
+      "height": 85.125,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "limits",
+      "region": "eyebrow",
+      "text": "WHAT THIS DEMONSTRATION ESTABLISHES",
+      "width": 471.78515625,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "limits",
+      "region": "subtitle",
+      "text": "Recorded UI evidence with offline explanatory narration.",
+      "width": 841.69921875,
+      "height": 45.22265625,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "limits",
+      "region": "body",
+      "text": "Synthetic policy and expense data",
+      "width": 538.787109375,
+      "height": 47.8828125,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "limits",
+      "region": "body",
+      "text": "No receipt-image extraction or automatic sending",
+      "width": 794.49609375,
+      "height": 47.8828125,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "limits",
+      "region": "body",
+      "text": "Model requests can fail or take time",
+      "width": 569.759765625,
+      "height": 47.8828125,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "limits",
+      "region": "body",
+      "text": "A person remains responsible for the handling decision",
+      "width": 874.86328125,
+      "height": 47.8828125,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "limits",
+      "region": "caption",
+      "text": "This is a focused prototype, not a universal finance decision",
+      "width": 628.078125,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "limits",
+      "region": "caption",
+      "text": "engine. It uses synthetic policy data and does not extract",
+      "width": 599.56640625,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "limits",
+      "region": "caption",
+      "text": "receipt images.",
+      "width": 159.92578125,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "limits",
+      "region": "caption",
+      "text": "Model requests can fail or take time. People should inspect",
+      "width": 624.10546875,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "limits",
+      "region": "caption",
+      "text": "the evidence and proposed action. These explanations do not",
+      "width": 650.87109375,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "limits",
+      "region": "caption",
+      "text": "claim guaranteed accuracy or turnaround.",
+      "width": 441.703125,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "outro",
+      "region": "title",
+      "text": "Explore OpsCrew",
+      "width": 511.59375,
+      "height": 85.125,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "outro",
+      "region": "eyebrow",
+      "text": "PUBLIC PROTOTYPE AND SOURCE",
+      "width": 362.8828125,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "outro",
+      "region": "subtitle",
+      "text": "Google AI assistance with an explicit human checkpoint.",
+      "width": 837.0673828125,
+      "height": 45.22265625,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "outro",
+      "region": "body",
+      "text": "Cloud prototype",
+      "width": 224.931640625,
+      "height": 41.232421875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "outro",
+      "region": "body",
+      "text": "opscrew-883881551915.us-central1.run.app",
+      "width": 596.87109375,
+      "height": 41.232421875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "outro",
+      "region": "body",
+      "text": "Public repository",
+      "width": 229.4423828125,
+      "height": 41.232421875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "outro",
+      "region": "body",
+      "text": "github.com/sundaylee3100-ljl/AI-Builder-Cup-2026-OpsCrew",
+      "width": 837.1513671875,
+      "height": 41.232421875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "outro",
+      "region": "caption",
+      "text": "OpsCrew combines structured AI assistance, explicit",
+      "width": 546.0234375,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "outro",
+      "region": "caption",
+      "text": "confirmation, and saved-case verification in one workflow.",
+      "width": 613.265625,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "outro",
+      "region": "caption",
+      "text": "You can explore the deployed Google Cloud prototype and",
+      "width": 626.63671875,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "outro",
+      "region": "caption",
+      "text": "public source using the links shown here. Thank you for",
+      "width": 586.40625,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    },
+    {
+      "segment": "outro",
+      "region": "caption",
+      "text": "watching.",
+      "width": 101.0859375,
+      "height": 31.921875,
+      "within_x": true,
+      "within_y": true
+    }
+  ],
+  "limitations": [
+    "Technical timing, silence and decoding checks do not replace complete human listening.",
+    "The 25 full-resolution cue frames await independent visual review.",
+    "No hosted new video URL exists yet; the previous 103.941-second upload is not this file."
+  ],
+  "cleanup": "PENDING_ROOT_REVIEW"
+}

@@ -1,0 +1,34 @@
+{
+  "date_local": "2026-10-17",
+  "timezone": "Asia/Shanghai",
+  "status": "OWNER_CONTENT_ACCEPTED_UPLOAD_LINK_SUPPLIED_FULL_ANONYMOUS_PLAYBACK_UNVERIFIED",
+  "owner_statement": "确认过了，视频可以用，我建立了新的视频链接https://youtu.be/rdbS1XUNUjw",
+  "local_video": {
+    "path": "submission/OpsCrew_Submission_Demo_3to4min_2026-10-16.mp4",
+    "sha256": "61eca16cd41fc99439023f259ca8152903de4fe9b22b9d86359955a746ef85b3",
+    "bytes": 13829566,
+    "duration_seconds": 210.661333,
+    "technical_evidence": "docs/acceptance/VIDEO-3to4-QA-2026-10-16.json",
+    "visual_factual_evidence": "docs/acceptance/VIDEO-3to4-final-review-2026-10-16.json"
+  },
+  "owner_acceptance": {
+    "content_and_narration": "ACCEPTED_BY_OWNER",
+    "upload_url": "https://youtu.be/rdbS1XUNUjw",
+    "matching_upload": "OWNER_SUPPLIED_LINK_IN_RESPONSE_TO_REQUEST_FOR_ACCEPTED_FILE",
+    "remote_stream_byte_identity": "NOT_INDEPENDENTLY_COMPARED"
+  },
+  "reviewer_public_observations": {
+    "page_title": "OpsCrew: Expense Exception Plan & Review - YouTube",
+    "web_tool": "Returned public HTML page title on October17; no complete stream playback",
+    "in_app_browser": "Initial navigation timed out; inventory subsequently showed the same title and watch URL; selecting tab timed out with kernel reset",
+    "complete_anonymous_streamed_playback": "NOT_VERIFIED",
+    "access_conclusion": "Metadata/title retrieved; browser timeout does not establish a private or broken video"
+  },
+  "current_submission_video_url": "https://youtu.be/rdbS1XUNUjw",
+  "previous_short_url": "https://youtu.be/j94ffx_yrng",
+  "previous_short_status": "HISTORICAL_TOO_SHORT_FOR_CURRENT_3_TO_4_MINUTE_FIELD",
+  "dated_records_policy": "Original build/QA/final-review and previous proposal acceptance records are unchanged. This follow-up records later owner acceptance and publication separately.",
+  "new_model_or_cloud_write_calls": 0,
+  "new_channel_or_account_operations": 0,
+  "remaining": "Confirm complete matching hosted playback without a team login; captain checks portal declarations and submission receipt."
+}

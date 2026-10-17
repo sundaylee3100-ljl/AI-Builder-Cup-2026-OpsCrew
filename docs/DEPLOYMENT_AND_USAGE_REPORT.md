@@ -1,5 +1,7 @@
 # OpsCrew cloud deployment and usage review
 
+October 17 publication update: **the owner confirms competition submission is complete.** The accepted 3:30.66 video is distributed through https://youtu.be/rdbS1XUNUjw; its local MP4 is excluded from GitHub. Current fields select the separate October 17 proposal. See [owner confirmation](acceptance/SUBMISSION-owner-confirmation-2026-10-17.json) and [material index](../submission/SUBMISSION_FORM.md). Portal receipt/inspection and complete anonymous playback are not independently verified. Engineering and cloud observations in this dated report remain historical; this documentation change does not require redeployment.
+
 Reviewed October 12, 2026 (Asia/Shanghai). Teammate source reviewed through `7fb9e03ed21c8e6a3eb01e5be2574ccec3dfae9a`, including the earlier `6091ed3868bcb1d889a82e3b4b700497c1154058`; previous precloud review head: `8793865657a5566e0ed34b31dac13a84d60ab88c`. Record subsequent review corrections and the final accepted Git SHA separately.
 
 This report corrects the earlier guide against the application and retained evidence. OpsCrew plans synthetic USD expense exceptions with Gemini FACTS, deterministic POLICY, PLANNER and a separately prompted REVIEWER. A current eligible recommendation requires explicit human confirmation before one owned exception case is saved and independently read back. It never approves reimbursement or payment.
@@ -146,8 +148,8 @@ G1 through G7 are team engineering gates, not asserted official contest rules. O
 | G3 real resources | PARTIAL teammate-reported six-step chain; emulators are not production evidence | Source-bound responses and identifiers, real Auth isolation, confirmation, idempotency, independent GET/history, client denial, rules/indexes and failures |
 | G4 cloud operations | PARTIAL historical teammate summaries; current deployment unverified | Source/image/revision/secret binding, ready release, persistent limits, cold start, pause/restore and accepted rollback |
 | G5 independent evaluation | PENDING; 350 prior offline assertions and public DEV examples are not hidden tests | Independently sealed eight cases; four risk categories with three repeats; three consecutive full main-demo runs; all failures retained |
-| G6 final materials | PENDING; editable English deck, review PDF and 165-second recording plan are preparation | Verified names/product/video links, real cloud recording under 180 seconds and final review |
-| G7 submission | PENDING; no Submitted receipt | Actual portal Submitted state, receipt/ID/time and accessible final links |
+| G6 final materials | PENDING; previous short recordings/proposals are historical; new video and paired publication require acceptance | October 16 correction: verified names/product/video links, 3–4 minute recorded demonstration matching the portal, natural narration and final review |
+| G7 submission | Submitted, explicitly owner-reported on October 17; receipt not supplied | Owner confirmation is recorded separately; no receipt ID, exact time or independent portal inspection is fabricated |
 
 For new cloud tests, record accepted Git SHA, lock hash, build ID, image digest, revision, runtime identity, project/region, numeric secret version and nonsecret outcomes. Retain full model-attempt telemetry when available, every first failure and rerun, and independent readback for saved-case claims. Do not export credentials or relabel public development examples as hidden tests.
 

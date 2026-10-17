@@ -1,0 +1,64 @@
+{
+  "schema_version": "opscrew-final-proposal-acceptance-1.0.0",
+  "audit_date": "2026-10-17",
+  "timezone": "Asia/Shanghai",
+  "status": "PAIRED_MATERIALS_OWNER_VIDEO_ACCEPTED_PUBLIC_FULL_PLAYBACK_AND_PORTAL_CHECK_PENDING",
+  "slides": 13,
+  "pdf_pages": 13,
+  "pptx_sha256": "591635c6c324c5add2918281935fedd568a3528a6dbfd1b124540713661b03cf",
+  "pdf_sha256": "7de46c58f3a83778f5b9f88597faf92ca2caed2023d9fe03cca0dc96b8237642",
+  "pdf_text_layer": "IMAGE_ONLY",
+  "pptx_editability": "Native text, tables and diagrams. Finalizer import passed. Native PowerPoint not opened.",
+  "pdf_uris": [
+    "https://github.com/sundaylee3100-ljl/AI-Builder-Cup-2026-OpsCrew",
+    "https://opscrew-883881551915.us-central1.run.app",
+    "https://youtu.be/rdbS1XUNUjw"
+  ],
+  "embedded_pdf_pages_equal_pptx_render_pixels": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+  ],
+  "visual_method": "Source PDF and final PDF independently Poppler rendered. Every one of the 13 source and 13 final pages inspected individually. Final pages 1, 12 and 13 compared with source and other 10 final pages are pixel-identical to their prior image payloads.",
+  "template": "Original official artwork, fonts, size and 13-page content structure preserved. Native table slides 8 and 11 and package geometry passed.",
+  "template_font_warnings": "Original embedded Google Sans Flex family and face metadata warnings remain. All rendered pages inspected. No overflow or font replacement accepted.",
+  "captain_public_name": "Sunday Lee",
+  "public_video_url": "https://youtu.be/rdbS1XUNUjw",
+  "video_duration_seconds": 210.661333,
+  "video_sha256": "61eca16cd41fc99439023f259ca8152903de4fe9b22b9d86359955a746ef85b3",
+  "duration_rule": "Current owner-supplied submission form: 3-4 minutes. Website duration wording conflict retained separately.",
+  "owner_video_content_acceptance": true,
+  "owner_acceptance_source": "Owner message on 17 October 2026: confirmed new video usable and supplied new public link.",
+  "reviewer_anonymous_full_playback": "NOT_VERIFIED",
+  "engineering_evidence": "Unchanged dated FINAL-integrated-validation-2026-10-16.json, 246 offline checks and 12 native artifact groups. No engineering tests rerun for the link-only material update.",
+  "historical_real_model_evidence": "13 October Gemini 3.1 Flash-Lite Developer API observations only. No new Vertex workflow executed.",
+  "deployment_record_level": "TEAM_REPORTED. No new control-plane or source archive authentication.",
+  "credential_delivery": "No API keys distributed. Server ADC or optional server-only key.",
+  "ready_for_portal_submission": false,
+  "remaining": [
+    "Confirm judge access and complete playback of the new hosted video",
+    "Captain verifies current portal limits, roster and declarations, then completes the actual submission"
+  ],
+  "qa_record": "docs/acceptance/PROPOSAL-publication-2026-10-17.json",
+  "cleanup_status": "COMPLETE_CURRENT_TASK_OWNED_DIRECTORY_RECYCLED_AND_VERIFIED_ABSENT",
+  "cleanup_directory": ".materials-publication-20261017",
+  "root_additional_visual_review": {
+    "pages": [
+      1,
+      12,
+      13
+    ],
+    "unresolved_defects": 0,
+    "source": "Actual final rendered pages viewed by root before cleanup"
+  }
+}

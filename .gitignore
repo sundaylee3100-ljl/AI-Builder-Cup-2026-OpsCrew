@@ -50,3 +50,10 @@ submission/video_output/*.webm
 submission/video_output/build/
 submission/video_output/raw*/
 submission/video_output/audio*/
+
+# Offline narrated-video authoring workspace; final media/QA live in submission/docs
+.review-media-*/
+.materials-publication-*/
+
+# Owner-approved submission video is distributed by YouTube; keep local master.
+/submission/OpsCrew_Submission_Demo_3to4min_2026-10-16.mp4

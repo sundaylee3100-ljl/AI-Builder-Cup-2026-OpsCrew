@@ -47,6 +47,14 @@ The edit preserves the team's recorded business values and result states. New na
 
 ## Submission assets and final identity
 
-The owner-provided blank official submission template and owner-reported Gemini-generated team logo are retained in `submission/assets/`. Confirm asset dates/rights and captain/team declarations before final submission. Final English proposal and video claims must describe the actually verified release, with working product, public GitHub and named-host video links.
+### Owner-confirmed submission and hosted video
+
+On October 17 the owner confirmed competition submission is complete and explicitly requested that the new video be distributed on GitHub through https://youtu.be/rdbS1XUNUjw. The reviewed local MP4 is retained locally and excluded from the published branch and its new commit history. Earlier media already present on main are historical and are not rewritten. The [owner confirmation](docs/acceptance/SUBMISSION-owner-confirmation-2026-10-17.json) records the report; no portal receipt, exact submission time or independent portal inspection is invented. Current package identities describe the reviewed files, rather than independently attested uploaded bytes.
+
+### Current portal-duration correction
+
+The owner subsequently supplied the actual submission field labelled 3–4 minutes. The prior 103.941333-second edit and `j94ffx_yrng` remain historical content-accepted artifacts and do not satisfy that field. The new `submission/build-submission-demo-3to4.mjs` creates `OpsCrew_Submission_Demo_3to4min_2026-10-16.mp4` with default-rate offline narration and additional factual explanation. The original UI order, playback speed, values and results are preserved. The prior builder and execution evidence are retained unchanged. See the [duration decision](docs/acceptance/VIDEO-3to4-duration-rule-2026-10-16.md) and [current recording plan](submission/RECORDING_PLAN.md). On October 17 the owner accepted the 210.661333-second file and supplied https://youtu.be/rdbS1XUNUjw. The separate October 17 proposal uses that link; old proposals and frozen media QA retain their historical meaning. [Owner publication follow-up](docs/acceptance/VIDEO-3to4-owner-publication-2026-10-17.json) distinguishes owner acceptance from independent complete anonymous playback, which remains unverified.
+
+The owner-provided blank official submission template and owner-reported Gemini-generated team logo are retained in `submission/assets/`. The team retains responsibility for asset rights and private captain/team declarations. English proposal and video claims describe the reviewed release, with product, public GitHub and hosted video links.
 
 [Submission checklist](SUBMISSION_CHECKLIST.md) and [rules/package review](docs/acceptance/DELIVERY-rules-and-package-review-2026-10-14.md) distinguish completed observations from remaining work. `RELEASE_MANIFEST.json` is the source/material identity checkpoint and must be updated from observed deployment and publication results by its owner. An AI Studio editor link, screenshots, injected tests or a local MP4 alone cannot establish final live/public/Submitted acceptance.

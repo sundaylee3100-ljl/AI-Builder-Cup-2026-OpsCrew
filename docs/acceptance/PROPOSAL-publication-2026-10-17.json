@@ -1,0 +1,263 @@
+{
+  "schema_version": "opscrew-proposal-publication-qa-1.0.0",
+  "audit_date": "2026-10-17",
+  "timezone": "Asia/Shanghai",
+  "status": "LOCAL_MATERIAL_QA_PASS_PUBLIC_FULL_PLAYBACK_UNVERIFIED",
+  "pdf": {
+    "path": "submission/OpsCrew_Proposal_Cloud_submission-final-2026-10-17.pdf",
+    "sha256": "7de46c58f3a83778f5b9f88597faf92ca2caed2023d9fe03cca0dc96b8237642",
+    "bytes": 2997537,
+    "pages": 13
+  },
+  "pptx": {
+    "path": "submission/OpsCrew_Proposal_Cloud_submission-final-2026-10-17.pptx",
+    "sha256": "591635c6c324c5add2918281935fedd568a3528a6dbfd1b124540713661b03cf",
+    "bytes": 1761885,
+    "slides": 13
+  },
+  "builder_sha256": "52ed849b489d7f0f48c88899d694d3ba73823f97e4181bd14771c2ae9b6e29b9",
+  "video": {
+    "path": "submission/OpsCrew_Submission_Demo_3to4min_2026-10-16.mp4",
+    "sha256": "61eca16cd41fc99439023f259ca8152903de4fe9b22b9d86359955a746ef85b3",
+    "duration_seconds": 210.661333,
+    "url": "https://youtu.be/rdbS1XUNUjw",
+    "owner_content_accepted": true
+  },
+  "pdf_uris": [
+    "https://github.com/sundaylee3100-ljl/AI-Builder-Cup-2026-OpsCrew",
+    "https://opscrew-883881551915.us-central1.run.app",
+    "https://youtu.be/rdbS1XUNUjw"
+  ],
+  "pptx_uris": [
+    "https://github.com/sundaylee3100-ljl/AI-Builder-Cup-2026-OpsCrew",
+    "https://opscrew-883881551915.us-central1.run.app",
+    "https://youtu.be/rdbS1XUNUjw"
+  ],
+  "embedded_pdf_pages_equal_pptx_render_pixels": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+  ],
+  "pages_pixel_identical_to_16_october_pdf": [
+    false,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    false,
+    false
+  ],
+  "changed_pages": {
+    "1": "Proposal date 17 October 2026",
+    "12": "3 min 30.66 s and explanatory title cards disclosed",
+    "13": "New YouTube URL and measured duration"
+  },
+  "visual_review": {
+    "method": "Source PDF and final PDF independently Poppler rendered. Every one of the 13 source and 13 final pages inspected individually. Final pages 1, 12 and 13 compared with source and other 10 final pages are pixel-identical to their prior image payloads.",
+    "reviewed_pages": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13
+    ],
+    "unresolved_visual_defects": [],
+    "native_powerpoint_opened": false
+  },
+  "finalizer": {
+    "schemaVersion": "presentation-finalization.v1",
+    "finalSha256": "591635c6c324c5add2918281935fedd568a3528a6dbfd1b124540713661b03cf",
+    "byteCount": 1761885,
+    "packageIntegrity": {
+      "chart_count": 0,
+      "claim_boundary": "Structural package checks only; no slide text, notes, formulas, chart values, or native PowerPoint execution were inspected.",
+      "finding_count": 0,
+      "findings": [],
+      "notes_parts_skipped": 13,
+      "relationship_part_count": 41,
+      "slide_count": 13,
+      "status": "pass",
+      "exitCode": 0,
+      "findingCount": 0,
+      "warnings": []
+    },
+    "presentationLayout": {
+      "finding_count": 0,
+      "findings": [],
+      "font_policy": {
+        "checked_text_script_count": 112,
+        "native_font_rendering_verified": false,
+        "observed_font_families": [
+          "Google Sans Flex Medium"
+        ],
+        "observed_font_use_counts": {
+          "Google Sans Flex Medium": 112
+        },
+        "passed": true,
+        "performed": true
+      },
+      "slide_count": 13,
+      "slide_size_in": [
+        10,
+        5.625
+      ],
+      "warning_count": 0,
+      "warnings": [],
+      "exitCode": 0,
+      "findingCount": 0,
+      "fontPolicy": {
+        "checked_text_script_count": 112,
+        "native_font_rendering_verified": false,
+        "observed_font_families": [
+          "Google Sans Flex Medium"
+        ],
+        "observed_font_use_counts": {
+          "Google Sans Flex Medium": 112
+        },
+        "passed": true,
+        "performed": true
+      }
+    },
+    "fontSelection": {
+      "basis": "reference",
+      "approvedFamilies": [
+        "Google Sans Flex Medium",
+        "Google Sans Flex SemiBold"
+      ],
+      "scriptFonts": {},
+      "referenceSha256": "2c2dbb4a1a8a6f85fe8767744442d4d5697ae43e936fefd0bbbb05321c1514fe",
+      "referenceFontsVerifiedInEncodedText": true,
+      "checked_text_script_count": 112,
+      "native_font_rendering_verified": false,
+      "observed_font_families": [
+        "Google Sans Flex Medium"
+      ],
+      "observed_font_use_counts": {
+        "Google Sans Flex Medium": 112
+      },
+      "passed": true,
+      "performed": true
+    },
+    "firstPartyImport": {
+      "performed": true,
+      "passed": true,
+      "slideCount": 13,
+      "sha256": "591635c6c324c5add2918281935fedd568a3528a6dbfd1b124540713661b03cf",
+      "runtimeNodeModules": "C:\\Users\\admin\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\node_modules",
+      "nodeExecutable": "C:\\Users\\admin\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe"
+    },
+    "nativeTableArithmetic": {
+      "performed": true,
+      "checked_column_count": 0,
+      "checks": [],
+      "claim_boundary": "Displayed-value arithmetic with rounding tolerance; not source-data verification.",
+      "eligible_table_count": 0,
+      "finding_count": 0,
+      "findings": [],
+      "native_table_count": 2,
+      "passed": true,
+      "schema_version": "presentation-native-table-arithmetic.v1",
+      "skipped_tables": [
+        {
+          "reason": "no_numeric_amounts",
+          "slide": 8,
+          "table": 1
+        },
+        {
+          "reason": "no_numeric_amounts",
+          "slide": 11,
+          "table": 1
+        }
+      ],
+      "slide_count": 13,
+      "warning_count": 0,
+      "warnings": []
+    },
+    "nativeChartTitles": {
+      "performed": true,
+      "checks": [],
+      "finding_count": 0,
+      "findings": [],
+      "native_chart_count": 0,
+      "native_powerpoint_verified": false,
+      "passed": true,
+      "presentation_sha256": "591635c6c324c5add2918281935fedd568a3528a6dbfd1b124540713661b03cf",
+      "schema_version": "presentation-native-chart-titles.v1",
+      "slide_count": 13,
+      "source_text_emitted": false,
+      "unresolved_linked_title_count": 0
+    },
+    "sourceDerivedPolicyFlags": [
+      "--expected-slide-size-emu",
+      "9144000,5143500",
+      "--validate-bullet-geometry",
+      "--validate-heading-fit",
+      "--require-native-table-slide",
+      "8",
+      "--require-native-table-slide",
+      "11",
+      "--cover-role",
+      "none",
+      "--approved-font-family",
+      "Google Sans Flex Medium",
+      "--approved-font-family",
+      "Google Sans Flex SemiBold"
+    ],
+    "nativeChartValidation": {
+      "detectedOwnerSlides": [],
+      "detectedChartCount": 0,
+      "targetApplication": null,
+      "sourceChartOwnersExplicitlyDeclared": false,
+      "validatorRan": false,
+      "passed": true
+    }
+  },
+  "source_cloud_screenshots": [
+    {
+      "path": "docs/acceptance/FINAL-video-ui-plan-2026-10-16.png",
+      "source_timestamp_seconds": 75
+    },
+    {
+      "path": "docs/acceptance/FINAL-video-ui-savedcase-2026-10-16.png",
+      "source_timestamp_seconds": 96
+    }
+  ],
+  "historical_outputs_unchanged": true,
+  "reviewer_anonymous_full_playback": "NOT_VERIFIED",
+  "scope": "Offline documents only. No new Cloud, model, identity, account, payment or submission operations.",
+  "cleanup_status": "COMPLETE_CURRENT_TASK_OWNED_DIRECTORY_RECYCLED_AND_VERIFIED_ABSENT",
+  "cleanup_directory": ".materials-publication-20261017",
+  "root_additional_visual_review": {
+    "pages": [
+      1,
+      12,
+      13
+    ],
+    "unresolved_defects": 0,
+    "source": "Actual final rendered pages viewed by root before cleanup"
+  }
+}
