@@ -1,5 +1,9 @@
 # OpsCrew cloud teammate handoff
 
+## October 17 accepted video and paired materials
+
+The owner confirms competition submission is complete. The accepted 3:30.66 video is distributed through https://youtu.be/rdbS1XUNUjw and the new MP4 stays local, outside GitHub. Current fields select the October 17 proposal; see [owner confirmation](acceptance/SUBMISSION-owner-confirmation-2026-10-17.json), [recording plan](../submission/RECORDING_PLAN.md) and [material index](../submission/SUBMISSION_FORM.md). Receipt/portal inspection and complete anonymous hosted playback are not independently verified. The cloud owner maintains the existing service and approved model quota for evaluation. This documentation update requires no deployment change. Older execution observations below retain their original dates and scope.
+
 ## October 14 owner follow-up
 
 PR #6 is merged as `43793118b6ad338569317eee9a618b7b4df32450`. The owner confirms that the current public video matches the rejected ZIP and needs remaking; no source/build/image/revision evidence has yet been supplied. Read [the corrected recording plan](../submission/RECORDING_PLAN.md) and [owner follow-up](acceptance/PR06-owner-followup-2026-10-14.json). The older instructions below retain their dated execution boundaries.
@@ -99,7 +103,7 @@ Defaults are deliberately small. Do not run the whole fault matrix against paid 
 
 Create new `docs/acceptance/CLOUD-...-<timestamp>.json/md` reports with actual source SHA, lock hash, image digest, build ID, revision, runtime identity, project/region, secret name/numeric version, URL, rules/index status and outcomes. Each live attempt records fixture/run ID, actual returned model version, statuses, duration and token counts if provided. Successful-case evidence includes synthetic case/approval IDs and the independent GET result. Sanitize provider errors; screenshots/video must avoid keys and account panels.
 
-Owner A updates final claims/deck/video from those reports. G3/G4 pass only for executed real-resource scenarios. G5 requires independent held-out 8/8, 100% critical safety, four high-risk categories ×3 and three consecutive full main-demo runs. G6 requires the final frozen English materials, PDF/editable deck, public video under 180 seconds and anonymously accessible final links. G7 requires the actual portal Submitted receipt/ID/time. These are separate gates. Recheck current [official rules](https://aibuildercup.com/index.html); the use case aligns with Future of Work and Enterprise Productivity on the [official themes page](https://aibuildercup.com/themes.html).
+Owner A updates final claims/deck/video from those reports. G3/G4 pass only for executed real-resource scenarios. G5 requires independent held-out 8/8, 100% critical safety, four high-risk categories ×3 and three consecutive full main-demo runs. The October 16 G6 duration correction requires final English materials, a paired PDF/editable deck, a 3–4 minute public video matching the actual portal field, and anonymously accessible final links. G7 requires the actual portal Submitted receipt/ID/time. These are separate gates. Recheck current [official rules](https://aibuildercup.com/index.html); the use case aligns with Future of Work and Enterprise Productivity on the [official themes page](https://aibuildercup.com/themes.html).
 
 If access/deployment/provider availability blocks a step, record its exact gate and have the authorized owner resolve it. Preserve locally accepted source; an emulator preview cannot substitute for deployed evidence.
 

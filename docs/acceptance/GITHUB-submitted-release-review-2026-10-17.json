@@ -1,0 +1,37 @@
+{
+  "date_local": "2026-10-17",
+  "timezone": "Asia/Shanghai",
+  "status": "REPOSITORY_CANDIDATE_REVIEWED_OWNER_REPORTED_SUBMITTED",
+  "owner_confirmation": "docs/acceptance/SUBMISSION-owner-confirmation-2026-10-17.json",
+  "candidate_base": "be13166c1b07ee399593a5a10a851672badacaeb",
+  "distribution": {
+    "video_url": "https://youtu.be/rdbS1XUNUjw",
+    "new_video_binary_in_repository": false,
+    "local_master_retained": true,
+    "local_master_sha256": "61eca16cd41fc99439023f259ca8152903de4fe9b22b9d86359955a746ef85b3",
+    "original_local_media_branch": "fix/submission-video-3to4-20261016",
+    "original_local_media_head": "9f0e385c73f75d26d341a598d552811cb4f520c9",
+    "previous_main_media": "Historical already-published media retained; no rewritten remote history"
+  },
+  "checks": {
+    "current_markdown_documents": 11,
+    "candidate_repository_local_links_verified": 163,
+    "runtime_normalized_hashes_unchanged": 32,
+    "operational_normalized_hashes_unchanged": 10,
+    "new_mp4_not_in_candidate_index": true,
+    "changed_text_files_credential_pattern_findings": 0,
+    "application_source_changes": 0,
+    "application_tests": "NOT_RERUN_UNCHANGED_RUNTIME; dated246-test and12-artifact results retained",
+    "proposal_bytes": "October17 PDF/PPTX and prior13-page QA unchanged"
+  },
+  "historical_reports": "Dated media/proposal/source QA and original failures retained without relabeling as new execution.",
+  "submission": {
+    "state": "SUBMITTED_OWNER_REPORTED",
+    "portal_independently_verified": false,
+    "receipt_id": null,
+    "exact_time": null,
+    "anonymous_full_video_playback": "NOT_INDEPENDENTLY_VERIFIED"
+  },
+  "review_scope": "Documentation, material distribution, current metadata and repository link/source identities. No new model call, cloud write, deployment, billing or portal submission.",
+  "cleanup": "No private helper files created for this review; final workspace scan required before delivery."
+}

@@ -1,0 +1,644 @@
+{
+  "date_local": "2026-10-16",
+  "timezone": "Asia/Shanghai",
+  "status": "BUILT_QA_PENDING",
+  "reason": "Owner supplied the actual submission form screenshot requiring a 3–4-minute demonstration video; this revision supersedes the older 103.941-second video only after owner approval and new publication.",
+  "source": {
+    "path": "submission/Original_Recorded_Demo_2026-10-16.mp4",
+    "sha256": "cb64b670e057709cdcb85aa55dde7e2f05fbc3eb3490042cd13eacd4c36a6772",
+    "allowed_sha256": [
+      "79b6bbef75b76ce236de25a4364fe911697c6c28acfc4f12681bd79441c90c43",
+      "cb64b670e057709cdcb85aa55dde7e2f05fbc3eb3490042cd13eacd4c36a6772"
+    ],
+    "original_unchanged": true
+  },
+  "output": {
+    "path": "submission/OpsCrew_Submission_Demo_3to4min_2026-10-16.mp4",
+    "sha256": "61eca16cd41fc99439023f259ca8152903de4fe9b22b9d86359955a746ef85b3",
+    "bytes": 13829566,
+    "duration_seconds": 210.661333,
+    "streams": [
+      {
+        "codec_type": "video",
+        "codec_name": "h264",
+        "width": 1920,
+        "height": 1080,
+        "nb_frames": "5266",
+        "avg_frame_rate": "25/1"
+      },
+      {
+        "codec_type": "audio",
+        "codec_name": "aac",
+        "sample_rate": "48000",
+        "channels": 2,
+        "nb_frames": "9892",
+        "avg_frame_rate": "0/0"
+      }
+    ]
+  },
+  "builder": {
+    "path": "submission/build-submission-demo-3to4.mjs",
+    "sha256": "4f09c17f2f197fcc6180c3afb05c71d4e37e8a78e464e556356a5f801de28b45",
+    "network_calls": 0,
+    "model_calls": 0,
+    "tts": "Windows System.Speech, Microsoft Zira Desktop, en-US, offline, Rate=0",
+    "original_audio_included": false,
+    "time_stretch": false,
+    "recorded_ui_speed": 1,
+    "recorded_ui_sequence_preserved": true,
+    "recorded_ui_hold_seconds": 0,
+    "work_directory": ".review-media-3to4-20261016",
+    "cleanup": "PENDING_AFTER_QA"
+  },
+  "overlay_regions": {
+    "original_hud_replaced": {
+      "x": 0,
+      "y": 0,
+      "width": 1920,
+      "height": 42
+    },
+    "old_burned_caption_replaced": {
+      "x": 514,
+      "y": 918,
+      "width": 894,
+      "height": 108
+    },
+    "no_added_success_state_or_business_field": true
+  },
+  "narration": {
+    "words": 476,
+    "voice_seconds": 198.328525,
+    "rate": 0,
+    "inter_cue_gap_seconds": 0.4,
+    "boundary_silence_only_trimmed": true,
+    "no_prosody_speed_change": true
+  },
+  "timeline": [
+    {
+      "id": "intro",
+      "kind": "card",
+      "title": "OpsCrew",
+      "eyebrow": "EXPENSE EXCEPTION PLAN & REVIEW",
+      "subtitle": "AI assistance. Human confirmation. Verified saved cases.",
+      "body": [
+        "A practical finance-operations copilot",
+        "Synthetic expenses and demonstration policy",
+        "Recorded walkthrough with factual explanations"
+      ],
+      "cues": [
+        "Meet OpsCrew, our expense operations copilot. It helps an operator understand an exception, choose a next step, and keep control of the record.",
+        "This walkthrough uses synthetic data and a demonstration policy. It shows assistance and case handling, rather than a payment system."
+      ],
+      "audio": [
+        {
+          "text": "Meet OpsCrew, our expense operations copilot. It helps an operator understand an exception, choose a next step, and keep control of the record.",
+          "file": "voice-00.wav",
+          "duration": 10.105079,
+          "start": 0.2,
+          "end": 10.305079
+        },
+        {
+          "text": "This walkthrough uses synthetic data and a demonstration policy. It shows assistance and case handling, rather than a payment system.",
+          "file": "voice-01.wav",
+          "duration": 8.180952,
+          "start": 10.705079,
+          "end": 18.886031
+        }
+      ],
+      "duration": 19.12,
+      "outputStart": 0,
+      "outputEnd": 19.12
+    },
+    {
+      "id": "problem",
+      "kind": "card",
+      "title": "A missing receipt creates work",
+      "eyebrow": "THE PROBLEM",
+      "subtitle": "Turn scattered expense facts into a reviewable next action.",
+      "body": [
+        "Capture the facts",
+        "Explain the relevant policy",
+        "Ask for missing evidence before proceeding"
+      ],
+      "cues": [
+        "An incomplete expense can mean repeated checks and follow-up. An operator needs to know what is missing and why it matters.",
+        "OpsCrew brings the facts, policy references, and suggested action into one reviewable workflow, while leaving the decision with a person."
+      ],
+      "audio": [
+        {
+          "text": "An incomplete expense can mean repeated checks and follow-up. An operator needs to know what is missing and why it matters.",
+          "file": "voice-02.wav",
+          "duration": 7.098594,
+          "start": 0.2,
+          "end": 7.2985940000000005
+        },
+        {
+          "text": "OpsCrew brings the facts, policy references, and suggested action into one reviewable workflow, while leaving the decision with a person.",
+          "file": "voice-03.wav",
+          "duration": 8.132562,
+          "start": 7.698594000000001,
+          "end": 15.831156
+        }
+      ],
+      "duration": 16.04,
+      "outputStart": 19.12,
+      "outputEnd": 35.16
+    },
+    {
+      "id": "build",
+      "kind": "card",
+      "title": "Built with Google technology",
+      "eyebrow": "FROM IDEA TO CLOUD PROTOTYPE",
+      "subtitle": "Google AI Studio Build  →  Gemini  →  Google Cloud",
+      "body": [
+        "Application created in Google AI Studio Build",
+        "Team used Antigravity for deployment work",
+        "Cloud Run + Firebase Authentication + Cloud Firestore"
+      ],
+      "cues": [
+        "We started the application in Google AI Studio Build. Our teammate used Antigravity for the Google Cloud deployment work.",
+        "Cloud Run hosts the service. Firebase Authentication identifies the visitor, and Cloud Firestore stores confirmed cases. Gemini is called through the server.",
+        "The model credentials stay on the server, outside the browser bundle."
+      ],
+      "audio": [
+        {
+          "text": "We started the application in Google AI Studio Build. Our teammate used Antigravity for the Google Cloud deployment work.",
+          "file": "voice-04.wav",
+          "duration": 7.659728,
+          "start": 0.2,
+          "end": 7.8597280000000005
+        },
+        {
+          "text": "Cloud Run hosts the service. Firebase Authentication identifies the visitor, and Cloud Firestore stores confirmed cases. Gemini is called through the server.",
+          "file": "voice-05.wav",
+          "duration": 10.970794,
+          "start": 8.259728,
+          "end": 19.230522
+        },
+        {
+          "text": "The model credentials stay on the server, outside the browser bundle.",
+          "file": "voice-06.wav",
+          "duration": 3.95873,
+          "start": 19.630522,
+          "end": 23.589252
+        }
+      ],
+      "duration": 23.8,
+      "outputStart": 35.16,
+      "outputEnd": 58.959999999999994
+    },
+    {
+      "id": "intake",
+      "kind": "recording",
+      "start": 24.04,
+      "recordedDuration": 14,
+      "title": "1 / START A VISITOR SESSION",
+      "cues": [
+        "First, we start a visitor session and enter a synthetic parking expense: thirty-eight dollars, with a missing receipt.",
+        "These text and form inputs are what the system checks. It does not read receipt images."
+      ],
+      "audio": [
+        {
+          "text": "First, we start a visitor session and enter a synthetic parking expense: thirty-eight dollars, with a missing receipt.",
+          "file": "voice-07.wav",
+          "duration": 7.350295,
+          "start": 0.31446699999999944,
+          "end": 7.664762
+        },
+        {
+          "text": "These text and form inputs are what the system checks. It does not read receipt images.",
+          "file": "voice-08.wav",
+          "duration": 5.620771,
+          "start": 8.064762,
+          "end": 13.685533000000001
+        }
+      ],
+      "duration": 14,
+      "outputStart": 58.959999999999994,
+      "outputEnd": 72.96
+    },
+    {
+      "id": "rolemap",
+      "kind": "card",
+      "title": "Three roles, separate questions",
+      "eyebrow": "HOW GEMINI SUPPORTS THE WORKFLOW",
+      "subtitle": "FACTS  →  PLANNER  →  REVIEWER",
+      "body": [
+        "Facts: extract the submitted information",
+        "Planner: propose a policy-grounded next action",
+        "Reviewer: check the proposed plan",
+        "Structured validation also checks the outputs"
+      ],
+      "cues": [
+        "The facts stage extracts submitted information. The planner proposes a next action with policy references. A separately prompted reviewer checks that proposal.",
+        "These are distinct stages using Gemini, not independent people. Structured validation adds another check before an action can become available."
+      ],
+      "audio": [
+        {
+          "text": "The facts stage extracts submitted information. The planner proposes a next action with policy references. A separately prompted reviewer checks that proposal.",
+          "file": "voice-09.wav",
+          "duration": 10.398776,
+          "start": 0.2,
+          "end": 10.598775999999999
+        },
+        {
+          "text": "These are distinct stages using Gemini, not independent people. Structured validation adds another check before an action can become available.",
+          "file": "voice-10.wav",
+          "duration": 8.826667,
+          "start": 10.998776,
+          "end": 19.825443
+        }
+      ],
+      "duration": 20.04,
+      "outputStart": 72.96,
+      "outputEnd": 93
+    },
+    {
+      "id": "roles",
+      "kind": "recording",
+      "start": 42.04,
+      "recordedDuration": 19,
+      "title": "2 / INSPECT THE PROCESSING ATTEMPTS",
+      "cues": [
+        "We now run the analysis. The interface records each processing attempt, its outcome, and its duration, so the operator can inspect what happened.",
+        "The displayed timings describe this example; they are not a service guarantee. All three stages finish successfully in this recording."
+      ],
+      "audio": [
+        {
+          "text": "We now run the analysis. The interface records each processing attempt, its outcome, and its duration, so the operator can inspect what happened.",
+          "file": "voice-11.wav",
+          "duration": 9.279048,
+          "start": 0.5345804999999995,
+          "end": 9.813628499999998
+        },
+        {
+          "text": "The displayed timings describe this example; they are not a service guarantee. All three stages finish successfully in this recording.",
+          "file": "voice-12.wav",
+          "duration": 8.251791,
+          "start": 10.213628499999999,
+          "end": 18.465419500000003
+        }
+      ],
+      "duration": 19,
+      "outputStart": 93,
+      "outputEnd": 112
+    },
+    {
+      "id": "decision",
+      "kind": "recording",
+      "start": 65.04,
+      "recordedDuration": 17,
+      "title": "3 / REVIEW THE PLAN AND DRAFT",
+      "cues": [
+        "The plan identifies the missing receipt and asks for evidence. It does not approve reimbursement. The operator can inspect the explanation and policy references.",
+        "A draft is available to copy and edit. Copying sends no message and makes no payment."
+      ],
+      "audio": [
+        {
+          "text": "The plan identifies the missing receipt and asks for evidence. It does not approve reimbursement. The operator can inspect the explanation and policy references.",
+          "file": "voice-13.wav",
+          "duration": 10.364807,
+          "start": 0.269388,
+          "end": 10.634195
+        },
+        {
+          "text": "A draft is available to copy and edit. Copying sends no message and makes no payment.",
+          "file": "voice-14.wav",
+          "duration": 5.696417,
+          "start": 11.034195,
+          "end": 16.730612
+        }
+      ],
+      "duration": 17,
+      "outputStart": 112,
+      "outputEnd": 129
+    },
+    {
+      "id": "control",
+      "kind": "card",
+      "title": "An AI plan is not permission",
+      "eyebrow": "HUMAN CONTROL",
+      "subtitle": "Review the current plan. Explicitly confirm the eligible action.",
+      "body": [
+        "A copied draft is not automatically sent",
+        "Confirmation is required before saving a case",
+        "Version checks reject a stale plan",
+        "No reimbursement approval or payment execution"
+      ],
+      "cues": [
+        "An AI proposal alone cannot save a case. The operator must review the current plan and explicitly confirm an eligible action.",
+        "Version checks protect against confirming an outdated plan. This boundary is important: saving a handling record is different from approving or paying an expense."
+      ],
+      "audio": [
+        {
+          "text": "An AI proposal alone cannot save a case. The operator must review the current plan and explicitly confirm an eligible action.",
+          "file": "voice-15.wav",
+          "duration": 7.831429,
+          "start": 0.2,
+          "end": 8.031429
+        },
+        {
+          "text": "Version checks protect against confirming an outdated plan. This boundary is important: saving a handling record is different from approving or paying an expense.",
+          "file": "voice-16.wav",
+          "duration": 9.755828,
+          "start": 8.431429,
+          "end": 18.187257
+        }
+      ],
+      "duration": 18.4,
+      "outputStart": 129,
+      "outputEnd": 147.4
+    },
+    {
+      "id": "consent",
+      "kind": "recording",
+      "start": 86.04,
+      "recordedDuration": 13,
+      "title": "4 / CONFIRM AND SAVE ONE SYNTHETIC CASE",
+      "cues": [
+        "We prepare confirmation, review the plan, and check consent. The server saves one synthetic case.",
+        "The case contains the expense facts and plan. The receipt is still missing."
+      ],
+      "audio": [
+        {
+          "text": "We prepare confirmation, review the plan, and check consent. The server saves one synthetic case.",
+          "file": "voice-17.wav",
+          "duration": 7.037868,
+          "start": 0.3476420000000003,
+          "end": 7.38551
+        },
+        {
+          "text": "The case contains the expense facts and plan. The receipt is still missing.",
+          "file": "voice-18.wav",
+          "duration": 4.866848,
+          "start": 7.78551,
+          "end": 12.652358
+        }
+      ],
+      "duration": 13,
+      "outputStart": 147.4,
+      "outputEnd": 160.4
+    },
+    {
+      "id": "readback",
+      "kind": "recording",
+      "start": 103.04,
+      "recordedDuration": 14.96,
+      "title": "5 / RETRIEVE THE CASE INDEPENDENTLY",
+      "cues": [
+        "Next, we independently retrieve the saved case through an authenticated server API request.",
+        "The readback and same-visitor history show matching case details. This verifies the example, using synthetic data."
+      ],
+      "audio": [
+        {
+          "text": "Next, we independently retrieve the saved case through an authenticated server API request.",
+          "file": "voice-19.wav",
+          "duration": 5.692245,
+          "start": 0.6180500000000009,
+          "end": 6.310295000000001
+        },
+        {
+          "text": "The readback and same-visitor history show matching case details. This verifies the example, using synthetic data.",
+          "file": "voice-20.wav",
+          "duration": 7.631655,
+          "start": 6.710295000000001,
+          "end": 14.34195
+        }
+      ],
+      "duration": 14.96,
+      "outputStart": 160.4,
+      "outputEnd": 175.36
+    },
+    {
+      "id": "limits",
+      "kind": "card",
+      "title": "A focused prototype, clear limits",
+      "eyebrow": "WHAT THIS DEMONSTRATION ESTABLISHES",
+      "subtitle": "Recorded UI evidence with offline explanatory narration.",
+      "body": [
+        "Synthetic policy and expense data",
+        "No receipt-image extraction or automatic sending",
+        "Model requests can fail or take time",
+        "A person remains responsible for the handling decision"
+      ],
+      "cues": [
+        "This is a focused prototype, not a universal finance decision engine. It uses synthetic policy data and does not extract receipt images.",
+        "Model requests can fail or take time. People should inspect the evidence and proposed action. These explanations do not claim guaranteed accuracy or turnaround."
+      ],
+      "audio": [
+        {
+          "text": "This is a focused prototype, not a universal finance decision engine. It uses synthetic policy data and does not extract receipt images.",
+          "file": "voice-21.wav",
+          "duration": 9.164354,
+          "start": 0.2,
+          "end": 9.364353999999999
+        },
+        {
+          "text": "Model requests can fail or take time. People should inspect the evidence and proposed action. These explanations do not claim guaranteed accuracy or turnaround.",
+          "file": "voice-22.wav",
+          "duration": 10.65102,
+          "start": 9.764353999999999,
+          "end": 20.415374
+        }
+      ],
+      "duration": 20.64,
+      "outputStart": 175.36,
+      "outputEnd": 196
+    },
+    {
+      "id": "outro",
+      "kind": "card",
+      "title": "Explore OpsCrew",
+      "eyebrow": "PUBLIC PROTOTYPE AND SOURCE",
+      "subtitle": "Google AI assistance with an explicit human checkpoint.",
+      "body": [
+        "Cloud prototype",
+        "opscrew-883881551915.us-central1.run.app",
+        "",
+        "Public repository",
+        "github.com/sundaylee3100-ljl/AI-Builder-Cup-2026-OpsCrew"
+      ],
+      "cues": [
+        "OpsCrew combines structured AI assistance, explicit confirmation, and saved-case verification in one workflow.",
+        "You can explore the deployed Google Cloud prototype and public source using the links shown here. Thank you for watching."
+      ],
+      "audio": [
+        {
+          "text": "OpsCrew combines structured AI assistance, explicit confirmation, and saved-case verification in one workflow.",
+          "file": "voice-23.wav",
+          "duration": 6.814875,
+          "start": 0.2,
+          "end": 7.014875
+        },
+        {
+          "text": "You can explore the deployed Google Cloud prototype and public source using the links shown here. Thank you for watching.",
+          "file": "voice-24.wav",
+          "duration": 6.987392,
+          "start": 7.414875,
+          "end": 14.402267
+        }
+      ],
+      "duration": 14.64,
+      "outputStart": 196,
+      "outputEnd": 210.64
+    }
+  ],
+  "captions": [
+    {
+      "start": 0.2,
+      "end": 10.305079,
+      "text": "Meet OpsCrew, our expense operations copilot. It helps an operator understand an exception, choose a next step, and keep control of the record.",
+      "segment": "intro"
+    },
+    {
+      "start": 10.705079,
+      "end": 18.886031,
+      "text": "This walkthrough uses synthetic data and a demonstration policy. It shows assistance and case handling, rather than a payment system.",
+      "segment": "intro"
+    },
+    {
+      "start": 19.32,
+      "end": 26.418594000000002,
+      "text": "An incomplete expense can mean repeated checks and follow-up. An operator needs to know what is missing and why it matters.",
+      "segment": "problem"
+    },
+    {
+      "start": 26.818594,
+      "end": 34.951156,
+      "text": "OpsCrew brings the facts, policy references, and suggested action into one reviewable workflow, while leaving the decision with a person.",
+      "segment": "problem"
+    },
+    {
+      "start": 35.36,
+      "end": 43.019728,
+      "text": "We started the application in Google AI Studio Build. Our teammate used Antigravity for the Google Cloud deployment work.",
+      "segment": "build"
+    },
+    {
+      "start": 43.419728,
+      "end": 54.390522,
+      "text": "Cloud Run hosts the service. Firebase Authentication identifies the visitor, and Cloud Firestore stores confirmed cases. Gemini is called through the server.",
+      "segment": "build"
+    },
+    {
+      "start": 54.790521999999996,
+      "end": 58.749252,
+      "text": "The model credentials stay on the server, outside the browser bundle.",
+      "segment": "build"
+    },
+    {
+      "start": 59.274466999999994,
+      "end": 66.62476199999999,
+      "text": "First, we start a visitor session and enter a synthetic parking expense: thirty-eight dollars, with a missing receipt.",
+      "segment": "intake"
+    },
+    {
+      "start": 67.024762,
+      "end": 72.645533,
+      "text": "These text and form inputs are what the system checks. It does not read receipt images.",
+      "segment": "intake"
+    },
+    {
+      "start": 73.16,
+      "end": 83.558776,
+      "text": "The facts stage extracts submitted information. The planner proposes a next action with policy references. A separately prompted reviewer checks that proposal.",
+      "segment": "rolemap"
+    },
+    {
+      "start": 83.958776,
+      "end": 92.78544299999999,
+      "text": "These are distinct stages using Gemini, not independent people. Structured validation adds another check before an action can become available.",
+      "segment": "rolemap"
+    },
+    {
+      "start": 93.5345805,
+      "end": 102.8136285,
+      "text": "We now run the analysis. The interface records each processing attempt, its outcome, and its duration, so the operator can inspect what happened.",
+      "segment": "roles"
+    },
+    {
+      "start": 103.2136285,
+      "end": 111.4654195,
+      "text": "The displayed timings describe this example; they are not a service guarantee. All three stages finish successfully in this recording.",
+      "segment": "roles"
+    },
+    {
+      "start": 112.269388,
+      "end": 122.634195,
+      "text": "The plan identifies the missing receipt and asks for evidence. It does not approve reimbursement. The operator can inspect the explanation and policy references.",
+      "segment": "decision"
+    },
+    {
+      "start": 123.034195,
+      "end": 128.730612,
+      "text": "A draft is available to copy and edit. Copying sends no message and makes no payment.",
+      "segment": "decision"
+    },
+    {
+      "start": 129.2,
+      "end": 137.031429,
+      "text": "An AI proposal alone cannot save a case. The operator must review the current plan and explicitly confirm an eligible action.",
+      "segment": "control"
+    },
+    {
+      "start": 137.431429,
+      "end": 147.187257,
+      "text": "Version checks protect against confirming an outdated plan. This boundary is important: saving a handling record is different from approving or paying an expense.",
+      "segment": "control"
+    },
+    {
+      "start": 147.747642,
+      "end": 154.78551000000002,
+      "text": "We prepare confirmation, review the plan, and check consent. The server saves one synthetic case.",
+      "segment": "consent"
+    },
+    {
+      "start": 155.18551,
+      "end": 160.052358,
+      "text": "The case contains the expense facts and plan. The receipt is still missing.",
+      "segment": "consent"
+    },
+    {
+      "start": 161.01805000000002,
+      "end": 166.710295,
+      "text": "Next, we independently retrieve the saved case through an authenticated server API request.",
+      "segment": "readback"
+    },
+    {
+      "start": 167.110295,
+      "end": 174.74195,
+      "text": "The readback and same-visitor history show matching case details. This verifies the example, using synthetic data.",
+      "segment": "readback"
+    },
+    {
+      "start": 175.56,
+      "end": 184.724354,
+      "text": "This is a focused prototype, not a universal finance decision engine. It uses synthetic policy data and does not extract receipt images.",
+      "segment": "limits"
+    },
+    {
+      "start": 185.124354,
+      "end": 195.775374,
+      "text": "Model requests can fail or take time. People should inspect the evidence and proposed action. These explanations do not claim guaranteed accuracy or turnaround.",
+      "segment": "limits"
+    },
+    {
+      "start": 196.2,
+      "end": 203.014875,
+      "text": "OpsCrew combines structured AI assistance, explicit confirmation, and saved-case verification in one workflow.",
+      "segment": "outro"
+    },
+    {
+      "start": 203.414875,
+      "end": 210.402267,
+      "text": "You can explore the deployed Google Cloud prototype and public source using the links shown here. Thank you for watching.",
+      "segment": "outro"
+    }
+  ],
+  "limitations": [
+    "The recorded footage is not a new live production test. Its original DOM address overlay established neither native browser origin nor source identity.",
+    "Explanation cards are editorial explanations, not screenshots of additional implemented product pages.",
+    "Complete human listening and hosted-link playback checks remain required.",
+    "The old hosted video is not updated by creating a local replacement."
+  ]
+}

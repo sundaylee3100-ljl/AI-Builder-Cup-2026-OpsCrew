@@ -1,0 +1,31 @@
+{
+  "date_local": "2026-10-17",
+  "timezone": "Asia/Shanghai",
+  "status": "SUBMITTED_OWNER_REPORTED",
+  "evidence_type": "Explicit owner message in this conversation",
+  "owner_statement_english_translation": "I have already submitted the competition entry. The new video file does not need to be uploaded to GitHub; use its link instead. Complete and review the GitHub project workflow and update README.",
+  "portal_independently_inspected": false,
+  "exact_submission_time": null,
+  "receipt_id": null,
+  "receipt_status": "NOT_PROVIDED_NOT_FABRICATED",
+  "uploaded_file_identity": "Not independently inspected; current repository indexes the reviewed package",
+  "current_video_url": "https://youtu.be/rdbS1XUNUjw",
+  "video_distribution": {
+    "repository_binary": false,
+    "owner_instruction": "Use the YouTube link rather than uploading the new MP4",
+    "local_master_filename": "OpsCrew_Submission_Demo_3to4min_2026-10-16.mp4",
+    "local_master_retained": true,
+    "local_master_sha256": "61eca16cd41fc99439023f259ca8152903de4fe9b22b9d86359955a746ef85b3",
+    "duration_seconds": 210.661333,
+    "remote_stream_byte_identity": "NOT_INDEPENDENTLY_COMPARED",
+    "anonymous_complete_playback": "NOT_INDEPENDENTLY_VERIFIED"
+  },
+  "current_reviewed_proposal": {
+    "pdf": "submission/OpsCrew_Proposal_Cloud_submission-final-2026-10-17.pdf",
+    "pptx": "submission/OpsCrew_Proposal_Cloud_submission-final-2026-10-17.pptx",
+    "acceptance": "submission/OpsCrew_Proposal_Cloud_submission-final-2026-10-17.acceptance.json"
+  },
+  "historical_records_policy": "Previously executed acceptance/QA reports and submitted proposal bytes remain unchanged. This follow-up records later owner confirmation and distribution instructions.",
+  "repository_workflow": "Publish reviewed material/document changes through PR review and merge. This does not resubmit the portal form or change the deployed application.",
+  "new_cloud_model_identity_paid_resource_changes": 0
+}

@@ -1,0 +1,110 @@
+{
+  "date_local": "2026-10-17",
+  "timezone": "Asia/Shanghai",
+  "status": "PAIRED_LOCAL_MATERIALS_VERIFIED_CAPTAIN_ACCESS_AND_PORTAL_CHECKS_PENDING",
+  "owner_evidence": "docs/acceptance/VIDEO-3to4-owner-publication-2026-10-17.json",
+  "proposal_qa": "docs/acceptance/PROPOSAL-publication-2026-10-17.json",
+  "updated": {
+    "current_video_url": "https://youtu.be/rdbS1XUNUjw",
+    "video_duration_seconds": 210.661333,
+    "pdf": {
+      "path": "submission/OpsCrew_Proposal_Cloud_submission-final-2026-10-17.pdf",
+      "sha256": "7de46c58f3a83778f5b9f88597faf92ca2caed2023d9fe03cca0dc96b8237642",
+      "bytes": 2997537,
+      "pages": 13
+    },
+    "pptx": {
+      "path": "submission/OpsCrew_Proposal_Cloud_submission-final-2026-10-17.pptx",
+      "sha256": "591635c6c324c5add2918281935fedd568a3528a6dbfd1b124540713661b03cf",
+      "bytes": 1761885,
+      "slides": 13
+    },
+    "current_document_count": 11,
+    "current_documents": [
+      "README.md",
+      "PROVENANCE.md",
+      "SUBMISSION_CHECKLIST.md",
+      "docs/CLOUD_TEAMMATE_HANDOFF.md",
+      "docs/DELIVERY_WORKBOARD.md",
+      "docs/DEPLOYMENT_AND_USAGE_REPORT.md",
+      "docs/OPSCREW_TEAM_SYNC_AND_DELIVERY_REPORT.md",
+      "submission/README.md",
+      "submission/RECORDING_PLAN.md",
+      "submission/SUBMISSION_FORM.md",
+      "submission/YOUTUBE_METADATA.md"
+    ]
+  },
+  "verified": {
+    "all_current_documents_contain_new_url": true,
+    "local_markdown_links": 161,
+    "pdf_and_pptx_actual_uri_links": [
+      "https://github.com/sundaylee3100-ljl/AI-Builder-Cup-2026-OpsCrew",
+      "https://opscrew-883881551915.us-central1.run.app",
+      "https://youtu.be/rdbS1XUNUjw"
+    ],
+    "full_proposal_render_review": "13/13 pages inspected by author; changed pages1,12,13 viewed additionally by root; remaining10 pages pixel-identical to October16",
+    "video_sha_unchanged": true,
+    "old_proposal_and_media_unchanged": true,
+    "runtime_files_unchanged": 32,
+    "operational_files_unchanged": 10,
+    "application_tests": "Not rerun for material-only changes; original dated246 test evidence retained",
+    "public_prototype_root": {
+      "status_code": 200,
+      "response_bytes": 1731,
+      "method": "PowerShell Invoke-WebRequest root only; no model or identity request",
+      "web_tool_limitation": "Web tool could not access this service; direct root GET succeeded"
+    },
+    "public_repository": "GitHub API confirms public; fresh CLI login sundaylee3100-ljl and push permission verified"
+  },
+  "official_requirements": {
+    "checked_date": "2026-10-17",
+    "sources": [
+      "https://aibuildercup.com/themes.html",
+      "https://aibuildercup.com/Faqs.html",
+      "https://aibuildercup.com/index.html"
+    ],
+    "route": "Google AI model or supported Google AI platform plus Cloud Run/Firebase deployment; English materials",
+    "duration": "Actual owner-supplied submission field3–4 minutes; contradictory themes3min/FAQunder3min statements retained in separate duration-decision record",
+    "five_submission_items": [
+      "Official-template presentation PDF",
+      "Demonstration video link",
+      "Deployed prototype link",
+      "Public GitHub repository",
+      "Brief English description"
+    ],
+    "no_api_key_distribution_required": true
+  },
+  "unchanged_for_video_link_update": [
+    "Application source",
+    "Cloud Run product URL",
+    "GitHub repository URL",
+    "English brief description",
+    "Captain Sunday Lee",
+    "Future of Work & Enterprise Productivity theme",
+    "Google AI Studio/Gemini/Antigravity tool attribution and Cloud Run/Firebase architecture"
+  ],
+  "remaining": [
+    "Confirm complete anonymous playback of the new hosted video; metadata/title and owner acceptance are distinct observations",
+    "Captain checks actual portal file/character limits, roster, declarations and deadline/timezone; upload the new October17 PDF and use the new video URL",
+    "Cloud owner maintains service/model quota during evaluation; no new live model workflow performed in this material-only update",
+    "Record actual Submitted receipt after captain submits"
+  ],
+  "cleanup": {
+    "status": "COMPLETE_CURRENT_TASK",
+    "owned_proposal_work_directory": ".materials-publication-20261017",
+    "recycled_and_verified_absent": true,
+    "unexpected_glob_candidates": [],
+    "retained_formal_test": [
+      "..\\scripts\\test_adapters.py"
+    ],
+    "excluded_dependency_directories": [
+      ".git",
+      "node_modules",
+      ".tools",
+      ".venv",
+      "dist"
+    ],
+    "historical_outputs_owner_inputs_and_necessary_results_retained": true
+  },
+  "new_cloud_model_identity_paid_resource_changes": 0
+}

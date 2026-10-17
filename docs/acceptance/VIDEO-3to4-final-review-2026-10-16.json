@@ -1,0 +1,72 @@
+{
+  "date_local": "2026-10-16",
+  "timezone": "Asia/Shanghai",
+  "status": "LOCAL_TECHNICAL_VISUAL_FACTUAL_PASS_OWNER_LISTENING_PUBLICATION_PENDING",
+  "video": {
+    "path": "submission/OpsCrew_Submission_Demo_3to4min_2026-10-16.mp4",
+    "sha256": "61eca16cd41fc99439023f259ca8152903de4fe9b22b9d86359955a746ef85b3",
+    "bytes": 13829566,
+    "duration_seconds": 210.661333,
+    "streams": [
+      {
+        "codec_type": "video",
+        "codec_name": "h264",
+        "width": 1920,
+        "height": 1080,
+        "nb_frames": "5266",
+        "avg_frame_rate": "25/1"
+      },
+      {
+        "codec_type": "audio",
+        "codec_name": "aac",
+        "sample_rate": "48000",
+        "channels": 2,
+        "nb_frames": "9892",
+        "avg_frame_rate": "0/0"
+      }
+    ]
+  },
+  "technical_evidence": "docs/acceptance/VIDEO-3to4-QA-2026-10-16.json",
+  "build_evidence": "docs/acceptance/VIDEO-3to4-build-2026-10-16.json",
+  "rule_evidence": "docs/acceptance/VIDEO-3to4-duration-rule-2026-10-16.md",
+  "independent_review": {
+    "reviewer": "/root/video_content_reviewer",
+    "status": "PASS_NO_BLOCKERS",
+    "scope": "All narration facts and 25-cue contact sheet; 15 additional actual rendered frames, including three full-resolution frames; root additionally viewed contact sheet and full-resolution confirmation frame.",
+    "verified": [
+      "No text/caption overflow",
+      "Source USD38/missing receipt, confirmed save and same-record retrieval align with narration",
+      "Roles successful-state narration aligned after correction",
+      "Explanatory cards labelled; original UI order and speed preserved; no added UI holds",
+      "Old unsupported captions replaced without fabricating business states"
+    ],
+    "human_full_listening": "NOT_PERFORMED_BY_REVIEWERS"
+  },
+  "source_verification": {
+    "runtime_files": 32,
+    "operational_files": 10,
+    "all_normalized_hashes_match": true,
+    "canonical_sources_sha256": "c3fca02c49c36cf8c88c9883edd3db2dfdbcaad507dadd4e4803bb5ebd3b598c",
+    "application_changes": false,
+    "new_application_tests": "NOT_RERUN_UNCHANGED_RUNTIME; existing dated evidence retained"
+  },
+  "cleanup": {
+    "status": "COMPLETE_CURRENT_VIDEO_TASK",
+    "owned_authoring_directory": ".review-media-3to4-20261016",
+    "method": "Sent to Recycle Bin after ownership/path/no-running-process checks",
+    "directory_verified_absent": true,
+    "workspace_glob_scan_unexpected_candidates": [],
+    "retained_formal_tests": [
+      "..\\scripts\\test_adapters.py"
+    ],
+    "retained_dependency_directories": "Scan excludes .git/node_modules/.tools/.venv/dist; maintained tests and dependencies retained",
+    "prior_files": "Historical outputs, owner inputs and necessary evidence retained"
+  },
+  "remaining": [
+    "Owner watches/listens to the complete new file",
+    "Owner publishes exact accepted file and supplies a new matching public URL",
+    "Verify complete public playback and generate/check a separately named proposal PDF/PPTX revision with the new URL",
+    "Actual portal submission and receipt remain captain actions"
+  ],
+  "new_cloud_model_paid_account_calls": 0
+}

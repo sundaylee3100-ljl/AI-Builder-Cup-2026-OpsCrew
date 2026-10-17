@@ -1,6 +1,6 @@
 # OpsCrew team delivery status
 
-Updated October 16, 2026 (Asia/Shanghai). This review replaces the earlier blanket readiness claim. The current package is **not yet ready for final portal submission**: the owner has now accepted the natural narration and supplied https://youtu.be/j94ffx_yrng. The final proposal is exported; complete anonymous video access and captain portal checks remain pending.
+Updated October 17, 2026 (Asia/Shanghai). **The owner confirms competition submission is complete.** The reviewed 210.661333-second video is distributed through https://youtu.be/rdbS1XUNUjw; the local MP4 is excluded from GitHub per the owner's request. Current fields select the October 17 proposal. [Owner confirmation](acceptance/SUBMISSION-owner-confirmation-2026-10-17.json) distinguishes that report from independent portal/receipt verification. The earlier short video and proposal remain historical. Complete anonymous hosted playback remains unverified. See [current material index](../submission/SUBMISSION_FORM.md).
 
 ## Submission identity
 
@@ -40,15 +40,15 @@ October 14's 236 tests and twelve native-artifact groups and October 13's three 
 
 The owner's original `8MACVIPWCt8` recording contains useful interface operation but also unsupported narration/cards. It is not accepted as the final video. The earlier `h53-tucE7ig` is also rejected.
 
-The first offline correction passed technical and visual checks but was too fast according to the owner's actual playback. The owner accepted the slower rate 0 revision and corresponding new YouTube upload (https://youtu.be/j94ffx_yrng). The final local file, captions, measured duration, editing disclosures and remaining human/public-playback checks are tracked in [video QA](acceptance/FINAL-video-corrected-QA-2026-10-16.md). Source data, checkbox state, case identifiers and result states are not fabricated. The editorial service label is not native browser provenance.
+The first offline correction passed technical and visual checks but was too fast according to the owner's actual playback. The owner accepted the slower rate 0 revision and corresponding YouTube upload (https://youtu.be/j94ffx_yrng). That historical short local file, captions, measured duration, editing disclosures and remaining human/public-playback checks are tracked in [historical video QA](acceptance/FINAL-video-corrected-QA-2026-10-16.md). The new 3–4 minute file has a [separate final local review](acceptance/VIDEO-3to4-final-review-2026-10-16.json). Source data, checkbox state, case identifiers and result states are not fabricated. The editorial service label is not native browser provenance.
 
-The thirteen-page October 16 final official-template PDF/PPTX include the integrated provider architecture,246-test evidence and accepted new video URL. Local files and metadata-only video HTTP 200 are not complete anonymous playback acceptance.
+The previous thirteen-page October 16 official-template PDF/PPTX include the integrated provider architecture and 246-test evidence, but reference the old short-video URL. They are historical. The separate October 17 revision uses the owner-accepted new video URL and has its own page/link acceptance record. Metadata/title access does not establish complete anonymous playback acceptance.
 
-## Captain and cloud-owner handoff
+## Evaluation-period handoff
 
-1. Review the revised local video in full, listen to the narration and check subtitles; publish the exact accepted file and provide its new public URL.
+1. Use the owner-accepted new link `https://youtu.be/rdbS1XUNUjw`; verify complete anonymous hosted playback. Owner content acceptance and the link are recorded in [the October 17 follow-up](acceptance/VIDEO-3to4-owner-publication-2026-10-17.json).
 2. Clarify the deployment timestamp and retain original control-plane/build/source comparison evidence if asserting an independently verified deployment chain. Maintain an owner for quota, billing and availability through evaluation.
-3. Check the final proposal and five portal fields together. Confirm the actual portal's template/file limits, roster, eligibility, declarations and cutoff/timezone. Published submission date is October 18; exact public cutoff time is not established.
-4. Perform final submission only with the accepted package. Preserve actual Submitted status/receipt/ID/time afterwards, and keep links available during October 19-November 6 evaluation.
+3. Retain any portal receipt, submitted roster and declarations privately. The owner reports submission complete; the public repository does not invent a receipt ID, exact time or independent uploaded-file inspection.
+4. Keep the reviewed proposal identities and public links available during October 19-November 6 evaluation. This GitHub publication does not resubmit the competition form or redeploy the service.
 
 No claim is made of a sub-15-second SLA, guaranteed currency spending cap, immutable ledger, cryptographic signature, zero hallucinations, automatic employee dispatch, OCR, payment execution or universal security verification.

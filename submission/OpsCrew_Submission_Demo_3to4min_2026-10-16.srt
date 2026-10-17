@@ -1,0 +1,99 @@
+1
+00:00:00,200 --> 00:00:10,305
+Meet OpsCrew, our expense operations copilot. It helps an operator understand an exception, choose a next step, and keep control of the record.
+
+2
+00:00:10,705 --> 00:00:18,886
+This walkthrough uses synthetic data and a demonstration policy. It shows assistance and case handling, rather than a payment system.
+
+3
+00:00:19,320 --> 00:00:26,419
+An incomplete expense can mean repeated checks and follow-up. An operator needs to know what is missing and why it matters.
+
+4
+00:00:26,819 --> 00:00:34,951
+OpsCrew brings the facts, policy references, and suggested action into one reviewable workflow, while leaving the decision with a person.
+
+5
+00:00:35,360 --> 00:00:43,020
+We started the application in Google AI Studio Build. Our teammate used Antigravity for the Google Cloud deployment work.
+
+6
+00:00:43,420 --> 00:00:54,391
+Cloud Run hosts the service. Firebase Authentication identifies the visitor, and Cloud Firestore stores confirmed cases. Gemini is called through the server.
+
+7
+00:00:54,791 --> 00:00:58,749
+The model credentials stay on the server, outside the browser bundle.
+
+8
+00:00:59,274 --> 00:01:06,625
+First, we start a visitor session and enter a synthetic parking expense: thirty-eight dollars, with a missing receipt.
+
+9
+00:01:07,025 --> 00:01:12,646
+These text and form inputs are what the system checks. It does not read receipt images.
+
+10
+00:01:13,160 --> 00:01:23,559
+The facts stage extracts submitted information. The planner proposes a next action with policy references. A separately prompted reviewer checks that proposal.
+
+11
+00:01:23,959 --> 00:01:32,785
+These are distinct stages using Gemini, not independent people. Structured validation adds another check before an action can become available.
+
+12
+00:01:33,535 --> 00:01:42,814
+We now run the analysis. The interface records each processing attempt, its outcome, and its duration, so the operator can inspect what happened.
+
+13
+00:01:43,214 --> 00:01:51,465
+The displayed timings describe this example; they are not a service guarantee. All three stages finish successfully in this recording.
+
+14
+00:01:52,269 --> 00:02:02,634
+The plan identifies the missing receipt and asks for evidence. It does not approve reimbursement. The operator can inspect the explanation and policy references.
+
+15
+00:02:03,034 --> 00:02:08,731
+A draft is available to copy and edit. Copying sends no message and makes no payment.
+
+16
+00:02:09,200 --> 00:02:17,031
+An AI proposal alone cannot save a case. The operator must review the current plan and explicitly confirm an eligible action.
+
+17
+00:02:17,431 --> 00:02:27,187
+Version checks protect against confirming an outdated plan. This boundary is important: saving a handling record is different from approving or paying an expense.
+
+18
+00:02:27,748 --> 00:02:34,786
+We prepare confirmation, review the plan, and check consent. The server saves one synthetic case.
+
+19
+00:02:35,186 --> 00:02:40,052
+The case contains the expense facts and plan. The receipt is still missing.
+
+20
+00:02:41,018 --> 00:02:46,710
+Next, we independently retrieve the saved case through an authenticated server API request.
+
+21
+00:02:47,110 --> 00:02:54,742
+The readback and same-visitor history show matching case details. This verifies the example, using synthetic data.
+
+22
+00:02:55,560 --> 00:03:04,724
+This is a focused prototype, not a universal finance decision engine. It uses synthetic policy data and does not extract receipt images.
+
+23
+00:03:05,124 --> 00:03:15,775
+Model requests can fail or take time. People should inspect the evidence and proposed action. These explanations do not claim guaranteed accuracy or turnaround.
+
+24
+00:03:16,200 --> 00:03:23,015
+OpsCrew combines structured AI assistance, explicit confirmation, and saved-case verification in one workflow.
+
+25
+00:03:23,415 --> 00:03:30,402
+You can explore the deployed Google Cloud prototype and public source using the links shown here. Thank you for watching.

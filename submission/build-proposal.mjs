@@ -48,13 +48,19 @@ const videoAccepted = process.env.OPSCREW_VIDEO_CONTENT_ACCEPTED === "true";
 if (videoAccepted && !videoUrl) throw new Error("Accepted footage still requires an anonymously playable public video URL.");
 const publicVideoAccepted = videoAccepted && process.env.OPSCREW_VIDEO_ANONYMOUS_PLAYBACK_ACCEPTED === "true";
 const proposalLabel = videoAccepted ? "Competition proposal" : "Submission review";
+const proposalDate = process.env.OPSCREW_PROPOSAL_DATE?.trim() || "16 October 2026";
+const videoDurationSeconds = process.env.OPSCREW_PUBLIC_VIDEO_DURATION_SECONDS ? Number(process.env.OPSCREW_PUBLIC_VIDEO_DURATION_SECONDS) : null;
+if (videoDurationSeconds !== null && (!Number.isFinite(videoDurationSeconds) || videoDurationSeconds <= 180 || videoDurationSeconds >= 240)) throw new Error("The current submission field requires a video between three and four minutes.");
+const videoDurationLabel = videoDurationSeconds === null ? null : `${Math.floor(videoDurationSeconds / 60)} min ${(videoDurationSeconds % 60).toFixed(2)} s`;
 const screenshotPath = process.env.OPSCREW_CLOUD_SCREENSHOT?.trim();
 const screenshotSeconds = process.env.OPSCREW_CLOUD_SCREENSHOT_SECONDS?.trim();
 if (screenshotPath && !/^\d+(?:\.\d+)?$/.test(screenshotSeconds || "")) throw new Error("Cloud footage screenshots require their actual source timestamp in seconds.");
 const savedScreenshotPath = process.env.OPSCREW_CLOUD_SAVEDCASE_SCREENSHOT?.trim();
 const savedScreenshotSeconds = process.env.OPSCREW_CLOUD_SAVEDCASE_SCREENSHOT_SECONDS?.trim();
 if (savedScreenshotPath && !/^\d+(?:\.\d+)?$/.test(savedScreenshotSeconds || "")) throw new Error("Saved-case screenshots require their actual source timestamp in seconds.");
-const privateDirectory = path.join(repository, ".materials-build", revision);
+const privateDirectory = process.env.OPSCREW_MATERIALS_BUILD_DIRECTORY ? path.resolve(repository, process.env.OPSCREW_MATERIALS_BUILD_DIRECTORY) : path.join(repository, ".materials-build", revision);
+const relativePrivateDirectory = path.relative(repository, privateDirectory);
+if (!relativePrivateDirectory || relativePrivateDirectory.startsWith("..") || path.isAbsolute(relativePrivateDirectory)) throw new Error("The private build directory must be inside the repository and separate from its root.");
 const pptx = path.join(repository, `submission/OpsCrew_Proposal_Cloud_${revision}.pptx`);
 const pdf = path.join(repository, `submission/OpsCrew_Proposal_Cloud_${revision}.pdf`);
 await fs.mkdir(privateDirectory, { recursive: true });
@@ -127,7 +133,7 @@ let slide = presentation.slides.items[0];
 text(slide, "Team OpsCrew", 28, 303, 744, 42, 32, true);
 text(slide, "Expense exception plans with human confirmation", 28, 355, 735, 61, 24);
 text(slide, `Captain: ${captain}\nTheme: Future of Work & Enterprise Productivity`, 28, 428, 755, 65, 19);
-text(slide, `${proposalLabel}  /  16 October 2026`, 28, 505, 750, 20, 12, false, "#59636E");
+text(slide, `${proposalLabel}  /  ${proposalDate}`, 28, 505, 750, 20, 12, false, "#59636E");
 slide.images.add({ blob: new Uint8Array(await fs.readFile(path.join(repository, "submission/assets/team-logo.png"))), contentType: "image/png", alt: "Owner-provided Gemini-generated OpsCrew logo", fit: "contain", position: { left: 802, top: 365, width: 130, height: 129 } });
 slide.speakerNotes.text = `Public captain name, when provided, comes from the owner. Eligibility and registration declarations remain the authorized team's responsibility.\n${rules}\nFresh Google AI Studio Build creation on 7 October. Logo supplied by owner as Gemini-generated. The owner reports that the teammate used Google Antigravity to assist Cloud deployment; this is tool attribution, not automated deployment-source attestation.`;
 
@@ -235,7 +241,7 @@ slide = title(11, "Additional details and future development", ["docs/CLOUD_TEAM
 paragraphs(slide, [
   "Extend deployment operations checks and provider regression coverage. The retained real-model API evidence is dated 13 October; current provider switching has separate offline tests.",
   "Current evidence uses public synthetic examples. Independent held-out evaluation and staff timing studies remain future validation work.",
-  videoAccepted ? "The demonstration presents recorded interface operation with English narration, synthetic data and disclosed edits. A person reviews each eligible plan before creating its case." : "The replacement video uses recorded interface footage. Final publication and complete public playback require acceptance.",
+  videoAccepted ? (videoDurationLabel ? `The ${videoDurationLabel} demonstration combines recorded interface operation with explanatory title cards and English narration. Synthetic examples show the person's review before case creation.` : "The demonstration presents recorded interface operation with English narration, synthetic data and disclosed edits. A person reviews each eligible plan before creating its case.") : "The replacement video uses recorded interface footage. Final publication and complete public playback require acceptance.",
   "After evaluation, consider broader policies and staff timing studies. Production reimbursement integrations require a separate design and authorization.",
 ], 132, 87, 888, 21);
 
@@ -246,7 +252,7 @@ text(slide, git.replace("https://", ""), 36, 177, 888, 42, 18, false, "#59636E")
 const productLink = text(slide, "Cloud product URL", 36, 234, 888, 33, 23, true, "#086A86");
 productLink.text.get("Cloud product URL").link = { uri: cloudUrl, isExternal: true };
 text(slide, cloudUrl, 36, 274, 888, 42, 18, false, "#59636E");
-const videoText = videoAccepted ? "Demo video" : videoUrl ? "Candidate video link (acceptance pending)" : "Public demo video: replacement upload pending";
+const videoText = videoAccepted ? (videoDurationLabel ? `Demo video (${videoDurationLabel})` : "Demo video") : videoUrl ? "Candidate video link (acceptance pending)" : "Public demo video: replacement upload pending";
 const videoLink = text(slide, videoText, 36, 337, 888, 38, 23, Boolean(videoUrl), videoUrl ? "#086A86" : "#17212B");
 if (videoUrl) videoLink.text.get(videoText).link = { uri: videoUrl, isExternal: true };
 if (videoUrl) text(slide, videoUrl, 36, 378, 888, 36, 18, false, "#59636E");
